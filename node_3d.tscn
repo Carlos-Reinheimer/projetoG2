@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dhelrombcb53f"]
+
+[sub_resource type="GDScript" id="GDScript_4xowi"]
+script/source = "extends Node
+
+const W = 40
+const H = 24
+const HALL_WIDTH = 3
+const MIN_ROOM = 5
+const MAX_ROOM = 9
+
+var grid = []  # grid[x][y]
+
+func generate_floor():
+	_init_grid()
+	var hall_top = (H - HALL_WIDTH) / 2
+	var hall_bottom = hall_top + HALL_WIDTH
+
+	# Top strip: rooms from y=0 to hall_top
+	_fill_rooms(0, hall_top, hall_top - 1)       # door on bottom edge of room
+	# Bottom strip: rooms from hall_bottom to H
+	_fill_rooms(hall_bottom, H, hall_bottom)     # door on top edge of room
+
+func _init_grid():
+	grid = []
+	for x in W:
+		grid.append([])
+		for y in H:
+			grid[x].append(1)  # start as solid wall
+
+func _fill_rooms(y_start, y_end, door_y):
+	var x = 0
+	while x < W:
+		var w = randi() % (MAX_ROOM - MIN_ROOM + 1) + MIN_ROOM
+		if W - (x + w) < MIN_ROOM:   # avoid a tiny leftover room
+			w = W - x
+		_carve_room(x, y_start, w, y_end - y_start)
+		_place_door(x + w / 2, door_y)
+		x += w
+
+func _carve_room(rx, ry, rw, rh):
+	# leave a 1-cell wall border so neighbouring rooms stay separated
+	for x in range(rx + 1, rx + rw - 1):
+		for y in range(ry + 1, ry + rh - 1):
+			grid[x][y] = 0
+
+func _place_door(x, y):
+	grid[x][y] = 2
+"
+
+[node name="Node3D" type="Node3D" unique_id=256124910]
+script = SubResource("GDScript_4xowi")

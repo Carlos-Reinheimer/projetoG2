@@ -12,7 +12,10 @@ config_version=5
 
 config/name="ProjetoG2"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+
+[autoload]
+
+SignalBus="*uid://c21a5wkp06ucu"
 
 [display]
 
