@@ -5,6 +5,8 @@ extends RefCounted
 # https://forum.godotengine.org/t/when-to-use-refcounted-vs-resource-vs-node/109460
 # https://docs.godotengine.org/en/stable/tutorials/best_practices/node_alternatives.html
 
+# Dungeon Generator ref: https://youtu.be/h64U6j_sFgs?si=M_-n2820fQAy07dG
+
 const FLOOR_WIDTH: int = 30
 const FLOOR_LENGTH: int = 40 
 const CORRIDOR_WIDTH: int = 3
@@ -22,11 +24,11 @@ func generate(floor_seed: int) -> FloorData:
 	data.floorSeed = floor_seed
 	data.size = Vector2i(FLOOR_WIDTH, FLOOR_LENGTH)
 
-	# The outer ring of cells (x=0, x=W-1, z=0, z=L-1) stays wall.
+	# The outer ring of cells (x=0, x=W-1, z=0, z=L-1) stays wall
 	var innerZStart := 1
 	var innerLength := FLOOR_LENGTH - 2 # because we want a wall around it
 
-	# Corridor, centered in X, full inner length.
+	# Corridor, centered in X, full inner length
 	var corridorX := (FLOOR_WIDTH - CORRIDOR_WIDTH) / 2
 	data.corridor = Rect2i(corridorX, innerZStart, CORRIDOR_WIDTH, innerLength)
 
@@ -36,13 +38,13 @@ func generate(floor_seed: int) -> FloorData:
 	data.startCell = data.startRect.position + data.startRect.size / 2
 
 	# We create the left and right strips before actually creating the rooms, so we can have different sizes
-	# Left strip: x from 1 up to (but not including) the wall left of the corridor.
+	# Left strip: x from 1 up to (but not including) the wall left of the corridor
 	var leftWallX := corridorX - 1
 	var leftX := 1
 	var leftWidth := leftWallX - leftX
 	_fill_strip(data, FloorData.Side.LEFT, leftX, leftWidth, leftWallX, innerZStart, innerLength)
 
-	# Right strip: from the wall right of the corridor + 1 up to the outer wall.
+	# Right strip: from the wall right of the corridor + 1 up to the outer wall
 	var rightWallX := corridorX + CORRIDOR_WIDTH
 	var rightX := rightWallX + 1
 	var rightWidth := (FLOOR_WIDTH - 1) - rightX
@@ -50,14 +52,14 @@ func generate(floor_seed: int) -> FloorData:
 
 	return data
 
-## Splits a vertical strip into rooms. Room lengths plus the 1-cell walls between them add up exactly to the strip length.
+## Splits a vertical strip into rooms. Room lengths plus the 1-cell walls between them add up exactly to the strip length
 func _fill_strip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX: int, zStart: int, stripLength: int) -> void:
-	# Every room costs its length + 1 wall cell (except the last), so work with length + 1.
+	# Every room costs its length + 1 wall cell (except the last), so we work with length + 1
 	var nMin := ceili(float(stripLength + 1) / float(MAX_ROOM_LENGTH + 1))
 	var nMax := floori(float(stripLength + 1) / float(MIN_ROOM_LENGTH + 1))
-	var roomCount := _rng.randi_range(nMin, nMax)
+	var roomCount := _rng.randi_range(nMin, nMax) # By doing this, we can guarantee to solve the room size below for any number selected
 
-	# We start every room at the minimum, then hand out the leftover cells randomly.
+	# We start every room at the minimum, then hand out the leftover cells randomly
 	var lengths: Array[int] = []
 	lengths.resize(roomCount)
 	lengths.fill(MIN_ROOM_LENGTH)
@@ -72,7 +74,7 @@ func _fill_strip(data: FloorData, side: FloorData.Side, x: int, width: int, wall
 	var z := zStart
 	for length in lengths:
 		var rect := Rect2i(x, z, width, length)
-		# Door in the wall column facing the corridor, away from the room's corners.
+		# Door in the wall column facing the corridor, away from the room's corners
 		var doorZ := _rng.randi_range(z + 1, z + length - DOOR_WIDTH - 1)
 		var door := Rect2i(wallX, doorZ, 1, DOOR_WIDTH)
 		data.rooms.append({"rect": rect, "side": side, "door": door})
