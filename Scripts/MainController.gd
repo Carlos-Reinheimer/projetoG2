@@ -39,9 +39,9 @@ func generateFloor() -> void:
 
 	player.global_position = Vector3(spawnPlayerPos.x, spawnPlayerPos.y, spawnPlayerPos.z)
 
-func previewFloor() -> void:
-	var generator := FloorGenerator.new()
-	for s in [1, 2, 3, 42]:
-		var data := generator.generate(s)
-		print("=== seed %d | %d rooms ===" % [s, data.rooms.size()])
-		print(data.to_ascii())
+#func previewFloor() -> void:
+	#var generator := FloorGenerator.new()
+	#for s in [1, 2, 3, 42]:
+		#var data := generator.generate(s)
+		#print("=== seed %d | %d rooms ===" % [s, data.rooms.size()])
+		#print(data.to_ascii())

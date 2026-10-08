@@ -8,8 +8,8 @@ extends RefCounted
 # Dungeon Generator ref: https://youtu.be/h64U6j_sFgs?si=M_-n2820fQAy07dG
 
 const FLOOR_WIDTH: int = 30
-const FLOOR_LENGTH: int = 40 
-const CORRIDOR_WIDTH: int = 3
+const FLOOR_LENGTH: int = 45 
+const CORRIDOR_WIDTH: int = 5
 const MIN_ROOM_LENGTH: int = 6
 const MAX_ROOM_LENGTH: int = 14
 const DOOR_WIDTH: int = 2
