@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://2y0lp83gslpr"]
+
+[ext_resource type="Script" uid="uid://dcwxy54q3oegr" path="res://Scripts/Utils/Stairs.gd" id="1_eplsq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kln2b"]
+size = Vector3(1.4154663, 1.1881104, 1.2655945)
+
+[sub_resource type="SphereMesh" id="SphereMesh_nmfye"]
+
+[node name="Stairs Area3D" type="Area3D" unique_id=1944061589]
+script = ExtResource("1_eplsq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1669330736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013519287, 0.00079345703, -0.063583374)
+shape = SubResource("BoxShape3D_kln2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1061942864]
+mesh = SubResource("SphereMesh_nmfye")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

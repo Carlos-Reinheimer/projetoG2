@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 const SPEED = 10
@@ -39,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	_update_camera(delta)
 	
 func _unhandled_input(event):
-	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	_mouse_input = event is InputEventMouseMotion
 	if _mouse_input :
 		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY

@@ -28,7 +28,6 @@ albedo_color = Color(1.0588765e-06, 0.7238907, 0.6209071, 1)
 
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")
-build_ceiling = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
 environment = SubResource("Environment_kln2b")
