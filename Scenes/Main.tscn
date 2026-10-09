@@ -32,4 +32,3 @@ cell_size = Vector3(1, 5, 1)
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 15, 2)

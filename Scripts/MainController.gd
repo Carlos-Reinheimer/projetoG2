@@ -8,6 +8,7 @@ extends Node
 
 var stairs = preload("res://Scenes/Utils/Stairs.tscn")
 var fire = preload("res://Scenes/Utils/Fire.tscn")
+var enemy = preload("res://Scenes/Enemy.tscn")
 
 var currentFloor: int = 0
 var hasInstantiatedFloor: bool = false
@@ -58,18 +59,30 @@ func generateFloor() -> void:
 						newStairs.global_position = Vector3(spawnStairsPos.x, spawnStairsPos.y, spawnStairsPos.z)
 
 	spawnFires(data)
+	spawnEnemies(data)
 	player.global_position = Vector3(spawnPlayerPos.x, spawnPlayerPos.y, spawnPlayerPos.z)
 
 func spawnFires(data: FloorData) -> void:
 	for room in data.rooms:
 		var rect: Rect2i = room["rect"]
-		var count := randi_range(0, 3)   # how many fires in this room
+		var count := randi_range(0, 3)
 		for i in count:
 			var randomX = randi_range(rect.position.x, rect.end.x - 1)
 			var randomZ = randi_range(rect.position.y, rect.end.y - 1)
 			var newFire = fire.instantiate()
 			add_child(newFire)
 			newFire.global_position = Vector3(randomX + 0.5, 1, randomZ + 0.5)
+
+func spawnEnemies(data: FloorData) -> void:
+	for room in data.rooms:
+		var rect: Rect2i = room["rect"]
+		var count := randi_range(1, 1)
+		for i in count:
+			var randomX = randi_range(rect.position.x, rect.end.x - 1)
+			var randomZ = randi_range(rect.position.y, rect.end.y - 1)
+			var newEnemy = enemy.instantiate()
+			add_child(newEnemy)
+			newEnemy.global_position = Vector3(randomX + 0.5, 1.5, randomZ + 0.5)
 
 #func previewFloor() -> void:
 	#var generator := FloorGenerator.new()

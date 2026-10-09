@@ -29,20 +29,20 @@ func drop_target():
 	if enemy_target:
 		print("larguei de mao")
 		enemy_target.stop_pull()
-	enemy_target = null
+		enemy_target = null
 
 func _physics_process(delta: float) -> void:
-	if ray_cast_3d.get_collider() and ray_cast_3d.get_collider().name == "Enemy":
+	if ray_cast_3d.get_collider() and ray_cast_3d.get_collider().is_in_group("Enemy"):
 		enemy_target = ray_cast_3d.get_collider()
-
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and enemy_target:
 		if timer.time_left == 0:
 			timer.start()
 		enemy_target.getting_pull(position)
 	else:
 		drop_target()
-		#print(ray_cast_3d.get_collider().name)
+		
 	_update_camera(delta)
+	
 	if enemy_target:
 		if Input.is_action_just_pressed("Jump"):
 			timer.stop()
