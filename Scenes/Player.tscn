@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://briafc2yd8eos"]
+
+[ext_resource type="Script" uid="uid://dprkf1qtroqek" path="res://Scripts/Player.gd" id="1_rpqav"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idj7w"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frvqy"]
+albedo_color = Color(1.0588765e-06, 0.7238907, 0.6209071, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1iice"]
+
+[node name="Player" type="CharacterBody3D" unique_id=991785988]
+script = ExtResource("1_rpqav")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1587454297]
+shape = SubResource("CapsuleShape3D_idj7w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1941260609]
+material_override = SubResource("StandardMaterial3D_frvqy")
+mesh = SubResource("CapsuleMesh_1iice")
+
+[node name="Head" type="Node3D" parent="." unique_id=1216258692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=502720081]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1477706773]
+transform = Transform3D(6, 0, 0, 0, -2.6226832e-07, -6, 0, 6, -2.6226832e-07, 0, 0, 0)
+debug_shape_custom_color = Color(0, 0.64705884, 1, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=1156852035]

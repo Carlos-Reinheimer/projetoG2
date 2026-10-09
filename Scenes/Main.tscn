@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxmmal1sydwmf" path="res://Scripts/MainController.gd" id="1_r150o"]
 [ext_resource type="MeshLibrary" uid="uid://jnd5w4kj07h" path="res://Tiles/FloorTiles.meshlib" id="2_idj7w"]
-[ext_resource type="Script" uid="uid://dprkf1qtroqek" path="res://Scripts/Player.gd" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbw6q"]
 sky_top_color = Color(0.6895057, 0.27045798, 0.51806027, 1)
@@ -14,15 +14,6 @@ sky_material = SubResource("ProceduralSkyMaterial_pbw6q")
 [sub_resource type="Environment" id="Environment_kln2b"]
 background_mode = 2
 sky = SubResource("Sky_rgh2o")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idj7w"]
-radius = 0.4
-height = 1.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frvqy"]
-albedo_color = Color(1.0588765e-06, 0.7238907, 0.6209071, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1iice"]
 
 [node name="Main" type="Node3D" unique_id=981272364]
 
@@ -41,19 +32,5 @@ mesh_library = ExtResource("2_idj7w")
 cell_size = Vector3(1, 5, 1)
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1575740730]
+[node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 15, 2)
-script = ExtResource("3_kln2b")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=483814322]
-shape = SubResource("CapsuleShape3D_idj7w")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=963656093]
-material_override = SubResource("StandardMaterial3D_frvqy")
-mesh = SubResource("CapsuleMesh_1iice")
-
-[node name="Head" type="Node3D" parent="Player" unique_id=1299584972]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=110031292]
