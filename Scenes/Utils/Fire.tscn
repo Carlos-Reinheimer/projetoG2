@@ -54,7 +54,7 @@ color = Color(3.6279995, 0.7526379, 0.5006998, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_j3yyl"]
 
-[node name="Particles" type="Node3D" unique_id=187325746]
+[node name="Particles" type="Node3D" unique_id=187325746 groups=["Fire"]]
 script = ExtResource("1_8vlm3")
 
 [node name="StaticFlame" type="GPUParticles3D" parent="." unique_id=138126560]

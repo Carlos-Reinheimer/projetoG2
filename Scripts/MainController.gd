@@ -11,35 +11,74 @@ var fire = preload("res://Scenes/Utils/Fire.tscn")
 var enemy = preload("res://Scenes/Enemy.tscn")
 
 var currentFloor: int = 0
-var hasInstantiatedFloor: bool = false
+var firesOnFloor: int = 0
+var enemiesOnFloor: int = 0
+var currentStairsNode: Node3D
 
 func _ready() -> void:
-	# previewFloor()
+	SignalBus.connect("loadNextFloor", onLoadNextFloor)
+	SignalBus.connect("captureEnemy", onCaptureEnemy)
+	SignalBus.connect("extinguishFire", onExtinguishFire)
+	
+	#previewFloor()
 	generateFloor()
 	
+func onLoadNextFloor() -> void:
+	currentFloor += 1
+	firesOnFloor = 0
+	enemiesOnFloor = 0
+	grid_map.clear()
+	
+	var fires = get_tree().get_nodes_in_group("Fire")
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	clean(fires)
+	clean(enemies)
+	currentStairsNode.queue_free()
+	currentStairsNode = null
+	
+	generateFloor()
+
+func onCaptureEnemy() -> void:
+	enemiesOnFloor -= 1
+	Stats.ALL_TIME_ENEMIES_CAPUTRED += 1
+	checkFloorCondition()
+	
+func onExtinguishFire() -> void:
+	firesOnFloor -= 1
+	Stats.ALL_TIME_FIRE_EXTINGUISED += 1
+	checkFloorCondition()
+
+func checkFloorCondition() -> void:
+	if enemiesOnFloor == 0 and firesOnFloor == 0:
+		SignalBus.emit_signal("floorExtinguised")
+
+func clean(elements) -> void:
+	for element in elements:
+		element.queue_free()
+
 func generateFloor() -> void:
 	var generator := FloorGenerator.new()
 	var randomSeed = randi()
-	print("randomSeed: ", randomSeed)
-	var data := generator.generate(randomSeed)
+	var data := generator.generate(randomSeed, currentFloor + 1)
+	#print("randomSeed: ", randomSeed)
+
+	buildTiles(data)
+	spawnNextLevelStairs(data)
+	spawnInsideRoom(data)
+	setPlayerSpawnPos(data)
+
+func buildTiles(data: FloorData) -> void:
 	#enum Cell { WALL, ROOM, CORRIDOR, DOOR, START, STAIRS }
 	var wallId := grid_map.mesh_library.find_item_by_name("Wall")
 	var floorId := grid_map.mesh_library.find_item_by_name("Floor")
 	var ceilingId := grid_map.mesh_library.find_item_by_name("Ceiling")
 	var startId := grid_map.mesh_library.find_item_by_name("Start")
 	var endId := grid_map.mesh_library.find_item_by_name("End")
-	var spawnPlayerPos: Vector3i
-	var spawnStairsPos: Vector3i
 	
 	for x in data.size.x:
 		for z in data.size.y: # y = z on this case because of the Vector2i thing
 			var cell := Vector2i(x, z)
 			var cellType = data.get_cell_type(cell)
-			
-			if cellType == FloorData.Cell.START:
-				spawnPlayerPos = Vector3i(x + 0.5, 1, z + 0.5)
-			if cellType == FloorData.Cell.STAIRS:
-				spawnStairsPos = Vector3i(x + 0.5, 1, z + 0.5)
 			
 			if cellType == FloorData.Cell.WALL:
 				grid_map.set_cell_item(Vector3i(x, 0, z), wallId)
@@ -51,42 +90,54 @@ func generateFloor() -> void:
 					grid_map.set_cell_item(Vector3i(x, -1, z), startId)
 				if cellType == FloorData.Cell.STAIRS:
 					grid_map.set_cell_item(Vector3i(x, -1, z), endId)
-					if not hasInstantiatedFloor:
-						hasInstantiatedFloor = true
-						var newStairs = stairs.instantiate()
-						add_child(newStairs)
-						# TODO: we should take a look at this later
-						newStairs.global_position = Vector3(spawnStairsPos.x, spawnStairsPos.y, spawnStairsPos.z)
 
-	spawnFires(data)
-	spawnEnemies(data)
-	player.global_position = Vector3(spawnPlayerPos.x, spawnPlayerPos.y, spawnPlayerPos.z)
+func spawnNextLevelStairs(data: FloorData) -> void:
+	var stairsRect = data.stairsRect
+	var stairsX = stairsRect.position.x + stairsRect.size.x / 2.0
+	var stairsZ = stairsRect.position.y + stairsRect.size.y / 2.0
+	currentStairsNode = stairs.instantiate()
+	add_child(currentStairsNode)
+	currentStairsNode.global_position = Vector3(stairsX, 1, stairsZ)
 
-func spawnFires(data: FloorData) -> void:
+func setPlayerSpawnPos(data: FloorData) -> void:
+	var startRect = data.startRect
+	var startX = startRect.position.x + startRect.size.x / 2.0
+	var startZ = startRect.position.y + startRect.size.y / 2.0
+	player.global_position = Vector3(startX, 1, startZ)
+
+func getRandomX(rect: Rect2i) -> float:
+	return randi_range(rect.position.x, rect.end.x - 1)
+
+func getRandomZ(rect: Rect2i) -> float:
+	return randi_range(rect.position.y, rect.end.y - 1)
+
+func spawnInsideRoom(data: FloorData) -> void:
 	for room in data.rooms:
 		var rect: Rect2i = room["rect"]
-		var count := randi_range(0, 3)
-		for i in count:
-			var randomX = randi_range(rect.position.x, rect.end.x - 1)
-			var randomZ = randi_range(rect.position.y, rect.end.y - 1)
-			var newFire = fire.instantiate()
-			add_child(newFire)
-			newFire.global_position = Vector3(randomX + 0.5, 1, randomZ + 0.5)
+		var randomX = getRandomX(rect)
+		var randomZ = getRandomZ(rect)
+		spawnFires(rect, randomX, randomZ)
+		spawnEnemies(rect, randomX, randomZ)
 
-func spawnEnemies(data: FloorData) -> void:
-	for room in data.rooms:
-		var rect: Rect2i = room["rect"]
-		var count := randi_range(1, 1)
-		for i in count:
-			var randomX = randi_range(rect.position.x, rect.end.x - 1)
-			var randomZ = randi_range(rect.position.y, rect.end.y - 1)
-			var newEnemy = enemy.instantiate()
-			add_child(newEnemy)
-			newEnemy.global_position = Vector3(randomX + 0.5, 1.5, randomZ + 0.5)
+func spawnFires(rect: Rect2i, randomX: float, randomZ: float) -> void:
+	var count := randi_range(0, 3)
+	firesOnFloor += count
+	for i in count:
+		var newFire = fire.instantiate()
+		add_child(newFire)
+		newFire.global_position = Vector3(randomX + 0.5, 1, randomZ + 0.5)
 
-#func previewFloor() -> void:
-	#var generator := FloorGenerator.new()
-	#for s in [1, 2, 3, 42]:
-		#var data := generator.generate(s)
-		#print("=== seed %d | %d rooms ===" % [s, data.rooms.size()])
-		#print(data.to_ascii())
+func spawnEnemies(rect: Rect2i, randomX: float, randomZ: float) -> void:
+	var count := randi_range(1, 1)
+	enemiesOnFloor += count
+	for i in count:
+		var newEnemy = enemy.instantiate()
+		add_child(newEnemy)
+		newEnemy.global_position = Vector3(randomX + 0.5, 1.5, randomZ + 0.5)
+
+func previewFloor() -> void:
+	var generator := FloorGenerator.new()
+	for s in [1, 2, 3, 42]:
+		var data := generator.generate(s)
+		print("=== seed %d | %d rooms ===" % [s, data.rooms.size()])
+		print(data.to_ascii())

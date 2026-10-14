@@ -1,3 +1,4 @@
 extends Node
 
-const HAS_EXTINGUISHED_ALL_FIRE_ON_FLOOR: bool = false
+var ALL_TIME_FIRE_EXTINGUISED: int = 0
+var ALL_TIME_ENEMIES_CAPUTRED: int = 0
