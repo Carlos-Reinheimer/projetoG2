@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bhyiaoier3mi7"
-path="res://.godot/imported/Chair.glb-bdb924da640add5362b2dd37cef9880c.scn"
+uid="uid://bh0lhx3rbg3k4"
+path="res://.godot/imported/Ceiling.glb-6f9fb67ae04186e6f01567f2d2a7f5c8.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Chair.glb"
-dest_files=["res://.godot/imported/Chair.glb-bdb924da640add5362b2dd37cef9880c.scn"]
+source_file="res://Assets/Models/Scenario/Ceiling/Ceiling.glb"
+dest_files=["res://.godot/imported/Ceiling.glb-6f9fb67ae04186e6f01567f2d2a7f5c8.scn"]
 
 [params]
 
@@ -39,7 +39,19 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"meshes": {
+"Ceiling_Cube_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Models/Scenario/Ceiling.res",
+"save_to_file/path": "uid://d076dy0yvwxv5"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1

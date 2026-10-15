@@ -74,8 +74,6 @@ func buildTiles(data: FloorData) -> void:
 	var wallId := grid_map.mesh_library.find_item_by_name("Wall")
 	var floorId := grid_map.mesh_library.find_item_by_name("Floor")
 	var ceilingId := grid_map.mesh_library.find_item_by_name("Ceiling")
-	var startId := grid_map.mesh_library.find_item_by_name("Start")
-	var endId := grid_map.mesh_library.find_item_by_name("End")
 	
 	for x in data.size.x:
 		for z in data.size.y: # y = z on this case because of the Vector2i thing
@@ -89,9 +87,9 @@ func buildTiles(data: FloorData) -> void:
 				if build_ceiling:
 					grid_map.set_cell_item(Vector3i(x, 1, z), ceilingId)
 				if cellType == FloorData.Cell.START:
-					grid_map.set_cell_item(Vector3i(x, -1, z), startId)
+					grid_map.set_cell_item(Vector3i(x, -1, z), floorId)
 				if cellType == FloorData.Cell.STAIRS:
-					grid_map.set_cell_item(Vector3i(x, -1, z), endId)
+					grid_map.set_cell_item(Vector3i(x, -1, z), floorId)
 
 func spawnNextLevelStairs(data: FloorData) -> void:
 	var stairsRect = data.stairsRect
