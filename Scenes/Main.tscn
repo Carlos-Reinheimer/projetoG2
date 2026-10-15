@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dxmmal1sydwmf" path="res://Scripts/MainController.gd" id="1_r150o"]
 [ext_resource type="MeshLibrary" uid="uid://jnd5w4kj07h" path="res://Tiles/FloorTiles.meshlib" id="2_idj7w"]
+[ext_resource type="Script" uid="uid://m7jro2nfaded" path="res://Scripts/Resources/FloorProp.gd" id="2_v1gob"]
+[ext_resource type="Resource" uid="uid://dagyahmwclrfh" path="res://Assets/Resources/DeskProp.tres" id="3_jw32o"]
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
+[ext_resource type="Resource" uid="uid://dukplf8oejadt" path="res://Assets/Resources/ChairProp.tres" id="4_50glp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbw6q"]
 sky_top_color = Color(0.6895057, 0.27045798, 0.51806027, 1)
@@ -19,6 +22,7 @@ sky = SubResource("Sky_rgh2o")
 
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")
+availableProps = Array[ExtResource("2_v1gob")]([ExtResource("3_jw32o"), ExtResource("4_50glp")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
 environment = SubResource("Environment_kln2b")

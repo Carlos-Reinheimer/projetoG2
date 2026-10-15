@@ -2,6 +2,7 @@ extends Node
 
 @export var build_ceiling := true
 @export var totalFloors: int = 10
+@export var availableProps: Array[Prop]
 
 @onready var grid_map: GridMap = $"../GridMap"
 @onready var player: CharacterBody3D = $"../Player"
@@ -59,12 +60,13 @@ func clean(elements) -> void:
 func generateFloor() -> void:
 	var generator := FloorGenerator.new()
 	var randomSeed = randi()
-	var data := generator.generate(randomSeed, currentFloor + 1)
+	var data := generator.generate(randomSeed, availableProps, currentFloor + 1)
 	#print("randomSeed: ", randomSeed)
 
 	buildTiles(data)
 	spawnNextLevelStairs(data)
 	spawnInsideRoom(data)
+	spawnProps(data)
 	setPlayerSpawnPos(data)
 
 func buildTiles(data: FloorData) -> void:
@@ -78,7 +80,7 @@ func buildTiles(data: FloorData) -> void:
 	for x in data.size.x:
 		for z in data.size.y: # y = z on this case because of the Vector2i thing
 			var cell := Vector2i(x, z)
-			var cellType = data.get_cell_type(cell)
+			var cellType = data.getCellType(cell)
 			
 			if cellType == FloorData.Cell.WALL:
 				grid_map.set_cell_item(Vector3i(x, 0, z), wallId)
@@ -111,6 +113,20 @@ func getRandomX(rect: Rect2i) -> float:
 func getRandomZ(rect: Rect2i) -> float:
 	return randi_range(rect.position.y, rect.end.y - 1)
 
+func getProp(propName: String):
+	for prop in availableProps:
+		if prop.name == propName:
+			return prop.propScene
+	return null
+
+func spawnProps(data: FloorData) -> void:
+	for prop in data.props:
+		var propScene = getProp(prop.id)
+		var newProp = propScene.instantiate()
+		add_child(newProp)
+		print(newProp)
+		newProp.global_position = Vector3(prop.rect.position.x, 1, prop.rect.position.y)
+
 func spawnInsideRoom(data: FloorData) -> void:
 	for room in data.rooms:
 		var rect: Rect2i = room["rect"]
@@ -138,6 +154,6 @@ func spawnEnemies(rect: Rect2i, randomX: float, randomZ: float) -> void:
 func previewFloor() -> void:
 	var generator := FloorGenerator.new()
 	for s in [1, 2, 3, 42]:
-		var data := generator.generate(s, currentFloor + 1)
+		var data := generator.generate(s, availableProps, currentFloor + 1)
 		print("=== seed %d | %d rooms ===" % [s, data.rooms.size()])
-		print(data.to_ascii())
+		print(data.toAscii())

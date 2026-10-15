@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Prop" format=3 uid="uid://dagyahmwclrfh"]
+
+[ext_resource type="Script" uid="uid://m7jro2nfaded" path="res://Scripts/Resources/FloorProp.gd" id="1_1xn07"]
+[ext_resource type="PackedScene" uid="uid://kw8nf3oe214e" path="res://Assets/Models/Desk.glb" id="1_qpl4d"]
+
+[resource]
+script = ExtResource("1_1xn07")
+name = "Desk"
+propScene = ExtResource("1_qpl4d")
+footprint = Vector2i(2, 1)
+metadata/_custom_type_script = "uid://m7jro2nfaded"

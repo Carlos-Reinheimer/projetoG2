@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Prop" format=3 uid="uid://dukplf8oejadt"]
+
+[ext_resource type="Script" uid="uid://m7jro2nfaded" path="res://Scripts/Resources/FloorProp.gd" id="1_my36a"]
+[ext_resource type="PackedScene" uid="uid://bhyiaoier3mi7" path="res://Assets/Models/Chair.glb" id="1_nyqpu"]
+
+[resource]
+script = ExtResource("1_my36a")
+name = "Chair"
+propScene = ExtResource("1_nyqpu")
+footprint = Vector2i(1, 1)
+placementType = 1
+metadata/_custom_type_script = "uid://m7jro2nfaded"

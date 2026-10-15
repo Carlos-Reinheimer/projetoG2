@@ -29,7 +29,7 @@ var _rng = RandomNumberGenerator.new()
 var floorWidth: int = BASE_WIDTH
 var floorLength: int = BASE_LENGTH
 
-func generate(floorSeed: int, floorLevel: int = 1) -> FloorData:
+func generate(floorSeed: int, availableProps: Array[Prop], floorLevel: int = 1) -> FloorData:
 	_rng.seed = floorSeed
 
 	var data = FloorData.new()
@@ -54,24 +54,26 @@ func generate(floorSeed: int, floorLevel: int = 1) -> FloorData:
 	data.stairsRect = Rect2i(corridorX, innerZStart, CORRIDOR_WIDTH, END_ZONE)
 	data.startRect = Rect2i(corridorX, BASE_LENGTH - 1 - END_ZONE, CORRIDOR_WIDTH, END_ZONE)
 	data.startCell = data.startRect.position + data.startRect.size / 2
+	
+	var lengths = getLengths(innerLength)
 
 	# We create the left and right strips before actually creating the rooms, so we can have different sizes
 	# Left strip: x from 1 up to (but not including) the wall left of the corridor
 	var leftWallX = corridorX - 1
 	var leftX = 1
 	var leftWidth = leftWallX - leftX
-	fillStrip(data, FloorData.Side.LEFT, leftX, leftWidth, leftWallX, innerZStart, innerLength)
+	fillStrip(data, FloorData.Side.LEFT, leftX, leftWidth, leftWallX, innerZStart, lengths)
 
 	# Right strip: from the wall right of the corridor + 1 up to the outer wall
 	var rightWallX = corridorX + CORRIDOR_WIDTH
 	var rightX = rightWallX + 1
 	var rightWidth = (BASE_WIDTH - 1) - rightX
-	fillStrip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, innerLength)
+	fillStrip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, lengths)
 
+	fillProps(data, innerZStart, lengths, availableProps)
 	return data
 
-## Splits a vertical strip into rooms. Room lengths plus the 1-cell walls between them add up exactly to the strip length
-func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX: int, zStart: int, stripLength: int) -> void:
+func getLengths(stripLength: int) -> Array[int]:
 	# Every room costs its length + 1 wall cell (except the last), so we work with length + 1
 	var nMin = ceili(float(stripLength + 1) / float(MAX_ROOM_LENGTH + 1))
 	var nMax = floori(float(stripLength + 1) / float(MIN_ROOM_LENGTH + 1))
@@ -89,6 +91,10 @@ func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX:
 			lengths[i] += 1
 			remaining -= 1
 
+	return lengths
+
+## Splits a vertical strip into rooms. Room lengths plus the 1-cell walls between them add up exactly to the strip length
+func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX: int, zStart: int, lengths: Array[int]) -> void:
 	var z = zStart
 	for length in lengths:
 		# We can split a room into two if this condition is met
@@ -111,3 +117,8 @@ func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX:
 			var door = Rect2i(wallX, doorZ, 1, DOOR_WIDTH)
 			data.rooms.append({"rect": rect, "side": side, "door": door})
 		z += length + 1  # +1 = wall between rooms
+
+func fillProps(data: FloorData, zStart: int, lengths: Array[int], availableProps: Array[Prop]) -> void:
+	for length in lengths:
+		var randomProp = availableProps.pick_random()
+		data.props.append({"id": randomProp.name, "rect": Rect2i(5, 2, randomProp.footprint.x, randomProp.footprint.y)})

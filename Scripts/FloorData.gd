@@ -4,7 +4,6 @@ extends RefCounted
 enum Cell { WALL, ROOM, CORRIDOR, DOOR, START, STAIRS }
 enum Side { LEFT, RIGHT }
 
-# https://docs.godotengine.org/en/stable/classes/class_vector3i.html
 var floorSeed: int = 0
 var size: Vector2i = Vector2i.ZERO
 var corridor: Rect2i = Rect2i()
@@ -14,9 +13,10 @@ var startCell: Vector2i = Vector2i.ZERO
 
 # Each room: { "rect": Rect2i, "side": Side, "door": Rect2i }
 var rooms: Array[Dictionary] = []
+var props: Array[Dictionary] = []
 
 ## What is at this cell? Anything not covered by a rect is a wall.
-func get_cell_type(cell: Vector2i) -> Cell:
+func getCellType(cell: Vector2i) -> Cell:
 	for room in rooms:
 		if room["door"].has_point(cell):
 			return Cell.DOOR
@@ -33,8 +33,11 @@ func get_cell_type(cell: Vector2i) -> Cell:
 			return Cell.ROOM
 
 	return Cell.WALL
+	
+func getPropsInRoom(roomIndex: int) -> Array[Dictionary]:
+	return []
 
-func to_ascii() -> String:
+func toAscii() -> String:
 	var out := ""
 	for z in size.y:
 		var line := ""
@@ -43,7 +46,7 @@ func to_ascii() -> String:
 			if cell == startCell:
 				line += "S"
 				continue
-			match get_cell_type(cell):
+			match getCellType(cell):
 				Cell.WALL: line += "#"
 				Cell.ROOM: line += "."
 				Cell.CORRIDOR: line += ","
