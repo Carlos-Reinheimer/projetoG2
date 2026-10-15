@@ -117,8 +117,9 @@ func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX:
 			var door = Rect2i(wallX, doorZ, 1, DOOR_WIDTH)
 			data.rooms.append({"rect": rect, "side": side, "door": door})
 		z += length + 1  # +1 = wall between rooms
+		print(x, z)
 
 func fillProps(data: FloorData, zStart: int, lengths: Array[int], availableProps: Array[Prop]) -> void:
-	for length in lengths:
-		var randomProp = availableProps.pick_random()
-		data.props.append({"id": randomProp.name, "rect": Rect2i(5, 2, randomProp.footprint.x, randomProp.footprint.y)})
+	for room in data.rooms:
+		var randomProp = availableProps[_rng.randi_range(0, availableProps.size() - 1)]
+		data.props.append({"id": randomProp.name, "rect": Rect2i(room.rect.position.x + 2, room.rect.position.y + 2, randomProp.footprint.x, randomProp.footprint.y)})

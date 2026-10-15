@@ -124,8 +124,10 @@ func spawnProps(data: FloorData) -> void:
 		var propScene = getProp(prop.id)
 		var newProp = propScene.instantiate()
 		add_child(newProp)
-		print(newProp)
-		newProp.global_position = Vector3(prop.rect.position.x, 1, prop.rect.position.y)
+		var propRect = prop.rect
+		var propX = propRect.position.x + propRect.size.x / 2.0
+		var propZ = propRect.position.y + propRect.size.y / 2.0
+		newProp.global_position = Vector3(propX, 1, propZ)
 
 func spawnInsideRoom(data: FloorData) -> void:
 	for room in data.rooms:
