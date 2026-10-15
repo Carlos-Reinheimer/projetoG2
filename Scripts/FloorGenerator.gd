@@ -60,18 +60,18 @@ func generate(floorSeed: int, floorLevel: int = 1) -> FloorData:
 	var leftWallX = corridorX - 1
 	var leftX = 1
 	var leftWidth = leftWallX - leftX
-	_fill_strip(data, FloorData.Side.LEFT, leftX, leftWidth, leftWallX, innerZStart, innerLength)
+	fillStrip(data, FloorData.Side.LEFT, leftX, leftWidth, leftWallX, innerZStart, innerLength)
 
 	# Right strip: from the wall right of the corridor + 1 up to the outer wall
 	var rightWallX = corridorX + CORRIDOR_WIDTH
 	var rightX = rightWallX + 1
 	var rightWidth = (BASE_WIDTH - 1) - rightX
-	_fill_strip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, innerLength)
+	fillStrip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, innerLength)
 
 	return data
 
 ## Splits a vertical strip into rooms. Room lengths plus the 1-cell walls between them add up exactly to the strip length
-func _fill_strip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX: int, zStart: int, stripLength: int) -> void:
+func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX: int, zStart: int, stripLength: int) -> void:
 	# Every room costs its length + 1 wall cell (except the last), so we work with length + 1
 	var nMin = ceili(float(stripLength + 1) / float(MAX_ROOM_LENGTH + 1))
 	var nMax = floori(float(stripLength + 1) / float(MIN_ROOM_LENGTH + 1))
@@ -91,20 +91,23 @@ func _fill_strip(data: FloorData, side: FloorData.Side, x: int, width: int, wall
 
 	var z = zStart
 	for length in lengths:
-		var rect = Rect2i(x, z, width, length)
-		
 		# We can split a room into two if this condition is met
-		if width >= MIN_BACK_ROOM_DEPTH + 1 + MIN_FRONT_ROOM_DEPTH:
-			var shouldSplit = _rng.randf() <= SPLIT_ROOM_CHANCE
-			if shouldSplit:
-				var frontDepth = _rng.randi_range(MIN_FRONT_ROOM_DEPTH, width - 1 - MIN_BACK_ROOM_DEPTH)
-				var backDepth = width - 1 - frontDepth
-				var doorZ = _rng.randi_range(z + 1, z + length - DOOR_WIDTH - 1)
-				var door = Rect2i(wallX, doorZ, 1, DOOR_WIDTH)
-				data.rooms.append({"rect": rect, "side": side, "door": door})
-			else:
-				# Door in the wall column facing the corridor, away from the room's corners
-				var doorZ = _rng.randi_range(z + 1, z + length - DOOR_WIDTH - 1)
-				var door = Rect2i(wallX, doorZ, 1, DOOR_WIDTH)
-				data.rooms.append({"rect": rect, "side": side, "door": door})
-				z += length + 1  # +1 = wall between rooms
+		var shouldSplit = _rng.randf() <= SPLIT_ROOM_CHANCE
+		if width >= MIN_BACK_ROOM_DEPTH + 1 + MIN_FRONT_ROOM_DEPTH and shouldSplit:
+			var frontDepth = _rng.randi_range(MIN_FRONT_ROOM_DEPTH, width - 1 - MIN_BACK_ROOM_DEPTH)
+			var backDepth = width - 1 - frontDepth
+			var backDoorZ = _rng.randi_range(z + 1, z + length - DOOR_WIDTH - 1)
+			var frontDoorZ = _rng.randi_range(z + 1, z + length - DOOR_WIDTH - 1)
+			var backDoor = Rect2i(x + backDepth, backDoorZ, 1, DOOR_WIDTH)
+			var frontDoor = Rect2i(wallX, frontDoorZ, 1, DOOR_WIDTH)
+			var backRect = Rect2i(x, z, backDepth, length)
+			var frontRect = Rect2i(x + backDepth + 1, z, frontDepth, length)
+			data.rooms.append({"rect": frontRect, "side": side, "door": frontDoor})
+			data.rooms.append({"rect": backRect, "side": side, "door": backDoor})
+		else:
+			# Door in the wall column facing the corridor, away from the room's corners
+			var rect = Rect2i(x, z, width, length)
+			var doorZ = _rng.randi_range(z + 1, z + length - DOOR_WIDTH - 1)
+			var door = Rect2i(wallX, doorZ, 1, DOOR_WIDTH)
+			data.rooms.append({"rect": rect, "side": side, "door": door})
+		z += length + 1  # +1 = wall between rooms

@@ -138,6 +138,6 @@ func spawnEnemies(rect: Rect2i, randomX: float, randomZ: float) -> void:
 func previewFloor() -> void:
 	var generator := FloorGenerator.new()
 	for s in [1, 2, 3, 42]:
-		var data := generator.generate(s)
+		var data := generator.generate(s, currentFloor + 1)
 		print("=== seed %d | %d rooms ===" % [s, data.rooms.size()])
 		print(data.to_ascii())
