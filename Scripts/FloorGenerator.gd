@@ -70,6 +70,7 @@ func generate(floorSeed: int, availableProps: Array[Prop], floorLevel: int = 1) 
 	var rightWidth = (BASE_WIDTH - 1) - rightX
 	fillStrip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, lengths)
 
+	fillTaken(data)
 	fillProps(data, innerZStart, lengths, availableProps)
 	return data
 
@@ -119,7 +120,21 @@ func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX:
 		z += length + 1  # +1 = wall between rooms
 		print(x, z)
 
+func fillTaken(data: FloorData) -> void:
+	for room in data.rooms:
+		var doorZone = room["door"].grow(2).intersection(room["rect"])
+		for x in range(doorZone.position.x, doorZone.end.x):
+			for y in range(doorZone.y, doorZone.end.y):
+				data.taken.append({"x": x, "y": y, "taken": true})
+
 func fillProps(data: FloorData, zStart: int, lengths: Array[int], availableProps: Array[Prop]) -> void:
 	for room in data.rooms:
 		var randomProp = availableProps[_rng.randi_range(0, availableProps.size() - 1)]
-		data.props.append({"id": randomProp.name, "rect": Rect2i(room.rect.position.x, room.rect.position.y, randomProp.footprint.x, randomProp.footprint.y)})
+		var roomRectPos = room.rect.position
+		var footprint = randomProp.footprint
+		
+		data.props.append({
+			"id": randomProp.name, 
+			"rect": Rect2i(roomRectPos.x, roomRectPos.y, footprint.x, footprint.y),
+			"rotation": Vector2(0, 270 if _rng.randf() < 0.5 else 0)
+			})

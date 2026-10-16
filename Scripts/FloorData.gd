@@ -13,6 +13,7 @@ var startCell: Vector2i = Vector2i.ZERO
 
 # Each room: { "rect": Rect2i, "side": Side, "door": Rect2i }
 var rooms: Array[Dictionary] = []
+var taken: Array[Dictionary] = []
 var props: Array[Dictionary] = []
 
 ## What is at this cell? Anything not covered by a rect is a wall.
