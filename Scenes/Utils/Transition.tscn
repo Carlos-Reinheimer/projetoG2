@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dcoquco6irx08"]
+
+[ext_resource type="Script" uid="uid://dhf60pfmox1xu" path="res://Scripts/Utils/Transition.gd" id="1_u01ob"]
+
+[sub_resource type="Animation" id="Animation_ovdyp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5qvpv"]
+resource_name = "transition"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_stjlq"]
+_data = {
+&"RESET": SubResource("Animation_ovdyp"),
+&"transition": SubResource("Animation_5qvpv")
+}
+
+[node name="Transition" type="CanvasLayer" unique_id=552723522]
+script = ExtResource("1_u01ob")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=7253675]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=632763410]
+libraries/ = SubResource("AnimationLibrary_stjlq")
