@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://hgmmtob36kxt"]
+
+[ext_resource type="Script" uid="uid://dujpq11kswh4q" path="res://Scripts/MiniGames/ButtonMash.gd" id="1_rjq1t"]
+
+[node name="ButtonMash" type="Control" unique_id=1145780555]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 2
+script = ExtResource("1_rjq1t")
+max_progress = 50
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=582968906]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 110.0
+offset_top = 175.0
+offset_right = 510.0
+offset_bottom = 247.0
+grow_vertical = 2
+rotation = -1.5707964
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="." unique_id=1550969239]
+process_mode = 3
+wait_time = 0.4
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bkej560x8stqo"]
+
+[ext_resource type="Script" uid="uid://cjnf8aniu1prr" path="res://Scripts/GeneralStatus.gd" id="1_v3kjv"]
+
+[node name="GeneralStatus" type="Control" unique_id=1697900587]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v3kjv")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1115937605]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 37.0
+offset_right = 1054.0
+offset_bottom = 64.0
+show_percentage = false

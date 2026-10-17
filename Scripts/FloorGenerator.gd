@@ -70,7 +70,7 @@ func generate(floorSeed: int, availableProps: Array[Prop], floorLevel: int = 1) 
 	var rightWidth = (BASE_WIDTH - 1) - rightX
 	fillStrip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, lengths)
 
-	fillTaken(data)
+	#fillTaken(data)
 	fillProps(data, innerZStart, lengths, availableProps)
 	return data
 

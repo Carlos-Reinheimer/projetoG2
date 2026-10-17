@@ -54,6 +54,9 @@ color = Color(3.6279995, 0.7526379, 0.5006998, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_j3yyl"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dy3o8"]
+size = Vector3(2.2145996, 4.4404297, 2.2558594)
+
 [node name="Particles" type="Node3D" unique_id=187325746 groups=["Fire"]]
 script = ExtResource("1_8vlm3")
 
@@ -75,3 +78,10 @@ draw_pass_1 = SubResource("QuadMesh_j3yyl")
 [node name="Timer" type="Timer" parent="." unique_id=584688313]
 wait_time = 5.0
 one_shot = true
+
+[node name="FireArea" type="Area3D" parent="." unique_id=1853091125]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireArea" unique_id=2012155857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5936279, 0)
+shape = SubResource("BoxShape3D_dy3o8")

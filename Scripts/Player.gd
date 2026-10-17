@@ -10,9 +10,14 @@ const MOUSE_SENSITIVITY = 0.5
 
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var ray_cast_3d: RayCast3D = $Head/Camera3D/RayCast3D
-@onready var timer: Timer = $Timer
-@onready var progress_bar: ProgressBar = $"../Control/ProgressBar"
 
+enum State {
+	NORMAL,
+	PULLING,
+	EXTINGUISH
+}
+
+var cur_state := State.NORMAL
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
 var _rotation_input : float
@@ -22,36 +27,50 @@ var _camera_rotation : Vector3
 
 var enemy_target = null
 
+var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
+
+"""
+Player mechanics:
+	- Consegue puxar os inimigos
+	- Apagar fogo
+"""
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func drop_target():
 	if enemy_target:
-		print("larguei de mao")
 		enemy_target.stop_pull()
 		enemy_target = null
 
+func eneny_in_range():
+	return ray_cast_3d.get_collider() and ray_cast_3d.get_collider().is_in_group("Enemy")
+
 func _physics_process(delta: float) -> void:
-	if ray_cast_3d.get_collider() and ray_cast_3d.get_collider().is_in_group("Enemy"):
+	
+	if eneny_in_range():
 		enemy_target = ray_cast_3d.get_collider()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and enemy_target:
-		if timer.time_left == 0:
-			timer.start()
+		swith_state(State.PULLING)
 		enemy_target.getting_pull(position)
 	else:
+		swith_state(State.NORMAL)
 		drop_target()
-		
-	_update_camera(delta)
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		#swith_state(State.EXTINGUISH)
+		if ray_cast_3d.get_collider() != null and ray_cast_3d.get_collider().get_parent().has_method("puttingOut"):
+			print("To olhando pra " + str(ray_cast_3d.get_collider().name))
+			ray_cast_3d.get_collider().get_parent().puttingOut()
+	#else:
+		#swith_state(State.NORMAL)
 	
-	if enemy_target:
-		if Input.is_action_just_pressed("Jump"):
-			timer.stop()
-		return
-		
+	_update_camera(delta)
+
 	if not is_on_floor():
 		velocity += GRAVITY * delta
 
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and cur_state != State.PULLING:
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
@@ -86,3 +105,6 @@ func _update_camera(delta):
 	
 	_rotation_input = 0.0
 	_tilt_input = 0.0
+
+func swith_state(value : State):
+	cur_state = value

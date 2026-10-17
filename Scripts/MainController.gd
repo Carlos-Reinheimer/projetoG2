@@ -6,6 +6,7 @@ extends Node
 
 @onready var grid_map: GridMap = $"../GridMap"
 @onready var player: CharacterBody3D = $"../Player"
+@onready var level_ui: Control = $"../LevelUI"
 
 var stairs = preload("res://Scenes/Utils/Stairs.tscn")
 var fire = preload("res://Scenes/Utils/Fire.tscn")
@@ -39,17 +40,18 @@ func onLoadNextFloor() -> void:
 	
 	generateFloor()
 
-func onCaptureEnemy() -> void:
+func onCaptureEnemy(_value: int) -> void:
 	enemiesOnFloor -= 1
 	Stats.ALL_TIME_ENEMIES_CAPUTRED += 1
 	checkFloorCondition()
 	
-func onExtinguishFire() -> void:
+func onExtinguishFire(_value: int) -> void:
 	firesOnFloor -= 1
 	Stats.ALL_TIME_FIRE_EXTINGUISED += 1
 	checkFloorCondition()
 
 func checkFloorCondition() -> void:
+	print(" enemigos atuais " + str(enemiesOnFloor) + " fogos atuais " + str(firesOnFloor) )
 	if enemiesOnFloor == 0 and firesOnFloor == 0:
 		SignalBus.emit_signal("floorExtinguised")
 
@@ -68,6 +70,7 @@ func generateFloor() -> void:
 	spawnInsideRoom(data)
 	spawnProps(data)
 	setPlayerSpawnPos(data)
+	level_ui.setUp(enemiesOnFloor + firesOnFloor)
 
 func buildTiles(data: FloorData) -> void:
 	#enum Cell { WALL, ROOM, CORRIDOR, DOOR, START, STAIRS }
@@ -138,7 +141,7 @@ func spawnInsideRoom(data: FloorData) -> void:
 		spawnEnemies(rect, randomX, randomZ)
 
 func spawnFires(rect: Rect2i, randomX: float, randomZ: float) -> void:
-	var count := randi_range(0, 3)
+	var count := randi_range(0, 2)
 	firesOnFloor += count
 	for i in count:
 		var newFire = fire.instantiate()
@@ -146,7 +149,7 @@ func spawnFires(rect: Rect2i, randomX: float, randomZ: float) -> void:
 		newFire.global_position = Vector3(randomX + 0.5, 1, randomZ + 0.5)
 
 func spawnEnemies(rect: Rect2i, randomX: float, randomZ: float) -> void:
-	var count := randi_range(1, 1)
+	var count := randi_range(0, 1)
 	enemiesOnFloor += count
 	for i in count:
 		var newEnemy = enemy.instantiate()
