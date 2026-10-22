@@ -7,7 +7,6 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 func puttingOut() -> void:
-	print("ai")
 	health -= 1
 	checkDeath()
 

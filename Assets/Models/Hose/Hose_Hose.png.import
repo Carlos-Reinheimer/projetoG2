@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwyavs8m1k3st"
-path.s3tc="res://.godot/imported/Window_Window.png-5cc7582510139bf05b1095344f4dd06d.s3tc.ctex"
+uid="uid://bem5girawhrsa"
+path.s3tc="res://.godot/imported/Hose_Hose.png-27793a8496420bdbecef14121f94691c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "bde5e5158936803c57d7a1d1fe1f0050"
+"md5": "6fd2a02e095c1eddb0b746739a2c800e"
 }
 
 [deps]
 
-source_file="res://Assets/Models/Props/Window/Window_Window.png"
-dest_files=["res://.godot/imported/Window_Window.png-5cc7582510139bf05b1095344f4dd06d.s3tc.ctex"]
+source_file="res://Assets/Models/Hose/Hose_Hose.png"
+dest_files=["res://.godot/imported/Hose_Hose.png-27793a8496420bdbecef14121f94691c.s3tc.ctex"]
 
 [params]
 

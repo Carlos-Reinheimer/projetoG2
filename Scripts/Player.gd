@@ -10,6 +10,7 @@ const MOUSE_SENSITIVITY = 0.5
 
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var ray_cast_3d: RayCast3D = $Head/Camera3D/RayCast3D
+@onready var water_hose_particle: GPUParticles3D = $"Head/Camera3D/Hose/Water Hose Particle"
 
 enum State {
 	NORMAL,
@@ -59,8 +60,12 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		#swith_state(State.EXTINGUISH)
+		if not water_hose_particle.emitting:
+			water_hose_particle.emitting = true
 		if ray_cast_3d.get_collider() != null and ray_cast_3d.get_collider().get_parent().has_method("puttingOut"):
 			ray_cast_3d.get_collider().get_parent().puttingOut()
+	elif water_hose_particle.emitting:
+		water_hose_particle.emitting = false
 	#else:
 		#swith_state(State.NORMAL)
 	

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cnu0tohd1exgm"
-path="res://.godot/imported/Wall.glb-3ba798bf11e302dbdce232b932a98d65.scn"
+uid="uid://dpjfgq8mkrfsh"
+path="res://.godot/imported/Hose.glb-fc4ea0a06a0c567039a57432870828c2.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Scenario/Wall/Wall.glb"
-dest_files=["res://.godot/imported/Wall.glb-3ba798bf11e302dbdce232b932a98d65.scn"]
+source_file="res://Assets/Models/Hose/Hose.glb"
+dest_files=["res://.godot/imported/Hose.glb-fc4ea0a06a0c567039a57432870828c2.scn"]
 
 [params]
 
@@ -39,19 +39,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"meshes": {
-"Wall_Cube_001": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Models/Scenario/Wall.res",
-"save_to_file/path": "uid://cbej3tqmwsai5"
-}
-}
-}
+_subresources={}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1

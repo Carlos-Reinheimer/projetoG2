@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dqjihwscc0sws"]
 
-[ext_resource type="ArrayMesh" uid="uid://c2etsfffwd43t" path="res://Assets/Models/Scenario/Wall.res" id="1_ycoy0"]
-[ext_resource type="ArrayMesh" uid="uid://dth7jjw7vwiyv" path="res://Assets/Models/Scenario/Floor.res" id="2_wlh0s"]
-[ext_resource type="ArrayMesh" uid="uid://bj3ohw8686n4e" path="res://Assets/Models/Scenario/Ceiling.res" id="3_o2cdu"]
+[ext_resource type="ArrayMesh" uid="uid://cbej3tqmwsai5" path="res://Assets/Models/Structure/Wall.res" id="1_ycoy0"]
+[ext_resource type="ArrayMesh" uid="uid://c7jbj3155lny7" path="res://Assets/Models/Structure/Floor.res" id="2_o2cdu"]
+[ext_resource type="ArrayMesh" uid="uid://d076dy0yvwxv5" path="res://Assets/Models/Structure/Ceiling.res" id="3_v4xob"]
+[ext_resource type="ArrayMesh" uid="uid://c80dxeneqexxx" path="res://Assets/Models/Structure/Wall with Hole.tres" id="4_v4xob"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1iice"]
 size = Vector3(1, 5, 1)
@@ -26,7 +27,7 @@ shape = SubResource("BoxShape3D_1iice")
 
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=305601510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
-mesh = ExtResource("2_wlh0s")
+mesh = ExtResource("2_o2cdu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=2094121766]
 
@@ -36,10 +37,19 @@ shape = SubResource("BoxShape3D_frvqy")
 
 [node name="Ceiling" type="MeshInstance3D" parent="." unique_id=1057157047]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, 0)
-mesh = ExtResource("3_o2cdu")
+mesh = ExtResource("3_v4xob")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ceiling" unique_id=1859470124]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling/StaticBody3D" unique_id=261196195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001449585, 0)
 shape = SubResource("BoxShape3D_7obk3")
+
+[node name="Wall with Hole" type="MeshInstance3D" parent="." unique_id=1395048229]
+mesh = ExtResource("4_v4xob")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall with Hole" unique_id=1449348075]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall with Hole/StaticBody3D" unique_id=453240936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0013122559, 0)
+shape = SubResource("BoxShape3D_1iice")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfubhltdd2lhw"
-path="res://.godot/imported/Floor.glb-26828a0e7ad9d282088e5beed32af722.scn"
+uid="uid://cnu0tohd1exgm"
+path="res://.godot/imported/Wall.glb-73176fd92bc2079021744c9047a98857.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Scenario/Floor/Floor.glb"
-dest_files=["res://.godot/imported/Floor.glb-26828a0e7ad9d282088e5beed32af722.scn"]
+source_file="res://Assets/Models/Structure/Wall/Wall.glb"
+dest_files=["res://.godot/imported/Wall.glb-73176fd92bc2079021744c9047a98857.scn"]
 
 [params]
 
@@ -41,14 +41,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"Floor_Cube_002": {
+"Wall_Cube_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Models/Scenario/Floor.res",
-"save_to_file/path": "uid://c7jbj3155lny7"
+"save_to_file/fallback_path": "res://Assets/Models/Structure/Wall.res",
+"save_to_file/path": "uid://cbej3tqmwsai5"
 }
 }
 }
