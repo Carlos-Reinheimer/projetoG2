@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://d3qboqmpgar7j" path="res://Scenes/Utils/Fade.tscn" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
 [ext_resource type="PackedScene" uid="uid://bkip04dx3dp6x" path="res://Scenes/Floors/Floor_0.tscn" id="5_pbw6q"]
-[ext_resource type="PackedScene" uid="uid://bjs8ay10ib05k" path="res://Assets/Models/Props/Exit Door/Exit Door.glb" id="6_v1gob"]
 [ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/LevelGUI.gd" id="7_jw32o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbw6q"]
@@ -55,8 +54,5 @@ autostart = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.807019, 1, 2.8786511)
 
 [node name="Floor" parent="." unique_id=380912517 instance=ExtResource("5_pbw6q")]
-
-[node name="Exit Door" parent="." unique_id=231355733 instance=ExtResource("6_v1gob")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.784237, 2.0118175, 28.892809)
 
 [connection signal="timeout" from="LevelUI/Timer" to="LevelUI" method="_on_timer_timeout"]

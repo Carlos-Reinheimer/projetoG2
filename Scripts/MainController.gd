@@ -16,11 +16,13 @@ func _ready() -> void:
 	SignalBus.connect("captureEnemy", onCaptureEnemy)
 	SignalBus.connect("extinguishFire", onExtinguishFire)
 	currentFloorScene = $"../Floor"
+	countFiresOnFloor()
+	countEnemiesOnFloor()
 	
 func onLoadNextFloor() -> void:
 	currentFloor += 1
-	firesOnFloor = 0
-	enemiesOnFloor = 0
+	countFiresOnFloor()
+	countEnemiesOnFloor()
 	
 	await fade.fade(1.0, 1).finished
 	currentFloorScene.queue_free()
@@ -28,6 +30,12 @@ func onLoadNextFloor() -> void:
 	add_child(newFloor)
 	currentFloorScene = newFloor
 	await fade.fade(0.0, 1).finished
+
+func countEnemiesOnFloor() -> void:
+	enemiesOnFloor = get_tree().get_nodes_in_group("Enemy").size()
+	
+func countFiresOnFloor() -> void:
+	firesOnFloor = get_tree().get_nodes_in_group("Fire").size()
 
 func getNewFloor(levelIndex: int) -> Node3D:
 	return floors[currentFloor].instantiate()
@@ -43,6 +51,5 @@ func onExtinguishFire(_value: int) -> void:
 	checkFloorCondition()
 
 func checkFloorCondition() -> void:
-	print(" enemigos atuais " + str(enemiesOnFloor) + " fogos atuais " + str(firesOnFloor) )
 	if enemiesOnFloor == 0 and firesOnFloor == 0:
 		SignalBus.emit_signal("floorExtinguised")

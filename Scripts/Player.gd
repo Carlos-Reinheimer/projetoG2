@@ -60,7 +60,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		#swith_state(State.EXTINGUISH)
 		if ray_cast_3d.get_collider() != null and ray_cast_3d.get_collider().get_parent().has_method("puttingOut"):
-			print("To olhando pra " + str(ray_cast_3d.get_collider().name))
 			ray_cast_3d.get_collider().get_parent().puttingOut()
 	#else:
 		#swith_state(State.NORMAL)
