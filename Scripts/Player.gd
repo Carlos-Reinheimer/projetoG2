@@ -12,6 +12,8 @@ const MOUSE_SENSITIVITY = 0.5
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var water_splash: GPUParticles3D = $Head/Camera3D/RayCast3D/WaterSplash
 @onready var colission_splash: GPUParticles3D = $Head/Camera3D/RayCast3D/WaterSplash/ColissionSplash
+@onready var ray_cast_3d: RayCast3D = $Head/Camera3D/RayCast3D
+@onready var water_hose_particle: GPUParticles3D = $"Head/Camera3D/Hose/Water Hose Particle"
 
 enum State {
 	NORMAL,
@@ -62,7 +64,6 @@ func _physics_process(delta: float) -> void:
 		drop_target()
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		water_splash.emitting = true
 		if ray.get_collider():
 			var colissionPoint = ray.get_collision_point()
 			#var target = ray.get_collider()

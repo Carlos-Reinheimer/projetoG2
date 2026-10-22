@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bh067lgjstwx2"]
+
+[ext_resource type="PackedScene" uid="uid://cbyi8gr33vadb" path="res://Assets/Models/Props/Window/Window.glb" id="1_uqaac"]
+
+[node name="Window" type="Node3D" unique_id=1320345512]
+
+[node name="Window" parent="." unique_id=323618836 instance=ExtResource("1_uqaac")]

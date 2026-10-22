@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c1b4bfc3oi2gr"]
+
+[ext_resource type="PackedScene" uid="uid://bjs8ay10ib05k" path="res://Assets/Models/Props/Exit Door/Exit Door.glb" id="1_cl5w6"]
+[ext_resource type="Script" uid="uid://cybws1cufyvp7" path="res://Scripts/Props/ExitDoor.gd" id="1_uhjmw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1iice"]
+size = Vector3(0.60498047, 4.0852966, 2.0444336)
+
+[node name="Exit Door" type="Node3D" unique_id=538008628]
+script = ExtResource("1_uhjmw")
+
+[node name="Exit Door" parent="." unique_id=1488321301 instance=ExtResource("1_cl5w6")]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1345281243]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2030954195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19750977, 0.037124634, 0.91137695)
+shape = SubResource("BoxShape3D_1iice")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Exit Door"]

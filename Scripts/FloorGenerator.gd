@@ -1,3 +1,4 @@
+@tool
 class_name FloorGenerator
 extends RefCounted
 # RefCounted allow us to create a temporary data object that we can instance to comunicate data
@@ -7,12 +8,12 @@ extends RefCounted
 
 # Dungeon Generator ref: https://youtu.be/h64U6j_sFgs?si=M_-n2820fQAy07dG
 
-const BASE_WIDTH: int = 35
-const BASE_LENGTH: int = 45
-const MAX_WIDTH: int = 75
-const MAX_LENGTH: int = 125
-const WIDTH_GROWTH: int = 4
-const LENGTH_GROWTH: int = 8
+const BASE_WIDTH: int = 20
+const BASE_LENGTH: int = 30
+const MAX_WIDTH: int = 35
+const MAX_LENGTH: int = 80
+const WIDTH_GROWTH: int = 2
+const LENGTH_GROWTH: int = 4
 
 const MIN_FRONT_ROOM_DEPTH: int = 6
 const MIN_BACK_ROOM_DEPTH: int = 4
@@ -29,49 +30,37 @@ var _rng = RandomNumberGenerator.new()
 var floorWidth: int = BASE_WIDTH
 var floorLength: int = BASE_LENGTH
 
-func generate(floorSeed: int, availableProps: Array[Prop], floorLevel: int = 1) -> FloorData:
+func generate(floorSeed: int, floorLevel: int = 1) -> FloorData:
 	_rng.seed = floorSeed
 
 	var data = FloorData.new()
 	data.floorSeed = floorSeed
-	data.size = Vector2i(BASE_WIDTH, BASE_LENGTH)
 	
-	var newFloorWidth = floorWidth + (floorLevel - 1) * WIDTH_GROWTH
-	var newFloorLength = floorLength + (floorLevel - 1) * LENGTH_GROWTH
-	floorWidth = mini(MAX_WIDTH, newFloorWidth) 
-	floorLength = mini(MAX_LENGTH, newFloorLength) 
+	floorWidth = mini(MAX_WIDTH, BASE_WIDTH + floorLevel * WIDTH_GROWTH)
+	floorLength = mini(MAX_LENGTH, BASE_LENGTH + floorLevel * LENGTH_GROWTH)
+	data.size = Vector2i(floorWidth, floorLength)
 	# The outer ring of cells (x=0, x=W-1, z=0, z=L-1) stays wall
 	var innerZStart = 1
-	var innerLength = BASE_LENGTH - 2 # Because we want a wall around it
+	var innerLength = floorLength - 2 # Because we want a wall around it
 
 	var minX = MIN_ROOM_WIDTH + 2 # These two are because of the walls
-	var maxX = BASE_WIDTH - 2 - CORRIDOR_WIDTH - MIN_ROOM_WIDTH
-	var corridorX = _rng.randf_range(minX, maxX)
-	#var corridorX = (BASE_WIDTH - CORRIDOR_WIDTH) / 2
+	var maxX = floorWidth - 2 - CORRIDOR_WIDTH - MIN_ROOM_WIDTH
+	var corridorX = _rng.randi_range(minX, maxX)
 	data.corridor = Rect2i(corridorX, innerZStart, CORRIDOR_WIDTH, innerLength)
-
-	# Stairs at the low-Z end, start at the high-Z end.
-	data.stairsRect = Rect2i(corridorX, innerZStart, CORRIDOR_WIDTH, END_ZONE)
-	data.startRect = Rect2i(corridorX, BASE_LENGTH - 1 - END_ZONE, CORRIDOR_WIDTH, END_ZONE)
-	data.startCell = data.startRect.position + data.startRect.size / 2
-	
-	var lengths = getLengths(innerLength)
 
 	# We create the left and right strips before actually creating the rooms, so we can have different sizes
 	# Left strip: x from 1 up to (but not including) the wall left of the corridor
 	var leftWallX = corridorX - 1
 	var leftX = 1
 	var leftWidth = leftWallX - leftX
-	fillStrip(data, FloorData.Side.LEFT, leftX, leftWidth, leftWallX, innerZStart, lengths)
+	fillStrip(data, FloorData.Side.LEFT, leftX, leftWidth, leftWallX, innerZStart, getLengths(innerLength))
 
 	# Right strip: from the wall right of the corridor + 1 up to the outer wall
 	var rightWallX = corridorX + CORRIDOR_WIDTH
 	var rightX = rightWallX + 1
-	var rightWidth = (BASE_WIDTH - 1) - rightX
-	fillStrip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, lengths)
+	var rightWidth = (floorWidth - 1) - rightX
+	fillStrip(data, FloorData.Side.RIGHT, rightX, rightWidth, rightWallX, innerZStart, getLengths(innerLength))
 
-	#fillTaken(data)
-	fillProps(data, innerZStart, lengths, availableProps)
 	return data
 
 func getLengths(stripLength: int) -> Array[int]:
@@ -118,23 +107,3 @@ func fillStrip(data: FloorData, side: FloorData.Side, x: int, width: int, wallX:
 			var door = Rect2i(wallX, doorZ, 1, DOOR_WIDTH)
 			data.rooms.append({"rect": rect, "side": side, "door": door})
 		z += length + 1  # +1 = wall between rooms
-		print(x, z)
-
-func fillTaken(data: FloorData) -> void:
-	for room in data.rooms:
-		var doorZone = room["door"].grow(2).intersection(room["rect"])
-		for x in range(doorZone.position.x, doorZone.end.x):
-			for y in range(doorZone.y, doorZone.end.y):
-				data.taken.append({"x": x, "y": y, "taken": true})
-
-func fillProps(data: FloorData, zStart: int, lengths: Array[int], availableProps: Array[Prop]) -> void:
-	for room in data.rooms:
-		var randomProp = availableProps[_rng.randi_range(0, availableProps.size() - 1)]
-		var roomRectPos = room.rect.position
-		var footprint = randomProp.footprint
-		
-		data.props.append({
-			"id": randomProp.name, 
-			"rect": Rect2i(roomRectPos.x, roomRectPos.y, footprint.x, footprint.y),
-			"rotation": Vector2(0, 270 if _rng.randf() < 0.5 else 0)
-			})
