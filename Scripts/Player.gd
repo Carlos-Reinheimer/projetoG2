@@ -10,10 +10,9 @@ const MOUSE_SENSITIVITY = 0.5
 
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
-@onready var water_splash: GPUParticles3D = $Head/Camera3D/RayCast3D/WaterSplash
-@onready var colission_splash: GPUParticles3D = $Head/Camera3D/RayCast3D/WaterSplash/ColissionSplash
 @onready var ray_cast_3d: RayCast3D = $Head/Camera3D/RayCast3D
-@onready var water_hose_particle: GPUParticles3D = $"Head/Camera3D/Hose/Water Hose Particle"
+@onready var water_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash
+@onready var colission_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash/ColissionSplash
 
 enum State {
 	NORMAL,
@@ -64,19 +63,18 @@ func _physics_process(delta: float) -> void:
 		drop_target()
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		if not water_splash.emitting:
+			water_splash.emitting = true
 		if ray.get_collider():
 			var colissionPoint = ray.get_collision_point()
-			#var target = ray.get_collider()
 			colission_splash.global_position = colissionPoint
 			colission_splash.emitting = true
-		#swith_state(State.EXTINGUISH)
 		if ray.get_collider() != null and ray.get_collider().get_parent().has_method("puttingOut"):
 			print("To olhando pra " + str(ray.get_collider().name))
 			ray.get_collider().get_parent().puttingOut()
-	else:
+	elif water_splash.emitting:
 		water_splash.emitting = false
 		colission_splash.emitting = false
-		#swith_state(State.NORMAL)
 	
 	_update_camera(delta)
 
