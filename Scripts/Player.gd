@@ -9,7 +9,9 @@ const TILT_UPPER_LIMIT = deg_to_rad(90.0)
 const MOUSE_SENSITIVITY = 0.5
 
 @onready var camera_3d: Camera3D = $Head/Camera3D
-@onready var ray_cast_3d: RayCast3D = $Head/Camera3D/RayCast3D
+@onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
+@onready var water_splash: GPUParticles3D = $Head/Camera3D/RayCast3D/WaterSplash
+@onready var colission_splash: GPUParticles3D = $Head/Camera3D/RayCast3D/WaterSplash/ColissionSplash
 
 enum State {
 	NORMAL,
@@ -25,7 +27,7 @@ var _tilt_input : float
 var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
-var enemy_target = null
+var enemyTarget = null
 
 var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
 
@@ -37,32 +39,42 @@ Player mechanics:
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	water_splash.emitting = false
+	colission_splash.emitting = false
 
 func drop_target():
-	if enemy_target:
-		enemy_target.stop_pull()
-		enemy_target = null
+	if enemyTarget:
+		enemyTarget.stop_pull()
+		enemyTarget = null
 
-func eneny_in_range():
-	return ray_cast_3d.get_collider() and ray_cast_3d.get_collider().is_in_group("Enemy")
+func EnemyInRange():
+	return ray.get_collider() and ray.get_collider().is_in_group("Enemy")
 
 func _physics_process(delta: float) -> void:
 	
-	if eneny_in_range():
-		enemy_target = ray_cast_3d.get_collider()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and enemy_target:
+	if EnemyInRange():
+		enemyTarget = ray.get_collider()
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and enemyTarget:
 		swith_state(State.PULLING)
-		enemy_target.getting_pull(position)
+		enemyTarget.getting_pull(position)
 	else:
 		swith_state(State.NORMAL)
 		drop_target()
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		water_splash.emitting = true
+		if ray.get_collider():
+			var colissionPoint = ray.get_collision_point()
+			#var target = ray.get_collider()
+			colission_splash.global_position = colissionPoint
+			colission_splash.emitting = true
 		#swith_state(State.EXTINGUISH)
-		if ray_cast_3d.get_collider() != null and ray_cast_3d.get_collider().get_parent().has_method("puttingOut"):
-			print("To olhando pra " + str(ray_cast_3d.get_collider().name))
-			ray_cast_3d.get_collider().get_parent().puttingOut()
-	#else:
+		if ray.get_collider() != null and ray.get_collider().get_parent().has_method("puttingOut"):
+			print("To olhando pra " + str(ray.get_collider().name))
+			ray.get_collider().get_parent().puttingOut()
+	else:
+		water_splash.emitting = false
+		colission_splash.emitting = false
 		#swith_state(State.NORMAL)
 	
 	_update_camera(delta)

@@ -61,6 +61,7 @@ size = Vector3(2.2145996, 4.4404297, 2.2558594)
 script = ExtResource("1_8vlm3")
 
 [node name="StaticFlame" type="GPUParticles3D" parent="." unique_id=138126560]
+visible = false
 material_override = SubResource("ShaderMaterial_qpgqx")
 amount = 1
 lifetime = 5.0

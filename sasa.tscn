@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://uyf1piesnt7x"]
+
+[ext_resource type="Texture2D" uid="uid://fuiwotncvvin" path="res://Assets/Textures/WaterSplash/water_texture.png" id="1_gmabl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qiu1t"]
+transparency = 2
+alpha_scissor_threshold = 0.2
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_gmabl")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_sg2dj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 3.5705216, 3.5705216, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dy3o8"]
+curve = SubResource("Curve_sg2dj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_03r8q"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = -0.5
+initial_velocity_max = 3.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.39997762
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_dy3o8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_uj1m6"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" unique_id=1437472801]
+material_override = SubResource("StandardMaterial3D_qiu1t")
+amount = 30
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_03r8q")
+draw_pass_1 = SubResource("QuadMesh_uj1m6")

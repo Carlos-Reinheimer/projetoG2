@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://briafc2yd8eos"]
 
 [ext_resource type="Script" uid="uid://dprkf1qtroqek" path="res://Scripts/Player.gd" id="1_rpqav"]
+[ext_resource type="PackedScene" uid="uid://drrjjfnfq6lfd" path="res://Scenes/WaterSplash.tscn" id="3_gntrk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idj7w"]
 radius = 0.4
@@ -28,10 +29,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=502720081]
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1477706773]
-transform = Transform3D(6, 0, 0, 0, -2.6226832e-07, -6, 0, 6, -2.6226832e-07, 0, -0.17575109, 0)
-visible = false
+transform = Transform3D(10, 0, 0, 0, -4.371139e-07, -10, 0, 10, -4.371139e-07, 0, -0.17575109, 0)
 collision_mask = 2
+hit_from_inside = true
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 0.64705884, 1, 1)
 
+[node name="WaterSplash" parent="Head/Camera3D/RayCast3D" unique_id=1826667380 instance=ExtResource("3_gntrk")]
+transform = Transform3D(0.7456341, -0.57264054, 0.34075403, -0.18196471, 0.31695625, 0.9308214, -0.64102995, -0.75605696, 0.13213299, 0.106859945, 5.3343436e-09, 0.12203556)
+lifetime = 0.68
+randomness = 0.02
+
 [node name="Timer" type="Timer" parent="." unique_id=1156852035]
+
+[editable path="Head/Camera3D/RayCast3D/WaterSplash"]

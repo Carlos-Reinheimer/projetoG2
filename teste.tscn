@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bu26dx0pmv10k"]
+
+[ext_resource type="Shader" uid="uid://csgmth704l8ak" path="res://Assets/Shaders/WaterShader.gdshader" id="1_o02vu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qiu1t"]
+render_priority = 0
+shader = ExtResource("1_o02vu")
+shader_parameter/wave_amplitude = 0.03
+shader_parameter/wave_frequency = 6.0
+shader_parameter/wave_speed = 1.5
+shader_parameter/seamless = true
+shader_parameter/_speed = 1.0
+shader_parameter/_scale = 3.0
+shader_parameter/color_deep = Color(0.3662369, 0.6017521, 0.9754172, 0.8509804)
+shader_parameter/color_shallow = Color(0.5529412, 0.72156864, 1, 0.8666667)
+shader_parameter/color_threshold = 0.406000019285
+shader_parameter/outline_enabled = true
+shader_parameter/outline_color = Color(0.7467043, 0.91706365, 0.99999994, 1)
+shader_parameter/outline_thickness = 0.0130000006175
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_03r8q"]
+radius = 2.3862305
+height = 11.288574
+
+[sub_resource type="Curve" id="Curve_inpy6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.07166124, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jw20m"]
+curve = SubResource("Curve_inpy6")
+
+[sub_resource type="Gradient" id="Gradient_2tfdw"]
+offsets = PackedFloat32Array(0.113879, 0.26334518, 0.3594306, 0.55516016, 0.8825623, 0.9145908)
+colors = PackedColorArray(1, 1, 1, 1, 0.4080357, 1, 1, 1, 0, 1, 1, 1, 0, 0.13352013, 1, 1, 0, 0.09019608, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1mbec"]
+gradient = SubResource("Gradient_2tfdw")
+
+[sub_resource type="Curve" id="Curve_xw8k7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 2.9006042, 2.9006042, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2tfdw"]
+curve = SubResource("Curve_xw8k7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_03r8q"]
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, -1)
+spread = 3.0
+initial_velocity_min = 10.0
+initial_velocity_max = 12.0
+scale_curve = SubResource("CurveTexture_2tfdw")
+color = Color(0, 1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_1mbec")
+alpha_curve = SubResource("CurveTexture_jw20m")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dy3o8"]
+size = Vector2(0.1, 0.1)
+
+[node name="Node3D" type="Node3D" unique_id=829419939]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1506515413]
+transform = Transform3D(0.001918867, 0.99999815, 0, -0.99999815, 0.001918867, 0, 0, 0, 1, 0.98217607, 1.0018846, 0)
+visible = false
+material_override = SubResource("ShaderMaterial_qiu1t")
+mesh = SubResource("CapsuleMesh_03r8q")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1944464889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.048424)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1826667380]
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_03r8q")
+draw_pass_1 = SubResource("QuadMesh_dy3o8")
