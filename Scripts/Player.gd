@@ -4,15 +4,22 @@ extends CharacterBody3D
 const SPEED = 10
 const JUMP_VELOCITY = 10
 const GRAVITY = Vector3(0, -30, 0)
-const TILT_LOWER_LIMIT = deg_to_rad(-90.0)
-const TILT_UPPER_LIMIT = deg_to_rad(90.0)
+const TILT_LOWER_LIMIT = deg_to_rad(-30.0)
+const TILT_UPPER_LIMIT = deg_to_rad(30.0)
 const MOUSE_SENSITIVITY = 0.5
+
+const TARGET_INTENSITY = 15
+const INTENSITY_DURATION = 1.5
 
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var ray_cast_3d: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var water_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash
 @onready var colission_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash/ColissionSplash
+@onready var wind_vortex: GPUParticles3D = $Head/Camera3D/Hose/WindVortex
+
+@onready var hoseAnimationPlayer: AnimationPlayer = $Head/Camera3D/Hose/AnimationPlayer
+@onready var light_indicator: MeshInstance3D = $"Head/Camera3D/Hose/Light Indicator/Light Indicator"
 
 enum State {
 	NORMAL,
@@ -28,6 +35,11 @@ var _tilt_input : float
 var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
+var _tween: Tween
+
+var waterLightMat: Material
+var windLightMat: Material
+
 var enemyTarget = null
 
 var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
@@ -41,7 +53,11 @@ Player mechanics:
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	water_splash.emitting = false
+	wind_vortex.emitting = false
 	colission_splash.emitting = false
+	
+	waterLightMat = light_indicator.get_active_material(1)
+	windLightMat = light_indicator.get_active_material(2)
 
 func drop_target():
 	if enemyTarget:
@@ -52,19 +68,29 @@ func EnemyInRange():
 	return ray.get_collider() and ray.get_collider().is_in_group("Enemy")
 
 func _physics_process(delta: float) -> void:
-	
 	if EnemyInRange():
 		enemyTarget = ray.get_collider()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and enemyTarget:
-		swith_state(State.PULLING)
-		enemyTarget.getting_pull(position)
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if not wind_vortex.emitting:
+			wind_vortex.emitting = true
+			hoseAnimationPlayer.play("Pull")
+			changeEmission(windLightMat, TARGET_INTENSITY)
+		if enemyTarget:
+			swith_state(State.PULLING)
+			enemyTarget.getting_pull(position)
 	else:
+		if wind_vortex.emitting:
+			wind_vortex.emitting = false
+			hoseAnimationPlayer.play_backwards("Pull")
+			changeEmission(windLightMat, 0)
 		swith_state(State.NORMAL)
 		drop_target()
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		if not water_splash.emitting:
 			water_splash.emitting = true
+			hoseAnimationPlayer.play("Push")
+			changeEmission(waterLightMat, TARGET_INTENSITY)
 		if ray.get_collider():
 			var colissionPoint = ray.get_collision_point()
 			colission_splash.global_position = colissionPoint
@@ -75,6 +101,8 @@ func _physics_process(delta: float) -> void:
 	elif water_splash.emitting:
 		water_splash.emitting = false
 		colission_splash.emitting = false
+		hoseAnimationPlayer.play_backwards("Push")
+		changeEmission(waterLightMat, 0)
 	
 	_update_camera(delta)
 
@@ -119,3 +147,10 @@ func _update_camera(delta):
 
 func swith_state(value : State):
 	cur_state = value
+
+func changeEmission(targetMat: Material, targetIntensity: float) -> void:
+	if _tween and _tween.is_running():
+		_tween.kill()
+
+	_tween = create_tween()
+	_tween.tween_property(targetMat, "emission_energy_multiplier", targetIntensity, INTENSITY_DURATION)

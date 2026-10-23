@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cfj6gyygqgpcl"]
+
+[ext_resource type="Texture2D" uid="uid://fuiwotncvvin" path="res://Assets/Textures/WaterSplash/water_texture.png" id="1_2spak"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xw8k7"]
+transparency = 2
+alpha_scissor_threshold = 0.013
+alpha_antialiasing_mode = 0
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_2spak")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = 0.125
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2spak"]
+spread = 0.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = 648.94995
+angular_velocity_max = 686.83997
+
+[sub_resource type="QuadMesh" id="QuadMesh_dy3o8"]
+size = Vector2(0.1, 0.1)
+
+[node name="WindVortex" type="GPUParticles3D" unique_id=1826667380]
+transform = Transform3D(0.72837645, -0.65671825, 0.19541991, 0.6569206, 0.75039417, 0.07323819, -0.19473888, 0.07503038, 0.9779811, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_xw8k7")
+amount = 5
+explosiveness = 0.06
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_2spak")
+draw_pass_1 = SubResource("QuadMesh_dy3o8")

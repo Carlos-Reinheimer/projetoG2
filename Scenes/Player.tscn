@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dprkf1qtroqek" path="res://Scripts/Player.gd" id="1_rpqav"]
 [ext_resource type="PackedScene" uid="uid://dpjfgq8mkrfsh" path="res://Assets/Models/Hose/Hose.glb" id="2_kyqiw"]
-[ext_resource type="PackedScene" uid="uid://drrjjfnfq6lfd" path="res://Scenes/WaterSplash.tscn" id="3_gntrk"]
+[ext_resource type="PackedScene" uid="uid://drrjjfnfq6lfd" path="res://Scenes/Particles/WaterSplash.tscn" id="3_gntrk"]
+[ext_resource type="PackedScene" uid="uid://cfj6gyygqgpcl" path="res://Scenes/Particles/WindVortex.tscn" id="4_dewec"]
+[ext_resource type="PackedScene" uid="uid://d3f426vsj4v1f" path="res://Assets/Models/Hose/Light Indicator.glb" id="5_5ixxa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idj7w"]
 radius = 0.4
@@ -38,11 +40,21 @@ collide_with_areas = true
 debug_shape_custom_color = Color(0, 0.64705884, 1, 1)
 
 [node name="Hose" parent="Head/Camera3D" unique_id=813149388 instance=ExtResource("2_kyqiw")]
-transform = Transform3D(-4.371139e-08, 0, 1, 3.5527137e-15, 1, 0, -1, 3.5527137e-15, -4.371139e-08, -0.2105005, -0.91976213, -1.86427)
+transform = Transform3D(-4.371139e-08, 0, 1, 0.24044238, 0.9706634, 1.051007e-08, -0.9706634, 0.24044238, -4.2429043e-08, 0.17035495, -0.72090256, -1.2514559)
 
 [node name="WaterSplash" parent="Head/Camera3D/Hose" unique_id=1826667380 instance=ExtResource("3_gntrk")]
 transform = Transform3D(-4.3711392e-08, 3.552714e-15, -0.99999994, 3.5527137e-15, 0.9999999, 3.5527135e-15, 1, -3.5527133e-15, -4.371138e-08, 0.51268554, 0.02096963, 2.9802322e-08)
+emitting = false
+
+[node name="WindVortex" parent="Head/Camera3D/Hose" unique_id=1027213499 instance=ExtResource("4_dewec")]
+transform = Transform3D(0.7283765, -0.6567182, 0.19541992, 0.6569206, 0.75039417, 0.073238194, -0.19473886, 0.07503038, 0.9779811, 0.6445552, -0.15966234, 1.4901161e-08)
+emitting = false
+
+[node name="Light Indicator" parent="Head/Camera3D/Hose" unique_id=1000262139 instance=ExtResource("5_5ixxa")]
+transform = Transform3D(0.99996454, 0.008442119, -1.5525359e-12, -0.008442119, 0.99996454, -3.6902126e-10, -1.5418777e-12, 3.6901593e-10, 1, -0.25275564, 0.056950927, -1.4901161e-08)
 
 [node name="Timer" type="Timer" parent="." unique_id=1156852035]
 
+[editable path="Head/Camera3D/Hose"]
 [editable path="Head/Camera3D/Hose/WaterSplash"]
+[editable path="Head/Camera3D/Hose/Light Indicator"]
