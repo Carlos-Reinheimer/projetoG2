@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://dpk8derwe7wjc"]
 
-[ext_resource type="Script" uid="uid://dg55trfoj2egr" path="res://Scripts/Utils/Fire.gd" id="1_8vlm3"]
-[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Shaders/FireShader.tres" id="2_ewg8t"]
-[ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="3_dfblp"]
-[ext_resource type="Texture2D" uid="uid://ks7f5xixa44g" path="res://Assets/Textures/Flame01.png" id="4_3lk1j"]
-[ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="5_q06cs"]
+[ext_resource type="Script" uid="uid://dg55trfoj2egr" path="res://Scripts/Utils/Fire.gd" id="1_w4p8k"]
+[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Shaders/FireShader.tres" id="2_ra83k"]
+[ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="3_6gxw6"]
+[ext_resource type="Texture2D" uid="uid://ks7f5xixa44g" path="res://Assets/Textures/Flame01.png" id="4_tjvfn"]
+[ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="5_p05yn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qpgqx"]
 render_priority = 0
-shader = ExtResource("2_ewg8t")
-shader_parameter/Texture2DParameter = ExtResource("4_3lk1j")
+shader = ExtResource("2_ra83k")
+shader_parameter/Texture2DParameter = ExtResource("4_tjvfn")
 shader_parameter/DissolveTiling = Vector2(1, 1)
 shader_parameter/DissolveSpeed = Vector2(0, 1)
-shader_parameter/DissolveTexture = ExtResource("3_dfblp")
+shader_parameter/DissolveTexture = ExtResource("3_6gxw6")
 shader_parameter/DissolveAmount = 0.1530000072675
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o38di"]
@@ -25,11 +25,11 @@ color = Color(3.6279995, 0.7526379, 0.5006998, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a4so0"]
 render_priority = 0
-shader = ExtResource("2_ewg8t")
-shader_parameter/Texture2DParameter = ExtResource("5_q06cs")
+shader = ExtResource("2_ra83k")
+shader_parameter/Texture2DParameter = ExtResource("5_p05yn")
 shader_parameter/DissolveTiling = Vector2(1, 1)
 shader_parameter/DissolveSpeed = Vector2(0, 0)
-shader_parameter/DissolveTexture = ExtResource("3_dfblp")
+shader_parameter/DissolveTexture = ExtResource("3_6gxw6")
 shader_parameter/DissolveAmount = 0.0
 
 [sub_resource type="Curve" id="Curve_xuxs7"]
@@ -57,8 +57,8 @@ color = Color(3.6279995, 0.7526379, 0.5006998, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy3o8"]
 size = Vector3(2.2145996, 4.4404297, 2.2558594)
 
-[node name="Particles" type="Node3D" unique_id=187325746 groups=["Fire"]]
-script = ExtResource("1_8vlm3")
+[node name="Fire Particle" type="Node3D" unique_id=187325746 groups=["Fire"]]
+script = ExtResource("1_w4p8k")
 
 [node name="StaticFlame" type="GPUParticles3D" parent="." unique_id=138126560]
 visible = false
@@ -72,7 +72,7 @@ draw_pass_1 = SubResource("QuadMesh_vc1yv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95232105, 0)
 material_override = SubResource("ShaderMaterial_a4so0")
 amount = 20
-lifetime = 3.0
+lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_td14o")
 draw_pass_1 = SubResource("QuadMesh_j3yyl")
 

@@ -17,6 +17,7 @@ sky_material = SubResource("ProceduralSkyMaterial_pbw6q")
 [sub_resource type="Environment" id="Environment_kln2b"]
 background_mode = 2
 sky = SubResource("Sky_v1gob")
+glow_enabled = true
 
 [node name="Main" type="Node3D" unique_id=981272364]
 
@@ -72,5 +73,8 @@ text = "Pontos atuais: "
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.807019, 1, 2.8786511)
 
 [node name="Floor" parent="." unique_id=53792242 instance=ExtResource("5_pbw6q")]
+
+[node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
+transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, 10, 1, 5)
 
 [connection signal="timeout" from="LevelUI/Timer" to="LevelUI" method="_on_timer_timeout"]

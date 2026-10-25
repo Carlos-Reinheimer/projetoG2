@@ -1,17 +1,16 @@
 [gd_scene format=3 uid="uid://briafc2yd8eos"]
 
-[ext_resource type="Script" uid="uid://dprkf1qtroqek" path="res://Scripts/Player.gd" id="1_rpqav"]
+[ext_resource type="Script" uid="uid://dprkf1qtroqek" path="res://Scripts/Player/Player.gd" id="1_rpqav"]
 [ext_resource type="PackedScene" uid="uid://dpjfgq8mkrfsh" path="res://Assets/Models/Hose/Hose.glb" id="2_kyqiw"]
-[ext_resource type="PackedScene" uid="uid://drrjjfnfq6lfd" path="res://Scenes/WaterSplash.tscn" id="3_gntrk"]
+[ext_resource type="Script" uid="uid://bq232e0odvc5v" path="res://Scripts/Player/Hose.gd" id="3_5ixxa"]
+[ext_resource type="PackedScene" uid="uid://drrjjfnfq6lfd" path="res://Scenes/Particles/WaterSplash.tscn" id="3_gntrk"]
+[ext_resource type="PackedScene" uid="uid://cfj6gyygqgpcl" path="res://Scenes/Particles/WindVortex.tscn" id="4_dewec"]
+[ext_resource type="PackedScene" uid="uid://drbb478wgp071" path="res://Assets/Models/Player/Left Arm.glb" id="6_nn08x"]
+[ext_resource type="PackedScene" uid="uid://dkfitp5gixjop" path="res://Assets/Models/Player/Right Arm.glb" id="7_52ee3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idj7w"]
 radius = 0.4
 height = 1.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frvqy"]
-albedo_color = Color(1.0588765e-06, 0.7238907, 0.6209071, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1iice"]
 
 [node name="Player" type="CharacterBody3D" unique_id=991785988]
 script = ExtResource("1_rpqav")
@@ -19,10 +18,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1587454297]
 shape = SubResource("CapsuleShape3D_idj7w")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1941260609]
-material_override = SubResource("StandardMaterial3D_frvqy")
-mesh = SubResource("CapsuleMesh_1iice")
 
 [node name="Head" type="Node3D" parent="." unique_id=1216258692]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -37,11 +32,41 @@ collide_with_areas = true
 debug_shape_custom_color = Color(0, 0.64705884, 1, 1)
 
 [node name="Hose" parent="Head/Camera3D" unique_id=813149388 instance=ExtResource("2_kyqiw")]
-transform = Transform3D(-4.371139e-08, 0, 1, 3.5527137e-15, 1, 0, -1, 3.5527137e-15, -4.371139e-08, -0.2105005, -0.91976213, -1.86427)
+transform = Transform3D(0.03533051, 0.14262909, 0.9891454, 0.2378325, 0.9601273, -0.1469398, -0.9706634, 0.24044238, -4.2275115e-08, 0.3147537, -0.61878717, -1.2514559)
+script = ExtResource("3_5ixxa")
+extinguishIndicatorColor = Color(0, 0.39607844, 1, 1)
+pullIndicatorColor = Color(0, 0.74509805, 0, 1)
+
+[node name="Left Arm" parent="Head/Camera3D/Hose/Hose/Lever" parent_id_path=PackedInt32Array(813149388, 387589417) index="0" unique_id=492718385 instance=ExtResource("6_nn08x")]
+transform = Transform3D(0.018976629, 0.99982, -4.8968786e-08, -0.9998198, 0.018976688, 3.2704456e-08, 1.00977076e-07, 2.8279093e-08, 1, -1.2594483, 0.34268874, -0.03358431)
+
+[node name="Skeleton3D" parent="Head/Camera3D/Hose/Hose/Lever/Left Arm/Armature" parent_id_path=PackedInt32Array(492718385, 1694698737) index="0" unique_id=1498158866]
+bones/3/rotation = Quaternion(0.029363, 0.00212, -1.068192, 0.996504)
 
 [node name="WaterSplash" parent="Head/Camera3D/Hose" unique_id=1826667380 instance=ExtResource("3_gntrk")]
 transform = Transform3D(-4.3711392e-08, 3.552714e-15, -0.99999994, 3.5527137e-15, 0.9999999, 3.5527135e-15, 1, -3.5527133e-15, -4.371138e-08, 0.51268554, 0.02096963, 2.9802322e-08)
+emitting = false
+
+[node name="WindVortex" parent="Head/Camera3D/Hose" unique_id=1027213499 instance=ExtResource("4_dewec")]
+transform = Transform3D(-4.3711385e-08, 0, -0.9999996, 0, 0.9999998, 0, 0.9999999, 0, -4.371137e-08, 0.5130193, 0.016206324, -0.020661011)
+emitting = false
+
+[node name="Right Arm" parent="Head/Camera3D/Hose" unique_id=1471388457 instance=ExtResource("7_52ee3")]
+transform = Transform3D(0.15099555, 0.8968985, -0.41566002, 0.06767129, -0.4288734, -0.9008254, -0.9862154, 0.107892826, -0.12545174, -1.0785432, 0.31641108, -0.33634615)
+
+[node name="Right Armature" parent="Head/Camera3D/Hose/Right Arm" index="0" unique_id=123041653]
+transform = Transform3D(1, 0, -9.313226e-09, 1.4901161e-08, 1, 1.4901161e-08, -3.7252903e-08, 0, 1.0000002, 0.04358971, 0.036899462, 0.0029683113)
+
+[node name="Skeleton3D" parent="Head/Camera3D/Hose/Right Arm/Right Armature" index="0" unique_id=1243760462]
+bones/0/rotation = Quaternion(0.07, 0, 0.051433, 0.998676)
+bones/1/rotation = Quaternion(-0.125234, 1.2e-05, 0.045205, 0.998211)
+bones/2/rotation = Quaternion(0.000234, 0, 0.248376, 0.999965)
+bones/3/rotation = Quaternion(0.001998, 0, 3.731533, 0.997436)
 
 [node name="Timer" type="Timer" parent="." unique_id=1156852035]
 
+[editable path="Head/Camera3D/Hose"]
+[editable path="Head/Camera3D/Hose/Hose/Lever/Left Arm"]
 [editable path="Head/Camera3D/Hose/WaterSplash"]
+[editable path="Head/Camera3D/Hose/WindVortex"]
+[editable path="Head/Camera3D/Hose/Right Arm"]

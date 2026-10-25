@@ -4,8 +4,8 @@ extends CharacterBody3D
 const SPEED = 10
 const JUMP_VELOCITY = 10
 const GRAVITY = Vector3(0, -30, 0)
-const TILT_LOWER_LIMIT = deg_to_rad(-90.0)
-const TILT_UPPER_LIMIT = deg_to_rad(90.0)
+const TILT_LOWER_LIMIT = deg_to_rad(-30.0)
+const TILT_UPPER_LIMIT = deg_to_rad(30.0)
 const MOUSE_SENSITIVITY = 0.5
 const MAX_SHAKE := 0.12        # deslocamento máximo da câmera
 const SHAKE_DECAY := 5.0       # trauma perdido por segundo
@@ -18,13 +18,6 @@ const KNOCKBACK_DECAY := 25.0  # quão rápido o empurrão perde força
 @onready var colission_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash/ColissionSplash
 @onready var hose: Node3D = $Head/Camera3D/Hose
 
-enum State {
-	NORMAL,
-	PULLING,
-	EXTINGUISH
-}
-
-var cur_state := State.NORMAL
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
 var _rotation_input : float
@@ -39,12 +32,6 @@ var aimedEnemy: Node = null
 var enemyTarget = null
 
 var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
-
-"""
-Player mechanics:
-	- Consegue puxar os inimigos
-	- Apagar fogo
-"""
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -114,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += GRAVITY * delta
 
-	if Input.is_action_pressed("Jump") and is_on_floor() and cur_state != State.PULLING:
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and hose.currentState != Hose.State.PULLING:
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")

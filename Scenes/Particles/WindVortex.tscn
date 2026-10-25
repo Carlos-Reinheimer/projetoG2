@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cfj6gyygqgpcl"]
+
+[ext_resource type="Shader" uid="uid://yq4tkcukrmja" path="res://Assets/Shaders/WindVortex.gdshader" id="2_s1gm5"]
+
+[sub_resource type="Gradient" id="Gradient_s1gm5"]
+colors = PackedColorArray(0.0627451, 1, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s1gm5"]
+gradient = SubResource("Gradient_s1gm5")
+fill = 1
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2spak"]
+albedo_texture = SubResource("GradientTexture2D_s1gm5")
+
+[sub_resource type="Gradient" id="Gradient_2spak"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.7647059)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2spak"]
+gradient = SubResource("Gradient_2spak")
+
+[sub_resource type="Curve" id="Curve_s1gm5"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2spak"]
+curve = SubResource("Curve_s1gm5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1gm5"]
+emission_shape_offset = Vector3(0, 0, -4)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.5
+emission_ring_inner_radius = 0.8
+emission_ring_cone_angle = 90.0
+radial_velocity_min = -7.920022
+radial_velocity_max = -7.920022
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2spak")
+color_ramp = SubResource("GradientTexture1D_2spak")
+
+[sub_resource type="QuadMesh" id="QuadMesh_s1gm5"]
+size = Vector2(0.05, 0.04)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2spak"]
+render_priority = 0
+shader = ExtResource("2_s1gm5")
+shader_parameter/tint = Color(0.6313726, 1, 0, 1)
+shader_parameter/speed = 2.0
+shader_parameter/stripe_count = 6.0
+shader_parameter/stripe_sharpness = 8.0
+shader_parameter/intensity = 0.4
+shader_parameter/cone_height = 4.0
+shader_parameter/end_fade = 0.35
+shader_parameter/edge_softness = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1iice"]
+top_radius = 0.1
+bottom_radius = 1.5
+height = 4.0
+rings = 0
+cap_top = false
+
+[node name="WindVortex" type="GPUParticles3D" unique_id=1826667380]
+transform = Transform3D(-4.371139e-08, 0, -0.9999999, 0, 0.9999999, 0, 1, 0, -4.3711385e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2spak")
+amount = 150
+lifetime = 0.6
+explosiveness = 0.06
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_s1gm5")
+draw_pass_1 = SubResource("QuadMesh_s1gm5")
+
+[node name="Cone" type="MeshInstance3D" parent="." unique_id=48044146]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -3)
+visible = false
+material_override = SubResource("ShaderMaterial_2spak")
+mesh = SubResource("CylinderMesh_1iice")
