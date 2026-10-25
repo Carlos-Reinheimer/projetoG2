@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cptatek4swohe"]
 
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="1_lc1oi"]
-[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemy.tscn" id="2_8od7v"]
+[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemies/Enemy 1.tscn" id="2_8od7v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_03r8q"]
 size = Vector3(80.47461, 2, 31.717773)

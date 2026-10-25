@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://d3am5hjwkt1bd"]
+
+[ext_resource type="Script" uid="uid://bg0gd7cfgb0sl" path="res://Scripts/Enemy.gd" id="1_6wfay"]
+[ext_resource type="PackedScene" uid="uid://hgmmtob36kxt" path="res://Scenes/MiniGame/ButtonMash.tscn" id="2_55ibi"]
+[ext_resource type="PackedScene" uid="uid://ncudmmc4h37f" path="res://Assets/Models/Enemies/Enemy 1/Enemy 1.glb" id="3_a8ovj"]
+[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Shaders/FireShader.tres" id="4_p8g6p"]
+[ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="5_lmntt"]
+[ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="6_3va5g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6wfay"]
+radius = 0.36767578
+height = 1.4941406
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_03r8q"]
+radius = 0.44335938
+height = 1.5029297
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmvoo"]
+render_priority = 0
+shader = ExtResource("4_p8g6p")
+shader_parameter/Texture2DParameter = ExtResource("6_3va5g")
+shader_parameter/DissolveTiling = Vector2(1, 1)
+shader_parameter/DissolveSpeed = Vector2(0, 0)
+shader_parameter/DissolveTexture = ExtResource("5_lmntt")
+shader_parameter/DissolveAmount = 0.0
+
+[sub_resource type="Curve" id="Curve_t5gvi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19827586, 0.9926471), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_p8g6p"]
+curve = SubResource("Curve_t5gvi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_am78e"]
+emission_shape = 1
+emission_sphere_radius = 0.01
+angle_min = -360.0
+angle_max = 360.00003
+direction = Vector3(0.1, 0, 0)
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_p8g6p")
+color = Color(3.6279995, 0.7526379, 0.5006998, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_axtmp"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=873800574 groups=["Enemy"]]
+collision_layer = 3
+script = ExtResource("1_6wfay")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=286926114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2529297, 0)
+shape = SubResource("CapsuleShape3D_6wfay")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1911994887]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1964715210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24853516, 0)
+shape = SubResource("CapsuleShape3D_03r8q")
+
+[node name="ButtonMash" parent="." unique_id=1145780555 instance=ExtResource("2_55ibi")]
+mash_time = 0.8
+
+[node name="Enemy 1" parent="." unique_id=430817101 instance=ExtResource("3_a8ovj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1748296, 0, 0)
+
+[node name="Flames" type="GPUParticles3D" parent="." unique_id=961396124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9071548, 0)
+material_override = SubResource("ShaderMaterial_dmvoo")
+amount = 20
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_am78e")
+draw_pass_1 = SubResource("QuadMesh_axtmp")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="game_finished" from="ButtonMash" to="." method="_on_button_mash_game_finished"]

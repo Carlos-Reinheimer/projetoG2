@@ -76,5 +76,6 @@ draw_pass_1 = SubResource("QuadMesh_s1gm5")
 
 [node name="Cone" type="MeshInstance3D" parent="." unique_id=48044146]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -3)
+visible = false
 material_override = SubResource("ShaderMaterial_2spak")
 mesh = SubResource("CylinderMesh_1iice")
