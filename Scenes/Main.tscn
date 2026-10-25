@@ -54,6 +54,6 @@ autostart = true
 [node name="Floor" parent="." unique_id=380912517 instance=ExtResource("5_pbw6q")]
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 5)
+transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, 10, 1, 5)
 
 [connection signal="timeout" from="LevelUI/Timer" to="LevelUI" method="_on_timer_timeout"]

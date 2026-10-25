@@ -19,6 +19,7 @@ const INTENSITY_DURATION = 1.5
 @onready var water_splash: GPUParticles3D = $WaterSplash
 @onready var colission_splash: GPUParticles3D = $WaterSplash/ColissionSplash
 @onready var wind_vortex: GPUParticles3D = $WindVortex
+@onready var cone: MeshInstance3D = $WindVortex/Cone
 
 @export var idleIndicatorColor: Color
 @export var extinguishIndicatorColor: Color
@@ -48,9 +49,11 @@ func processHose(delta: float) -> void:
 	if isPressingLeft and not isPressingRight:
 		if not wind_vortex.emitting:
 			wind_vortex.emitting = true
+			cone.visible = true
 			updateHoseFeedback("Pull", false, pullIndicatorColor, TARGET_INTENSITY)
 	elif wind_vortex.emitting:
 		wind_vortex.emitting = false
+		cone.visible = false
 		updateHoseFeedback("Pull", true, idleIndicatorColor, 0)
 
 	if isPressingRight and not isPressingLeft:
