@@ -1,4 +1,4 @@
-extends Node3D
+class_name Fire extends Node3D
 
 @onready var flames: GPUParticles3D = $Flames
 
@@ -34,10 +34,10 @@ func puttingOut() -> void:
 
 func checkDeath() -> void:
 	if health <= 0:
-		SignalBus.emit_signal("extinguishFire", firePoints)
 		puttOut = true
 		$FireArea/CollisionShape3D.set_deferred("disabled", true)
 		flames.emitting = false
+		SignalBus.emit_signal("extinguishFire", firePoints)
 		await get_tree().create_timer(flames.lifetime).timeout
 		queue_free()
 

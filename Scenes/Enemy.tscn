@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bg0gd7cfgb0sl" path="res://Scripts/Enemy.gd" id="1_m1htj"]
 [ext_resource type="PackedScene" uid="uid://hgmmtob36kxt" path="res://Scenes/MiniGame/ButtonMash.tscn" id="2_wovta"]
+[ext_resource type="PackedScene" uid="uid://cjvyt5ynkvmur" path="res://Assets/Models/Enemy/fire_blob.glb" id="3_xeo28"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_03r8q"]
 
@@ -10,14 +11,21 @@ points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_03r8q"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_03r8q"]
+radius = 3.7974393
+
 [node name="Enemy" type="CharacterBody3D" unique_id=873800574 groups=["Enemy"]]
-collision_layer = 3
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_m1htj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=366181884]
+visible = false
 mesh = SubResource("CapsuleMesh_03r8q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=286926114]
+visible = false
 shape = SubResource("ConvexPolygonShape3D_7fd37")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1911994887]
@@ -28,5 +36,27 @@ shape = SubResource("CapsuleShape3D_03r8q")
 [node name="ButtonMash" parent="." unique_id=1145780555 instance=ExtResource("2_wovta")]
 mash_time = 0.8
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2095804584]
+path_desired_distance = 1.5
+target_desired_distance = 2.0
+path_height_offset = -1.2
+path_max_distance = 1.01
+debug_enabled = true
+
+[node name="FireBlob" parent="." unique_id=1398854963 instance=ExtResource("3_xeo28")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.79177, 0)
+
+[node name="LookRange" type="Area3D" parent="." unique_id=1567903689]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LookRange" unique_id=45164125]
+shape = SubResource("SphereShape3D_03r8q")
+
+[node name="PerceptionTimer" type="Timer" parent="." unique_id=1834388563]
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="game_finished" from="ButtonMash" to="." method="_on_button_mash_game_finished"]
+[connection signal="mashPressed" from="ButtonMash" to="." method="_on_button_mash_mash_pressed"]
+[connection signal="navigation_finished" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
+[connection signal="body_entered" from="LookRange" to="." method="_on_look_range_body_entered"]
+
+[editable path="FireBlob"]

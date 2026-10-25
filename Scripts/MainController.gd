@@ -18,7 +18,7 @@ func _ready() -> void:
 	currentFloorScene = $"../Floor"
 	countFiresOnFloor()
 	countEnemiesOnFloor()
-	
+
 func onLoadNextFloor() -> void:
 	currentFloor += 1
 	countFiresOnFloor()
@@ -33,14 +33,16 @@ func onLoadNextFloor() -> void:
 
 func countEnemiesOnFloor() -> void:
 	enemiesOnFloor = get_tree().get_nodes_in_group("Enemy").size()
-	
+
 func countFiresOnFloor() -> void:
 	firesOnFloor = get_tree().get_nodes_in_group("Fire").size()
 
 func getNewFloor(levelIndex: int) -> Node3D:
 	return floors[currentFloor].instantiate()
 	
-func onCaptureEnemy(_value: int) -> void:
+func onCaptureEnemy(value: int) -> void:
+	if value < 0:
+		return
 	enemiesOnFloor -= 1
 	Stats.ALL_TIME_ENEMIES_CAPUTRED += 1
 	checkFloorCondition()

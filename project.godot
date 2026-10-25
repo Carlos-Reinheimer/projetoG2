@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="ProjetoG2"
+run/main_scene="uid://rk0iipo5qo7y"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]

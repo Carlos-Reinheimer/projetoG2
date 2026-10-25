@@ -4,7 +4,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xw8k7"]
 transparency = 2
-alpha_scissor_threshold = 0.013
+alpha_scissor_threshold = 0.053
 alpha_antialiasing_mode = 0
 shading_mode = 0
 vertex_color_use_as_albedo = true

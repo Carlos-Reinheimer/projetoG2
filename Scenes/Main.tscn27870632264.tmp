@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://rk0iipo5qo7y"]
+
+[ext_resource type="Script" uid="uid://dxmmal1sydwmf" path="res://Scripts/MainController.gd" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://c20lrmk6asfbs" path="res://Scenes/Utils/DialogManager.tscn" id="1_v1gob"]
+[ext_resource type="PackedScene" uid="uid://d3qboqmpgar7j" path="res://Scenes/Utils/Fade.tscn" id="2_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://bkip04dx3dp6x" path="res://Scenes/Floors/Floor_0.tscn" id="5_pbw6q"]
+[ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/LevelGUI.gd" id="7_jw32o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbw6q"]
+sky_top_color = Color(0.6895057, 0.27045798, 0.51806027, 1)
+sky_horizon_color = Color(0.43838206, 0.7063988, 0.7387537, 1)
+
+[sub_resource type="Sky" id="Sky_v1gob"]
+sky_material = SubResource("ProceduralSkyMaterial_pbw6q")
+
+[sub_resource type="Environment" id="Environment_kln2b"]
+background_mode = 2
+sky = SubResource("Sky_v1gob")
+
+[node name="Main" type="Node3D" unique_id=981272364]
+
+[node name="DialogManager" parent="." unique_id=2052850963 instance=ExtResource("1_v1gob")]
+
+[node name="Main Controller" type="Node" parent="." unique_id=938798563]
+script = ExtResource("1_r150o")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
+environment = SubResource("Environment_kln2b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1228580851]
+transform = Transform3D(0.70710653, 0.18301426, 0.6830125, -0.6724284, 0.47282028, 0.5694563, -0.21872249, -0.86194485, 0.45739743, 0, 0, 0)
+
+[node name="LevelUI" type="Control" parent="." unique_id=740453833]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_jw32o")
+timerDecayRate = 0.2
+
+[node name="ProgressBar" type="ProgressBar" parent="LevelUI" unique_id=143970120]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 23.0
+offset_right = 1132.0
+offset_bottom = 50.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="LevelUI" unique_id=1975681908]
+autostart = true
+
+[node name="Label" type="Label" parent="LevelUI" unique_id=799732638]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 58.0
+offset_right = 76.0
+offset_bottom = 81.0
+text = "Pontos atuais: "
+
+[node name="Label2" type="Label" parent="LevelUI" unique_id=827363641]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 82.0
+offset_right = 150.0
+offset_bottom = 105.0
+text = "Pontos atuais: "
+
+[node name="Fade" parent="." unique_id=683505706 instance=ExtResource("2_pbw6q")]
+
+[node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.807019, 1, 2.8786511)
+
+[node name="Floor" parent="." unique_id=53792242 instance=ExtResource("5_pbw6q")]
+
+[connection signal="timeout" from="LevelUI/Timer" to="LevelUI" method="_on_timer_timeout"]

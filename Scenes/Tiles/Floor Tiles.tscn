@@ -17,9 +17,12 @@ size = Vector3(1, 0.20663452, 1)
 [node name="FloorTiles" type="Node3D" unique_id=1036542230]
 
 [node name="Wall" type="MeshInstance3D" parent="." unique_id=1900715124]
+layers = 2
 mesh = ExtResource("1_ycoy0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall" unique_id=716872620]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D" unique_id=669986871]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0013122559, 0)

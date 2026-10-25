@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c20lrmk6asfbs"]
+
+[ext_resource type="Script" uid="uid://b8qan7fx6cjqr" path="res://Scripts/Utils/DialogManager.gd" id="1_r7j78"]
+
+[node name="DialogManager" type="Control" unique_id=2052850963]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_r7j78")
+
+[node name="Panel" type="Panel" parent="." unique_id=370719180]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -536.0
+offset_top = -201.0
+offset_right = 532.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CharacterName" type="Label" parent="Panel" unique_id=1334326963]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 21.0
+offset_right = 155.0
+offset_bottom = 44.0
+text = "CharacterName"
+
+[node name="CharacterDialog" type="RichTextLabel" parent="Panel" unique_id=1980992100]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 24.0
+offset_right = 1019.0
+offset_bottom = 134.0

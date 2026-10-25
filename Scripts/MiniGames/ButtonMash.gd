@@ -9,6 +9,7 @@ class_name ButtonMash extends Control
 @onready var progress_bar: ProgressBar = $ProgressBar
 
 signal game_finished(has_won: bool) # True: ganhou - False: perdeu
+signal mashPressed(progress: float)
 
 # Supostamente com isso, toda vez que o btnCount mudar, tbm altera o progress bar
 var btnCount: float = 0.0:
@@ -37,12 +38,13 @@ func _input(event: InputEvent) -> void:
 	if not visible:
 		return
 	if event.is_action_pressed("ui_accept"):
+		mashPressed.emit(btnCount / max_progress)
+		get_viewport().set_input_as_handled()
 		btnCount += press_boost
 		if progress_bar.max_value <= btnCount:
 			emit_signal("game_finished", true)
 
 func _on_timer_timeout() -> void:
-	print("cabo timer")
 	btnCount -= decay_rate
 	if btnCount <= 0:
 			emit_signal("game_finished", false)
