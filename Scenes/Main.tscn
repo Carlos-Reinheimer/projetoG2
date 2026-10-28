@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://d3qboqmpgar7j" path="res://Scenes/Utils/Fade.tscn" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
 [ext_resource type="PackedScene" uid="uid://bkip04dx3dp6x" path="res://Scenes/Floors/Floor_0.tscn" id="5_pbw6q"]
-[ext_resource type="PackedScene" uid="uid://bro0l81e7lapa" path="res://Assets/Models/Props/Chairs/Chair 2.glb" id="6_v1gob"]
 [ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/LevelGUI.gd" id="7_jw32o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbw6q"]
@@ -56,8 +55,5 @@ autostart = true
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
 transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, 10, 1, 5)
-
-[node name="Chair 2" parent="." unique_id=461598910 instance=ExtResource("6_v1gob")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.758731, 0.7919124, 20.429478)
 
 [connection signal="timeout" from="LevelUI/Timer" to="LevelUI" method="_on_timer_timeout"]

@@ -40,6 +40,13 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"Floor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Floor/Floor.tres",
+"use_external/path": "res://Assets/Materials/Floor/Floor.tres"
+}
+},
 "meshes": {
 "Floor_Cube_002": {
 "generate/lightmap_uv": 0,
