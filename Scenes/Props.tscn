@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://cwjbqfh6r87yi"]
+
+[ext_resource type="PackedScene" uid="uid://bro0l81e7lapa" path="res://Assets/Models/Props/Chairs/Chair 2.glb" id="1_p0quc"]
+[ext_resource type="PackedScene" uid="uid://sse3v3q0g0ni" path="res://Assets/Models/Props/Chairs/Chair 3.glb" id="2_jcfw2"]
+[ext_resource type="PackedScene" uid="uid://h0wl2xkyjq2u" path="res://Assets/Models/Props/Chairs/Chair 4.glb" id="3_8hvxp"]
+[ext_resource type="PackedScene" uid="uid://cyni8quryhmet" path="res://Assets/Models/Props/Chairs/Chair.glb" id="4_l6wyo"]
+[ext_resource type="PackedScene" uid="uid://bsv6h42op8rvm" path="res://Assets/Models/Props/Chairs/Sofa 2.glb" id="5_n1iu8"]
+[ext_resource type="PackedScene" uid="uid://bxfc02emt4uvc" path="res://Assets/Models/Props/Chairs/Sofa.glb" id="6_hdc14"]
+[ext_resource type="PackedScene" uid="uid://81i1x25bf76c" path="res://Assets/Models/Props/Desks/Center Desk 2.glb" id="7_62gp7"]
+[ext_resource type="PackedScene" uid="uid://b0fbe7kyq0jyv" path="res://Assets/Models/Props/Desks/Center Desk.glb" id="8_j10vf"]
+[ext_resource type="PackedScene" uid="uid://x384sphxteeg" path="res://Assets/Models/Props/Desks/Desk 2.glb" id="9_utj4j"]
+[ext_resource type="PackedScene" uid="uid://duvt04x2avxm2" path="res://Assets/Models/Props/Desks/Desk 3.glb" id="10_035mm"]
+[ext_resource type="PackedScene" uid="uid://d22o08oan3ree" path="res://Assets/Models/Props/Desks/Desk 4.glb" id="11_62gp7"]
+[ext_resource type="PackedScene" uid="uid://cw6o6ri6ancja" path="res://Assets/Models/Props/Desks/Desk 5.glb" id="12_j10vf"]
+[ext_resource type="PackedScene" uid="uid://qx28fito7e5n" path="res://Assets/Models/Props/Desks/Desk 6.glb" id="13_utj4j"]
+[ext_resource type="PackedScene" uid="uid://cyyu7ghhunkio" path="res://Assets/Models/Props/Desks/Desk.glb" id="14_035mm"]
+[ext_resource type="PackedScene" uid="uid://cvf15bb3lh1wd" path="res://Assets/Models/Props/Desks/Meeting Desk.glb" id="15_wdrh8"]
+[ext_resource type="PackedScene" uid="uid://c0tdbibksvlws" path="res://Assets/Models/Props/Lights/Fan.glb" id="16_1v5yp"]
+[ext_resource type="PackedScene" uid="uid://qcci2g1n4cbu" path="res://Assets/Models/Props/Lights/Lamp 2.glb" id="17_qhunu"]
+[ext_resource type="PackedScene" uid="uid://w0t2rvknku53" path="res://Assets/Models/Props/Lights/Lamp.glb" id="18_5sf0r"]
+[ext_resource type="PackedScene" uid="uid://bjpdpv0tg361a" path="res://Assets/Models/Props/Lights/Light 2.glb" id="19_7cof1"]
+[ext_resource type="PackedScene" uid="uid://cde6fy7887jfr" path="res://Assets/Models/Props/Lights/Light.glb" id="20_8p0gi"]
+[ext_resource type="PackedScene" uid="uid://dso4ubfr07mjp" path="res://Assets/Models/Props/Others/Bin.glb" id="21_8p0gi"]
+[ext_resource type="PackedScene" uid="uid://b7qsdf7lff1jr" path="res://Assets/Models/Props/Others/Pot 1.glb" id="22_352qb"]
+[ext_resource type="PackedScene" uid="uid://chcdgolom60bb" path="res://Assets/Models/Props/Others/Pot 2.glb" id="23_pgn03"]
+[ext_resource type="PackedScene" uid="uid://bntqp87uajsum" path="res://Assets/Models/Props/Others/Pot 3.glb" id="24_ncjpy"]
+[ext_resource type="PackedScene" uid="uid://cgvrf3vysmowl" path="res://Assets/Models/Props/Shelves/Shelf 2.glb" id="25_bptw1"]
+[ext_resource type="PackedScene" uid="uid://b7yaqp0bawjk" path="res://Assets/Models/Props/Shelves/Shelf 3.glb" id="26_5vtpq"]
+[ext_resource type="PackedScene" uid="uid://ca2quwfk1v2yf" path="res://Assets/Models/Props/Shelves/Shelf 4.glb" id="27_7l2nc"]
+[ext_resource type="PackedScene" uid="uid://u8mm1tfqvh4e" path="res://Assets/Models/Props/Shelves/Shelf.glb" id="28_1w3rb"]
+[ext_resource type="PackedScene" uid="uid://ck8c2mwqjo2y5" path="res://Assets/Models/Props/Shelves/Stand.glb" id="29_jtlu4"]
+[ext_resource type="PackedScene" uid="uid://bc8thafclcr3s" path="res://Assets/Models/Props/Tech/Computer.glb" id="30_q65dk"]
+[ext_resource type="PackedScene" uid="uid://tdslg1mqhyij" path="res://Assets/Models/Props/Tech/Laptop.glb" id="31_wetle"]
+[ext_resource type="PackedScene" uid="uid://bfrh313q0778b" path="res://Assets/Models/Props/Tech/Television.glb" id="32_b1fco"]
+
+[node name="Props" type="Node3D" unique_id=1426350913]
+
+[node name="Chair 2" parent="." unique_id=71142093 instance=ExtResource("1_p0quc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Chair 3" parent="." unique_id=371942144 instance=ExtResource("2_jcfw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7296792, 0, 0.4239595)
+
+[node name="Chair 4" parent="." unique_id=1240921367 instance=ExtResource("3_8hvxp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.889557, 0, 0.03993249)
+
+[node name="Chair" parent="." unique_id=1298170910 instance=ExtResource("4_l6wyo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.1083546, 0, 0.65895414)
+
+[node name="Sofa 2" parent="." unique_id=1091862576 instance=ExtResource("5_n1iu8")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.549181, 0, 0.7681122)
+
+[node name="Sofa" parent="." unique_id=2077359312 instance=ExtResource("6_hdc14")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.419213, 0, 0.51399374)
+
+[node name="Center Desk 2" parent="." unique_id=1511093395 instance=ExtResource("7_62gp7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09500599, 0, 8.571867)
+
+[node name="Center Desk" parent="." unique_id=1935908180 instance=ExtResource("8_j10vf")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.150654, 4.7683716e-07, 8.563895)
+
+[node name="Desk 2" parent="." unique_id=1927919 instance=ExtResource("9_utj4j")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.724548, 0, 9.575885)
+
+[node name="Desk 3" parent="." unique_id=1370301087 instance=ExtResource("10_035mm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.509227, 0, 9.097796)
+
+[node name="Desk 4" parent="." unique_id=1575786437 instance=ExtResource("11_62gp7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.09166, 0, 8.982807)
+
+[node name="Desk 5" parent="." unique_id=744151933 instance=ExtResource("12_j10vf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.38029, 0.51538754, 9.033794)
+
+[node name="Desk 6" parent="." unique_id=1177354335 instance=ExtResource("13_utj4j")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 29.907692, 0, 7.9884605)
+
+[node name="Desk" parent="." unique_id=621653736 instance=ExtResource("14_035mm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36.070316, 0, 8.817295)
+
+[node name="Meeting Desk" parent="." unique_id=514492980 instance=ExtResource("15_wdrh8")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 42.35099, 0.43530846, 7.510993)
+
+[node name="Fan2" parent="." unique_id=1532531037 instance=ExtResource("16_1v5yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.119951, 0, 8.863469)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Fan2" unique_id=823083624]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, -0.57255733, 0)
+light_energy = 10.0
+spot_range = 3.8753157
+spot_angle = 60.742992
+
+[node name="Lamp 2" parent="." unique_id=28217125 instance=ExtResource("17_qhunu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.289007, 0, 9.843493)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp 2" unique_id=411580452]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0.3555963, 0)
+light_color = Color(1, 0.68235296, 0.30980393, 1)
+light_energy = 10.0
+spot_range = 1.3765421
+spot_angle = 52.031246
+
+[node name="Lamp" parent="." unique_id=2138963217 instance=ExtResource("18_5sf0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.896104, 0, 9.090961)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp" unique_id=1241076846]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 1.4067317, 0)
+light_color = Color(1, 0.68235296, 0.30980393, 1)
+light_energy = 10.0
+spot_range = 2.8244038
+spot_angle = 29.872305
+
+[node name="Light 2" parent="." unique_id=1622252638 instance=ExtResource("19_7cof1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.219873, -9.536743e-07, 9.166984)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Light 2" unique_id=293858606]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, -0.00847435, -0.30826926, 0)
+light_energy = 10.0
+spot_range = 2.8244038
+spot_angle = 29.872305
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Light 2" unique_id=175569891]
+transform = Transform3D(1, 2.8922393e-09, -1.563594e-08, 1.5635942e-08, -0.35770863, 0.93383324, -2.8922393e-09, -0.93383324, -0.35770863, -0.00847435, -0.26318616, 1.8904991)
+light_energy = 10.0
+spot_range = 2.8244038
+spot_angle = 29.872305
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Light 2" unique_id=1732871831]
+transform = Transform3D(1, 2.1139215e-09, 1.3428935e-08, -1.3428935e-08, 0.30721825, 0.9516391, -2.1139215e-09, -0.9516391, 0.30721825, 0.025007248, -0.30826926, -1.9446888)
+light_energy = 10.0
+spot_range = 2.8244038
+spot_angle = 29.872305
+
+[node name="Light2" parent="." unique_id=6791701 instance=ExtResource("20_8p0gi")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -26.700426, 0, 9.327963)
+
+[node name="AreaLight3D" type="AreaLight3D" parent="Light2" unique_id=414476038]
+transform = Transform3D(-1, 4.3711395e-08, 1.3113417e-07, 1.3113416e-07, 4.371139e-08, 1, 4.371139e-08, 1, -4.3711395e-08, 0, -0.12557256, 0)
+light_energy = 10.0
+area_size = Vector2(0.64684486, 4.103573)
+
+[node name="Bin" parent="." unique_id=1712215561 instance=ExtResource("21_8p0gi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89443064, 0, 17.96139)
+
+[node name="Pot 1" parent="." unique_id=677133963 instance=ExtResource("22_352qb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.529603, 0, 17.785543)
+
+[node name="Pot 2" parent="." unique_id=917304246 instance=ExtResource("23_pgn03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6891875, 0, 17.596638)
+
+[node name="Pot 3" parent="." unique_id=2083192313 instance=ExtResource("24_ncjpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.594169, 0, 18.188766)
+
+[node name="Shelf 2" parent="." unique_id=1745519502 instance=ExtResource("25_bptw1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -24.63646, 0, 18.490753)
+
+[node name="Shelf 3" parent="." unique_id=53656495 instance=ExtResource("26_5vtpq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20.894808, 0, 18.412773)
+
+[node name="Shelf 4" parent="." unique_id=2039006470 instance=ExtResource("27_7l2nc")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.970789, 0, 18.382368)
+
+[node name="Shelf" parent="." unique_id=1922971958 instance=ExtResource("28_1w3rb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.946224, 0, 17.44765)
+
+[node name="Stand" parent="." unique_id=434032774 instance=ExtResource("29_jtlu4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.4567494, 0, 16.982594)
+
+[node name="Computer" parent="." unique_id=2146743377 instance=ExtResource("30_q65dk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.379508, 0, 17.917402)
+
+[node name="Laptop2" parent="." unique_id=1427088614 instance=ExtResource("31_wetle")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.976502, 0, 19.43715)
+
+[node name="Television" parent="." unique_id=1581002150 instance=ExtResource("32_b1fco")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 16.297113, 0, 17.886131)
