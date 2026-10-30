@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ch2fvknn4fh8a"]
+
+[ext_resource type="PackedScene" uid="uid://qcci2g1n4cbu" path="res://Assets/Models/Props/Lights/Lamp 2.glb" id="1_y5koj"]
+
+[node name="Lamp 2" type="Node3D" unique_id=93011985]
+
+[node name="Lamp 2" parent="." unique_id=74618819 instance=ExtResource("1_y5koj")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lamp 2" unique_id=257385185]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0.3594551, 0)
+light_color = Color(1, 0.68235296, 0.30980393, 1)
+light_energy = 20.0
+spot_range = 4.7685585
+spot_angle = 37.629692
