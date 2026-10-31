@@ -43,8 +43,8 @@ _subresources={
 "materials": {
 "Window": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/Glass.tres",
-"use_external/path": "uid://b1ra26q1hf7pb"
+"use_external/fallback_path": "res://Assets/Materials/Building Window/Window.tres",
+"use_external/path": "uid://baf5mbeajf88e"
 }
 }
 }

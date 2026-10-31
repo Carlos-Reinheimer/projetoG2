@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfwuuw6b7kqax"
-path.s3tc="res://.godot/imported/City.jpg-20df83963f72c138d070c07a018597de.s3tc.ctex"
+uid="uid://dcpke3ufp4vfc"
+path.s3tc="res://.godot/imported/Window_sss.png-f6502b09e5971e4c5408282395bdc1e2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/UI/City.jpg"
-dest_files=["res://.godot/imported/City.jpg-20df83963f72c138d070c07a018597de.s3tc.ctex"]
+source_file="res://Assets/Materials/Building Window/Window_sss.png"
+dest_files=["res://.godot/imported/Window_sss.png-f6502b09e5971e4c5408282395bdc1e2.s3tc.ctex"]
 
 [params]
 
@@ -26,8 +26,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=8
+roughness/src_normal="res://Assets/Materials/Building Window/Window_normal.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
