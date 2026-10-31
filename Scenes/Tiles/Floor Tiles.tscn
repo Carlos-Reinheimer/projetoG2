@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cbej3tqmwsai5" path="res://Assets/Models/Structure/Wall.res" id="1_ycoy0"]
 [ext_resource type="ArrayMesh" uid="uid://c7jbj3155lny7" path="res://Assets/Models/Structure/Floor.res" id="2_o2cdu"]
 [ext_resource type="ArrayMesh" uid="uid://d076dy0yvwxv5" path="res://Assets/Models/Structure/Ceiling.res" id="3_v4xob"]
-[ext_resource type="ArrayMesh" uid="uid://c80dxeneqexxx" path="res://Assets/Models/Structure/Wall with Hole.tres" id="4_v4xob"]
+[ext_resource type="ArrayMesh" uid="uid://oxr8p0eth6xo" path="res://Assets/Models/Structure/Wall with Hole.tres" id="4_v4xob"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1iice"]
 size = Vector3(1, 5, 1)

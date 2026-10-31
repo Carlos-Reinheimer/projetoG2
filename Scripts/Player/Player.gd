@@ -22,10 +22,10 @@ var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_mouse_rotation.y = rotation.y
+	_mouse_rotation.x = camera_3d.rotation.x
 
 func _physics_process(delta: float) -> void:
-	_update_camera(delta)
-
 	if not is_on_floor():
 		velocity += GRAVITY * delta
 
@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	_update_camera(delta)
 	
 func _unhandled_input(event):
 	_mouse_input = event is InputEventMouseMotion

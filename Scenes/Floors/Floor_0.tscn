@@ -5,6 +5,27 @@
 [ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Particles/Fire.tscn" id="3_obdan"]
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="4_jemt8"]
 [ext_resource type="PackedScene" uid="uid://cbyi8gr33vadb" path="res://Assets/Models/Props/Window/Window.glb" id="5_0d6eb"]
+[ext_resource type="PackedScene" uid="uid://btmcwaq2mg3u8" path="res://Scenes/Props/Fan.tscn" id="6_k2kwc"]
+[ext_resource type="PackedScene" uid="uid://d3farh1q2ahgc" path="res://Scenes/Props/Light 2.tscn" id="7_ff1pc"]
+[ext_resource type="PackedScene" uid="uid://dnqg43qcyqf64" path="res://Scenes/Props/Light 3.tscn" id="8_aa63m"]
+[ext_resource type="PackedScene" uid="uid://ceggv7onkpgeb" path="res://Scenes/Props/Lamp.tscn" id="9_vxud8"]
+[ext_resource type="PackedScene" uid="uid://b0fbe7kyq0jyv" path="res://Assets/Models/Props/Desks/Center Desk.glb" id="10_ymmif"]
+[ext_resource type="PackedScene" uid="uid://bsv6h42op8rvm" path="res://Assets/Models/Props/Chairs/Sofa 2.glb" id="11_egmky"]
+[ext_resource type="PackedScene" uid="uid://duvt04x2avxm2" path="res://Assets/Models/Props/Desks/Desk 3.glb" id="12_0e6wi"]
+[ext_resource type="PackedScene" uid="uid://cyni8quryhmet" path="res://Assets/Models/Props/Chairs/Chair.glb" id="13_q4ypd"]
+[ext_resource type="PackedScene" uid="uid://ch2fvknn4fh8a" path="res://Scenes/Props/Lamp 2.tscn" id="14_wc561"]
+[ext_resource type="PackedScene" uid="uid://bxfc02emt4uvc" path="res://Assets/Models/Props/Chairs/Sofa.glb" id="15_21x6o"]
+[ext_resource type="PackedScene" uid="uid://dso4ubfr07mjp" path="res://Assets/Models/Props/Others/Bin.glb" id="16_nnotw"]
+[ext_resource type="PackedScene" uid="uid://cgvrf3vysmowl" path="res://Assets/Models/Props/Shelves/Shelf 2.glb" id="17_hdxxc"]
+[ext_resource type="PackedScene" uid="uid://ca2quwfk1v2yf" path="res://Assets/Models/Props/Shelves/Shelf 4.glb" id="18_l2ylw"]
+[ext_resource type="PackedScene" uid="uid://cyyu7ghhunkio" path="res://Assets/Models/Props/Desks/Desk.glb" id="19_2yhe4"]
+[ext_resource type="PackedScene" uid="uid://h0wl2xkyjq2u" path="res://Assets/Models/Props/Chairs/Chair 4.glb" id="20_7mbyq"]
+[ext_resource type="PackedScene" uid="uid://sse3v3q0g0ni" path="res://Assets/Models/Props/Chairs/Chair 3.glb" id="21_kntvl"]
+[ext_resource type="PackedScene" uid="uid://bfrh313q0778b" path="res://Assets/Models/Props/Tech/Television.glb" id="22_33ypu"]
+[ext_resource type="PackedScene" uid="uid://x384sphxteeg" path="res://Assets/Models/Props/Desks/Desk 2.glb" id="23_ehkny"]
+[ext_resource type="PackedScene" uid="uid://tdslg1mqhyij" path="res://Assets/Models/Props/Tech/Laptop.glb" id="24_vgimv"]
+[ext_resource type="PackedScene" uid="uid://bro0l81e7lapa" path="res://Assets/Models/Props/Chairs/Chair 2.glb" id="25_npxmn"]
+[ext_resource type="PackedScene" uid="uid://bc8thafclcr3s" path="res://Assets/Models/Props/Tech/Computer.glb" id="26_0nft3"]
 
 [node name="Floor" type="Node3D" unique_id=380912517]
 
@@ -17,14 +38,180 @@ data = {
 
 [node name="Windows" type="Node3D" parent="Geometry" unique_id=917491042]
 
-[node name="Window0" parent="Geometry/Windows" unique_id=1317655052 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1.0376468, 0, 0, 0, 4.0610065, 0.50621915, 2.4024734, 22.003502)
+[node name="Window Group" type="Node3D" parent="Geometry/Windows" unique_id=1347833777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.207787, 22.978481)
+metadata/_edit_group_ = true
 
-[node name="Window1" parent="Geometry/Windows" unique_id=675920081 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(-4.371139e-08, 0, -3.1150584, 0, 1.0241582, 0, 1, 0, -1.3616352e-07, 3.5062191, 2.3902535, 29.498075)
+[node name="Window0" parent="Geometry/Windows/Window Group" unique_id=1317655052 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group" unique_id=303958798 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group" unique_id=1651618945 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window10" parent="Geometry/Windows/Window Group" unique_id=933977397 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window11" parent="Geometry/Windows/Window Group" unique_id=534575595 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
+
+[node name="Window Group2" type="Node3D" parent="Geometry/Windows" unique_id=1883145906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.207787, 12.978481)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group2" unique_id=799794574 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group2" unique_id=500478975 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group2" unique_id=1159081465 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window10" parent="Geometry/Windows/Window Group2" unique_id=1522016464 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window11" parent="Geometry/Windows/Window Group2" unique_id=1341678957 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
+
+[node name="Window Group3" type="Node3D" parent="Geometry/Windows" unique_id=895915599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.207787, 4.9784813)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group3" unique_id=713388841 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group3" unique_id=393923394 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group3" unique_id=1406872611 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window10" parent="Geometry/Windows/Window Group3" unique_id=1049124387 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window11" parent="Geometry/Windows/Window Group3" unique_id=130924454 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
+
+[node name="Window Group4" type="Node3D" parent="Geometry/Windows" unique_id=1925188438]
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 20, 1.207787, 3.225757)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group4" unique_id=1288900367 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window1" parent="Geometry/Windows/Window Group4" unique_id=115002291 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, -3.6593866)
+
+[node name="Window2" parent="Geometry/Windows/Window Group4" unique_id=1221876391 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, -4.5498214)
+
+[node name="Window3" parent="Geometry/Windows/Window Group4" unique_id=1706917367 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, -5.4307737)
+
+[node name="Window8" parent="Geometry/Windows/Window Group4" unique_id=361260148 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group4" unique_id=1153500638 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window10" parent="Geometry/Windows/Window Group4" unique_id=1365068869 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window11" parent="Geometry/Windows/Window Group4" unique_id=1924992704 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
+
+[node name="Window Group5" type="Node3D" parent="Geometry/Windows" unique_id=387198422]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 1.207787, -0.021518707)
+metadata/_edit_group_ = true
+
+[node name="Window8" parent="Geometry/Windows/Window Group5" unique_id=1546321895 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group5" unique_id=564652466 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window10" parent="Geometry/Windows/Window Group5" unique_id=618986233 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window Group6" type="Node3D" parent="Geometry/Windows" unique_id=36405544]
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 20, 1.207787, 13.796497)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group6" unique_id=1908666245 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group6" unique_id=793225667 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group6" unique_id=1512343871 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window10" parent="Geometry/Windows/Window Group6" unique_id=753520422 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window Group7" type="Node3D" parent="Geometry/Windows" unique_id=161568323]
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 20, 1.207787, 20.782265)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group7" unique_id=625684915 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group7" unique_id=631241442 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group7" unique_id=1842524234 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window Group8" type="Node3D" parent="Geometry/Windows" unique_id=37327158]
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 20, 1.207787, 24.782265)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group8" unique_id=515921953 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group8" unique_id=209470880 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group8" unique_id=216672562 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window Group9" type="Node3D" parent="Geometry/Windows" unique_id=865737018]
+transform = Transform3D(4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 4.371138e-08, 19, 1.207787, 30.012796)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group9" unique_id=946499817 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group9" unique_id=1205714900 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group9" unique_id=508908385 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window Group10" type="Node3D" parent="Geometry/Windows" unique_id=751100989]
+transform = Transform3D(4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 4.371138e-08, 5.21241, 1.207787, 30.012796)
+metadata/_edit_group_ = true
+
+[node name="Window0" parent="Geometry/Windows/Window Group10" unique_id=791810025 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+
+[node name="Window8" parent="Geometry/Windows/Window Group10" unique_id=2126410500 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
+
+[node name="Window9" parent="Geometry/Windows/Window Group10" unique_id=1451358086 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
+
+[node name="Window10" parent="Geometry/Windows/Window Group10" unique_id=870152456 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 0.4974804, 1.1784599, -0.08466339)
 
 [node name="Spawnpoint" type="Marker3D" parent="." unique_id=1290023524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.574633, 1, 3)
+
+[node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("4_jemt8")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2, 28.883804)
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1079233868]
 
@@ -34,7 +221,111 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.782195, 1.0033937, 7.191359
 [node name="Fires" type="Node3D" parent="." unique_id=1441574400]
 
 [node name="Particles" parent="Fires" unique_id=187325746 instance=ExtResource("3_obdan")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.74108, 0.9557147, 17.308)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.08743, 0.9557147, 17.540321)
 
-[node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("4_jemt8")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2, 28.883804)
+[node name="Scenario" type="Node3D" parent="." unique_id=1915547537]
+
+[node name="Fan" parent="Scenario" unique_id=1691349676 instance=ExtResource("6_k2kwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4989195, 4.6775985, 22.09171)
+
+[node name="Fan2" parent="Scenario" unique_id=1511265305 instance=ExtResource("6_k2kwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.94724, 4.6775985, 6.091709)
+
+[node name="Light 2" parent="Scenario" unique_id=1607240723 instance=ExtResource("7_ff1pc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.633842, 5.059084, 7.8107047)
+
+[node name="Light 3" parent="Scenario" unique_id=1086053870 instance=ExtResource("7_ff1pc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.633842, 5.059084, 15.810705)
+
+[node name="Light 4" parent="Scenario" unique_id=882620820 instance=ExtResource("7_ff1pc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.633842, 5.059084, 21.810705)
+
+[node name="Light 5" parent="Scenario" unique_id=1956963601 instance=ExtResource("8_aa63m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.180386, 4.9396815, 24.764925)
+
+[node name="Lamp" parent="Scenario" unique_id=1629282556 instance=ExtResource("9_vxud8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.30541, 1.4931854, 11.730447)
+
+[node name="Lamp2" parent="Scenario" unique_id=1850276303 instance=ExtResource("9_vxud8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3751905, 1.4931856, 1.5514503)
+
+[node name="Lamp3" parent="Scenario" unique_id=1715053935 instance=ExtResource("9_vxud8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6915846, 1.4931856, 1.5514503)
+
+[node name="Center Desk" parent="Scenario" unique_id=1234874737 instance=ExtResource("10_ymmif")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16.997858, 0.71769035, 1.7907884)
+
+[node name="Sofa 2" parent="Scenario" unique_id=1681937740 instance=ExtResource("11_egmky")]
+transform = Transform3D(0.59250957, 0, 0.8055634, 0, 1, 0, -0.8055634, 0, 0.59250957, 16.34412, 0.62350905, 8.474456)
+
+[node name="Sofa 3" parent="Scenario" unique_id=967727921 instance=ExtResource("11_egmky")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 17.771025, 0.62122416, 7.172067)
+
+[node name="Sofa 4" parent="Scenario" unique_id=253795743 instance=ExtResource("11_egmky")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 17.771025, 0.62122416, 5.172067)
+
+[node name="Desk 3" parent="Scenario" unique_id=1639701388 instance=ExtResource("12_0e6wi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.267047, 0.86783856, 14.036871)
+
+[node name="Chair" parent="Scenario" unique_id=251042368 instance=ExtResource("13_q4ypd")]
+transform = Transform3D(-0.02262654, 0, 0.999744, 0, 1, 0, -0.999744, 0, -0.02262654, 4.3448863, 0.86783856, 13.247436)
+
+[node name="Lamp 2" parent="Scenario" unique_id=93011985 instance=ExtResource("14_wc561")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5274673, 1.9943733, 14.38431)
+
+[node name="Sofa" parent="Scenario" unique_id=1142659021 instance=ExtResource("15_21x6o")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.4958527, 0.62122416, 2.8937798)
+
+[node name="Bin" parent="Scenario" unique_id=2095435593 instance=ExtResource("16_nnotw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5870056, 0.5588628, 12.115309)
+
+[node name="Shelf 2" parent="Scenario" unique_id=1743623684 instance=ExtResource("17_hdxxc")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 18.522663, 2.1295853, 14.922004)
+
+[node name="Shelf 4" parent="Scenario" unique_id=1779067630 instance=ExtResource("18_l2ylw")]
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 5.6944184, 3.5346692, 25.306414)
+
+[node name="Desk" parent="Scenario" unique_id=2036910337 instance=ExtResource("19_2yhe4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9046144, 0.8678383, 26.63635)
+
+[node name="Desk2" parent="Scenario" unique_id=474366154 instance=ExtResource("19_2yhe4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74179, 0.8678383, 26.63635)
+
+[node name="Chair 4" parent="Scenario" unique_id=1851351857 instance=ExtResource("20_7mbyq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2659223, 0.95212173, 26.761309)
+
+[node name="Chair 5" parent="Scenario" unique_id=1346787447 instance=ExtResource("20_7mbyq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.8656497, 0.95212173, 26.68999)
+
+[node name="Sofa 5" parent="Scenario" unique_id=834107588 instance=ExtResource("11_egmky")]
+transform = Transform3D(0.6750587, 0, -0.737764, 0, 1, 0, 0.737764, 0, 0.6750587, 2.4829113, 0.62122416, 17.841202)
+
+[node name="Sofa 6" parent="Scenario" unique_id=1602761414 instance=ExtResource("11_egmky")]
+transform = Transform3D(-0.5379072, 0, -0.84300405, 0, 1, 0, 0.84300405, 0, -0.5379072, 4.562015, 0.62122416, 17.708483)
+
+[node name="Chair 3" parent="Scenario" unique_id=491650193 instance=ExtResource("21_kntvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.001057, 0.83940935, 18.342043)
+
+[node name="Chair 6" parent="Scenario" unique_id=1781809112 instance=ExtResource("21_kntvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.001057, 0.83940935, 20.071514)
+
+[node name="Television" parent="Scenario" unique_id=1148972993 instance=ExtResource("22_33ypu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.941773, 3.5378902, 19.575012)
+
+[node name="Desk 2" parent="Scenario" unique_id=987384539 instance=ExtResource("23_ehkny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.135761, 0.762583, 14.991927)
+
+[node name="Desk 4" parent="Scenario" unique_id=1181543737 instance=ExtResource("23_ehkny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.211931, 0.762583, 14.297385)
+
+[node name="Laptop2" parent="Scenario" unique_id=1685515659 instance=ExtResource("24_vgimv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8283014, 1.4035119, 13.825363)
+
+[node name="Desk 5" parent="Scenario" unique_id=1731031846 instance=ExtResource("23_ehkny")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 17.804502, 0.7625829, 24.213297)
+
+[node name="Chair 2" parent="Scenario" unique_id=71142093 instance=ExtResource("25_npxmn")]
+transform = Transform3D(-0.96592575, 0, -0.25881895, 0, 1, 0, 0.25881895, 0, -0.96592575, 17.216116, 0.7919124, 25.499346)
+
+[node name="Computer" parent="Scenario" unique_id=265724340 instance=ExtResource("26_0nft3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18.422417, 2.2298672, 24.889517)
