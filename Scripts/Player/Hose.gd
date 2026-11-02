@@ -71,7 +71,7 @@ func processEnemy(delta: float) -> void:
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _enemyTarget:
 		switchState(State.PULLING)
-		_enemyTarget.getting_pull(player.position)
+		_enemyTarget.gettingPull(player)
 	else:
 		switchState(State.NORMAL)
 		dropTarget()
@@ -107,7 +107,7 @@ func dropTarget():
 	if not _enemyTarget:
 		return
 
-	_enemyTarget.stop_pull()
+	_enemyTarget.stopPull()
 	_enemyTarget = null
 
 func switchState(value : State):

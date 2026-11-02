@@ -27,11 +27,17 @@ var _camera_rotation : Vector3
 var stun_left := 0.0
 var shake_trauma := 0.0
 var knockback := Vector3.ZERO
+var currentState := State.NORMAL
 
 var aimedEnemy: Node = null
 var enemyTarget = null
 
 var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
+
+enum State {
+	NORMAL,
+	PULLING
+}
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -53,7 +59,7 @@ func updateAimHighlight() -> void:
 		aimedEnemy.setHighlight(true)
 
 func dropTarget():
-	if enemyTarget and cur_state == State.PULLING:
+	if enemyTarget and currentState == State.PULLING:
 		stun(0.2)
 		enemyTarget.stopPull()
 		enemyTarget = null
@@ -143,7 +149,7 @@ func _update_camera(delta):
 	_tilt_input = 0.0
 
 func swith_state(value : State):
-	cur_state = value
+	currentState = value
 
 func addShake(amount: float) -> void:
 	shake_trauma = minf(shake_trauma + amount, 1.0)
