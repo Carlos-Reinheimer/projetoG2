@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dja3qahm141kl"]
+
+[ext_resource type="PackedScene" uid="uid://chcdgolom60bb" path="res://Assets/Models/Props/Others/Pot 2.glb" id="1_iymoc"]
+[ext_resource type="PackedScene" uid="uid://bxyuu2l13k8y5" path="res://Assets/Models/Flowers/Plumeria.glb" id="2_js1ba"]
+
+[node name="Pot 2" type="Node3D" unique_id=2015956986]
+
+[node name="Pot 5" parent="." unique_id=1886583913 instance=ExtResource("1_iymoc")]
+metadata/_edit_group_ = true
+
+[node name="Plumeria" parent="Pot 5" unique_id=2002951829 instance=ExtResource("2_js1ba")]
+transform = Transform3D(-0.7947198, 0, 0.091763, 0, 0.8, 0, -0.091763, 0, -0.7947198, 0.23618889, 1.0230179, -0.20423317)
+
+[node name="Plumeria2" parent="Pot 5" unique_id=1170992180 instance=ExtResource("2_js1ba")]
+transform = Transform3D(-0.69206387, 0, -0.7218362, 0, 1, 0, 0.7218362, 0, -0.69206387, -0.24418831, 1.1245457, 0.22715187)

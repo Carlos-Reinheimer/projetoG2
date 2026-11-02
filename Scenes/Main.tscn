@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://rk0iipo5qo7y"]
 
 [ext_resource type="Script" uid="uid://dxmmal1sydwmf" path="res://Scripts/MainController.gd" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://b2qqbqgkilk4v" path="res://Scenes/Floors/Floor_1.tscn" id="2_h1m7h"]
 [ext_resource type="PackedScene" uid="uid://d3qboqmpgar7j" path="res://Scenes/Utils/Fade.tscn" id="2_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://81ddvbt36p1f" path="res://Scenes/Floors/Floor_2.tscn" id="3_erwvk"]
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://ck0s73eoy81g5" path="res://Scenes/Floors/Floor_3.tscn" id="4_2w5on"]
+[ext_resource type="PackedScene" uid="uid://c7s2n75c14inl" path="res://Scenes/Floors/Floor_4.tscn" id="5_346fj"]
 [ext_resource type="PackedScene" uid="uid://bkip04dx3dp6x" path="res://Scenes/Floors/Floor_0.tscn" id="5_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://c28tm8t5dftik" path="res://Scenes/Floors/Floor_5.tscn" id="6_0sclb"]
 [ext_resource type="PackedScene" uid="uid://cryfyybg6y2vc" path="res://Assets/Models/Outside Building/Environment.glb" id="6_v1gob"]
 [ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/LevelGUI.gd" id="7_jw32o"]
+[ext_resource type="PackedScene" uid="uid://dcjni2t4duvqm" path="res://Scenes/Floors/Floor_6.tscn" id="7_sxkr1"]
+[ext_resource type="PackedScene" uid="uid://dkxyigbnmyfcy" path="res://Scenes/Floors/Floor_7.tscn" id="8_fq0cl"]
+[ext_resource type="PackedScene" uid="uid://b6u4kvqf0tspp" path="res://Scenes/Floors/Floor_8.tscn" id="9_hwpts"]
+[ext_resource type="PackedScene" uid="uid://cacatwiqomohi" path="res://Scenes/Floors/Floor_9.tscn" id="10_jyqft"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtmql"]
 sky_top_color = Color(0.73486686, 0.28531125, 0.1362226, 1)
@@ -26,6 +35,7 @@ tonemap_mode = 2
 
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")
+floors = Array[PackedScene]([ExtResource("2_h1m7h"), ExtResource("3_erwvk"), ExtResource("4_2w5on"), ExtResource("5_346fj"), ExtResource("6_0sclb"), ExtResource("7_sxkr1"), ExtResource("8_fq0cl"), ExtResource("9_hwpts"), ExtResource("10_jyqft")])
 
 [node name="LevelUI" type="Control" parent="." unique_id=740453833]
 layout_mode = 3

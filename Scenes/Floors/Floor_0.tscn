@@ -26,6 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://tdslg1mqhyij" path="res://Assets/Models/Props/Tech/Laptop.glb" id="24_vgimv"]
 [ext_resource type="PackedScene" uid="uid://bro0l81e7lapa" path="res://Assets/Models/Props/Chairs/Chair 2.glb" id="25_npxmn"]
 [ext_resource type="PackedScene" uid="uid://bc8thafclcr3s" path="res://Assets/Models/Props/Tech/Computer.glb" id="26_0nft3"]
+[ext_resource type="PackedScene" uid="uid://b7yaqp0bawjk" path="res://Assets/Models/Props/Shelves/Shelf 3.glb" id="27_0nft3"]
+[ext_resource type="PackedScene" uid="uid://dja3qahm141kl" path="res://Scenes/Props/Pot 2.tscn" id="28_tanig"]
+[ext_resource type="PackedScene" uid="uid://djs6ksqq5nydw" path="res://Scenes/Props/Pot 1.tscn" id="29_53l25"]
+[ext_resource type="PackedScene" uid="uid://esvas14rixcu" path="res://Scenes/Props/Pot 3.tscn" id="30_5x301"]
 
 [node name="Floor" type="Node3D" unique_id=380912517]
 
@@ -329,3 +333,30 @@ transform = Transform3D(-0.96592575, 0, -0.25881895, 0, 1, 0, 0.25881895, 0, -0.
 
 [node name="Computer" parent="Scenario" unique_id=265724340 instance=ExtResource("26_0nft3")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18.422417, 2.2298672, 24.889517)
+
+[node name="Laptop3" parent="Scenario" unique_id=1280870469 instance=ExtResource("24_vgimv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.039635, 0.7570205, 1.6539445)
+
+[node name="Computer2" parent="Scenario" unique_id=400952330 instance=ExtResource("26_0nft3")]
+transform = Transform3D(0.41927782, 0, 0.9078581, 0, 1, 0, -0.9078581, 0, 0.41927782, 3.8971405, 2.229868, 14.144243)
+
+[node name="Shelf 3" parent="Scenario" unique_id=1949302942 instance=ExtResource("27_0nft3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.509881, 2.129585, 27.003075)
+
+[node name="Shelf 5" parent="Scenario" unique_id=564778720 instance=ExtResource("27_0nft3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.509881, 2.129585, 24.767372)
+
+[node name="Pot 2" parent="Scenario" unique_id=2015956986 instance=ExtResource("28_tanig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.774517, 0.5984732, 1.808743)
+
+[node name="Pot 3" parent="Scenario" unique_id=1114966993 instance=ExtResource("28_tanig")]
+transform = Transform3D(-0.24940687, 0, 0.9683988, 0, 1, 0, -0.9683988, 0, -0.24940687, 13.078176, 0.59847355, 2.1319447)
+
+[node name="Pot 1" parent="Scenario" unique_id=1369170921 instance=ExtResource("29_53l25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6601334, 1.7015157, 15.4959135)
+
+[node name="Pot 4" parent="Scenario" unique_id=1295943423 instance=ExtResource("30_5x301")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.800583, 0.25755197, 21.509905)
+
+[node name="Pot 5" parent="Scenario" unique_id=1530727990 instance=ExtResource("28_tanig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4561396, 0.5046971, 22.69877)
