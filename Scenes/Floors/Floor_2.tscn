@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bc8thafclcr3s" path="res://Assets/Models/Props/Tech/Computer.glb" id="21_8iyc7"]
 [ext_resource type="PackedScene" uid="uid://tdslg1mqhyij" path="res://Assets/Models/Props/Tech/Laptop.glb" id="22_o2v8p"]
 [ext_resource type="PackedScene" uid="uid://dso4ubfr07mjp" path="res://Assets/Models/Props/Others/Bin.glb" id="23_ivivf"]
+[ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="25_u3spp"]
 
 [node name="Floor" type="Node3D" unique_id=1922503574]
 
@@ -227,6 +228,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.334232, 1, 5.751215)
 
 [node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("2_njuh1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11.557964, 2, 40.898994)
+
+[node name="Enter Door Mesh" parent="." unique_id=174069237 instance=ExtResource("25_u3spp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.380643, 2.2794557, 1.0471802)
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1943026991]
 

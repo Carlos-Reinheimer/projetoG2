@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cbyi8gr33vadb" path="res://Assets/Models/Props/Window/Window.glb" id="2_6taxs"]
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="2_ne4mb"]
 [ext_resource type="PackedScene" uid="uid://cw6o6ri6ancja" path="res://Assets/Models/Props/Desks/Desk 5.glb" id="3_qes2c"]
+[ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="3_t6ayn"]
 [ext_resource type="PackedScene" uid="uid://sse3v3q0g0ni" path="res://Assets/Models/Props/Chairs/Chair 3.glb" id="4_2m7pb"]
 [ext_resource type="PackedScene" uid="uid://bsv6h42op8rvm" path="res://Assets/Models/Props/Chairs/Sofa 2.glb" id="5_y81yv"]
 [ext_resource type="PackedScene" uid="uid://bxfc02emt4uvc" path="res://Assets/Models/Props/Chairs/Sofa.glb" id="6_sw3jh"]
@@ -285,6 +286,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.574633, 1, 5)
 
 [node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("2_ne4mb")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.532555, 2, 56.893993)
+
+[node name="Enter Door Mesh" parent="." unique_id=174069237 instance=ExtResource("3_t6ayn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.460758, 2.2794557, 1.0395917)
 
 [node name="Enemies" type="Node3D" parent="." unique_id=218330400]
 
