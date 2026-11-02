@@ -1,5 +1,7 @@
 extends Node
 
+signal startGame
+
 signal floorExtinguised
 signal loadNextFloor
 

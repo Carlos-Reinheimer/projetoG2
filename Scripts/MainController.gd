@@ -20,6 +20,7 @@ func _ready() -> void:
 	countEnemiesOnFloor()
 	
 func onLoadNextFloor() -> void:
+	player.onStartLoadNextLevel()
 	currentFloor += 1
 	countFiresOnFloor()
 	countEnemiesOnFloor()
@@ -30,6 +31,7 @@ func onLoadNextFloor() -> void:
 	add_child(newFloor)
 	currentFloorScene = newFloor
 	await fade.fade(0.0, 1).finished
+	player.onFinishLoadNextLevel()
 
 func countEnemiesOnFloor() -> void:
 	enemiesOnFloor = get_tree().get_nodes_in_group("Enemy").size()

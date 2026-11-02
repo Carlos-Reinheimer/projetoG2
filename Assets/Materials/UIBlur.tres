@@ -1,0 +1,19 @@
+[gd_resource type="Shader" format=3 uid="uid://cvajcolip5p8i"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform float BlurAmount : hint_range(0.0, 5.0, 0.1);
+uniform sampler2D ScreenTexture : filter_linear_mipmap, repeat_enable, hint_screen_texture;
+uniform vec4 MixColor : source_color;
+uniform float MixAmount : hint_range(0.0, 1.0);
+
+void fragment() {
+	// COLOR here already includes modulate / self_modulate (and the panel's stylebox color)
+	float fade = COLOR.a;
+
+	vec3 blurred = textureLod(ScreenTexture, SCREEN_UV, BlurAmount).rgb;
+	vec3 result = mix(blurred, MixColor.rgb, MixAmount);
+
+	COLOR = vec4(result, fade);
+}"

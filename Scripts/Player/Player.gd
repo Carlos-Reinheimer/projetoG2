@@ -11,6 +11,10 @@ const MOUSE_SENSITIVITY = 0.5
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var hose: Hose = $Head/Camera3D/Hose
 
+@export var isAutoPlayable: bool = false
+
+var isPlayable: bool = false
+
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
 var _rotation_input : float
@@ -21,11 +25,19 @@ var _camera_rotation : Vector3
 var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if isAutoPlayable:
+		isPlayable = true
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#var tween = create_tween()
+		#tween.tween_property($"../Control/Panel".material, "shader_parameter/progress", .8, 5.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		#await tween.finished
 	_mouse_rotation.y = rotation.y
 	_mouse_rotation.x = camera_3d.rotation.x
 
 func _physics_process(delta: float) -> void:
+	if not isPlayable:
+		return
+
 	if not is_on_floor():
 		velocity += GRAVITY * delta
 
@@ -65,3 +77,13 @@ func _update_camera(delta):
 	
 	_rotation_input = 0.0
 	_tilt_input = 0.0
+	
+func onStartGame() -> void:
+	isPlayable = true
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func onStartLoadNextLevel() -> void:
+	isPlayable = false
+	
+func onFinishLoadNextLevel() -> void:
+	isPlayable = true

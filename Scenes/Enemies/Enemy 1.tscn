@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bg0gd7cfgb0sl" path="res://Scripts/Enemy.gd" id="1_6wfay"]
 [ext_resource type="PackedScene" uid="uid://hgmmtob36kxt" path="res://Scenes/MiniGame/ButtonMash.tscn" id="2_55ibi"]
 [ext_resource type="PackedScene" uid="uid://ncudmmc4h37f" path="res://Assets/Models/Enemies/Enemy 1/Enemy 1.glb" id="3_a8ovj"]
-[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Shaders/FireShader.tres" id="4_p8g6p"]
+[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Materials/FireShader.tres" id="4_p8g6p"]
 [ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="5_lmntt"]
 [ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="6_3va5g"]
 

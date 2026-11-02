@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dpk8derwe7wjc"]
 
 [ext_resource type="Script" uid="uid://dg55trfoj2egr" path="res://Scripts/Utils/Fire.gd" id="1_w4p8k"]
-[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Shaders/FireShader.tres" id="2_ra83k"]
+[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Materials/FireShader.tres" id="2_ra83k"]
 [ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="3_6gxw6"]
 [ext_resource type="Texture2D" uid="uid://ks7f5xixa44g" path="res://Assets/Textures/Flame01.png" id="4_tjvfn"]
 [ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="5_p05yn"]
