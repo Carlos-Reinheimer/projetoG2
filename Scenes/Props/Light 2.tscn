@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d3farh1q2ahgc"]
+
+[ext_resource type="PackedScene" uid="uid://cde6fy7887jfr" path="res://Assets/Models/Props/Lights/Light.glb" id="1_io4ac"]
+
+[node name="Light 2" type="Node3D" unique_id=1607240723]
+
+[node name="Light2" parent="." unique_id=795780552 instance=ExtResource("1_io4ac")]
+
+[node name="AreaLight3D" type="AreaLight3D" parent="Light2" unique_id=827139252]
+transform = Transform3D(-1, 4.3711395e-08, 1.3113416e-07, 1.3113416e-07, 4.371139e-08, 1, 4.371139e-08, 1, -4.3711395e-08, 0, -0.055689335, 0)
+light_energy = 20.0
+area_size = Vector2(0.34816742, 2.0668793)

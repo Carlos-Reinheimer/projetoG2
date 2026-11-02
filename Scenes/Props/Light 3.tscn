@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dnqg43qcyqf64"]
+
+[ext_resource type="PackedScene" uid="uid://bjpdpv0tg361a" path="res://Assets/Models/Props/Lights/Light 2.glb" id="1_2flsj"]
+
+[node name="Light 3" type="Node3D" unique_id=1956963601]
+
+[node name="Light 3" parent="." unique_id=604808790 instance=ExtResource("1_2flsj")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Light 3" unique_id=994942184]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, -0.00847435, -0.30826926, 0)
+light_energy = 20.0
+spot_range = 5.5791593
+spot_angle = 29.872305
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Light 3" unique_id=1332256351]
+transform = Transform3D(1, 2.8922424e-09, -1.5635942e-08, 1.5635942e-08, -0.35770863, 0.93383324, -2.8922393e-09, -0.93383324, -0.35770863, -0.00847435, -0.26318598, 1.485199)
+light_energy = 20.0
+spot_range = 5.963228
+spot_angle = 29.872305
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Light 3" unique_id=1246382512]
+transform = Transform3D(1, 2.1139237e-09, 1.3428935e-08, -1.3428935e-08, 0.30721825, 0.9516391, -2.1139215e-09, -0.9516391, 0.30721825, 0.025007248, -0.30826902, -1.5254021)
+light_energy = 20.0
+spot_range = 6.3077
+spot_angle = 29.872305

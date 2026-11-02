@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://btmcwaq2mg3u8"]
+
+[ext_resource type="PackedScene" uid="uid://c0tdbibksvlws" path="res://Assets/Models/Props/Lights/Fan.glb" id="1_8d8lm"]
+
+[node name="Fan" type="Node3D" unique_id=1691349676]
+
+[node name="Fan" parent="." unique_id=1676292713 instance=ExtResource("1_8d8lm")]
+
+[node name="Cube_003" parent="Fan/Fan" parent_id_path=PackedInt32Array(1676292713, 404734284) index="0" unique_id=847711209]
+transform = Transform3D(-4.161945, 0, 1.2147888, 0, 11.168166, 0, -1.2147888, 0, -4.161945, 0.007900286, -3.7100317, 0.09183693)
+
+[node name="AnimationPlayer" parent="Fan" index="1" unique_id=1543768884]
+autoplay = &"Cube_003Action"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Fan" unique_id=858996404]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, -0.18235874, 0)
+light_energy = 20.0
+spot_range = 6.2361026
+spot_angle = 60.742992
+
+[editable path="Fan"]

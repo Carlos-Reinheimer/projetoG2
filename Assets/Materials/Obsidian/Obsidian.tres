@@ -1,0 +1,10 @@
+[gd_resource type="ORMMaterial3D" load_steps=6 format=3]
+[ext_resource path="Obsidian_normal.png" type="Texture" id=3]
+[resource]
+albedo_color = Color(0.0, 0.00392200006172, 0.0, 1.0)
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )
+
+
+
