@@ -41,26 +41,32 @@ floors = Array[PackedScene]([ExtResource("2_h1m7h"), ExtResource("3_erwvk"), Ext
 
 [node name="LevelUI" type="Control" parent="." unique_id=740453833]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("11_erwvk")
 script = ExtResource("7_jw32o")
 
 [node name="ProgressBar" type="ProgressBar" parent="LevelUI" unique_id=143970120]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 40.0
-offset_right = 1135.0
-offset_bottom = 67.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -355.0
+offset_top = 34.0
+offset_right = 356.0
+offset_bottom = 48.0
+grow_horizontal = 2
 value = 50.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="LevelUI" unique_id=1975681908]
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
-[node name="Control" type="Control" parent="." unique_id=818900761]
+[node name="Endgame Control" type="Control" parent="." unique_id=818900761]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +74,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="Control" unique_id=444929990]
+[node name="Fire Panel" type="Panel" parent="Endgame Control" unique_id=444929990]
 material = ExtResource("13_2w5on")
 layout_mode = 1
 anchors_preset = 15

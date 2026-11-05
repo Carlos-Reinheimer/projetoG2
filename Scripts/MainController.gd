@@ -27,9 +27,14 @@ func onLoadNextFloor() -> void:
 	
 	await fade.fade(1.0, 1).finished
 	currentFloorScene.queue_free()
+	
 	var newFloor: Node3D = getNewFloor(currentFloor)
 	add_child(newFloor)
 	currentFloorScene = newFloor
+	
+	var floorSp = currentFloorScene.get_node("Spawnpoint")
+	player.global_position = floorSp.global_position
+	
 	await fade.fade(0.0, 1).finished
 	player.onFinishLoadNextLevel()
 

@@ -1,8 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
-const SPEED = 10
-const JUMP_VELOCITY = 10
+const SPEED = 15
+const JUMP_VELOCITY = 8
 const GRAVITY = Vector3(0, -30, 0)
 const TILT_LOWER_LIMIT = deg_to_rad(-30.0)
 const TILT_UPPER_LIMIT = deg_to_rad(30.0)
@@ -10,6 +10,7 @@ const MOUSE_SENSITIVITY = 0.5
 
 @onready var camera_3d: Camera3D = $Head/Camera3D
 @onready var hose: Hose = $Head/Camera3D/Hose
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var isAutoPlayable: bool = false
 
@@ -25,6 +26,8 @@ var _camera_rotation : Vector3
 var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
 
 func _ready() -> void:
+	SignalBus.connect("endGame", onEndGame)
+	
 	if isAutoPlayable:
 		isPlayable = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -52,6 +55,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	if input_dir != Vector2.ZERO and animation_player.current_animation == "idle":
+		animation_player.play("Moving")
+	elif input_dir == Vector2.ZERO:
+		animation_player.play("idle")
 
 	move_and_slide()
 	_update_camera(delta)
@@ -87,3 +95,6 @@ func onStartLoadNextLevel() -> void:
 	
 func onFinishLoadNextLevel() -> void:
 	isPlayable = true
+
+func onEndGame() -> void:
+	isPlayable = false
