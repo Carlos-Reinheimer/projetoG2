@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="2_xtmql"]
 [ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="3_rx687"]
 [ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="4_ib40j"]
-[ext_resource type="Texture2D" uid="uid://cfwuuw6b7kqax" path="res://Assets/UI/City.jpg" id="6_rx687"]
+[ext_resource type="PackedScene" uid="uid://cryfyybg6y2vc" path="res://Assets/Models/Outside Building/Environment.glb" id="7_ib40j"]
+[ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="8_nd03u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8p5dp"]
 size = Vector3(20.950195, 1.1669922, 20.974594)
@@ -49,11 +50,13 @@ color = Color(3.6279995, 0.7526379, 0.5006998, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_8yvhy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2toat"]
-size = Vector3(2.9238281, 4.4699097, 0.85131836)
+size = Vector3(2.1083984, 4.6022644, 0.85131836)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtmql"]
-sky_top_color = Color(0.6895057, 0.27045798, 0.51806027, 1)
-sky_horizon_color = Color(0.43838206, 0.7063988, 0.7387537, 1)
+sky_top_color = Color(0.73486686, 0.28531125, 0.1362226, 1)
+sky_horizon_color = Color(0.6292741, 0.12123371, 0.16978353, 1)
+ground_bottom_color = Color(0.29621774, 0.10569408, 0.07747012, 1)
+ground_horizon_color = Color(0.6198857, 0.12233841, 0.08249762, 1)
 
 [sub_resource type="Sky" id="Sky_rgh2o"]
 sky_material = SubResource("ProceduralSkyMaterial_xtmql")
@@ -61,16 +64,14 @@ sky_material = SubResource("ProceduralSkyMaterial_xtmql")
 [sub_resource type="Environment" id="Environment_0q60w"]
 background_mode = 2
 sky = SubResource("Sky_rgh2o")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ib40j"]
-albedo_color = Color(0.8980392, 0.7176471, 0.4745098, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_rx687"]
+sky_rotation = Vector3(0, -3.3039083, 0)
+tonemap_mode = 2
 
 [node name="StarterLevel" type="Node3D" unique_id=165747974]
 script = ExtResource("1_ib40j")
 
 [node name="Starter Scene" parent="." unique_id=118983753 instance=ExtResource("1_4aiao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00010180473, 0.007540703, -0.0030522346)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Starter Scene" unique_id=125713793]
 
@@ -117,7 +118,7 @@ draw_pass_1 = SubResource("QuadMesh_8yvhy")
 [node name="Area3D" type="Area3D" parent="Starter Scene" unique_id=651270456]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Starter Scene/Area3D" unique_id=1813906224]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.331253, 2.9004226, -0.07434082)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.40889, 2.9666, -0.07434082)
 shape = SubResource("BoxShape3D_2toat")
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("2_xtmql")]
@@ -129,13 +130,11 @@ environment = SubResource("Environment_0q60w")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1324318354]
 transform = Transform3D(0.70710653, 0.18301426, 0.6830125, -0.6724284, 0.47282028, 0.5694563, -0.21872249, -0.86194485, 0.45739743, 0, 0, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1452587360]
-transform = Transform3D(200, 0, 0, 0, -8.742278e-06, -200, 0, 200, -8.742278e-06, 0, -75.18016, 0)
-texture = ExtResource("6_rx687")
+[node name="Environment" parent="." unique_id=2097396184 instance=ExtResource("7_ib40j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073064804, -1.9073486e-06, 0.05882263)
 
-[node name="Infinite Floor" type="MeshInstance3D" parent="." unique_id=816523142]
-transform = Transform3D(10000, 0, 0, 0, 10000, 0, 0, 0, 10000, 0, -76.31608, 0)
-material_override = SubResource("StandardMaterial3D_ib40j")
-mesh = SubResource("PlaneMesh_rx687")
+[node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("8_nd03u")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.493285, 2.7433472, -0.0043714046)
+autoOpenDoor = true
 
 [connection signal="body_entered" from="Starter Scene/Area3D" to="." method="_on_area_3d_body_entered"]

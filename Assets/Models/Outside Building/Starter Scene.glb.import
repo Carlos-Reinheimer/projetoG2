@@ -39,7 +39,30 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Edge": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Wall/Wall.tres",
+"use_external/path": "res://Assets/Materials/Wall/Wall.tres"
+},
+"Floor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Floor/Floor.tres",
+"use_external/path": "res://Assets/Materials/Floor/Floor.tres"
+},
+"Water Base": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Devil Metal/Devil Metal.tres",
+"use_external/path": "res://Assets/Materials/Devil Metal/Devil Metal.tres"
+},
+"Window": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Building Window/Window.tres",
+"use_external/path": "uid://baf5mbeajf88e"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1

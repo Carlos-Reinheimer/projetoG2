@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://baf5mbeajf88e"]
+
+[ext_resource type="Texture2D" uid="uid://bvjbljs1e81kf" path="res://Assets/Materials/Building Window/Window_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bnwev58davhth" path="res://Assets/Materials/Building Window/Window_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://d3xfo1dmoin7e" path="res://Assets/Materials/Building Window/Window_normal.png" id="3"]
+
+[resource]
+albedo_color = Color(0.1764706, 0.8039216, 0.9254902, 0.22352941)
+albedo_texture = ExtResource("1")
+metallic = 0.91
+roughness = 0.04
+roughness_texture = ExtResource("2")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3")
+ao_enabled = true
+ao_texture = ExtResource("2")

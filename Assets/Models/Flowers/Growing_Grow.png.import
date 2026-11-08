@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfwuuw6b7kqax"
-path.s3tc="res://.godot/imported/City.jpg-20df83963f72c138d070c07a018597de.s3tc.ctex"
+uid="uid://dt4lxh1g8xxni"
+path.s3tc="res://.godot/imported/Growing_Grow.png-0b3503ec9e337b67b60b877328955469.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "25365918b24f9b46fef99c94adebcf19"
+}
 
 [deps]
 
-source_file="res://Assets/UI/City.jpg"
-dest_files=["res://.godot/imported/City.jpg-20df83963f72c138d070c07a018597de.s3tc.ctex"]
+source_file="res://Assets/Models/Flowers/Growing_Grow.png"
+dest_files=["res://.godot/imported/Growing_Grow.png-0b3503ec9e337b67b60b877328955469.s3tc.ctex"]
 
 [params]
 

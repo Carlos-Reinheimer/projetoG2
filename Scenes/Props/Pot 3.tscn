@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://esvas14rixcu"]
+
+[ext_resource type="PackedScene" uid="uid://bntqp87uajsum" path="res://Assets/Models/Props/Others/Pot 3.glb" id="1_40uy6"]
+[ext_resource type="PackedScene" uid="uid://dc2smjqd4avn1" path="res://Assets/Models/Flowers/Growing.glb" id="2_cgikx"]
+[ext_resource type="PackedScene" uid="uid://d6ehkloo1pbv" path="res://Assets/Models/Flowers/Hibiscus.glb" id="3_wuu7w"]
+[ext_resource type="PackedScene" uid="uid://bxyuu2l13k8y5" path="res://Assets/Models/Flowers/Plumeria.glb" id="4_deuk1"]
+
+[node name="Pot 3" type="Node3D" unique_id=1295943423]
+
+[node name="Pot 6" parent="." unique_id=240370093 instance=ExtResource("1_40uy6")]
+metadata/_edit_group_ = true
+
+[node name="Growing2" parent="Pot 6" unique_id=293438491 instance=ExtResource("2_cgikx")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.011631012, 0.39438853, -0.0661335)
+
+[node name="Hibiscus2" parent="Pot 6" unique_id=54405245 instance=ExtResource("3_wuu7w")]
+transform = Transform3D(-0.3604206, 0, -0.3465501, 0, 0.5, 0, 0.3465501, 0, -0.3604206, -0.08040333, 0.54481876, -0.54230595)
+
+[node name="Plumeria3" parent="Pot 6" unique_id=2002951829 instance=ExtResource("4_deuk1")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.14833736, 0.5227126, 0.3574295)

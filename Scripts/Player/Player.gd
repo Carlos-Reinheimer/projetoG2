@@ -40,9 +40,15 @@ enum State {
 }
 
 func _ready() -> void:
+	SignalBus.connect("endGame", onEndGame)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	water_splash.emitting = false
 	colission_splash.emitting = false
+	_mouse_rotation.y = rotation.y
+	_mouse_rotation.x = camera_3d.rotation.x
+
+func onEndGame() -> void:
+	isPlayable = false
 
 func updateAimHighlight() -> void:
 	var col := ray.get_collider()

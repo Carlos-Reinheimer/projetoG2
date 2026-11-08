@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bfd1nxnxw7ykp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frvqy"]
+albedo_color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+metallic = 0.47
+
+[sub_resource type="BoxMesh" id="BoxMesh_1iice"]
+size = Vector3(2.0656738, 4.552124, 0.09423828)
+
+[node name="Enter Door Mesh" type="MeshInstance3D" unique_id=174069237]
+material_override = SubResource("StandardMaterial3D_frvqy")
+mesh = SubResource("BoxMesh_1iice")
