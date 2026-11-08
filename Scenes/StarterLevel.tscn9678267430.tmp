@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://du2tkep0gx45f"]
+
+[ext_resource type="PackedScene" uid="uid://c20e8np6lg7m6" path="res://Assets/Models/Outside Building/Starter Scene.glb" id="1_4aiao"]
+[ext_resource type="Script" uid="uid://dmcr0v27t74yf" path="res://Scripts/StarterLevel.gd" id="1_ib40j"]
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="2_8yvhy"]
+[ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Shaders/FireShader.tres" id="2_jvwku"]
+[ext_resource type="Material" uid="uid://dtecvavcngs0a" path="res://Assets/Materials/UIBlurMat.tres" id="2_wrsr0"]
+[ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="2_xtmql"]
+[ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="3_rx687"]
+[ext_resource type="Texture2D" uid="uid://icodgcxpn33v" path="res://Assets/UI/Menu Background 2.png" id="3_wrsr0"]
+[ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="4_ib40j"]
+[ext_resource type="PackedScene" uid="uid://cryfyybg6y2vc" path="res://Assets/Models/Outside Building/Environment.glb" id="7_ib40j"]
+[ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="8_nd03u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8p5dp"]
+size = Vector3(20.950195, 1.1669922, 20.974594)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtmql"]
+size = Vector3(6.474884, 5.338135, 10.271725)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0q60w"]
+size = Vector3(23.600864, 2.877472, 1.2919002)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nd03u"]
+render_priority = 0
+shader = ExtResource("2_jvwku")
+shader_parameter/Texture2DParameter = ExtResource("4_ib40j")
+shader_parameter/DissolveTiling = Vector2(1, 1)
+shader_parameter/DissolveSpeed = Vector2(0, 0)
+shader_parameter/DissolveTexture = ExtResource("3_rx687")
+shader_parameter/DissolveAmount = 0.0
+
+[sub_resource type="Curve" id="Curve_hpvr5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19827586, 0.9926471), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nf4we"]
+curve = SubResource("Curve_hpvr5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wrsr0"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.00003
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 5.0
+scale_max = 5.25
+scale_curve = SubResource("CurveTexture_nf4we")
+color = Color(3.6279995, 0.7526379, 0.5006998, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_8yvhy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2toat"]
+size = Vector3(2.1083984, 4.6022644, 0.85131836)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtmql"]
+sky_top_color = Color(0.73486686, 0.28531125, 0.1362226, 1)
+sky_horizon_color = Color(0.6292741, 0.12123371, 0.16978353, 1)
+ground_bottom_color = Color(0.29621774, 0.10569408, 0.07747012, 1)
+ground_horizon_color = Color(0.6198857, 0.12233841, 0.08249762, 1)
+
+[sub_resource type="Sky" id="Sky_rgh2o"]
+sky_material = SubResource("ProceduralSkyMaterial_xtmql")
+
+[sub_resource type="Environment" id="Environment_0q60w"]
+background_mode = 2
+sky = SubResource("Sky_rgh2o")
+sky_rotation = Vector3(0, -3.3039083, 0)
+tonemap_mode = 2
+
+[node name="StarterLevel" type="Node3D" unique_id=165747974]
+script = ExtResource("1_ib40j")
+
+[node name="Control" type="Control" parent="." unique_id=711872125]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_8yvhy")
+
+[node name="Panel" type="Panel" parent="Control" unique_id=643821237]
+material = ExtResource("2_wrsr0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Panel" unique_id=247938794]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = -37.0
+offset_right = 381.0
+offset_bottom = 37.0
+grow_vertical = 2
+texture = ExtResource("3_wrsr0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel" unique_id=544920826]
+layout_mode = 0
+offset_left = 142.99998
+offset_top = 279.0
+offset_right = 405.0
+offset_bottom = 609.0
+rotation = -0.19432405
+theme_override_constants/separation = 30
+
+[node name="Start Button" type="Button" parent="Control/Panel/VBoxContainer" unique_id=2060629364]
+layout_mode = 2
+text = "Começar"
+
+[node name="How to Play Button" type="Button" parent="Control/Panel/VBoxContainer" unique_id=344619905]
+layout_mode = 2
+text = "Como jogar"
+
+[node name="Exit Button" type="Button" parent="Control/Panel/VBoxContainer" unique_id=1022736078]
+layout_mode = 2
+text = "Sair"
+
+[node name="Starter Scene" parent="." unique_id=118983753 instance=ExtResource("1_4aiao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00010180473, 0.007540703, -0.0030522346)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Starter Scene" unique_id=125713793]
+
+[node name="Floor" type="CollisionShape3D" parent="Starter Scene/StaticBody3D" unique_id=1350412249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18408203, 0.083496094, 0.043434143)
+shape = SubResource("BoxShape3D_8p5dp")
+
+[node name="Enter Area" type="CollisionShape3D" parent="Starter Scene/StaticBody3D" unique_id=2037351751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3118744, 3.1967387, -5.250143)
+shape = SubResource("BoxShape3D_xtmql")
+
+[node name="Border" type="CollisionShape3D" parent="Starter Scene/StaticBody3D" unique_id=1344194861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1672039, 2.0909495, 11.148779)
+shape = SubResource("BoxShape3D_0q60w")
+
+[node name="Border2" type="CollisionShape3D" parent="Starter Scene/StaticBody3D" unique_id=1901015267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1672039, 2.0909495, -10.851221)
+shape = SubResource("BoxShape3D_0q60w")
+
+[node name="Border3" type="CollisionShape3D" parent="Starter Scene/StaticBody3D" unique_id=1294320381]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.832796, 2.0909495, -0.06865311)
+shape = SubResource("BoxShape3D_0q60w")
+
+[node name="Border4" type="CollisionShape3D" parent="Starter Scene/StaticBody3D" unique_id=259744316]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.167204, 2.0909495, -0.06865311)
+shape = SubResource("BoxShape3D_0q60w")
+
+[node name="Flames" type="GPUParticles3D" parent="Starter Scene" unique_id=464630021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2308545, 4.1397934, -2.8021019)
+material_override = SubResource("ShaderMaterial_nd03u")
+amount = 20
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_wrsr0")
+draw_pass_1 = SubResource("QuadMesh_8yvhy")
+
+[node name="Flames2" type="GPUParticles3D" parent="Starter Scene" unique_id=2101580393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2308545, 4.1397934, -7.926669)
+material_override = SubResource("ShaderMaterial_nd03u")
+amount = 20
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_wrsr0")
+draw_pass_1 = SubResource("QuadMesh_8yvhy")
+
+[node name="Area3D" type="Area3D" parent="Starter Scene" unique_id=651270456]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Starter Scene/Area3D" unique_id=1813906224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.40889, 2.9666, -0.07434082)
+shape = SubResource("BoxShape3D_2toat")
+
+[node name="Player" parent="." unique_id=991785988 instance=ExtResource("2_xtmql")]
+transform = Transform3D(-0.7071067, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, -0.7071067, 8.382971, 2, -8.8060875)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1001199429]
+environment = SubResource("Environment_0q60w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1324318354]
+transform = Transform3D(0.70710653, 0.18301426, 0.6830125, -0.6724284, 0.47282028, 0.5694563, -0.21872249, -0.86194485, 0.45739743, 0, 0, 0)
+
+[node name="Environment" parent="." unique_id=2097396184 instance=ExtResource("7_ib40j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073064804, -1.9073486e-06, 0.05882263)
+
+[node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("8_nd03u")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.493285, 2.7433472, -0.0043714046)
+autoOpenDoor = true
+
+[connection signal="body_entered" from="Starter Scene/Area3D" to="." method="_on_area_3d_body_entered"]

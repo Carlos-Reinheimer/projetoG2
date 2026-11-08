@@ -1,0 +1,50 @@
+[gd_resource type="Theme" format=3 uid="uid://bovmvnkia6job"]
+
+[ext_resource type="FontFile" uid="uid://d2xo2ov7wwj6m" path="res://Assets/Fonts/PermanentMarker-Regular.ttf" id="1_qcfcl"]
+[ext_resource type="Texture2D" uid="uid://60o6ejmmnicp" path="res://Assets/UI/Inactive Button.png" id="2_6nc7p"]
+[ext_resource type="Texture2D" uid="uid://7vivskri1cnh" path="res://Assets/UI/Active Button.png" id="2_m7k5r"]
+[ext_resource type="Texture2D" uid="uid://cufet7ayqkuvf" path="res://Assets/UI/Pressed button.png" id="3_c6obu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7k5r"]
+texture = ExtResource("2_m7k5r")
+texture_margin_left = 30.0
+texture_margin_top = 10.0
+texture_margin_right = 30.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c6obu"]
+texture = ExtResource("3_c6obu")
+texture_margin_left = 30.0
+texture_margin_top = 10.0
+texture_margin_right = 30.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qcfcl"]
+texture = ExtResource("2_6nc7p")
+texture_margin_left = 30.0
+texture_margin_top = 10.0
+texture_margin_right = 30.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
+bg_color = Color(0.88699895, 0.4116052, 0.06630468, 1)
+skew = Vector2(1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfneu"]
+bg_color = Color(0.8152225, 0, 0, 1)
+skew = Vector2(1, 0)
+shadow_size = 1
+shadow_offset = Vector2(0, 1.66)
+
+[resource]
+Button/colors/font_color = Color(0.9843137, 0.9372549, 0.015686275, 0.78431374)
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_qcfcl")
+Button/styles/hover = SubResource("StyleBoxTexture_m7k5r")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_c6obu")
+Button/styles/normal = SubResource("StyleBoxTexture_qcfcl")
+Button/styles/pressed = SubResource("StyleBoxTexture_c6obu")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_qcfcl")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_0sclb")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_hfneu")

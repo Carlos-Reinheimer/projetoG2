@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dtecvavcngs0a"]
+
+[ext_resource type="Shader" uid="uid://cvajcolip5p8i" path="res://Assets/Materials/UIBlur.tres" id="1_l24s4"]
+
+[resource]
+shader = ExtResource("1_l24s4")
+shader_parameter/BlurAmount = 5.0
+shader_parameter/MixColor = Color(0.7573553, 0, 0.11158254, 1)
+shader_parameter/MixAmount = 0.10000000475

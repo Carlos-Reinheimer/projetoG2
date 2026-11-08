@@ -20,16 +20,23 @@ func _ready() -> void:
 	countEnemiesOnFloor()
 
 func onLoadNextFloor() -> void:
+	player.onStartLoadNextLevel()
 	currentFloor += 1
 	countFiresOnFloor()
 	countEnemiesOnFloor()
 	
 	await fade.fade(1.0, 1).finished
 	currentFloorScene.queue_free()
+	
 	var newFloor: Node3D = getNewFloor(currentFloor)
 	add_child(newFloor)
 	currentFloorScene = newFloor
+	
+	var floorSp = currentFloorScene.get_node("Spawnpoint")
+	player.global_position = floorSp.global_position
+	
 	await fade.fade(0.0, 1).finished
+	player.onFinishLoadNextLevel()
 
 func countEnemiesOnFloor() -> void:
 	enemiesOnFloor = get_tree().get_nodes_in_group("Enemy").size()

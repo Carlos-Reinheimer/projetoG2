@@ -40,6 +40,8 @@ func _ready() -> void:
 	_lightMat = hose_mesh.get_active_material(1)
 	
 func _process(delta: float) -> void:
+	if not player.isPlayable:
+		return
 	processHose(delta)
 	processEnemy(delta)
 

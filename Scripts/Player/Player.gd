@@ -1,8 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
-const SPEED = 10
-const JUMP_VELOCITY = 10
+const SPEED = 15
+const JUMP_VELOCITY = 8
 const GRAVITY = Vector3(0, -30, 0)
 const TILT_LOWER_LIMIT = deg_to_rad(-30.0)
 const TILT_UPPER_LIMIT = deg_to_rad(30.0)
@@ -16,7 +16,10 @@ const KNOCKBACK_DECAY := 25.0  # quão rápido o empurrão perde força
 @onready var ray_cast_3d: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var water_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash
 @onready var colission_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash/ColissionSplash
-@onready var hose: Node3D = $Head/Camera3D/Hose
+@onready var hose: Hose = $Head/Camera3D/Hose
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+@export var isAutoPlayable: bool = false
 
 var isPlayable : bool = false
 var _mouse_input : bool = false
@@ -45,6 +48,13 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	water_splash.emitting = false
 	colission_splash.emitting = false
+	
+	if isAutoPlayable:
+		isPlayable = true
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#var tween = create_tween()
+		#tween.tween_property($"../Control/Panel".material, "shader_parameter/progress", .8, 5.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		#await tween.finished
 	_mouse_rotation.y = rotation.y
 	_mouse_rotation.x = camera_3d.rotation.x
 
@@ -75,6 +85,9 @@ func EnemyInRange():
 	return ray.get_collider() and ray.get_collider().is_in_group("Enemy")
 
 func _physics_process(delta: float) -> void:
+	if not isPlayable:
+		return
+
 	updateAimHighlight()
 
 	var stunned := stun_left > 0.0
@@ -131,8 +144,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	velocity.x += knockback.x
-	velocity.z += knockback.z
+	if input_dir != Vector2.ZERO and animation_player.current_animation == "idle":
+		animation_player.play("Moving")
+	elif input_dir == Vector2.ZERO:
+		animation_player.play("idle")
+
 	move_and_slide()
 	velocity.x -= knockback.x
 	velocity.z -= knockback.z
@@ -190,3 +206,16 @@ func _apply_shake(delta: float) -> void:
 	else:
 		camera_3d.h_offset = 0.0
 		camera_3d.v_offset = 0.0
+	
+func onStartGame() -> void:
+	isPlayable = true
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func onStartLoadNextLevel() -> void:
+	isPlayable = false
+	
+func onFinishLoadNextLevel() -> void:
+	isPlayable = true
+
+func onEndGame() -> void:
+	isPlayable = false

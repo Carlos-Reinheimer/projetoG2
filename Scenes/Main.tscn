@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://dkxyigbnmyfcy" path="res://Scenes/Floors/Floor_7.tscn" id="8_fq0cl"]
 [ext_resource type="PackedScene" uid="uid://b6u4kvqf0tspp" path="res://Scenes/Floors/Floor_8.tscn" id="9_hwpts"]
 [ext_resource type="PackedScene" uid="uid://cacatwiqomohi" path="res://Scenes/Floors/Floor_9.tscn" id="10_jyqft"]
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="11_erwvk"]
+[ext_resource type="Material" uid="uid://sqkyrcclqapi" path="res://Assets/Materials/FireUI.tres" id="13_2w5on"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtmql"]
 sky_top_color = Color(0.73486686, 0.28531125, 0.1362226, 1)
@@ -42,40 +44,48 @@ floors = Array[PackedScene]([ExtResource("2_h1m7h"), ExtResource("3_erwvk"), Ext
 
 [node name="LevelUI" type="Control" parent="." unique_id=740453833]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_erwvk")
 script = ExtResource("7_jw32o")
 timerDecayRate = 0.2
 
 [node name="ProgressBar" type="ProgressBar" parent="LevelUI" unique_id=143970120]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 23.0
-offset_right = 1132.0
-offset_bottom = 50.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -355.0
+offset_top = 34.0
+offset_right = 356.0
+offset_bottom = 48.0
+grow_horizontal = 2
+value = 50.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="LevelUI" unique_id=1975681908]
+wait_time = 5.0
 autostart = true
 
-[node name="Label" type="Label" parent="LevelUI" unique_id=799732638]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 58.0
-offset_right = 76.0
-offset_bottom = 81.0
-text = "Pontos atuais: "
+[node name="Endgame Control" type="Control" parent="." unique_id=818900761]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label2" type="Label" parent="LevelUI" unique_id=827363641]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 82.0
-offset_right = 150.0
-offset_bottom = 105.0
-text = "Pontos atuais: "
-
-[node name="Fade" parent="." unique_id=683505706 instance=ExtResource("2_pbw6q")]
+[node name="Fire Panel" type="Panel" parent="Endgame Control" unique_id=444929990]
+material = ExtResource("13_2w5on")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
 environment = SubResource("Environment_pbw6q")
@@ -84,9 +94,8 @@ environment = SubResource("Environment_pbw6q")
 transform = Transform3D(0.70710653, 0.18301426, 0.6830125, -0.6724284, 0.47282028, 0.5694563, -0.21872249, -0.86194485, 0.45739743, 0, 0, 0)
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.807019, 1, 2.8786511)
-
-[node name="Floor" parent="." unique_id=53792242 instance=ExtResource("5_pbw6q")]
+transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, 10, 1, 5)
+isAutoPlayable = true
 
 [node name="Fade" parent="." unique_id=683505706 instance=ExtResource("2_pbw6q")]
 
