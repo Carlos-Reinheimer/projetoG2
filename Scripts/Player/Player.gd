@@ -18,6 +18,7 @@ const KNOCKBACK_DECAY := 25.0  # quão rápido o empurrão perde força
 @onready var colission_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash/ColissionSplash
 @onready var hose: Node3D = $Head/Camera3D/Hose
 
+var isPlayable : bool = false
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
 var _rotation_input : float
