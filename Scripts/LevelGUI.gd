@@ -24,13 +24,13 @@ func setUp():
 	var fires = get_tree().get_nodes_in_group("Fire").reduce(func(acc, fire): return acc + fire.firePoints, 0)
 	maxPoints = enemies + fires
 	progress_bar.max_value = maxPoints
-	$Label.text = "Pontos máximos: " + str(maxPoints)
+	#$Label.text = "Pontos máximos: " + str(maxPoints)
 
 func updateFireProgress( value: float ):
 	print("recebido o valor " + str(value))
 	#if (value < 0 and fireProgress == 0) or (value > 0 and fireProgress == maxPoints):
 		#return
-	$Label2.text = "Pontos atuais: " + str(fireProgress)
+	#$Label2.text = "Pontos atuais: " + str(fireProgress)
 	animateProgressBar(value)
 
 func onCaptureEnemy(points: int):

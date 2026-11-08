@@ -58,9 +58,6 @@ func _ready() -> void:
 	_mouse_rotation.y = rotation.y
 	_mouse_rotation.x = camera_3d.rotation.x
 
-func onEndGame() -> void:
-	isPlayable = false
-
 func updateAimHighlight() -> void:
 	var col := ray.get_collider()
 	var new_aimed: Node = col if (col and col.is_in_group("Enemy")) else null
