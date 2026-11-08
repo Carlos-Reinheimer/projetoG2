@@ -148,7 +148,7 @@ func updateSpeedRestore(delta: float) -> void:
 		restoreCooldownLeft = restoreInterval
 
 func gettingPull(player: Player):
-	button_mash.start()
+	button_mash.start(ButtonMash.Mode.values().pick_random())
 	currentState = State.GETTING_PULL
 	navigation.target_position = global_position
 	target_position = player.global_position
@@ -176,18 +176,19 @@ func _on_button_mash_game_finished(has_won: bool) -> void:
 
 func pullInFast() -> void:
 	currentState = State.CAPTURED
-	target_position = Vector3.ZERO   # desliga o puxão lento do _process
-	set_physics_process(false)       # para a navegação
+	target_position = Vector3.ZERO
+	set_physics_process(false)
 
 	var start := global_position
-	var tween := create_tween()
+	var tween := create_tween().set_parallel(true)
 	tween.tween_method(
 		func(t: float): global_position = start.lerp(puller.hose.global_position, t),
 		0.0, 1.0, 0.25
 	).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
-	tween.parallel().tween_property(self, "scale", Vector3.ONE * 0.2, 0.25)
+	tween.tween_property(self, "scale", Vector3.ONE * 0.2, 0.25)
 
-	#await tween.finished
+	await tween.finished
+
 	puller.pushBack(start)
 	puller.stun(0.6)
 	SignalBus.emit_signal("captureEnemy", +enemyPoints)
@@ -229,7 +230,7 @@ func _on_link_finished() -> void:
 
 func fadeTo(value: float, duration: float = 0.3) -> void:
 	var tween := create_tween().set_parallel(true)
-	for m in find_children("polygon*", "MeshInstance3D", true, false):
+	for m in find_children("*", "MeshInstance3D", true, false):
 		tween.tween_property(m, "transparency", 1.0 - value, duration)
 
 func _on_button_mash_mash_pressed(progress: float) -> void:

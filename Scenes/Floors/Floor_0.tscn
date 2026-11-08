@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bkip04dx3dp6x"]
 
 [ext_resource type="MeshLibrary" uid="uid://jnd5w4kj07h" path="res://Tiles/FloorTiles.meshlib" id="1_vudpy"]
-[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemies/Enemy 1.tscn" id="2_x8tbr"]
+[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemy.tscn" id="2_x8tbr"]
 [ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Particles/Fire.tscn" id="3_obdan"]
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="4_jemt8"]
 [ext_resource type="PackedScene" uid="uid://cbyi8gr33vadb" path="res://Assets/Models/Props/Window/Window.glb" id="5_0d6eb"]
@@ -59,4 +59,8 @@ end_position = Vector3(0, 0, 5.305)
 
 [node name="NavigationLink3D2" type="NavigationLink3D" parent="." unique_id=1240942043]
 transform = Transform3D(0.25532207, 0, 0.96685606, 0, 1, 0, -0.96685606, 0, 0.25532207, 4.6431975, 0.7948829, 23.737)
+end_position = Vector3(0, 0, 5.305)
+
+[node name="NavigationLink3D3" type="NavigationLink3D" parent="." unique_id=1436779970]
+transform = Transform3D(0.99627286, 0, 0.08625768, 0, 1, 0, -0.08625768, 0, 0.99627286, 16.887196, 0.7948829, 18.43274)
 end_position = Vector3(0, 0, 5.305)

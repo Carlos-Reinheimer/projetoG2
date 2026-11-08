@@ -86,6 +86,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		dropTarget()
 		swith_state(State.NORMAL)
+	
+	if currentState == State.PULLING:
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		if not water_splash.emitting:

@@ -37,10 +37,10 @@ script = ExtResource("3_5ixxa")
 extinguishIndicatorColor = Color(0, 0.39607844, 1, 1)
 pullIndicatorColor = Color(0, 0.74509805, 0, 1)
 
-[node name="Left Arm" parent="Head/Camera3D/Hose/Hose/Lever" parent_id_path=PackedInt32Array(813149388, 387589417) index="0" unique_id=492718385 instance=ExtResource("6_nn08x")]
+[node name="Left Arm" parent="Head/Camera3D/Hose/Hose/Lever" parent_id_path=PackedInt32Array(813149388, 1725297569) index="0" unique_id=492718385 instance=ExtResource("6_nn08x")]
 transform = Transform3D(0.018976629, 0.99982, -4.8968786e-08, -0.9998198, 0.018976688, 3.2704456e-08, 1.00977076e-07, 2.8279093e-08, 1, -1.2594483, 0.34268874, -0.03358431)
 
-[node name="Skeleton3D" parent="Head/Camera3D/Hose/Hose/Lever/Left Arm/Armature" parent_id_path=PackedInt32Array(492718385, 1694698737) index="0" unique_id=1498158866]
+[node name="Skeleton3D" parent="Head/Camera3D/Hose/Hose/Lever/Left Arm/Armature" parent_id_path=PackedInt32Array(492718385, 1702730844) index="0" unique_id=1388843213]
 bones/3/rotation = Quaternion(0.029363, 0.00212, -1.068192, 0.996504)
 
 [node name="WaterSplash" parent="Head/Camera3D/Hose" unique_id=1826667380 instance=ExtResource("3_gntrk")]
@@ -54,10 +54,10 @@ emitting = false
 [node name="Right Arm" parent="Head/Camera3D/Hose" unique_id=1471388457 instance=ExtResource("7_52ee3")]
 transform = Transform3D(0.15099555, 0.8968985, -0.41566002, 0.06767129, -0.4288734, -0.9008254, -0.9862154, 0.107892826, -0.12545174, -1.0785432, 0.31641108, -0.33634615)
 
-[node name="Right Armature" parent="Head/Camera3D/Hose/Right Arm" index="0" unique_id=123041653]
+[node name="Right Armature" parent="Head/Camera3D/Hose/Right Arm" index="0" unique_id=2062874716]
 transform = Transform3D(1, 0, -9.313226e-09, 1.4901161e-08, 1, 1.4901161e-08, -3.7252903e-08, 0, 1.0000002, 0.04358971, 0.036899462, 0.0029683113)
 
-[node name="Skeleton3D" parent="Head/Camera3D/Hose/Right Arm/Right Armature" index="0" unique_id=1243760462]
+[node name="Skeleton3D" parent="Head/Camera3D/Hose/Right Arm/Right Armature" index="0" unique_id=1396281960]
 bones/0/rotation = Quaternion(0.07, 0, 0.051433, 0.998676)
 bones/1/rotation = Quaternion(-0.125234, 1.2e-05, 0.045205, 0.998211)
 bones/2/rotation = Quaternion(0.000234, 0, 0.248376, 0.999965)
