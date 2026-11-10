@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bkip04dx3dp6x"]
 
 [ext_resource type="MeshLibrary" uid="uid://jnd5w4kj07h" path="res://Tiles/FloorTiles.meshlib" id="1_vudpy"]
-[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemy.tscn" id="2_x8tbr"]
+[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemies/Enemy 1.tscn" id="2_x8tbr"]
 [ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Particles/Fire.tscn" id="3_obdan"]
 [ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="4_5x301"]
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="4_jemt8"]
@@ -53,174 +53,158 @@ metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Windows" type="Node3D" parent="NavigationRegion3D/Geometry" unique_id=917491042]
 
-[node name="Window Group" type="Node3D" parent="Geometry/Windows" unique_id=1347833777]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.207787, 22.978481)
+[node name="Window Group" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=1002302772]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.03043, 1.2262845, 6.71492)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group" unique_id=1317655052 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window8" parent="Geometry/Windows/Window Group" unique_id=303958798 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=303958798 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group" unique_id=1651618945 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=304719193 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window10" parent="Geometry/Windows/Window Group" unique_id=933977397 instance=ExtResource("5_0d6eb")]
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=2097766327 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
 
-[node name="Window11" parent="Geometry/Windows/Window Group" unique_id=534575595 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
+[node name="Window11" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=215117946 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 0.81489325)
 
-[node name="Window Group2" type="Node3D" parent="Geometry/Windows" unique_id=1883145906]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.207787, 12.978481)
+[node name="Window12" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=1876959072 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 1.6929121)
+
+[node name="Window13" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=723366570 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 2.5820522)
+
+[node name="Window14" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=210235974 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 3.4067638)
+
+[node name="Window15" parent="NavigationRegion3D/Geometry/Windows/Window Group" unique_id=494519372 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 4.2777014)
+
+[node name="Window Group2" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=447081866]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 15.979219, 1.2262845, -0.014367342)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group2" unique_id=799794574 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window8" parent="Geometry/Windows/Window Group2" unique_id=500478975 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group2" unique_id=994672281 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group2" unique_id=1159081465 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group2" unique_id=946619030 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window10" parent="Geometry/Windows/Window Group2" unique_id=1522016464 instance=ExtResource("5_0d6eb")]
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group2" unique_id=1709391306 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
 
-[node name="Window11" parent="Geometry/Windows/Window Group2" unique_id=1341678957 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
-
-[node name="Window Group3" type="Node3D" parent="Geometry/Windows" unique_id=895915599]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.207787, 4.9784813)
+[node name="Window Group3" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=138847318]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.03043, 1.2262845, 22.047972)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group3" unique_id=713388841 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window8" parent="Geometry/Windows/Window Group3" unique_id=393923394 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group3" unique_id=1287316763 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group3" unique_id=1406872611 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group3" unique_id=627368637 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window10" parent="Geometry/Windows/Window Group3" unique_id=1049124387 instance=ExtResource("5_0d6eb")]
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group3" unique_id=774027182 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
 
-[node name="Window11" parent="Geometry/Windows/Window Group3" unique_id=130924454 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
-
-[node name="Window Group4" type="Node3D" parent="Geometry/Windows" unique_id=1925188438]
-transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 20, 1.207787, 3.225757)
+[node name="Window Group4" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=239336769]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.03043, 1.2262845, 26.070435)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group4" unique_id=1288900367 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window1" parent="Geometry/Windows/Window Group4" unique_id=115002291 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, -3.6593866)
-
-[node name="Window2" parent="Geometry/Windows/Window Group4" unique_id=1221876391 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, -4.5498214)
-
-[node name="Window3" parent="Geometry/Windows/Window Group4" unique_id=1706917367 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, -5.4307737)
-
-[node name="Window8" parent="Geometry/Windows/Window Group4" unique_id=361260148 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group4" unique_id=381245876 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group4" unique_id=1153500638 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group4" unique_id=1113259421 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window10" parent="Geometry/Windows/Window Group4" unique_id=1365068869 instance=ExtResource("5_0d6eb")]
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group4" unique_id=1213856615 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
 
-[node name="Window11" parent="Geometry/Windows/Window Group4" unique_id=1924992704 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, 0.80423546)
-
-[node name="Window Group5" type="Node3D" parent="Geometry/Windows" unique_id=387198422]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 1.207787, -0.021518707)
+[node name="Window Group5" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=1542113904]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.03043, 1.198504, 30.022717)
 metadata/_edit_group_ = true
 
-[node name="Window8" parent="Geometry/Windows/Window Group5" unique_id=1546321895 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group5" unique_id=1293303029 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group5" unique_id=564652466 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group5" unique_id=1915657655 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window10" parent="Geometry/Windows/Window Group5" unique_id=618986233 instance=ExtResource("5_0d6eb")]
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group5" unique_id=1449416965 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
 
-[node name="Window Group6" type="Node3D" parent="Geometry/Windows" unique_id=36405544]
-transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 20, 1.207787, 13.796497)
+[node name="Window Group6" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=855185508]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.233773, 1.198504, 30.022717)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group6" unique_id=1908666245 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window8" parent="Geometry/Windows/Window Group6" unique_id=793225667 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group6" unique_id=185453204 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group6" unique_id=1512343871 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group6" unique_id=1049230137 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window10" parent="Geometry/Windows/Window Group6" unique_id=753520422 instance=ExtResource("5_0d6eb")]
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group6" unique_id=1283957476 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
 
-[node name="Window Group7" type="Node3D" parent="Geometry/Windows" unique_id=161568323]
-transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 20, 1.207787, 20.782265)
+[node name="Window11" parent="NavigationRegion3D/Geometry/Windows/Window Group6" unique_id=208758327 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 0.7987466)
+
+[node name="Window Group7" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=1821855959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029559612, 1.2286665, 22.277195)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group7" unique_id=625684915 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window8" parent="Geometry/Windows/Window Group7" unique_id=631241442 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group7" unique_id=2060093569 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group7" unique_id=1842524234 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group7" unique_id=1615587801 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window Group8" type="Node3D" parent="Geometry/Windows" unique_id=37327158]
-transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 20, 1.207787, 24.782265)
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group7" unique_id=1319988145 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window11" parent="NavigationRegion3D/Geometry/Windows/Window Group7" unique_id=266422894 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 0.7987466)
+
+[node name="Window12" parent="NavigationRegion3D/Geometry/Windows/Window Group7" unique_id=1764779527 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 1.6723671)
+
+[node name="Window Group8" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=1062869955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029559612, 1.2286665, 12.145323)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group8" unique_id=515921953 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window8" parent="Geometry/Windows/Window Group8" unique_id=209470880 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group8" unique_id=18111229 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group8" unique_id=216672562 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group8" unique_id=571172634 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window Group9" type="Node3D" parent="Geometry/Windows" unique_id=865737018]
-transform = Transform3D(4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 4.371138e-08, 19, 1.207787, 30.012796)
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group8" unique_id=2146863609 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
+
+[node name="Window11" parent="NavigationRegion3D/Geometry/Windows/Window Group8" unique_id=2047172188 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 0.7987466)
+
+[node name="Window12" parent="NavigationRegion3D/Geometry/Windows/Window Group8" unique_id=835818449 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 1.6723671)
+
+[node name="Window Group9" type="Node3D" parent="NavigationRegion3D/Geometry/Windows" unique_id=130332950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029559612, 1.2286665, 4.097903)
 metadata/_edit_group_ = true
 
-[node name="Window0" parent="Geometry/Windows/Window Group9" unique_id=946499817 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
-
-[node name="Window8" parent="Geometry/Windows/Window Group9" unique_id=1205714900 instance=ExtResource("5_0d6eb")]
+[node name="Window8" parent="NavigationRegion3D/Geometry/Windows/Window Group9" unique_id=764239233 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
 
-[node name="Window9" parent="Geometry/Windows/Window Group9" unique_id=508908385 instance=ExtResource("5_0d6eb")]
+[node name="Window9" parent="NavigationRegion3D/Geometry/Windows/Window Group9" unique_id=1699065423 instance=ExtResource("5_0d6eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
 
-[node name="Window Group10" type="Node3D" parent="Geometry/Windows" unique_id=751100989]
-transform = Transform3D(4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 4.371138e-08, 5.21241, 1.207787, 30.012796)
-metadata/_edit_group_ = true
+[node name="Window10" parent="NavigationRegion3D/Geometry/Windows/Window Group9" unique_id=739498915 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.08077431)
 
-[node name="Window0" parent="Geometry/Windows/Window Group10" unique_id=791810025 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -2.7672005)
+[node name="Window11" parent="NavigationRegion3D/Geometry/Windows/Window Group9" unique_id=1432763142 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 0.7987466)
 
-[node name="Window8" parent="Geometry/Windows/Window Group10" unique_id=2126410500 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -1.8664913)
-
-[node name="Window9" parent="Geometry/Windows/Window Group10" unique_id=1451358086 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49747992, 1.1784599, -0.98148346)
-
-[node name="Window10" parent="Geometry/Windows/Window Group10" unique_id=870152456 instance=ExtResource("5_0d6eb")]
-transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 0.4974804, 1.1784599, -0.08466339)
+[node name="Window12" parent="NavigationRegion3D/Geometry/Windows/Window Group9" unique_id=866107945 instance=ExtResource("5_0d6eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4974804, 1.1784599, 1.6723671)
 
 [node name="Spawnpoint" type="Marker3D" parent="." unique_id=1290023524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.574633, 1, 3)
