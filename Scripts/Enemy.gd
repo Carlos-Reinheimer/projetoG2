@@ -6,10 +6,9 @@ extends CharacterBody3D
 @export var restoreInterval := 5.0   
 
 @onready var button_mash: ButtonMash = $ButtonMash
-@onready var perception_timer: Timer = $PerceptionTimer
 @onready var navigation: NavigationAgent3D = $NavigationAgent3D
 @onready var look_range: Area3D = $LookRange
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $ModelSlot/AnimationPlayer
 
 var outline_material: ShaderMaterial
 var fire_memory: Array[Vector3] = []
@@ -264,6 +263,8 @@ func _on_button_mash_mash_pressed(progress: float) -> void:
 		puller.mashShake(progress)
 
 func cool_down(duration := 2.0):
-	var mat: ShaderMaterial = $"Enemy 1/Enemy 1".get_active_material(0)
-	var tween := create_tween()
-	tween.tween_property(mat, "shader_parameter/cooling", 1.0, duration)
+	for m in find_children("*", "MeshInstance3D", true, false):
+		var mat = m.get_active_material(0)
+		if mat is ShaderMaterial:
+			var tween := create_tween()
+			tween.tween_property(mat, "shader_parameter/cooling", 1.0, duration)

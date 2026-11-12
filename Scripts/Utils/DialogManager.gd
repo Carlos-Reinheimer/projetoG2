@@ -11,6 +11,7 @@ func _ready() -> void:
 	SignalBus.floorExtinguised.connect(onFloorExtinguised)
 
 func onFloorExtinguised():
+	await get_tree().create_timer(2).timeout
 	showDialog("Tutor Rial", ["Andar limpo, soldado", "Pode seguir para o próximo andar", "E cuidado"])
 
 func showDialog( character: String, dialogs: Array[String] ):
