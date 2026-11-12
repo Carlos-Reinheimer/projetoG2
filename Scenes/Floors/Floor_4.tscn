@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cyyu7ghhunkio" path="res://Assets/Models/Props/Desks/Desk.glb" id="3_nfnjv"]
 [ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="3_oqbid"]
 [ext_resource type="PackedScene" uid="uid://sse3v3q0g0ni" path="res://Assets/Models/Props/Chairs/Chair 3.glb" id="4_e5553"]
+[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Particles/Fire.tscn" id="5_a2ho0"]
 [ext_resource type="PackedScene" uid="uid://81i1x25bf76c" path="res://Assets/Models/Props/Desks/Center Desk 2.glb" id="5_kjmvq"]
 [ext_resource type="PackedScene" uid="uid://bxfc02emt4uvc" path="res://Assets/Models/Props/Chairs/Sofa.glb" id="6_pg8hi"]
 [ext_resource type="PackedScene" uid="uid://bsv6h42op8rvm" path="res://Assets/Models/Props/Chairs/Sofa 2.glb" id="7_e0w38"]
@@ -218,6 +219,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.468871, 2.279456, 1.052848
 [node name="Enemies" type="Node3D" parent="." unique_id=88784059]
 
 [node name="Fires" type="Node3D" parent="." unique_id=1428607066]
+
+[node name="Particles" parent="Fires" unique_id=187325746 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.899385, 1.24929, 45.091934)
+
+[node name="Particles2" parent="Fires" unique_id=1848307921 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.448248, 1.24929, 33.099762)
+
+[node name="Particles3" parent="Fires" unique_id=1869861238 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8043492, 1.24929, 12.898612)
+
+[node name="Particles4" parent="Fires" unique_id=1877198085 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.687899, 1.4608674, 5.576334)
+
+[node name="Particles5" parent="Fires" unique_id=990606056 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.687899, 1.4608674, 5.576334)
+
+[node name="Particles6" parent="Fires" unique_id=809595767 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.863348, 0.86566687, 4.958752)
+
+[node name="Particles7" parent="Fires" unique_id=1286613893 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.213113, 0.8656671, 29.399614)
+
+[node name="Particles8" parent="Fires" unique_id=1135945379 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.615863, 0.86566687, 39.512177)
+
+[node name="Particles9" parent="Fires" unique_id=270300980 instance=ExtResource("5_a2ho0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.474451, 1.9884999, 17.452003)
 
 [node name="Scenario" type="Node3D" parent="." unique_id=1525227139]
 
