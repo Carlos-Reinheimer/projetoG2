@@ -22,8 +22,6 @@ func _ready() -> void:
 func onLoadNextFloor() -> void:
 	player.onStartLoadNextLevel()
 	currentFloor += 1
-	countFiresOnFloor()
-	countEnemiesOnFloor()
 	
 	await fade.fade(1.0, 1).finished
 	currentFloorScene.queue_free()
@@ -36,6 +34,8 @@ func onLoadNextFloor() -> void:
 	player.global_position = floorSp.global_position
 	
 	await fade.fade(0.0, 1).finished
+	countFiresOnFloor()
+	countEnemiesOnFloor()
 	player.onFinishLoadNextLevel()
 
 func countEnemiesOnFloor() -> void:

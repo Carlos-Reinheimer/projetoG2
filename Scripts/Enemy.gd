@@ -178,7 +178,6 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 func _on_button_mash_game_finished(has_won: bool) -> void:
-	print("_on_button_mash_game_finished")
 	button_mash.stop()
 	if has_won:
 		pullInFast()

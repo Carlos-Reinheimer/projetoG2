@@ -215,15 +215,32 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 
 [node name="Enter Door Mesh" parent="." unique_id=174069237 instance=ExtResource("4_5x301")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.546916, 2.2712433, 1.0551661)
 
+[node name="Navigation Links" type="Node3D" parent="." unique_id=345636989]
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="Navigation Links" unique_id=1317614373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.68561, 0, 8.581485)
+end_position = Vector3(0, 0, 4.175)
+
+[node name="NavigationLink3D2" type="NavigationLink3D" parent="Navigation Links" unique_id=1048879540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.68561, 0, 18.23964)
+end_position = Vector3(0, 0, 4.175)
+
+[node name="NavigationLink3D3" type="NavigationLink3D" parent="Navigation Links" unique_id=1493845151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6254659, 0, 11.846207)
+end_position = Vector3(0, 0, 7.11)
+
 [node name="Enemies" type="Node3D" parent="." unique_id=1079233868]
 
 [node name="Enemy2" parent="Enemies" unique_id=1289867849 instance=ExtResource("32_18gw6")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 15.469438, 0.79896814, 5.8330736)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 17.06054, 0.79896814, 2.9208436)
 
 [node name="Fires" type="Node3D" parent="." unique_id=1441574400]
 
 [node name="Particles" parent="Fires" unique_id=187325746 instance=ExtResource("3_obdan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.08743, 0.9557147, 17.540321)
+
+[node name="Particles2" parent="Fires" unique_id=1471086421 instance=ExtResource("3_obdan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3370247, 0.9557147, 26.524572)
 
 [node name="Scenario" type="Node3D" parent="." unique_id=1915547537]
 
