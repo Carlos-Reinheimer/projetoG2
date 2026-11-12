@@ -263,7 +263,10 @@ func _on_button_mash_mash_pressed(progress: float) -> void:
 
 func cool_down(duration := 2.0):
 	for m in find_children("*", "MeshInstance3D", true, false):
-		var mat = m.get_active_material(0)
-		if mat is ShaderMaterial:
-			var tween := create_tween()
-			tween.tween_property(mat, "shader_parameter/cooling", 1.0, duration)
+		if m.get_surface_override_material(0) == null:
+			var mat = m.get_active_material(0)
+			if mat is ShaderMaterial:
+				m.set_surface_override_material(0, mat.duplicate())
+		var own = m.get_surface_override_material(0)
+		if own:
+			create_tween().tween_property(own, "shader_parameter/cooling", 1.0, duration)
