@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var perception_timer: Timer = $PerceptionTimer
 @onready var navigation: NavigationAgent3D = $NavigationAgent3D
 @onready var look_range: Area3D = $LookRange
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var outline_material: ShaderMaterial
 var fire_memory: Array[Vector3] = []
@@ -20,25 +21,22 @@ var puller = null
 var onLink := false
 var linkExit := Vector3.ZERO
 var currentLink: Node = null
+var dashLeft := 0.0
+
+var escapeImmunity := 0.0
+const ESCAPE_IMMUNITY_TIME := 2.5
 
 const MAX_SPEED := 10.0
+const DASH_DURATION := 0.8 
+const DASH_BOOST := 12.0  
 
 enum State {
 	NORMAL,
 	RUNNING,
 	GETTING_PULL,
-	CAPTURED
+	CAPTURED,
+	PHASING
 }
-
-
-"""
-TODO: 
-	- Inimigo fugir do player
-	- Velocidade conforme Instensidade
-	- Aumentar intensidade perto de chamas
-	- Quando as chames se extinguirem, remover da lógica
-	- Se se extinguir enquanto o inimigo estiver lá, o que faz? 
-"""
 
 func _ready() -> void:
 	navigation.link_reached.connect(_on_link_reached)
@@ -85,6 +83,7 @@ func isNearRealFire() -> bool:
 func goToRandomFire() -> void:
 	if getFires().is_empty():
 		return
+	animation_player.play("Moving")
 	var options := getFires().filter(
 		func(f): return f.global_position.distance_to(global_position) > 2.0
 	)
@@ -93,6 +92,7 @@ func goToRandomFire() -> void:
 	navigation.set_target_position(options.pick_random().global_position)
 
 func goToMostDistanceFire() -> void:
+	animation_player.play("Moving")
 	if currentSpeed > 1:
 		currentSpeed -= 1
 	print("Velocidade do fogo atualizada para " + str(currentSpeed))
@@ -110,7 +110,9 @@ func goToMostDistanceFire() -> void:
 
 	navigation.set_target_position(farthest_position)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	dashLeft = maxf(dashLeft - delta, 0.0)
+
 	if onLink and global_position.distance_to(linkExit) < 1.0:
 		_on_link_finished()
 
@@ -122,8 +124,10 @@ func _physics_process(_delta: float) -> void:
 	direction.y = 0.0
 	direction = direction.normalized()
 
-	velocity.x = direction.x * currentSpeed
-	velocity.z = direction.z * currentSpeed
+	var speed := currentSpeed + DASH_BOOST * (dashLeft / DASH_DURATION)
+
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
 
 	# Vira o inimigo na direção do movimento
 	if direction.length() > 0.01:
@@ -132,6 +136,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
+	escapeImmunity = maxf(escapeImmunity - delta, 0.0)
 	if target_position != Vector3.ZERO:
 		position = position.move_toward(target_position, delta * pull_velocity)
 	updateSpeedRestore(delta)
@@ -148,13 +153,22 @@ func updateSpeedRestore(delta: float) -> void:
 		restoreCooldownLeft = restoreInterval
 
 func gettingPull(player: Player):
-	button_mash.start(ButtonMash.Mode.values().pick_random())
+	if currentState == State.PHASING or escapeImmunity > 0.0:
+		return
+	cool_down()
+	if currentState == State.GETTING_PULL:
+		return
+	animation_player.play("Absorb")
+	#button_mash.start(ButtonMash.Mode.values().pick_random())
+	button_mash.start(ButtonMash.Mode.MASH)
 	currentState = State.GETTING_PULL
 	navigation.target_position = global_position
 	target_position = player.global_position
 	puller = player
+	look_at(target_position, Vector3.UP) # melhorar
 
 func stopPull():
+	animation_player.play("Moving")
 	currentState = State.RUNNING
 	button_mash.stop()
 	target_position = Vector3.ZERO
@@ -164,15 +178,22 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 func _on_button_mash_game_finished(has_won: bool) -> void:
+	button_mash.stop()
 	if has_won:
 		pullInFast()
-	else:
-		SignalBus.emit_signal("captureEnemy", -enemyPoints)
-		currentState = State.RUNNING
-		goToMostDistanceFire()
-		puller.dropTarget()
-		puller = null
-	button_mash.stop()
+		return
+
+	SignalBus.emit_signal("captureEnemy", -enemyPoints)
+	currentState = State.RUNNING
+	target_position = Vector3.ZERO
+	goToMostDistanceFire()
+	puller.failedCapture()
+	puller = null
+	dash()
+	escapeImmunity = ESCAPE_IMMUNITY_TIME
+
+func dash() -> void:
+	dashLeft = DASH_DURATION
 
 func pullInFast() -> void:
 	currentState = State.CAPTURED
@@ -203,6 +224,7 @@ func _on_navigation_agent_3d_navigation_finished() -> void:
 	# Se o inimigo está sendo puxado não faz sentido fazer ele andar
 	if currentState == State.GETTING_PULL or currentState == State.CAPTURED:
 		return
+	animation_player.play("Idle")
 	currentState = State.NORMAL
 	var wait_time := 10.0 if isNearRealFire() else 2.0
 	await get_tree().create_timer(wait_time).timeout
@@ -219,6 +241,7 @@ func _on_link_reached(details: Dictionary) -> void:
 func _on_link_started() -> void:
 	fadeTo(0.5)
 	print("Passano")
+	animation_player.play("Phasing")
 	# troca animação, velocidade, desliga colisão, etc.
 	pass
 
@@ -226,6 +249,7 @@ func _on_link_finished() -> void:
 	onLink = false
 	currentLink = null
 	fadeTo(1)
+	animation_player.play("Moving")
 	# volta animação e propriedades ao normal
 
 func fadeTo(value: float, duration: float = 0.3) -> void:
@@ -236,3 +260,8 @@ func fadeTo(value: float, duration: float = 0.3) -> void:
 func _on_button_mash_mash_pressed(progress: float) -> void:
 	if is_instance_valid(puller):
 		puller.mashShake(progress)
+
+func cool_down(duration := 2.0):
+	var mat: ShaderMaterial = $"Enemy 1/Enemy 1".get_active_material(0)
+	var tween := create_tween()
+	tween.tween_property(mat, "shader_parameter/cooling", 1.0, duration)

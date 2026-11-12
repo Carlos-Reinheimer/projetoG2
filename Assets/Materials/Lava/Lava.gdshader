@@ -7,9 +7,12 @@ uniform int depth_min_layers = 8;
 uniform int depth_max_layers = 16;
 uniform vec2 depth_flip = vec2(1.0);
 uniform float variation = 0.0;
+uniform float cooling : hint_range(0.0, 1.0) = 0.0;
+uniform vec3 cooled_color : source_color = vec3(0.08, 0.06, 0.06);
+uniform float cooled_emission_min = 0.0;
 varying float elapsed_time;
 void vertex() {
-	elapsed_time = TIME;
+	elapsed_time = TIME * (1.0 - cooling);
 	UV = UV*uv1_scale.xy+uv1_offset.xy;
 }
 float dot2(vec2 x) {
@@ -705,13 +708,21 @@ vec4 o1153718826244_0_1_rgba = o1145514767504_0_1_rgba;
 
 	vec3 albedo_tex = ((o1153718826244_0_1_rgba).rgb).rgb;
 	albedo_tex = mix(pow((albedo_tex + vec3(0.055)) * (1.0 / (1.0 + 0.055)),vec3(2.4)),albedo_tex * (1.0 / 12.92),lessThan(albedo_tex,vec3(0.04045)));
+
+	// --- ESFRIAMENTO ---
+	// Escurece o albedo em direção a uma cor de rocha fria,
+	// mantendo um pouco do padrão original para não ficar chapado.
+	float luma = dot(albedo_tex, vec3(0.299, 0.587, 0.114));
+	vec3 rock = cooled_color * (0.6 + luma);
+	albedo_tex = mix(albedo_tex, rock, cooling);
+
 	ALBEDO = albedo_tex*p_o1145481213070_albedo_color.rgb;
 	METALLIC = 1.0*p_o1145481213070_metallic;
 	ROUGHNESS = 1.0*p_o1145481213070_roughness;
 	NORMAL_MAP = ((o1153752380678_0_1_rgba).rgb);
 	NORMAL_MAP_DEPTH = p_o1145481213070_normal;
-	EMISSION = ((o1155950196021_0_1_rgba).rgb)*p_o1145481213070_emission_energy;
+
+	// A emissão (o brilho da lava) apaga conforme esfria
+	float emission_mult = mix(1.0, cooled_emission_min, cooling);
+	EMISSION = ((o1155950196021_0_1_rgba).rgb)*p_o1145481213070_emission_energy*emission_mult;
 }
-
-
-

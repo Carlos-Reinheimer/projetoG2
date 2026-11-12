@@ -20,6 +20,8 @@ const KNOCKBACK_DECAY := 25.0  # quão rápido o empurrão perde força
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var isAutoPlayable: bool = false
+@export var failStun := 1.0
+@export var failLockout := 1.0
 
 var isPlayable : bool = false
 var _mouse_input : bool = false
@@ -32,11 +34,11 @@ var stun_left := 0.0
 var shake_trauma := 0.0
 var knockback := Vector3.ZERO
 var currentState := State.NORMAL
+var pull_blocked := false
+var lockout_left := 0.0
 
 var aimedEnemy: Node = null
 var enemyTarget = null
-
-var button_mash = preload("res://Scenes/MiniGame/ButtonMash.tscn")
 
 enum State {
 	NORMAL,
@@ -85,6 +87,8 @@ func _physics_process(delta: float) -> void:
 	if not isPlayable:
 		return
 
+	_apply_shake(delta)
+	lockout_left = maxf(lockout_left - delta, 0.0)
 	updateAimHighlight()
 
 	var stunned := stun_left > 0.0
@@ -94,13 +98,19 @@ func _physics_process(delta: float) -> void:
 		swith_state(State.NORMAL)
 		return
 
-	if EnemyInRange():
+	var mouse_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	if not mouse_down:
+		pull_blocked = false
+	
+	var can_pull := not pull_blocked and lockout_left <= 0.0
+
+	if currentState != State.PULLING and can_pull and EnemyInRange():
 		enemyTarget = ray.get_collider()
-	if enemyTarget:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			swith_state(State.PULLING)
-			enemyTarget.gettingPull(self)
-	else:
+
+	if mouse_down and can_pull  and is_instance_valid(enemyTarget):
+		swith_state(State.PULLING)
+		enemyTarget.gettingPull(self)
+	elif currentState == State.PULLING:
 		dropTarget()
 		swith_state(State.NORMAL)
 	
@@ -124,7 +134,6 @@ func _physics_process(delta: float) -> void:
 		colission_splash.emitting = false
 
 	_update_camera(delta)
-	_apply_shake(delta)
 
 	if not is_on_floor():
 		velocity += GRAVITY * delta
@@ -216,3 +225,10 @@ func onFinishLoadNextLevel() -> void:
 
 func onEndGame() -> void:
 	isPlayable = false
+
+func failedCapture() -> void:
+	enemyTarget = null            
+	swith_state(State.NORMAL)    
+	pull_blocked = true
+	lockout_left = failStun + failLockout
+	stun(failStun)  

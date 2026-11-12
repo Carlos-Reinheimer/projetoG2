@@ -528,13 +528,13 @@ mash_time = 0.8
 [node name="Enemy 1" parent="." unique_id=430817101 instance=ExtResource("3_a8ovj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1748296, 0, 0)
 
-[node name="Head" parent="Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(430817101, 1317965368) index="0" unique_id=1843272144]
+[node name="Head" parent="Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(430817101, 34856375) index="0" unique_id=10819774]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.9999998, -0.08837157, 0.6275167, 0.011401222)
 
-[node name="Left Hand" parent="Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(430817101, 1317965368) index="1" unique_id=1836079462]
+[node name="Left Hand" parent="Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(430817101, 34856375) index="1" unique_id=2039469336]
 transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999997, -0.21523376, 0.03826487, 0.42174563)
 
-[node name="Right Hand" parent="Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(430817101, 1317965368) index="2" unique_id=872334408]
+[node name="Right Hand" parent="Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(430817101, 34856375) index="2" unique_id=1480810466]
 transform = Transform3D(1.0000001, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, -0.21523376, 0.007554668, -0.39375204)
 
 [node name="Flames" type="GPUParticles3D" parent="." unique_id=961396124]
@@ -547,6 +547,13 @@ draw_pass_1 = SubResource("QuadMesh_axtmp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1361421365]
 libraries/ = SubResource("AnimationLibrary_lmntt")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=451782102]
+path_desired_distance = 1.5
+target_desired_distance = 2.0
+path_height_offset = -1.2
+path_max_distance = 1.01
+debug_enabled = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="game_finished" from="ButtonMash" to="." method="_on_button_mash_game_finished"]
