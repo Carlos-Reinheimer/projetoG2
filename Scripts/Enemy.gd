@@ -47,9 +47,40 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	goToRandomFire()
 
+func _physics_process(delta: float) -> void:
+	dashLeft = maxf(dashLeft - delta, 0.0)
+
+	if onLink and global_position.distance_to(linkExit) < 1.0:
+		_on_link_finished()
+
+	if navigation.is_navigation_finished():
+		return
+
+	var next_pos := navigation.get_next_path_position()
+	var direction := (next_pos - global_position)
+	direction.y = 0.0
+	direction = direction.normalized()
+
+	var speed := currentSpeed + DASH_BOOST * (dashLeft / DASH_DURATION)
+
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+
+	# Vira o inimigo na direção do movimento
+	if direction.length() > 0.01:
+		look_at(global_position + direction, Vector3.UP)
+
+	move_and_slide()
+
+func _process(delta: float) -> void:
+	escapeImmunity = maxf(escapeImmunity - delta, 0.0)
+	if target_position != Vector3.ZERO:
+		position = position.move_toward(target_position, delta * pull_velocity)
+	updateSpeedRestore(delta)
+
 func setHighlight(on: bool) -> void:
 	for m in find_children("*", "MeshInstance3D", true, false):
-		print(m.name, " escala global: ", m.global_transform.basis.get_scale())
+		#print(m.name, " escala global: ", m.global_transform.basis.get_scale())
 		m.material_overlay = outline_material if on else null
 
 func rememberFires() -> void:
@@ -95,7 +126,7 @@ func goToMostDistanceFire() -> void:
 	animation_player.play("Moving")
 	if currentSpeed > 1:
 		currentSpeed -= 1
-	print("Velocidade do fogo atualizada para " + str(currentSpeed))
+	#print("Velocidade do fogo atualizada para " + str(currentSpeed))
 	if getFires().is_empty():
 		return
 	var fires = getFires()
@@ -110,37 +141,6 @@ func goToMostDistanceFire() -> void:
 
 	navigation.set_target_position(farthest_position)
 
-func _physics_process(delta: float) -> void:
-	dashLeft = maxf(dashLeft - delta, 0.0)
-
-	if onLink and global_position.distance_to(linkExit) < 1.0:
-		_on_link_finished()
-
-	if navigation.is_navigation_finished():
-		return
-
-	var next_pos := navigation.get_next_path_position()
-	var direction := (next_pos - global_position)
-	direction.y = 0.0
-	direction = direction.normalized()
-
-	var speed := currentSpeed + DASH_BOOST * (dashLeft / DASH_DURATION)
-
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
-
-	# Vira o inimigo na direção do movimento
-	if direction.length() > 0.01:
-		look_at(global_position + direction, Vector3.UP)
-
-	move_and_slide()
-
-func _process(delta: float) -> void:
-	escapeImmunity = maxf(escapeImmunity - delta, 0.0)
-	if target_position != Vector3.ZERO:
-		position = position.move_toward(target_position, delta * pull_velocity)
-	updateSpeedRestore(delta)
-
 func updateSpeedRestore(delta: float) -> void:
 	# Longe de chama viva (ou já no máximo): não recupera e zera a contagem
 	if currentSpeed >= MAX_SPEED or not isNearRealFire():
@@ -149,7 +149,7 @@ func updateSpeedRestore(delta: float) -> void:
 	restoreCooldownLeft -= delta
 	if restoreCooldownLeft <= 0.0:
 		currentSpeed = min(currentSpeed + 1, MAX_SPEED)
-		print("Velocidade do fogo atualizada para " + str(currentSpeed))
+		#print("Velocidade do fogo atualizada para " + str(currentSpeed))
 		restoreCooldownLeft = restoreInterval
 
 func gettingPull(player: Player):
@@ -161,6 +161,7 @@ func gettingPull(player: Player):
 	animation_player.play("Absorb")
 	#button_mash.start(ButtonMash.Mode.values().pick_random())
 	button_mash.start(ButtonMash.Mode.MASH)
+	button_mash.game_finished.connect(_on_button_mash_game_finished)
 	currentState = State.GETTING_PULL
 	navigation.target_position = global_position
 	target_position = player.global_position
@@ -178,6 +179,7 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 func _on_button_mash_game_finished(has_won: bool) -> void:
+	print("_on_button_mash_game_finished")
 	button_mash.stop()
 	if has_won:
 		pullInFast()
@@ -240,7 +242,7 @@ func _on_link_reached(details: Dictionary) -> void:
 
 func _on_link_started() -> void:
 	fadeTo(0.5)
-	print("Passano")
+	#print("Passano")
 	animation_player.play("Phasing")
 	# troca animação, velocidade, desliga colisão, etc.
 	pass

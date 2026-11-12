@@ -28,7 +28,7 @@ enum Mode { MASH, ALTERNATE, SEQUENCE }
 @export var texture_folder := "res://Assets/UI/Inputs/"
 @export var texture_prefix := "keyboard_"
 @export var normal_suffix := ""
-@export var pressed_suffix := "_outline"   # troque se quiser o contrário
+@export var pressed_suffix := "_outline"
 @export var prompt_spacing := 80.0
 @export var flash_time := 0.1
 ## Ação -> nome da tecla no arquivo da textura
