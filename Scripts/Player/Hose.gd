@@ -105,7 +105,7 @@ func changeEmission(targetColor: Color, targetIntensity: float) -> void:
 func isEnemyInRange() -> bool:
 	return ray.get_collider() and ray.get_collider().is_in_group("Enemy")
 
-func dropTarget():
+func dropTarget(): 
 	if not _enemyTarget:
 		return
 

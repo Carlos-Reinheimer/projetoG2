@@ -21,11 +21,20 @@ var onLink := false
 var linkExit := Vector3.ZERO
 var currentLink: Node = null
 var dashLeft := 0.0
+var heat_tween: Tween
+
+@export var fleeDistance := 12.0
+@export var fleeTime := 4.0
+
+var fleeId := 0
 
 var escapeImmunity := 0.0
 const ESCAPE_IMMUNITY_TIME := 2.5
 
-const MAX_SPEED := 10.0
+@export var buttonMashMode := ButtonMash.Mode.MASH
+
+const MAX_SPEED := 20.0
+const MIN_SPEED := 5.0
 const DASH_DURATION := 0.8 
 const DASH_BOOST := 12.0  
 
@@ -46,9 +55,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	goToRandomFire()
 
-func _physics_process(delta: float) -> void:
-	dashLeft = maxf(dashLeft - delta, 0.0)
-
+func _physics_process(_delta: float) -> void:
 	if onLink and global_position.distance_to(linkExit) < 1.0:
 		_on_link_finished()
 
@@ -79,7 +86,6 @@ func _process(delta: float) -> void:
 
 func setHighlight(on: bool) -> void:
 	for m in find_children("*", "MeshInstance3D", true, false):
-		#print(m.name, " escala global: ", m.global_transform.basis.get_scale())
 		m.material_overlay = outline_material if on else null
 
 func rememberFires() -> void:
@@ -111,6 +117,7 @@ func isNearRealFire() -> bool:
 	return false
 
 func goToRandomFire() -> void:
+	print_stack()
 	if getFires().is_empty():
 		return
 	animation_player.play("Moving")
@@ -122,10 +129,12 @@ func goToRandomFire() -> void:
 	navigation.set_target_position(options.pick_random().global_position)
 
 func goToMostDistanceFire() -> void:
+	print_stack()
 	animation_player.play("Moving")
 	if currentSpeed > 1:
-		currentSpeed -= 1
-	#print("Velocidade do fogo atualizada para " + str(currentSpeed))
+		updateHeatFromSpeed()
+		if currentSpeed > MIN_SPEED:
+			currentSpeed -= 1
 	if getFires().is_empty():
 		return
 	var fires = getFires()
@@ -140,6 +149,36 @@ func goToMostDistanceFire() -> void:
 
 	navigation.set_target_position(farthest_position)
 
+func fleeInRandomDirection() -> void:
+	animation_player.play("Moving")
+
+	# mantém a mecânica de perder velocidade/calor ao se assustar
+	if currentSpeed > 1:
+		updateHeatFromSpeed()
+		if currentSpeed > MIN_SPEED:
+			currentSpeed -= 1
+
+	var map := navigation.get_navigation_map()
+	var point := global_position
+	for i in 8:
+		var angle := randf() * TAU
+		var dir := Vector3(cos(angle), 0.0, sin(angle))
+		var raw := global_position + dir * randf_range(fleeDistance * 0.6, fleeDistance)
+		point = NavigationServer3D.map_get_closest_point(map, raw)
+		if point.distance_to(global_position) > fleeDistance * 0.5:
+			break  # achou um ponto realmente longe
+
+	navigation.target_position = point
+
+	# depois de um tempo, volta para algum fogo
+	fleeId += 1
+	var my_id := fleeId
+	await get_tree().create_timer(fleeTime).timeout
+	if my_id != fleeId or currentState != State.RUNNING:
+		return  # foi puxado ou assustado de novo
+	switchState(State.NORMAL)
+	goToRandomFire()
+
 func updateSpeedRestore(delta: float) -> void:
 	# Longe de chama viva (ou já no máximo): não recupera e zera a contagem
 	if currentSpeed >= MAX_SPEED or not isNearRealFire():
@@ -148,6 +187,7 @@ func updateSpeedRestore(delta: float) -> void:
 	restoreCooldownLeft -= delta
 	if restoreCooldownLeft <= 0.0:
 		currentSpeed = min(currentSpeed + 1, MAX_SPEED)
+		heat_up(restoreInterval)
 		#print("Velocidade do fogo atualizada para " + str(currentSpeed))
 		restoreCooldownLeft = restoreInterval
 
@@ -159,7 +199,7 @@ func gettingPull(player: Player):
 		return
 	animation_player.play("Absorb")
 	#button_mash.start(ButtonMash.Mode.values().pick_random())
-	button_mash.start(ButtonMash.Mode.MASH)
+	button_mash.start(buttonMashMode)
 	button_mash.game_finished.connect(_on_button_mash_game_finished)
 	currentState = State.GETTING_PULL
 	navigation.target_position = global_position
@@ -168,6 +208,8 @@ func gettingPull(player: Player):
 	look_at(target_position, Vector3.UP) # melhorar
 
 func stopPull():
+	if currentState != State.GETTING_PULL:
+		return
 	animation_player.play("Moving")
 	currentState = State.RUNNING
 	button_mash.stop()
@@ -187,6 +229,7 @@ func _on_button_mash_game_finished(has_won: bool) -> void:
 	currentState = State.RUNNING
 	target_position = Vector3.ZERO
 	goToMostDistanceFire()
+	puller.pushBack(global_position)
 	puller.failedCapture()
 	puller = null
 	dash()
@@ -216,13 +259,18 @@ func pullInFast() -> void:
 	queue_free()
 
 func _on_look_range_body_entered(body: Node3D) -> void:
-	if body is Player and currentState != State.GETTING_PULL:
-		currentState = State.RUNNING
-		goToMostDistanceFire()
+	if body is Player and currentState != State.GETTING_PULL and currentState != State.RUNNING:
+		print("in range")
+		switchState(State.RUNNING)
+		dash()
+		fleeInRandomDirection()
 
 func _on_navigation_agent_3d_navigation_finished() -> void:
 	# Se o inimigo está sendo puxado não faz sentido fazer ele andar
 	if currentState == State.GETTING_PULL or currentState == State.CAPTURED:
+		return
+	if currentState == State.RUNNING:
+		animation_player.play("Idle")
 		return
 	animation_player.play("Idle")
 	currentState = State.NORMAL
@@ -239,6 +287,7 @@ func _on_link_reached(details: Dictionary) -> void:
 	_on_link_started()
 
 func _on_link_started() -> void:
+	switchState(State.PHASING)
 	fadeTo(0.5)
 	#print("Passano")
 	animation_player.play("Phasing")
@@ -249,8 +298,8 @@ func _on_link_finished() -> void:
 	onLink = false
 	currentLink = null
 	fadeTo(1)
+	switchState(State.NORMAL)
 	animation_player.play("Moving")
-	# volta animação e propriedades ao normal
 
 func fadeTo(value: float, duration: float = 0.3) -> void:
 	var tween := create_tween().set_parallel(true)
@@ -261,7 +310,10 @@ func _on_button_mash_mash_pressed(progress: float) -> void:
 	if is_instance_valid(puller):
 		puller.mashShake(progress)
 
-func cool_down(duration := 2.0):
+func set_cooling(target: float, duration: float) -> void:
+	if heat_tween:
+		heat_tween.kill()
+	heat_tween = create_tween().set_parallel(true)
 	for m in find_children("*", "MeshInstance3D", true, false):
 		if m.get_surface_override_material(0) == null:
 			var mat = m.get_active_material(0)
@@ -269,4 +321,19 @@ func cool_down(duration := 2.0):
 				m.set_surface_override_material(0, mat.duplicate())
 		var own = m.get_surface_override_material(0)
 		if own:
-			create_tween().tween_property(own, "shader_parameter/cooling", 1.0, duration)
+			heat_tween.tween_property(own, "shader_parameter/cooling", target, duration)
+
+func cool_down(duration := 2.0) -> void:
+	set_cooling(1.0, duration)
+
+func heat_up(duration := 2.0) -> void:
+	set_cooling(0.0, duration)
+
+func updateHeatFromSpeed() -> void:
+	var heat := currentSpeed / MAX_SPEED         
+	set_cooling(1.0 - heat, 0.5)                
+
+func switchState(newState: State) -> void:
+	if currentState == State.PHASING and newState != State.PHASING:
+		fadeTo(1.0, 0.15)
+	currentState = newState
