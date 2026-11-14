@@ -1,55 +1,53 @@
 extends Control
 
-@export var timerDecayRate : float = 0.5
+const PROGRESS: float = 0.1
+
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var timer: Timer = $Timer
+@onready var endgame_panel: Control = $"../Endgame Panel"
 
-var tween: Tween
-
-var fireProgress: float = 0:
-	set(value):
-		fireProgress = clampf(value, 0, maxPoints)
-		updateFireProgress(value)
+var fireProgress: float = 0
 var maxPoints: float = 0
-var progressPoints
+var isRunning: bool = false
 
 func _ready() -> void:
-	setUp()
 	SignalBus.captureEnemy.connect(onCaptureEnemy)
 	SignalBus.extinguishFire.connect(onExinguishFire)
 	SignalBus.floorExtinguised.connect(onFloorExtinguised)
 
+func _process(delta: float) -> void:
+	if not isRunning:
+		return
+	
+	fireProgress += PROGRESS * delta
+	fireProgress = clampf(fireProgress, 0, maxPoints)
+	
+	if fireProgress > maxPoints:
+		return
+	
+	progress_bar.value = fireProgress
+	if fireProgress == maxPoints:
+		SignalBus.emit_signal("endGame")
+		displayEndgamePanel()
+		
 func setUp():
 	var enemies = get_tree().get_nodes_in_group("Enemy").reduce(func(acc, enemy): return acc + enemy.enemyPoints, 0)
 	var fires = get_tree().get_nodes_in_group("Fire").reduce(func(acc, fire): return acc + fire.firePoints, 0)
 	maxPoints = enemies + fires
 	progress_bar.max_value = maxPoints
-	#$Label.text = "Pontos máximos: " + str(maxPoints)
+	progress_bar.value = 0.0
+	isRunning = true
 
-func updateFireProgress( value: float ):
-	print("recebido o valor " + str(value))
-	#if (value < 0 and fireProgress == 0) or (value > 0 and fireProgress == maxPoints):
-		#return
-	#$Label2.text = "Pontos atuais: " + str(fireProgress)
-	animateProgressBar(value)
+func displayEndgamePanel() -> void:
+	print("test")
+	var tween = create_tween()
+	tween.tween_property(endgame_panel.material, "shader_parameter/progress", .8, 5.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	await tween.finished
 
 func onCaptureEnemy(points: int):
-	print("points recebidos " + str(points))
 	fireProgress -= points
-
-func _on_timer_timeout() -> void:
-	fireProgress += timerDecayRate
 
 func onExinguishFire(points: int):
 	fireProgress -= points
 
 func onFloorExtinguised():
-	timer.stop()
-
-func animateProgressBar(novo_valor: float, duracao: float = 0.3) -> void:
-	if tween:
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(progress_bar, "value", novo_valor, duracao)\
-		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_OUT)
+	isRunning = false

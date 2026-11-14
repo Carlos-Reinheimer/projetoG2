@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ds0qfa712qk3m"]
+
+[ext_resource type="Material" uid="uid://sqkyrcclqapi" path="res://Assets/Materials/FireUI.tres" id="1_mftif"]
+
+[node name="Endgame Panel" type="Control" unique_id=1888789887]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fire Panel" type="Panel" parent="." unique_id=2103401335]
+material = ExtResource("1_mftif")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

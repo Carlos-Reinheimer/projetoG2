@@ -42,6 +42,8 @@ var enemyTarget = null
 
 enum State {
 	NORMAL,
+	CAPTURING,
+	WATTERING,
 	PULLING
 }
 
@@ -54,9 +56,6 @@ func _ready() -> void:
 	if isAutoPlayable:
 		isPlayable = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		#var tween = create_tween()
-		#tween.tween_property($"../Control/Panel".material, "shader_parameter/progress", .8, 5.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-		#await tween.finished
 	_mouse_rotation.y = rotation.y
 	_mouse_rotation.x = camera_3d.rotation.x
 
@@ -75,7 +74,7 @@ func updateAimHighlight() -> void:
 		aimedEnemy.setHighlight(true)
 
 func dropTarget():
-	if enemyTarget and currentState == State.PULLING:
+	if enemyTarget and currentState == State.CAPTURING:
 		stun(0.2)
 		enemyTarget.stopPull()
 		enemyTarget = null
@@ -95,31 +94,36 @@ func _physics_process(delta: float) -> void:
 	if stunned:
 		stun_left -= delta
 		dropTarget()
-		swith_state(State.NORMAL)
+		switch_state(State.NORMAL)
 		return
 
 	var mouse_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	if mouse_down and currentState != State.PULLING:
+		switch_state(State.PULLING)
+	elif not mouse_down and currentState != State.NORMAL:
+		switch_state(State.NORMAL)
 	if not mouse_down:
 		pull_blocked = false
 	
 	var can_pull := not pull_blocked and lockout_left <= 0.0
 
-	if currentState != State.PULLING and can_pull and EnemyInRange():
+	if currentState != State.CAPTURING and can_pull and EnemyInRange():
 		enemyTarget = ray.get_collider()
 
-	if mouse_down and can_pull  and is_instance_valid(enemyTarget):
-		swith_state(State.PULLING)
+	if mouse_down and can_pull and is_instance_valid(enemyTarget):
+		switch_state(State.CAPTURING)
 		enemyTarget.gettingPull(self)
-	elif currentState == State.PULLING:
+	elif currentState == State.CAPTURING:
 		dropTarget()
-		swith_state(State.NORMAL)
+		switch_state(State.NORMAL)
 	
-	if currentState == State.PULLING:
+	if currentState == State.CAPTURING:
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		switch_state(State.WATTERING)
 		if not water_splash.emitting:
 			water_splash.emitting = true
 		if ray.get_collider():
@@ -127,11 +131,11 @@ func _physics_process(delta: float) -> void:
 			colission_splash.global_position = colissionPoint
 			colission_splash.emitting = true
 		if ray.get_collider() != null and ray.get_collider().get_parent().has_method("puttingOut"):
-			print("To olhando pra " + str(ray.get_collider().name))
 			ray.get_collider().get_parent().puttingOut()
 	elif water_splash.emitting:
 		water_splash.emitting = false
 		colission_splash.emitting = false
+		switch_state(State.NORMAL)
 
 	_update_camera(delta)
 
@@ -150,9 +154,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	if input_dir != Vector2.ZERO and animation_player.current_animation == "idle":
+	var isMoving = input_dir != Vector2.ZERO
+	var isIdle = animation_player.current_animation == "idle"
+	if isMoving and isIdle and currentState == State.NORMAL:
 		animation_player.play("Moving")
-	elif input_dir == Vector2.ZERO:
+	elif not isMoving:
 		animation_player.play("idle")
 
 	move_and_slide()
@@ -182,7 +188,7 @@ func _update_camera(delta):
 	_rotation_input = 0.0
 	_tilt_input = 0.0
 
-func swith_state(value : State):
+func switch_state(value : State):
 	currentState = value
 
 func addShake(amount: float) -> void:
@@ -228,7 +234,7 @@ func onEndGame() -> void:
 
 func failedCapture() -> void:
 	enemyTarget = null            
-	swith_state(State.NORMAL)    
+	switch_state(State.NORMAL)    
 	pull_blocked = true
 	lockout_left = failStun + failLockout
 	stun(failStun)  

@@ -3,8 +3,8 @@ extends Node
 @export var floors: Array[PackedScene] = []
 
 @onready var player: CharacterBody3D = $"../Player"
-@onready var levelUI: Control = $"../LevelUI"
 @onready var fade: CanvasLayer = $"../Fade"
+@onready var fire_progress_ui: Control = $"../Fire Progress UI"
 
 var currentFloor: int = 0
 var firesOnFloor: int = 0
@@ -15,9 +15,14 @@ func _ready() -> void:
 	SignalBus.connect("loadNextFloor", onLoadNextFloor)
 	SignalBus.connect("captureEnemy", onCaptureEnemy)
 	SignalBus.connect("extinguishFire", onExtinguishFire)
+	
 	currentFloorScene = $"../Floor"
+	setupLevel()
+
+func setupLevel() -> void:
 	countFiresOnFloor()
 	countEnemiesOnFloor()
+	fire_progress_ui.setUp()
 
 func onLoadNextFloor() -> void:
 	player.onStartLoadNextLevel()
@@ -34,8 +39,7 @@ func onLoadNextFloor() -> void:
 	player.global_position = floorSp.global_position
 	
 	await fade.fade(0.0, 1).finished
-	countFiresOnFloor()
-	countEnemiesOnFloor()
+	setupLevel()
 	player.onFinishLoadNextLevel()
 
 func countEnemiesOnFloor() -> void:

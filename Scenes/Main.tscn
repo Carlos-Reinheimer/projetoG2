@@ -4,19 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://c20lrmk6asfbs" path="res://Scenes/Utils/DialogManager.tscn" id="1_v1gob"]
 [ext_resource type="PackedScene" uid="uid://b2qqbqgkilk4v" path="res://Scenes/Floors/Floor_1.tscn" id="2_h1m7h"]
 [ext_resource type="PackedScene" uid="uid://d3qboqmpgar7j" path="res://Scenes/Utils/Fade.tscn" id="2_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://ds0qfa712qk3m" path="res://Scenes/UI/Endgame Panel.tscn" id="3_2w5on"]
 [ext_resource type="PackedScene" uid="uid://81ddvbt36p1f" path="res://Scenes/Floors/Floor_2.tscn" id="3_erwvk"]
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
 [ext_resource type="PackedScene" uid="uid://ck0s73eoy81g5" path="res://Scenes/Floors/Floor_3.tscn" id="5_346fj"]
 [ext_resource type="PackedScene" uid="uid://bkip04dx3dp6x" path="res://Scenes/Floors/Floor_0.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://c28tm8t5dftik" path="res://Scenes/Floors/Floor_5.tscn" id="6_0sclb"]
 [ext_resource type="PackedScene" uid="uid://cryfyybg6y2vc" path="res://Assets/Models/Outside Building/Environment.glb" id="6_v1gob"]
-[ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/LevelGUI.gd" id="7_jw32o"]
 [ext_resource type="PackedScene" uid="uid://dcjni2t4duvqm" path="res://Scenes/Floors/Floor_6.tscn" id="7_sxkr1"]
 [ext_resource type="PackedScene" uid="uid://dkxyigbnmyfcy" path="res://Scenes/Floors/Floor_7.tscn" id="8_fq0cl"]
 [ext_resource type="PackedScene" uid="uid://b6u4kvqf0tspp" path="res://Scenes/Floors/Floor_8.tscn" id="9_hwpts"]
 [ext_resource type="PackedScene" uid="uid://cacatwiqomohi" path="res://Scenes/Floors/Floor_9.tscn" id="10_jyqft"]
-[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="11_erwvk"]
-[ext_resource type="Material" uid="uid://sqkyrcclqapi" path="res://Assets/Materials/FireUI.tres" id="13_2w5on"]
+[ext_resource type="PackedScene" uid="uid://dhxjgpplad6c3" path="res://Scenes/UI/Fire Progress UI.tscn" id="11_erwvk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtmql"]
 sky_top_color = Color(0.73486686, 0.28531125, 0.1362226, 1)
@@ -37,54 +36,13 @@ tonemap_mode = 2
 
 [node name="DialogManager" parent="." unique_id=2052850963 instance=ExtResource("1_v1gob")]
 
+[node name="Fire Progress UI" parent="." unique_id=1171572019 instance=ExtResource("11_erwvk")]
+
+[node name="Endgame Panel" parent="." unique_id=1888789887 instance=ExtResource("3_2w5on")]
+
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")
 floors = Array[PackedScene]([ExtResource("2_h1m7h"), ExtResource("3_erwvk"), ExtResource("5_346fj"), ExtResource("5_346fj"), ExtResource("6_0sclb"), ExtResource("7_sxkr1"), ExtResource("8_fq0cl"), ExtResource("9_hwpts"), ExtResource("10_jyqft")])
-
-[node name="LevelUI" type="Control" parent="." unique_id=740453833]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("11_erwvk")
-script = ExtResource("7_jw32o")
-timerDecayRate = 0.2
-
-[node name="ProgressBar" type="ProgressBar" parent="LevelUI" unique_id=143970120]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -355.0
-offset_top = 34.0
-offset_right = 356.0
-offset_bottom = 48.0
-grow_horizontal = 2
-value = 50.0
-show_percentage = false
-
-[node name="Timer" type="Timer" parent="LevelUI" unique_id=1975681908]
-wait_time = 5.0
-autostart = true
-
-[node name="Endgame Control" type="Control" parent="." unique_id=818900761]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Fire Panel" type="Panel" parent="Endgame Control" unique_id=444929990]
-material = ExtResource("13_2w5on")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
 environment = SubResource("Environment_pbw6q")
@@ -102,5 +60,3 @@ isAutoPlayable = true
 
 [node name="Environment" parent="." unique_id=130281732 instance=ExtResource("6_v1gob")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.684446, -1.9073486e-06, 26.533066)
-
-[connection signal="timeout" from="LevelUI/Timer" to="LevelUI" method="_on_timer_timeout"]

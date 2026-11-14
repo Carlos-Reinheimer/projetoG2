@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dhxjgpplad6c3"]
+
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="1_lc0x5"]
+[ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/LevelGUI.gd" id="2_g85ws"]
+
+[node name="Fire Progress UI" type="Control" unique_id=1171572019]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lc0x5")
+script = ExtResource("2_g85ws")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1309624872]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -355.0
+offset_top = 34.0
+offset_right = 356.0
+offset_bottom = 48.0
+grow_horizontal = 2
+show_percentage = false
