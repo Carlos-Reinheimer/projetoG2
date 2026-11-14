@@ -47,7 +47,6 @@ enum State {
 
 func _ready() -> void:
 	SignalBus.connect("endGame", onEndGame)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	water_splash.emitting = false
 	colission_splash.emitting = false
 	

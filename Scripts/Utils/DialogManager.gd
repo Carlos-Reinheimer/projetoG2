@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var character_dialog: RichTextLabel = $Panel/CharacterDialog
 @onready var character_name: Label = $Panel/CharacterName
@@ -13,6 +13,10 @@ func _ready() -> void:
 func onFloorExtinguised():
 	await get_tree().create_timer(2).timeout
 	showDialog("Tutor Rial", ["Andar limpo, soldado", "Pode seguir para o próximo andar", "E cuidado"])
+
+func introDialog():
+	await get_tree().create_timer(0.5).timeout
+	showDialog("Tutor Rial", ["Bem vindo mano"])
 
 func showDialog( character: String, dialogs: Array[String] ):
 	popIn()
