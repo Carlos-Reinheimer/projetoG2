@@ -7,7 +7,7 @@ const GRAVITY = Vector3(0, -30, 0)
 const TILT_LOWER_LIMIT = deg_to_rad(-30.0)
 const TILT_UPPER_LIMIT = deg_to_rad(30.0)
 const MOUSE_SENSITIVITY = 0.5
-const MAX_SHAKE := 0.12        # deslocamento máximo da câmera
+const MAX_SHAKE := 1.5        # deslocamento máximo da câmera
 const SHAKE_DECAY := 5.0       # trauma perdido por segundo
 const KNOCKBACK_DECAY := 25.0  # quão rápido o empurrão perde força
 
@@ -49,7 +49,6 @@ enum State {
 
 func _ready() -> void:
 	SignalBus.connect("endGame", onEndGame)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	water_splash.emitting = false
 	colission_splash.emitting = false
 	
@@ -94,7 +93,8 @@ func _physics_process(delta: float) -> void:
 	if stunned:
 		stun_left -= delta
 		dropTarget()
-		switch_state(State.NORMAL)
+		swith_state(State.NORMAL)
+		_apply_knockback_move(delta)
 		return
 
 	var mouse_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
@@ -161,11 +161,19 @@ func _physics_process(delta: float) -> void:
 	elif not isMoving:
 		animation_player.play("idle")
 
+	velocity.x += knockback.x
+	velocity.z += knockback.z
 	move_and_slide()
-	velocity.x -= knockback.x
-	velocity.z -= knockback.z
 	knockback = knockback.move_toward(Vector3.ZERO, KNOCKBACK_DECAY * delta)
-	
+
+func _apply_knockback_move(delta: float) -> void:
+	if not is_on_floor():
+		velocity += GRAVITY * delta
+	velocity.x = knockback.x
+	velocity.z = knockback.z
+	move_and_slide()
+	knockback = knockback.move_toward(Vector3.ZERO, KNOCKBACK_DECAY * delta)
+
 func _unhandled_input(event):
 	_mouse_input = event is InputEventMouseMotion
 	if _mouse_input :
@@ -196,7 +204,7 @@ func addShake(amount: float) -> void:
 
 # Cada aperto: shake pequeno que cresce com o progresso
 func mashShake(progress: float) -> void:
-	addShake(lerpf(0.08, 0.35, progress))
+	addShake(lerpf(0.08, 0.5, progress))
 
 func stun(duration: float = 0.6) -> void:
 	stun_left = duration
