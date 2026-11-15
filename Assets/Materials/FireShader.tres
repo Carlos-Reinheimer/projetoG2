@@ -72,6 +72,7 @@ billboard_type = 3
 keep_scale = true
 
 [resource]
+modes/blend = 1
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_uh5gp")
 nodes/vertex/2/position = Vector2(-80, 420)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)

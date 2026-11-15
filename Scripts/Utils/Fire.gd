@@ -1,6 +1,6 @@
 class_name Fire extends Node3D
 
-@onready var flames: GPUParticles3D = $Flames
+@onready var animated_flames: GPUParticles3D = $"Animated Flames"
 
 const MAX_HEALTH : float = 20.0
 var health := MAX_HEALTH # Trocar por uma progress bar
@@ -15,8 +15,8 @@ var scaleMinOriginal: float
 var scaleMaxOriginal: float
 
 func _ready():
-	mat = flames.process_material.duplicate()
-	flames.process_material = mat
+	mat = animated_flames.process_material.duplicate()
+	animated_flames.process_material = mat
 	
 	velMinOriginal = mat.initial_velocity_min
 	velMaxOriginal = mat.initial_velocity_max
@@ -36,9 +36,9 @@ func checkDeath() -> void:
 	if health <= 0:
 		puttOut = true
 		$FireArea/CollisionShape3D.set_deferred("disabled", true)
-		flames.emitting = false
+		animated_flames.emitting = false
 		SignalBus.emit_signal("extinguishFire", firePoints)
-		await get_tree().create_timer(flames.lifetime).timeout
+		await get_tree().create_timer(animated_flames.lifetime).timeout
 		queue_free()
 
 func _process(delta):

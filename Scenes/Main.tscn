@@ -16,21 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b6u4kvqf0tspp" path="res://Scenes/Floors/Floor_8.tscn" id="9_hwpts"]
 [ext_resource type="PackedScene" uid="uid://cacatwiqomohi" path="res://Scenes/Floors/Floor_9.tscn" id="10_jyqft"]
 [ext_resource type="PackedScene" uid="uid://dhxjgpplad6c3" path="res://Scenes/UI/Fire Progress UI.tscn" id="11_erwvk"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtmql"]
-sky_top_color = Color(0.73486686, 0.28531125, 0.1362226, 1)
-sky_horizon_color = Color(0.6292741, 0.12123371, 0.16978353, 1)
-ground_bottom_color = Color(0.29621774, 0.10569408, 0.07747012, 1)
-ground_horizon_color = Color(0.6198857, 0.12233841, 0.08249762, 1)
-
-[sub_resource type="Sky" id="Sky_rgh2o"]
-sky_material = SubResource("ProceduralSkyMaterial_xtmql")
-
-[sub_resource type="Environment" id="Environment_pbw6q"]
-background_mode = 2
-sky = SubResource("Sky_rgh2o")
-sky_rotation = Vector3(0, -3.3039083, 0)
-tonemap_mode = 2
+[ext_resource type="Environment" uid="uid://c86xpxqvswg3h" path="res://Assets/Environment.tres" id="14_2w5on"]
 
 [node name="Main" type="Node3D" unique_id=981272364]
 
@@ -50,10 +36,11 @@ script = ExtResource("1_r150o")
 floors = Array[PackedScene]([ExtResource("2_h1m7h"), ExtResource("3_erwvk"), ExtResource("5_346fj"), ExtResource("5_346fj"), ExtResource("6_0sclb"), ExtResource("7_sxkr1"), ExtResource("8_fq0cl"), ExtResource("9_hwpts"), ExtResource("10_jyqft")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
-environment = SubResource("Environment_pbw6q")
+environment = ExtResource("14_2w5on")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1228580851]
 transform = Transform3D(0.70710653, 0.18301426, 0.6830125, -0.6724284, 0.47282028, 0.5694563, -0.21872249, -0.86194485, 0.45739743, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
 transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, 10, 1, 5)
