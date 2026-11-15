@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dkxyigbnmyfcy"]
 
 [ext_resource type="MeshLibrary" uid="uid://jnd5w4kj07h" path="res://Tiles/FloorTiles.meshlib" id="1_3l2q7"]
+[ext_resource type="Script" uid="uid://cq5tcgted6i5n" path="res://Scripts/Props/Floor.gd" id="1_baix5"]
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="2_av20i"]
 [ext_resource type="PackedScene" uid="uid://cbyi8gr33vadb" path="res://Assets/Models/Props/Window/Window.glb" id="2_g0cge"]
 [ext_resource type="PackedScene" uid="uid://duvt04x2avxm2" path="res://Assets/Models/Props/Desks/Desk 3.glb" id="3_f075m"]
@@ -30,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="28_1oaxo"]
 
 [node name="Floor" type="Node3D" unique_id=124698636]
+script = ExtResource("1_baix5")
 
 [node name="Geometry" type="GridMap" parent="." unique_id=986368088]
 mesh_library = ExtResource("1_3l2q7")

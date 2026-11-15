@@ -14,3 +14,5 @@ background_mode = 2
 sky = SubResource("Sky_rgh2o")
 sky_rotation = Vector3(0, -3.3039083, 0)
 tonemap_mode = 3
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0

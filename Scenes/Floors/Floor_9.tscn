@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cacatwiqomohi"]
 
+[ext_resource type="Script" uid="uid://cq5tcgted6i5n" path="res://Scripts/Props/Floor.gd" id="1_j18lf"]
 [ext_resource type="MeshLibrary" uid="uid://jnd5w4kj07h" path="res://Tiles/FloorTiles.meshlib" id="1_scsxh"]
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="2_a0qhk"]
 [ext_resource type="PackedScene" uid="uid://cbyi8gr33vadb" path="res://Assets/Models/Props/Window/Window.glb" id="2_y028u"]
@@ -29,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://esvas14rixcu" path="res://Scenes/Props/Pot 3.tscn" id="29_ouqwn"]
 
 [node name="Floor" type="Node3D" unique_id=2037477478]
+script = ExtResource("1_j18lf")
 
 [node name="Geometry" type="GridMap" parent="." unique_id=1531708672]
 mesh_library = ExtResource("1_scsxh")

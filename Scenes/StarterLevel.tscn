@@ -86,14 +86,15 @@ offset_right = 638.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="UI Control/Panel" unique_id=1173093468]
+[node name="Title" type="Label" parent="UI Control/Panel" unique_id=1173093468]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 491.0
-offset_right = 557.0
-offset_bottom = 563.0
+offset_left = 40.0
+offset_top = 492.0
+offset_right = 592.0
+offset_bottom = 584.0
 rotation = -0.00036388251
 theme_override_fonts/font = ExtResource("6_0ycr3")
+theme_override_font_sizes/font_size = 76
 text = "Fire Ghost Fighter"
 horizontal_alignment = 1
 vertical_alignment = 1

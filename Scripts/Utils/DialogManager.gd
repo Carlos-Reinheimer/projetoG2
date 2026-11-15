@@ -8,9 +8,9 @@ func _ready() -> void:
 	panel.pivot_offset = panel.size / 2.0
 	panel.scale = Vector2.ZERO
 	panel.modulate.a = 0.0
-	SignalBus.floorExtinguised.connect(onFloorExtinguised)
+	SignalBus.floorExtinguished.connect(onfloorExtinguished)
 
-func onFloorExtinguised():
+func onfloorExtinguished():
 	await get_tree().create_timer(2).timeout
 	showDialog("Tutor Rial", ["Andar limpo, soldado", "Pode seguir para o próximo andar", "E cuidado"])
 

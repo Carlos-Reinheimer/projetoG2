@@ -7,14 +7,14 @@ extends Node3D
 var unlockDoor : bool = false
 
 func _ready():
-	SignalBus.connect("floorExtinguised", onFloorExtinguised)
+	SignalBus.connect("floorExtinguished", onfloorExtinguished)
 	if autoOpenDoor:
 		openAnimation()
 
 func openAnimation() -> void:
 	animation_player.play("DoorAction")
 
-func onFloorExtinguised():
+func onfloorExtinguished():
 	unlockDoor = true
 	openAnimation()
 

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d4gpju0ac68df"]
+
+[ext_resource type="Shader" uid="uid://dbxy5pi0cdgsv" path="res://Assets/Shaders/Fog.gdshader" id="1_eoujy"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dbg84"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_7n10n"]
+noise = SubResource("FastNoiseLite_dbg84")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_thbd6"]
+shader = ExtResource("1_eoujy")
+shader_parameter/smoke_level = 4.5
+shader_parameter/layer_softness = 0.6
+shader_parameter/density = 0.6000000285
+shader_parameter/smoke_color = Color(0.050930038, 0.16164246, 0.17610592, 1)
+shader_parameter/noise_tex = SubResource("NoiseTexture3D_7n10n")
+shader_parameter/drift_speed = 0.05
+
+[node name="FogVolume" type="FogVolume" unique_id=1052107437]
+size = Vector3(21.847305, 3.946289, 36.012085)
+material = SubResource("ShaderMaterial_thbd6")

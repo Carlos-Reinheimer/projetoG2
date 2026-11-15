@@ -1,3 +1,4 @@
+class_name MainController
 extends Node
 
 @export var floors: Array[PackedScene] = []
@@ -82,4 +83,4 @@ func onExtinguishFire(_value: int) -> void:
 
 func checkFloorCondition() -> void:
 	if enemiesOnFloor == 0 and firesOnFloor == 0:
-		SignalBus.emit_signal("floorExtinguised")
+		SignalBus.emit_signal("floorExtinguished")
