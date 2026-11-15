@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://icodgcxpn33v"
-path="res://.godot/imported/Menu Background 2.png-aec36cc70e0080c6de4711af92abbf1b.ctex"
+uid="uid://b5gxa432epf3i"
+path="res://.godot/imported/Progress Bar Fill.png-2b375bdc9627366741ad45b489854c2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/Menu Background 2.png"
-dest_files=["res://.godot/imported/Menu Background 2.png-aec36cc70e0080c6de4711af92abbf1b.ctex"]
+source_file="res://Assets/UI/Progress Bar/Progress Bar Fill.png"
+dest_files=["res://.godot/imported/Progress Bar Fill.png-2b375bdc9627366741ad45b489854c2e.ctex"]
 
 [params]
 

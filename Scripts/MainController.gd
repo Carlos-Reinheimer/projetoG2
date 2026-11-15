@@ -5,6 +5,7 @@ extends Node
 @onready var player: CharacterBody3D = $"../Player"
 @onready var fade: CanvasLayer = $"../Fade"
 @onready var fire_progress_ui: Control = $"../Fire Progress UI"
+@onready var current_floor_label: Label = $"../Current Floor Layer/Current Floor Label"
 
 var currentFloor: int = 0
 var firesOnFloor: int = 0
@@ -20,11 +21,24 @@ func _ready() -> void:
 	Stats.ALL_TIME_FIRE_EXTINGUISED = 0
 	
 	currentFloorScene = $"../Floor"
+	current_floor_label.hide()
+	
 	setupLevel()
 
 func setupLevel() -> void:
 	countFiresOnFloor()
 	countEnemiesOnFloor()
+	
+	current_floor_label.text = str(currentFloor + 1) + "º ANDAR"
+	current_floor_label.modulate.a = 0.0
+	current_floor_label.show()
+	
+	var tween = create_tween()
+	tween.tween_property(current_floor_label, "modulate:a", 1.0, 0.5)
+	tween.tween_interval(1.5)
+	tween.tween_property(current_floor_label, "modulate:a", 0.0, 0.4)
+	await tween.tween_callback(current_floor_label.hide).finished
+	
 	fire_progress_ui.setUp()
 
 func onLoadNextFloor() -> void:

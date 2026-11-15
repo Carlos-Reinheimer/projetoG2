@@ -247,4 +247,5 @@ func onFinishLoadNextLevel() -> void:
 	isPlayable = true
 
 func onEndGame() -> void:
+	await get_tree().create_timer(2).timeout
 	isPlayable = false

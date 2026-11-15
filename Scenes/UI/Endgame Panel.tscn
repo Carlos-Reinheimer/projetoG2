@@ -41,14 +41,14 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=2098802314]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
 text = "A chama queima..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="VBoxContainer" unique_id=1253007086]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
 text = "E dessa vez ela foi forte demais, até para você."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -67,14 +67,13 @@ layout_mode = 2
 
 [node name="Fires Extuinguised Value" type="Label" parent="Stats/Fires Stats" unique_id=1566274508]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="Stats/Fires Stats" unique_id=1731942108]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
 text = "Fogos extintos"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -84,14 +83,13 @@ layout_mode = 2
 
 [node name="Ghosts Captured Value" type="Label" parent="Stats/Ghosts Stats" unique_id=817084643]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="Stats/Ghosts Stats" unique_id=64064278]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
 text = "Fantasmas capturados"
 horizontal_alignment = 1
 vertical_alignment = 1

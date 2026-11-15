@@ -13,6 +13,8 @@ func _ready() -> void:
 	SignalBus.captureEnemy.connect(onCaptureEnemy)
 	SignalBus.extinguishFire.connect(onExinguishFire)
 	SignalBus.floorExtinguised.connect(onFloorExtinguised)
+	SignalBus.connect("loadNextFloor", onLoadNextFloor)
+	hide()
 
 func _process(delta: float) -> void:
 	if not isRunning:
@@ -39,6 +41,7 @@ func setUp():
 	
 	isRunning = true
 	isGameOver = false
+	show()
 
 func onCaptureEnemy(points: int):
 	fireProgress -= points
@@ -48,3 +51,6 @@ func onExinguishFire(points: int):
 
 func onFloorExtinguised():
 	isRunning = false
+
+func onLoadNextFloor() -> void:
+	hide()

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ds0qfa712qk3m" path="res://Scenes/UI/Endgame Panel.tscn" id="3_2w5on"]
 [ext_resource type="PackedScene" uid="uid://81ddvbt36p1f" path="res://Scenes/Floors/Floor_2.tscn" id="3_erwvk"]
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="3_kln2b"]
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="4_346fj"]
+[ext_resource type="FontFile" uid="uid://b4x4fuk4peqnx" path="res://Assets/Fonts/BBHBogle-Regular.ttf" id="5_0sclb"]
 [ext_resource type="PackedScene" uid="uid://ck0s73eoy81g5" path="res://Scenes/Floors/Floor_3.tscn" id="5_346fj"]
 [ext_resource type="PackedScene" uid="uid://bkip04dx3dp6x" path="res://Scenes/Floors/Floor_0.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://c28tm8t5dftik" path="res://Scenes/Floors/Floor_5.tscn" id="6_0sclb"]
@@ -28,6 +30,22 @@
 layer = 2
 
 [node name="Endgame Panel" parent="Endgame Panel" unique_id=1888789887 instance=ExtResource("3_2w5on")]
+
+[node name="Current Floor Layer" type="CanvasLayer" parent="." unique_id=1457871676]
+layer = 5
+
+[node name="Current Floor Label" type="Label" parent="Current Floor Layer" unique_id=1250336364]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_346fj")
+theme_override_fonts/font = ExtResource("5_0sclb")
+theme_override_font_sizes/font_size = 320
+text = "10º Andar"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Fire Progress UI" parent="." unique_id=1171572019 instance=ExtResource("11_erwvk")]
 

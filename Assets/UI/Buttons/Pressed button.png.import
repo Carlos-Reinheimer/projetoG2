@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh15k4ua2w015"
-path="res://.godot/imported/Progress Bar.png-bb1437bb511990ead3d0d9aecabf4343.ctex"
+uid="uid://cufet7ayqkuvf"
+path="res://.godot/imported/Pressed button.png-0d83971a377d70cdc41b840f8d8ea5d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/Progress Bar.png"
-dest_files=["res://.godot/imported/Progress Bar.png-bb1437bb511990ead3d0d9aecabf4343.ctex"]
+source_file="res://Assets/UI/Buttons/Pressed button.png"
+dest_files=["res://.godot/imported/Pressed button.png-0d83971a377d70cdc41b840f8d8ea5d5.ctex"]
 
 [params]
 

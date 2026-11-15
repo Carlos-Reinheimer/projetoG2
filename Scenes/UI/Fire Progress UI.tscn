@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dhxjgpplad6c3"]
 
 [ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="1_lc0x5"]
-[ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/UI/LevelGUI.gd" id="2_g85ws"]
+[ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/UI/FireProgress.gd" id="2_g85ws"]
 
 [node name="Fire Progress UI" type="Control" unique_id=1171572019]
 layout_mode = 3
@@ -18,9 +18,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -355.0
-offset_top = 34.0
-offset_right = 356.0
-offset_bottom = 48.0
+offset_left = -224.0
+offset_top = 38.0
+offset_right = 225.0
+offset_bottom = 58.0
 grow_horizontal = 2
 show_percentage = false

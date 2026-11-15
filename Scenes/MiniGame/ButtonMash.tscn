@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://hgmmtob36kxt"]
 
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="1_lnwvw"]
 [ext_resource type="Script" uid="uid://dujpq11kswh4q" path="res://Scripts/MiniGames/ButtonMash.gd" id="1_rjq1t"]
 [ext_resource type="Texture2D" uid="uid://bws5dnqkyfnjs" path="res://Assets/UI/Inputs/keyboard_space.png" id="2_qql6e"]
+[ext_resource type="Texture2D" uid="uid://d0a311ktiv3o3" path="res://Assets/UI/Progress Bar/Ghost Progress Bar Fill.png" id="3_jn22r"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jn22r"]
+texture = ExtResource("3_jn22r")
 
 [node name="ButtonMash" type="Control" unique_id=1145780555]
 layout_mode = 3
@@ -12,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 mouse_filter = 2
+theme = ExtResource("1_lnwvw")
 script = ExtResource("1_rjq1t")
 max_progress = 50
 
@@ -31,6 +37,7 @@ offset_right = 399.9771
 offset_bottom = 177.7898
 grow_vertical = 2
 rotation = -1.5707964
+theme_override_styles/fill = SubResource("StyleBoxTexture_jn22r")
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="." unique_id=1550969239]

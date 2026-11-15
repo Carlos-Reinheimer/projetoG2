@@ -1,52 +1,52 @@
 [gd_resource type="Theme" format=3 uid="uid://bovmvnkia6job"]
 
-[ext_resource type="FontFile" uid="uid://d2xo2ov7wwj6m" path="res://Assets/Fonts/PermanentMarker-Regular.ttf" id="1_qcfcl"]
-[ext_resource type="Texture2D" uid="uid://60o6ejmmnicp" path="res://Assets/UI/Inactive Button.png" id="2_6nc7p"]
-[ext_resource type="Texture2D" uid="uid://7vivskri1cnh" path="res://Assets/UI/Active Button.png" id="2_m7k5r"]
-[ext_resource type="Texture2D" uid="uid://cufet7ayqkuvf" path="res://Assets/UI/Pressed button.png" id="3_c6obu"]
+[ext_resource type="Texture2D" uid="uid://7vivskri1cnh" path="res://Assets/UI/Buttons/Active Button.png" id="2_c6obu"]
+[ext_resource type="Texture2D" uid="uid://cufet7ayqkuvf" path="res://Assets/UI/Buttons/Pressed button.png" id="3_hfneu"]
+[ext_resource type="Texture2D" uid="uid://60o6ejmmnicp" path="res://Assets/UI/Buttons/Inactive Button.png" id="4_s1j26"]
+[ext_resource type="FontFile" uid="uid://brs0deyyo7u3r" path="res://Assets/Fonts/BebasNeue-Regular.ttf" id="5_hfneu"]
+[ext_resource type="Texture2D" uid="uid://c81xmlb2s4j0x" path="res://Assets/UI/Progress Bar/Progress Bar Background.png" id="6_s1j26"]
+[ext_resource type="Texture2D" uid="uid://b5gxa432epf3i" path="res://Assets/UI/Progress Bar/Progress Bar Fill.png" id="7_2mlid"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7k5r"]
-texture = ExtResource("2_m7k5r")
+texture = ExtResource("2_c6obu")
 texture_margin_left = 30.0
 texture_margin_top = 10.0
 texture_margin_right = 30.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c6obu"]
-texture = ExtResource("3_c6obu")
+texture = ExtResource("3_hfneu")
 texture_margin_left = 30.0
 texture_margin_top = 10.0
 texture_margin_right = 30.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qcfcl"]
-texture = ExtResource("2_6nc7p")
+texture = ExtResource("4_s1j26")
 texture_margin_left = 30.0
 texture_margin_top = 10.0
 texture_margin_right = 30.0
 texture_margin_bottom = 10.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
-bg_color = Color(0.88699895, 0.4116052, 0.06630468, 1)
-skew = Vector2(1, 0)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ua1s"]
+texture = ExtResource("6_s1j26")
+axis_stretch_horizontal = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfneu"]
-bg_color = Color(0.8152225, 0, 0, 1)
-skew = Vector2(1, 0)
-shadow_size = 1
-shadow_offset = Vector2(0, 1.66)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hohqw"]
+texture = ExtResource("7_2mlid")
 
 [resource]
-Button/colors/font_color = Color(0.9843137, 0.9372549, 0.015686275, 0.78431374)
+Button/colors/font_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 32
-Button/fonts/font = ExtResource("1_qcfcl")
+Button/fonts/font = ExtResource("5_hfneu")
 Button/styles/hover = SubResource("StyleBoxTexture_m7k5r")
 Button/styles/hover_pressed = SubResource("StyleBoxTexture_c6obu")
 Button/styles/normal = SubResource("StyleBoxTexture_qcfcl")
 Button/styles/pressed = SubResource("StyleBoxTexture_c6obu")
 HBoxContainer/constants/separation = 20
-Label/font_sizes/font_size = 24
-Label/fonts/font = ExtResource("1_qcfcl")
-ProgressBar/styles/background = SubResource("StyleBoxFlat_0sclb")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_hfneu")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 50
+Label/fonts/font = ExtResource("5_hfneu")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_3ua1s")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_hohqw")
 VBoxContainer/constants/separation = 10
