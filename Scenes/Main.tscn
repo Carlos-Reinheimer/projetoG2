@@ -34,11 +34,16 @@ tonemap_mode = 2
 
 [node name="Main" type="Node3D" unique_id=981272364]
 
+[node name="Fade" parent="." unique_id=683505706 instance=ExtResource("2_pbw6q")]
+
 [node name="DialogManager" parent="." unique_id=2052850963 instance=ExtResource("1_v1gob")]
 
-[node name="Fire Progress UI" parent="." unique_id=1171572019 instance=ExtResource("11_erwvk")]
+[node name="Endgame Panel" type="CanvasLayer" parent="." unique_id=1052848603]
+layer = 2
 
-[node name="Endgame Panel" parent="." unique_id=1888789887 instance=ExtResource("3_2w5on")]
+[node name="Endgame Panel" parent="Endgame Panel" unique_id=1888789887 instance=ExtResource("3_2w5on")]
+
+[node name="Fire Progress UI" parent="." unique_id=1171572019 instance=ExtResource("11_erwvk")]
 
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")
@@ -53,8 +58,6 @@ transform = Transform3D(0.70710653, 0.18301426, 0.6830125, -0.6724284, 0.4728202
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]
 transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, 10, 1, 5)
 isAutoPlayable = true
-
-[node name="Fade" parent="." unique_id=683505706 instance=ExtResource("2_pbw6q")]
 
 [node name="Floor" parent="." unique_id=380912517 instance=ExtResource("5_pbw6q")]
 

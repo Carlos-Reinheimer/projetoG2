@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ds0qfa712qk3m"]
 
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="1_30oea"]
 [ext_resource type="Material" uid="uid://sqkyrcclqapi" path="res://Assets/Materials/FireUI.tres" id="1_mftif"]
+[ext_resource type="Script" uid="uid://ct7wppn16bl2j" path="res://Scripts/UI/EndGame.gd" id="1_q6d7r"]
+[ext_resource type="PackedScene" uid="uid://c7ce07xtntglw" path="res://Scenes/UI/Button.tscn" id="4_2ljsi"]
 
 [node name="Endgame Panel" type="Control" unique_id=1888789887]
 layout_mode = 3
@@ -9,6 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_30oea")
+script = ExtResource("1_q6d7r")
 
 [node name="Fire Panel" type="Panel" parent="." unique_id=2103401335]
 material = ExtResource("1_mftif")
@@ -18,3 +23,99 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=741878637]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -277.0
+offset_top = -112.0
+offset_right = 277.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2098802314]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "A chama queima..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1253007086]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "E dessa vez ela foi forte demais, até para você."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="HBoxContainer" parent="." unique_id=2143575227]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 326.0
+offset_right = 853.0
+offset_bottom = 406.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Fires Stats" type="VBoxContainer" parent="Stats" unique_id=838671220]
+layout_mode = 2
+
+[node name="Fires Extuinguised Value" type="Label" parent="Stats/Fires Stats" unique_id=1566274508]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Stats/Fires Stats" unique_id=1731942108]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fogos extintos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ghosts Stats" type="VBoxContainer" parent="Stats" unique_id=780889032]
+layout_mode = 2
+
+[node name="Ghosts Captured Value" type="Label" parent="Stats/Ghosts Stats" unique_id=817084643]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Stats/Ghosts Stats" unique_id=64064278]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fantasmas capturados"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="." unique_id=2146702557]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -95.0
+offset_right = 30.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Restart Button" parent="Buttons" unique_id=1977854024 instance=ExtResource("4_2ljsi")]
+layout_mode = 2
+
+[node name="Quit Button" parent="Buttons" unique_id=1082461648 instance=ExtResource("4_2ljsi")]
+layout_mode = 2
+text = "Sair"
+
+[connection signal="pressed" from="Buttons/Restart Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Buttons/Quit Button" to="." method="_on_quit_button_pressed"]

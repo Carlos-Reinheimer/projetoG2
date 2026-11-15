@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Materials/FireShader.tres" id="2_jvwku"]
 [ext_resource type="Material" uid="uid://dtecvavcngs0a" path="res://Assets/Materials/UIBlurMat.tres" id="2_wrsr0"]
 [ext_resource type="PackedScene" uid="uid://briafc2yd8eos" path="res://Scenes/Player.tscn" id="2_xtmql"]
-[ext_resource type="Script" uid="uid://cy76yqi8eax2b" path="res://Scripts/MainMenu.gd" id="3_46pub"]
+[ext_resource type="Script" uid="uid://cy76yqi8eax2b" path="res://Scripts/UI/MainMenu.gd" id="3_46pub"]
 [ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="3_rx687"]
 [ext_resource type="Texture2D" uid="uid://icodgcxpn33v" path="res://Assets/UI/Menu Background 2.png" id="3_wrsr0"]
 [ext_resource type="PackedScene" uid="uid://c20lrmk6asfbs" path="res://Scenes/Utils/DialogManager.tscn" id="4_b86fs"]

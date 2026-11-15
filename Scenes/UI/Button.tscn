@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c7ce07xtntglw"]
+
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="1_sr0vx"]
+[ext_resource type="Script" uid="uid://dbc8bo8org4i1" path="res://Scripts/UI/AnimatedButton.gd" id="2_bd1a6"]
+
+[node name="Restart Button" type="Button" unique_id=1977854024]
+theme = ExtResource("1_sr0vx")
+text = "Recomeçar"
+script = ExtResource("2_bd1a6")

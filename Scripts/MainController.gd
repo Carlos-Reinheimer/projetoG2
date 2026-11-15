@@ -16,6 +16,9 @@ func _ready() -> void:
 	SignalBus.connect("captureEnemy", onCaptureEnemy)
 	SignalBus.connect("extinguishFire", onExtinguishFire)
 	
+	Stats.ALL_TIME_ENEMIES_CAPUTRED = 0
+	Stats.ALL_TIME_FIRE_EXTINGUISED = 0
+	
 	currentFloorScene = $"../Floor"
 	setupLevel()
 

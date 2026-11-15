@@ -1,6 +1,13 @@
 class_name Player
 extends CharacterBody3D
 
+enum State {
+	NORMAL,
+	CAPTURING,
+	WATTERING,
+	PULLING
+}
+
 const SPEED = 15
 const JUMP_VELOCITY = 8
 const GRAVITY = Vector3(0, -30, 0)
@@ -40,46 +47,18 @@ var lockout_left := 0.0
 var aimedEnemy: Node = null
 var enemyTarget = null
 
-enum State {
-	NORMAL,
-	CAPTURING,
-	WATTERING,
-	PULLING
-}
-
 func _ready() -> void:
 	SignalBus.connect("endGame", onEndGame)
+	
 	water_splash.emitting = false
 	colission_splash.emitting = false
 	
 	if isAutoPlayable:
 		isPlayable = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 	_mouse_rotation.y = rotation.y
 	_mouse_rotation.x = camera_3d.rotation.x
-
-func updateAimHighlight() -> void:
-	var col := ray.get_collider()
-	var new_aimed: Node = col if (col and col.is_in_group("Enemy")) else null
-
-	if is_instance_valid(aimedEnemy) and aimedEnemy == new_aimed:
-		return
-
-	if is_instance_valid(aimedEnemy):
-		aimedEnemy.setHighlight(false)
-
-	aimedEnemy = new_aimed
-	if aimedEnemy:
-		aimedEnemy.setHighlight(true)
-
-func dropTarget():
-	if enemyTarget and currentState == State.CAPTURING:
-		stun(0.2)
-		enemyTarget.stopPull()
-		enemyTarget = null
-
-func EnemyInRange():
-	return ray.get_collider() and ray.get_collider().is_in_group("Enemy")
 
 func _physics_process(delta: float) -> void:
 	if not isPlayable:
@@ -93,7 +72,7 @@ func _physics_process(delta: float) -> void:
 	if stunned:
 		stun_left -= delta
 		dropTarget()
-		swith_state(State.NORMAL)
+		switch_state(State.NORMAL)
 		_apply_knockback_move(delta)
 		return
 
@@ -166,6 +145,32 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	knockback = knockback.move_toward(Vector3.ZERO, KNOCKBACK_DECAY * delta)
 
+func _unhandled_input(event):
+	_mouse_input = event is InputEventMouseMotion
+	if _mouse_input :
+		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
+		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
+
+func updateAimHighlight() -> void:
+	var col := ray.get_collider()
+	var new_aimed: Node = col if (col and col.is_in_group("Enemy")) else null
+
+	if is_instance_valid(aimedEnemy) and aimedEnemy == new_aimed:
+		return
+
+	if is_instance_valid(aimedEnemy):
+		aimedEnemy.setHighlight(false)
+
+	aimedEnemy = new_aimed
+	if aimedEnemy:
+		aimedEnemy.setHighlight(true)
+
+func dropTarget():
+	if enemyTarget and currentState == State.CAPTURING:
+		stun(0.2)
+		enemyTarget.stopPull()
+		enemyTarget = null
+
 func _apply_knockback_move(delta: float) -> void:
 	if not is_on_floor():
 		velocity += GRAVITY * delta
@@ -173,12 +178,6 @@ func _apply_knockback_move(delta: float) -> void:
 	velocity.z = knockback.z
 	move_and_slide()
 	knockback = knockback.move_toward(Vector3.ZERO, KNOCKBACK_DECAY * delta)
-
-func _unhandled_input(event):
-	_mouse_input = event is InputEventMouseMotion
-	if _mouse_input :
-		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
-		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
 		
 func _update_camera(delta):
 	_mouse_rotation.x += _tilt_input * delta
@@ -226,7 +225,17 @@ func _apply_shake(delta: float) -> void:
 	else:
 		camera_3d.h_offset = 0.0
 		camera_3d.v_offset = 0.0
-	
+
+func failedCapture() -> void:
+	enemyTarget = null            
+	switch_state(State.NORMAL)    
+	pull_blocked = true
+	lockout_left = failStun + failLockout
+	stun(failStun)  
+
+func EnemyInRange():
+	return ray.get_collider() and ray.get_collider().is_in_group("Enemy")
+
 func onStartGame() -> void:
 	isPlayable = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -239,10 +248,3 @@ func onFinishLoadNextLevel() -> void:
 
 func onEndGame() -> void:
 	isPlayable = false
-
-func failedCapture() -> void:
-	enemyTarget = null            
-	switch_state(State.NORMAL)    
-	pull_blocked = true
-	lockout_left = failStun + failLockout
-	stun(failStun)  
