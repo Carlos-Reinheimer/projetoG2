@@ -42,6 +42,8 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 
 [node name="Floor" type="Node3D" unique_id=380912517]
 script = ExtResource("1_irllo")
+hasFog = true
+startFogHeight = 2.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=493182413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.200161, 0)
