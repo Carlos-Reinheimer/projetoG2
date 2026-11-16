@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbyi8gr33vadb" path="res://Assets/Models/Props/Window/Window.glb" id="2_i4whe"]
 [ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="4_cue0t"]
 [ext_resource type="PackedScene" uid="uid://btmcwaq2mg3u8" path="res://Scenes/Props/Fan.tscn" id="5_g2epj"]
-[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Particles/Fire.tscn" id="5_ukarg"]
+[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Fires/Fire Base.tscn" id="5_ukarg"]
 [ext_resource type="PackedScene" uid="uid://dnqg43qcyqf64" path="res://Scenes/Props/Light 3.tscn" id="7_m12nn"]
 [ext_resource type="PackedScene" uid="uid://bsv6h42op8rvm" path="res://Assets/Models/Props/Chairs/Sofa 2.glb" id="10_yk3v6"]
 [ext_resource type="PackedScene" uid="uid://cw6o6ri6ancja" path="res://Assets/Models/Props/Desks/Desk 5.glb" id="10_ys23m"]

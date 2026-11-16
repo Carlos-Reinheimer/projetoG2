@@ -30,10 +30,17 @@ func _process(delta: float) -> void:
 	if fireProgress == maxPoints:
 		isGameOver = true
 		SignalBus.emit_signal("endGame")
-		
+
+func sumPoints(groupName: String) -> int:
+	var total = 0.0
+	for node in get_tree().get_nodes_in_group(groupName):
+		if node.has_method("getPoints"):
+			total += node.getPoints()
+	return total
+
 func setUp():
-	var enemies = get_tree().get_nodes_in_group("Enemy").reduce(func(acc, enemy): return acc + enemy.enemyPoints, 0)
-	var fires = get_tree().get_nodes_in_group("Fire").reduce(func(acc, fire): return acc + fire.firePoints, 0)
+	var enemies = sumPoints("Enemy")
+	var fires = sumPoints("Fire")
 	
 	maxPoints = enemies + fires
 	progress_bar.max_value = maxPoints

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FireResource" format=3 uid="uid://dnmvmojwo5nuc"]
+
+[ext_resource type="Script" uid="uid://u0rq66aleig4" path="res://Scripts/Resources/FireResource.gd" id="1_32jy3"]
+
+[resource]
+script = ExtResource("1_32jy3")
+health = 25.0
+decayRate = 0.09
+metadata/_custom_type_script = "uid://u0rq66aleig4"

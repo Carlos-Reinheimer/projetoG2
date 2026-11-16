@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dlrdmvug0t8d2"]
+
+[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Fires/Fire Base.tscn" id="1_fhl0j"]
+[ext_resource type="Resource" uid="uid://dnmvmojwo5nuc" path="res://Assets/Resources/Fires/Blue Fire.tres" id="2_tb0uw"]
+
+[node name="Blue Fire" unique_id=187325746 instance=ExtResource("1_fhl0j")]
+fireResource = ExtResource("2_tb0uw")

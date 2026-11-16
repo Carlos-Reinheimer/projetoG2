@@ -337,3 +337,6 @@ func switchState(newState: State) -> void:
 	if currentState == State.PHASING and newState != State.PHASING:
 		fadeTo(1.0, 0.15)
 	currentState = newState
+
+func getPoints() -> float:
+	return enemyPoints

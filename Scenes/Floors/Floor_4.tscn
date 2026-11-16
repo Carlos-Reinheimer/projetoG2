@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cyyu7ghhunkio" path="res://Assets/Models/Props/Desks/Desk.glb" id="3_nfnjv"]
 [ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="3_oqbid"]
 [ext_resource type="PackedScene" uid="uid://sse3v3q0g0ni" path="res://Assets/Models/Props/Chairs/Chair 3.glb" id="4_e5553"]
-[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Particles/Fire.tscn" id="5_a2ho0"]
+[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Fires/Fire Base.tscn" id="5_a2ho0"]
 [ext_resource type="PackedScene" uid="uid://dg80w5vli26cs" path="res://Scenes/Enemies/Enemy1.tscn" id="5_k7sd6"]
 [ext_resource type="PackedScene" uid="uid://81i1x25bf76c" path="res://Assets/Models/Props/Desks/Center Desk 2.glb" id="5_kjmvq"]
 [ext_resource type="PackedScene" uid="uid://cji3qoa7mn8hf" path="res://Scenes/Enemies/Enemy3.tscn" id="6_alr41"]

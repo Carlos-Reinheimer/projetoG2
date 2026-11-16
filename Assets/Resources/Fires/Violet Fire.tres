@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FireResource" format=3 uid="uid://d4brptf8yy1om"]
+
+[ext_resource type="Script" uid="uid://u0rq66aleig4" path="res://Scripts/Resources/FireResource.gd" id="1_o0g7v"]
+
+[resource]
+script = ExtResource("1_o0g7v")
+health = 75.0
+firePoints = 25.0
+reignite = true
+metadata/_custom_type_script = "uid://u0rq66aleig4"

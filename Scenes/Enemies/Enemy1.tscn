@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dg80w5vli26cs"]
 
-[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemy.tscn" id="2_f21d5"]
+[ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemies/Enemy.tscn" id="2_f21d5"]
 [ext_resource type="PackedScene" uid="uid://ncudmmc4h37f" path="res://Assets/Models/Enemies/Enemy 1/Enemy 1.glb" id="2_tuilm"]
 
 [sub_resource type="Animation" id="Animation_t5gvi"]

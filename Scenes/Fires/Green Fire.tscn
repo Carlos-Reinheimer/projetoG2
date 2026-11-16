@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cwqv04wl5gcp7"]
+
+[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Fires/Fire Base.tscn" id="1_uxpa7"]
+[ext_resource type="Resource" uid="uid://w831tdisbpaf" path="res://Assets/Resources/Fires/Green Fire.tres" id="2_75vx6"]
+
+[sub_resource type="Gradient" id="Gradient_48ldh"]
+colors = PackedColorArray(1, 1, 1, 1, 0.5686275, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_euft5"]
+gradient = SubResource("Gradient_48ldh")
+
+[sub_resource type="Curve" id="Curve_bxpxb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.314578, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iiafp"]
+curve = SubResource("Curve_bxpxb")
+
+[sub_resource type="Curve" id="Curve_aurbb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19827586, 0.9926471), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nf4we"]
+curve = SubResource("Curve_aurbb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c221g"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.00003
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 5.0
+scale_max = 5.25
+scale_curve = SubResource("CurveTexture_nf4we")
+color = Color(0, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_euft5")
+emission_curve = SubResource("CurveTexture_iiafp")
+
+[node name="Green Fire" unique_id=187325746 instance=ExtResource("1_uxpa7")]
+fireResource = ExtResource("2_75vx6")
+
+[node name="Animated Flames" parent="." index="2" unique_id=2131829102]
+process_material = SubResource("ParticleProcessMaterial_c221g")
