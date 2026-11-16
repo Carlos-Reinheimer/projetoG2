@@ -262,11 +262,12 @@ _data = {
 }
 
 [node name="Enemy" unique_id=873800574 instance=ExtResource("1_hjnne")]
+buttonMashMode = 2
 
 [node name="Enemy 3" parent="ModelSlot" parent_id_path=PackedInt32Array(1004313269) index="0" unique_id=786978005 instance=ExtResource("2_ly4kv")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0.0031675994, 0, 0)
 
-[node name="Head_002" parent="ModelSlot/Enemy 3/Enemy 3" parent_id_path=PackedInt32Array(786978005, 811410031) index="0" unique_id=892981615]
+[node name="Head_002" parent="ModelSlot/Enemy 3/Enemy 3" parent_id_path=PackedInt32Array(786978005, 1806662057) index="0" unique_id=1597060064]
 transform = Transform3D(1.0000004, 0, 0, 0, 0.9999999, 0, 0, 0, 1, -0.12930967, 0.5302515, 0.0046536783)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ModelSlot" parent_id_path=PackedInt32Array(1004313269) index="1" unique_id=1116686178]

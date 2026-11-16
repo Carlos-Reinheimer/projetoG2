@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://cu5m6hprshevl" path="res://Assets/Materials/FireShader.tres" id="5_uoxpr"]
 [ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="6_idouy"]
 [ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="7_0o0ue"]
+[ext_resource type="AudioStream" uid="uid://cveon05m54iab" path="res://Assets/SFX/ghost_laught.mp3" id="7_6bs3c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uj1m6"]
 
@@ -50,6 +51,13 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_m1htj")
+pull_velocity = null
+enemyPoints = null
+fireRadius = null
+restoreInterval = null
+fleeDistance = null
+fleeTime = null
+buttonMashMode = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1062799370]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -68,7 +76,6 @@ path_desired_distance = 2.0
 target_desired_distance = 0.5
 path_height_offset = -1.2
 path_max_distance = 1.01
-debug_enabled = true
 
 [node name="FireBlob" parent="." unique_id=1398854963 instance=ExtResource("3_xeo28")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.79177, 0)
@@ -88,6 +95,9 @@ process_material = SubResource("ParticleProcessMaterial_27ry8")
 draw_pass_1 = SubResource("QuadMesh_esfq3")
 
 [node name="ModelSlot" type="Node3D" parent="." unique_id=1004313269]
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="." unique_id=1978560824]
+stream = ExtResource("7_6bs3c")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="game_finished" from="ButtonMash" to="." method="_on_button_mash_game_finished"]

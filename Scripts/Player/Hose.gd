@@ -21,6 +21,11 @@ const INTENSITY_DURATION = 1.5
 @onready var wind_vortex: GPUParticles3D = $WindVortex
 @onready var cone: MeshInstance3D = $WindVortex/Cone
 
+#SFX
+@onready var water_sfx: AudioStreamPlayer = $"../../../WaterSFX"
+@onready var vacuum_sfx: AudioStreamPlayer = $"../../../VacuumSFX"
+@onready var vacuum_of_sfx: AudioStreamPlayer = $"../../../VacuumOfSFX"
+
 @export var idleIndicatorColor: Color
 @export var extinguishIndicatorColor: Color
 @export var pullIndicatorColor: Color
@@ -50,19 +55,25 @@ func processHose(delta: float) -> void:
 	var isPressingRight = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
 	if isPressingLeft and not isPressingRight:
 		if not wind_vortex.emitting:
+			vacuum_sfx.play()
 			wind_vortex.emitting = true
 			cone.visible = true
 			updateHoseFeedback("Pull", false, pullIndicatorColor, TARGET_INTENSITY)
 	elif wind_vortex.emitting:
+		vacuum_sfx.stop()
+		if not $"../../../AudioStreamPlayer".playing:
+			vacuum_of_sfx.play()
 		wind_vortex.emitting = false
 		cone.visible = false
 		updateHoseFeedback("Pull", true, idleIndicatorColor, 0)
 
 	if isPressingRight and not isPressingLeft:
 		if not water_splash.emitting:
+			water_sfx.play()
 			water_splash.emitting = true
 			updateHoseFeedback("Push", false, extinguishIndicatorColor, TARGET_INTENSITY)
 	elif water_splash.emitting:
+		water_sfx.stop()
 		water_splash.emitting = false
 		colission_splash.emitting = false
 		updateHoseFeedback("Push", true, idleIndicatorColor, 0)
@@ -114,3 +125,10 @@ func dropTarget():
 
 func switchState(value : State):
 	currentState = value
+
+func stopVacuumSound() -> void:
+	var s := vacuum_sfx.stream as AudioStreamWAV
+	if s and vacuum_sfx.playing:
+		var pos := vacuum_sfx.get_playback_position()
+		s.loop_mode = AudioStreamWAV.LOOP_DISABLED
+		vacuum_sfx.play(pos)

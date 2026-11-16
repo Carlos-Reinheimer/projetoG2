@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cfj6gyygqgpcl" path="res://Scenes/Particles/WindVortex.tscn" id="4_dewec"]
 [ext_resource type="PackedScene" uid="uid://drbb478wgp071" path="res://Assets/Models/Player/Left Arm.glb" id="6_nn08x"]
 [ext_resource type="PackedScene" uid="uid://dkfitp5gixjop" path="res://Assets/Models/Player/Right Arm.glb" id="7_52ee3"]
+[ext_resource type="AudioStream" uid="uid://cx2qqg5pryahn" path="res://Assets/SFX/watering.wav" id="8_bhhdu"]
+[ext_resource type="AudioStream" uid="uid://bwjetikpyojwj" path="res://Assets/SFX/vacuum.wav" id="9_yoq75"]
+[ext_resource type="AudioStream" uid="uid://cq8xw00sue4ja" path="res://Assets/SFX/vacuumOff.wav" id="10_yoq75"]
+[ext_resource type="AudioStream" uid="uid://14s5w1urw7wk" path="res://Assets/SFX/captureEnemy.wav" id="11_ksbbd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idj7w"]
 radius = 0.4
@@ -160,6 +164,18 @@ bones/3/rotation = Quaternion(0.001998, 0, 3.731533, 0.997436)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=908395332]
 libraries/ = SubResource("AnimationLibrary_bhhdu")
 autoplay = &"idle"
+
+[node name="WaterSFX" type="AudioStreamPlayer" parent="." unique_id=1731453451]
+stream = ExtResource("8_bhhdu")
+
+[node name="VacuumSFX" type="AudioStreamPlayer" parent="." unique_id=1414574515]
+stream = ExtResource("9_yoq75")
+
+[node name="VacuumOfSFX" type="AudioStreamPlayer" parent="." unique_id=909578634]
+stream = ExtResource("10_yoq75")
+
+[node name="CapturingEnemy" type="AudioStreamPlayer" parent="." unique_id=1369748544]
+stream = ExtResource("11_ksbbd")
 
 [editable path="Head/Camera3D/Hose"]
 [editable path="Head/Camera3D/Hose/Hose/Lever/Left Arm"]

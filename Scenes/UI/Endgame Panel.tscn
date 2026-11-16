@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://sqkyrcclqapi" path="res://Assets/Materials/FireUI.tres" id="1_mftif"]
 [ext_resource type="Script" uid="uid://ct7wppn16bl2j" path="res://Scripts/UI/EndGame.gd" id="1_q6d7r"]
 [ext_resource type="PackedScene" uid="uid://c7ce07xtntglw" path="res://Scenes/UI/Button.tscn" id="4_2ljsi"]
+[ext_resource type="AudioStream" uid="uid://ba76pti214ntd" path="res://Assets/SFX/endgame_sound.mp3" id="5_v362o"]
 
 [node name="Endgame Panel" type="Control" unique_id=1888789887]
 layout_mode = 3
@@ -114,6 +115,9 @@ layout_mode = 2
 [node name="Quit Button" parent="Buttons" unique_id=1082461648 instance=ExtResource("4_2ljsi")]
 layout_mode = 2
 text = "Sair"
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1476282362]
+stream = ExtResource("5_v362o")
 
 [connection signal="pressed" from="Buttons/Restart Button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Buttons/Quit Button" to="." method="_on_quit_button_pressed"]

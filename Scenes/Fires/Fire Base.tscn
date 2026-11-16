@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dg55trfoj2egr" path="res://Scripts/Utils/Fire.gd" id="1_06jq3"]
 [ext_resource type="PackedScene" uid="uid://dte73esl6k507" path="res://Scenes/Particles/Animated Flames.tscn" id="3_fk8gk"]
+[ext_resource type="AudioStream" uid="uid://3rsftimy2ipg" path="res://Assets/SFX/fire.wav" id="4_gjiyl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy3o8"]
 size = Vector3(2.2145996, 4.4404297, 2.2558594)
@@ -24,3 +25,6 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95232105, 0)
 
 [connection signal="timeout" from="Reignite Timer" to="." method="_on_reignite_timer_timeout"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=42276431]
+stream = ExtResource("4_gjiyl")
+autoplay = true

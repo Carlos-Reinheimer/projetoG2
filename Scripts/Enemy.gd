@@ -10,6 +10,14 @@ extends CharacterBody3D
 @onready var look_range: Area3D = $LookRange
 @onready var animation_player: AnimationPlayer = $ModelSlot/AnimationPlayer
 
+# SFX
+@onready var sfx: AudioStreamPlayer3D = $SFX
+const GHOST_CRYING_SOUND_EFFECT = preload("uid://b6fvmi7lfk3xa")
+const SAD_GHOST = preload("uid://77tpotvyvwr2")
+const PICKING = preload("uid://rllc240mvamg")
+const GHOST_BUTTON_MASH = preload("uid://c4cmqidshxoak")
+const LAUGH_SOUND_EFFECT = preload("uid://cveon05m54iab")
+
 var outline_material: ShaderMaterial
 var fire_memory: Array[Vector3] = []
 var target_position: Vector3 = Vector3.ZERO
@@ -48,12 +56,14 @@ enum State {
 
 func _ready() -> void:
 	navigation.link_reached.connect(_on_link_reached)
-	outline_material = ShaderMaterial.new()
-	outline_material.shader = preload("res://Assets/Shaders/Outline.gdshader")
-	# Pega todos os fogos do mapa
+	_setUpOutlineShader()
 	rememberFires()
 	await get_tree().physics_frame
 	goToRandomFire()
+
+func _setUpOutlineShader() -> void:
+	outline_material = ShaderMaterial.new()
+	outline_material.shader = preload("res://Assets/Shaders/Outline.gdshader")
 
 func _physics_process(_delta: float) -> void:
 	if onLink and global_position.distance_to(linkExit) < 1.0:
@@ -187,20 +197,24 @@ func updateSpeedRestore(delta: float) -> void:
 	restoreCooldownLeft -= delta
 	if restoreCooldownLeft <= 0.0:
 		currentSpeed = min(currentSpeed + 1, MAX_SPEED)
-		heat_up(restoreInterval)
+		heatUp(restoreInterval)
 		#print("Velocidade do fogo atualizada para " + str(currentSpeed))
 		restoreCooldownLeft = restoreInterval
 
 func gettingPull(player: Player):
+	if currentState == State.CAPTURED or is_queued_for_deletion():
+		return
 	if currentState == State.PHASING or escapeImmunity > 0.0:
 		return
-	cool_down()
 	if currentState == State.GETTING_PULL:
 		return
+	coolDown()
 	animation_player.play("Absorb")
 	#button_mash.start(ButtonMash.Mode.values().pick_random())
+	playSound(GHOST_BUTTON_MASH)
 	button_mash.start(buttonMashMode)
 	button_mash.game_finished.connect(_on_button_mash_game_finished)
+	#playSound(SAD_GHOST)
 	currentState = State.GETTING_PULL
 	navigation.target_position = global_position
 	target_position = player.global_position
@@ -210,6 +224,7 @@ func gettingPull(player: Player):
 func stopPull():
 	if currentState != State.GETTING_PULL:
 		return
+	playSound(LAUGH_SOUND_EFFECT, false)
 	animation_player.play("Moving")
 	currentState = State.RUNNING
 	button_mash.stop()
@@ -220,17 +235,19 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 func _on_button_mash_game_finished(has_won: bool) -> void:
+	sfx.stop()
 	button_mash.stop()
 	if has_won:
 		pullInFast()
 		return
 
+	playSound(LAUGH_SOUND_EFFECT, false)
 	SignalBus.emit_signal("captureEnemy", -enemyPoints)
 	currentState = State.RUNNING
 	target_position = Vector3.ZERO
 	goToMostDistanceFire()
-	puller.pushBack(global_position)
 	puller.failedCapture()
+	puller.pushBack(global_position)
 	puller = null
 	dash()
 	escapeImmunity = ESCAPE_IMMUNITY_TIME
@@ -239,6 +256,7 @@ func dash() -> void:
 	dashLeft = DASH_DURATION
 
 func pullInFast() -> void:
+	playSound(PICKING)
 	currentState = State.CAPTURED
 	target_position = Vector3.ZERO
 	set_physics_process(false)
@@ -288,11 +306,9 @@ func _on_link_reached(details: Dictionary) -> void:
 
 func _on_link_started() -> void:
 	switchState(State.PHASING)
-	fadeTo(0.5)
-	#print("Passano")
 	animation_player.play("Phasing")
-	# troca animação, velocidade, desliga colisão, etc.
-	pass
+	playSound(GHOST_CRYING_SOUND_EFFECT)
+	fadeTo(0.5)
 
 func _on_link_finished() -> void:
 	onLink = false
@@ -310,7 +326,7 @@ func _on_button_mash_mash_pressed(progress: float) -> void:
 	if is_instance_valid(puller):
 		puller.mashShake(progress)
 
-func set_cooling(target: float, duration: float) -> void:
+func setCooling(target: float, duration: float) -> void:
 	if heat_tween:
 		heat_tween.kill()
 	heat_tween = create_tween().set_parallel(true)
@@ -323,15 +339,15 @@ func set_cooling(target: float, duration: float) -> void:
 		if own:
 			heat_tween.tween_property(own, "shader_parameter/cooling", target, duration)
 
-func cool_down(duration := 2.0) -> void:
-	set_cooling(1.0, duration)
+func coolDown(duration := 2.0) -> void:
+	setCooling(1.0, duration)
 
-func heat_up(duration := 2.0) -> void:
-	set_cooling(0.0, duration)
+func heatUp(duration := 2.0) -> void:
+	setCooling(0.0, duration)
 
 func updateHeatFromSpeed() -> void:
 	var heat := currentSpeed / MAX_SPEED         
-	set_cooling(1.0 - heat, 0.5)                
+	setCooling(1.0 - heat, 0.5)                
 
 func switchState(newState: State) -> void:
 	if currentState == State.PHASING and newState != State.PHASING:
@@ -340,3 +356,9 @@ func switchState(newState: State) -> void:
 
 func getPoints() -> float:
 	return enemyPoints
+
+func playSound(soundName, wait := true):
+	sfx.stream = soundName
+	if sfx.playing and wait:
+		await sfx.finished
+	sfx.play()
