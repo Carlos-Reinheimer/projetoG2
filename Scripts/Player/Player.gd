@@ -104,6 +104,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		switch_state(State.WATTERING)
 		if not water_splash.emitting:
+			hose.water_sfx.play()
 			water_splash.emitting = true
 		if ray.get_collider():
 			var colissionPoint = ray.get_collision_point()
@@ -112,6 +113,7 @@ func _physics_process(delta: float) -> void:
 		if ray.get_collider() != null and ray.get_collider().get_parent().has_method("puttingOut"):
 			ray.get_collider().get_parent().puttingOut()
 	elif water_splash.emitting:
+		hose.water_sfx.stop()
 		water_splash.emitting = false
 		colission_splash.emitting = false
 		switch_state(State.NORMAL)
@@ -210,6 +212,11 @@ func stun(duration: float = 0.6) -> void:
 	shake_trauma = 1.0   # shake final, o mais forte
 
 func pushBack(from: Vector3, strength: float = 14.0) -> void:
+	hose.vacuum_sfx.stop()
+	#hose.vacuum_of_sfx.play()
+	if enemyTarget:
+		$AudioStreamPlayer.play()
+	
 	var dir := global_position - from
 	dir.y = 0.0
 	if dir.length() < 0.01:

@@ -6,6 +6,8 @@ extends Node
 @onready var fade: CanvasLayer = $"../Fade"
 @onready var fire_progress_ui: Control = $"../Fire Progress UI"
 @onready var current_floor_label: Label = $"../Current Floor Layer/Current Floor Label"
+@onready var current_floor_sfx: AudioStreamPlayer = $"../Current Floor Layer/Current Floor SFX"
+@onready var dialog_manager: CanvasLayer = $"../DialogManager"
 
 var currentFloor: int = 0
 var firesOnFloor: int = 0
@@ -28,6 +30,8 @@ func _ready() -> void:
 func setupLevel() -> void:
 	countFiresOnFloor()
 	countEnemiesOnFloor()
+	
+	current_floor_sfx.play()
 	
 	current_floor_label.text = str(currentFloor + 1) + "º ANDAR"
 	current_floor_label.modulate.a = 0.0
@@ -82,4 +86,8 @@ func onExtinguishFire(_value: int) -> void:
 
 func checkFloorCondition() -> void:
 	if enemiesOnFloor == 0 and firesOnFloor == 0:
+		if currentFloor == 0:
+			dialog_manager.firstLevelComplete()
+		else:
+			dialog_manager.levelComplete()
 		SignalBus.emit_signal("floorExtinguised")

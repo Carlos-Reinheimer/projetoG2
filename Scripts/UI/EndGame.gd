@@ -10,6 +10,8 @@ extends Control
 
 @onready var buttons: HBoxContainer = $Buttons
 
+@onready var sfx: AudioStreamPlayer = $SFX
+
 func _ready() -> void:
 	SignalBus.connect("endGame", onEndGame)
 	fire_panel.material.set_shader_parameter("progress", 0.0)
@@ -18,7 +20,8 @@ func _ready() -> void:
 func onEndGame() -> void:
 	setupBeforeShow()
 	show()
-	
+	sfx.play()
+
 	var tween = create_tween()
 	tween.tween_property(fire_panel.material, "shader_parameter/progress", .8, 1.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	await tween.finished

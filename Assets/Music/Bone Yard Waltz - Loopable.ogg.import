@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c0gf2l38qk5n"
+path="res://.godot/imported/Bone Yard Waltz - Loopable.ogg-e87bc0eabb6b9ea520d2e2e517cb3a83.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Bone Yard Waltz - Loopable.ogg"
+dest_files=["res://.godot/imported/Bone Yard Waltz - Loopable.ogg-e87bc0eabb6b9ea520d2e2e517cb3a83.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dg55trfoj2egr" path="res://Scripts/Utils/Fire.gd" id="1_w4p8k"]
 [ext_resource type="PackedScene" uid="uid://c1xgj772w15lp" path="res://Scenes/Particles/StaticFlame.tscn" id="2_8f206"]
 [ext_resource type="PackedScene" uid="uid://dte73esl6k507" path="res://Scenes/Particles/Animated Flames.tscn" id="3_gjiyl"]
+[ext_resource type="AudioStream" uid="uid://3rsftimy2ipg" path="res://Assets/SFX/fire.wav" id="4_gjiyl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy3o8"]
 size = Vector3(2.2145996, 4.4404297, 2.2558594)
@@ -27,3 +28,7 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FireArea" unique_id=2012155857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5936279, 0)
 shape = SubResource("BoxShape3D_dy3o8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=42276431]
+stream = ExtResource("4_gjiyl")
+autoplay = true
