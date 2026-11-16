@@ -34,7 +34,7 @@ func setupLevel() -> void:
 	
 	current_floor_sfx.play()
 	
-	current_floor_label.text = str(currentFloor + 1) + "º ANDAR"
+	current_floor_label.text = str(floors.size() + 1) + "º ANDAR"
 	current_floor_label.modulate.a = 0.0
 	current_floor_label.show()
 	
@@ -79,13 +79,11 @@ func onCaptureEnemy(value: int) -> void:
 	if value < 0:
 		return
 	enemiesOnFloor -= 1
-	print("enemiesOnFloor: " + str(enemiesOnFloor))
 	Stats.ALL_TIME_ENEMIES_CAPUTRED += 1
 	checkFloorCondition()
 	
 func onExtinguishFire(_value: int) -> void:
 	firesOnFloor -= 1
-	print("firesOnFloor: " + str(firesOnFloor))
 	Stats.ALL_TIME_FIRE_EXTINGUISED += 1
 	checkFloorCondition()
 

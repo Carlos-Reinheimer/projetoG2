@@ -68,6 +68,15 @@ func _physics_process(delta: float) -> void:
 	lockout_left = maxf(lockout_left - delta, 0.0)
 	updateAimHighlight()
 
+	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var isMoving = input_dir != Vector2.ZERO
+	var isIdle = animation_player.current_animation == "idle"
+	if isMoving and isIdle and currentState == State.NORMAL:
+		animation_player.play("Moving")
+	elif not isMoving:
+		animation_player.play("idle")
+
 	var stunned := stun_left > 0.0
 	if stunned:
 		stun_left -= delta
@@ -79,6 +88,7 @@ func _physics_process(delta: float) -> void:
 	var mouse_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if mouse_down and currentState != State.PULLING:
 		switch_state(State.PULLING)
+		animation_player.play("idle")
 	elif not mouse_down and currentState != State.NORMAL:
 		switch_state(State.NORMAL)
 	if not mouse_down:
@@ -106,6 +116,7 @@ func _physics_process(delta: float) -> void:
 		if not water_splash.emitting:
 			hose.water_sfx.play()
 			water_splash.emitting = true
+			animation_player.play("idle")
 		if ray.get_collider():
 			var colissionPoint = ray.get_collision_point()
 			colission_splash.global_position = colissionPoint
@@ -126,21 +137,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and hose.currentState != Hose.State.PULLING:
 		velocity.y = JUMP_VELOCITY
 
-	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	var isMoving = input_dir != Vector2.ZERO
-	var isIdle = animation_player.current_animation == "idle"
-	if isMoving and isIdle and currentState == State.NORMAL:
-		animation_player.play("Moving")
-	elif not isMoving:
-		animation_player.play("idle")
 
 	velocity.x += knockback.x
 	velocity.z += knockback.z
