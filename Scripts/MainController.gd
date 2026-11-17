@@ -19,6 +19,7 @@ func _ready() -> void:
 	SignalBus.connect("loadNextFloor", onLoadNextFloor)
 	SignalBus.connect("captureEnemy", onCaptureEnemy)
 	SignalBus.connect("extinguishFire", onExtinguishFire)
+	SignalBus.connect("spawnNewFire", onSpawnFire)
 	
 	Stats.ALL_TIME_ENEMIES_CAPUTRED = 0
 	Stats.ALL_TIME_FIRE_EXTINGUISED = 0
@@ -66,11 +67,9 @@ func onLoadNextFloor() -> void:
 
 func countEnemiesOnFloor() -> void:
 	enemiesOnFloor = get_tree().get_nodes_in_group("Enemy").size()
-	print(enemiesOnFloor)
 
 func countFiresOnFloor() -> void:
 	firesOnFloor = get_tree().get_nodes_in_group("Fire").size()
-	print(firesOnFloor)
 
 func getNewFloor(levelIndex: int) -> Node3D:
 	return floors[currentFloor].instantiate()
@@ -94,3 +93,6 @@ func checkFloorCondition() -> void:
 		else:
 			dialog_manager.levelComplete()
 		SignalBus.emit_signal("floorExtinguished")
+
+func onSpawnFire(enemyPos: Vector3) -> void:
+	firesOnFloor += 1

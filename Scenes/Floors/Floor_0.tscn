@@ -42,8 +42,6 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 
 [node name="Floor" type="Node3D" unique_id=380912517]
 script = ExtResource("1_irllo")
-hasFog = true
-startFogHeight = 2.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=493182413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.200161, 0)
@@ -244,6 +242,7 @@ end_position = Vector3(0, 0, 7.11)
 
 [node name="Enemy2" parent="Enemies" unique_id=1289867849 instance=ExtResource("32_18gw6")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 17.06054, 0.79896814, 2.9208436)
+canSpawnFire = true
 
 [node name="Fires" type="Node3D" parent="." unique_id=1441574400]
 

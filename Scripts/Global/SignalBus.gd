@@ -8,3 +8,4 @@ signal loadNextFloor
 
 signal extinguishFire
 signal captureEnemy
+signal spawnNewFire(enemyPos: Vector3)

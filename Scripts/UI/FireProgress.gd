@@ -50,6 +50,10 @@ func setUp():
 	isGameOver = false
 	show()
 
+func updatePoints(additionalFirePoints: float) -> void:
+	print("additionalFirePoints: " + str(additionalFirePoints))
+	progress_bar.max_value += additionalFirePoints
+
 func onCaptureEnemy(points: int):
 	fireProgress -= points
 

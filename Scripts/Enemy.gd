@@ -1,9 +1,14 @@
 extends CharacterBody3D
 
+const SPAWN_FIRE_CHANCE = 0.25
+const DELAY_BETWEEN_FIRE_SPAWN = 2.0
+const DELAY_DECAY = 0.1
+
 @export var pull_velocity : float = 0.4
 @export var enemyPoints: int = 1
 @export var fireRadius := 4.0       
 @export var restoreInterval := 5.0   
+@export var canSpawnFire: bool = false
 
 @onready var button_mash: ButtonMash = $ButtonMash
 @onready var navigation: NavigationAgent3D = $NavigationAgent3D
@@ -30,6 +35,7 @@ var linkExit := Vector3.ZERO
 var currentLink: Node = null
 var dashLeft := 0.0
 var heat_tween: Tween
+var spawnFireDelay: float = 0.0
 
 @export var fleeDistance := 12.0
 @export var fleeTime := 4.0
@@ -93,6 +99,9 @@ func _process(delta: float) -> void:
 	if target_position != Vector3.ZERO:
 		position = position.move_toward(target_position, delta * pull_velocity)
 	updateSpeedRestore(delta)
+	
+	if spawnFireDelay > 0.0:
+		spawnFireDelay -= DELAY_DECAY * delta
 
 func setHighlight(on: bool) -> void:
 	for m in find_children("*", "MeshInstance3D", true, false):
@@ -303,12 +312,14 @@ func _on_link_reached(details: Dictionary) -> void:
 	linkExit = details.link_exit_position
 	currentLink = details.get("owner")  # o NavigationLink3D, se existir
 	_on_link_started()
+	trySpawnFire()
 
 func _on_link_started() -> void:
 	switchState(State.PHASING)
 	animation_player.play("Phasing")
 	playSound(GHOST_CRYING_SOUND_EFFECT)
 	fadeTo(0.5)
+	trySpawnFire()
 
 func _on_link_finished() -> void:
 	onLink = false
@@ -362,3 +373,12 @@ func playSound(soundName, wait := true):
 	if sfx.playing and wait:
 		await sfx.finished
 	sfx.play()
+
+func trySpawnFire() -> void:
+	if not canSpawnFire or spawnFireDelay > 0.0:
+		return
+	
+	spawnFireDelay = DELAY_BETWEEN_FIRE_SPAWN
+	var random = RandomNumberGenerator.new().randf()
+	if random <= SPAWN_FIRE_CHANCE:
+		SignalBus.emit_signal("spawnNewFire", global_position)
