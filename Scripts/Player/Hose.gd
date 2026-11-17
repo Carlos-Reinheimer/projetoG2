@@ -25,6 +25,7 @@ const INTENSITY_DURATION = 1.5
 @onready var water_sfx: AudioStreamPlayer = $"../../../WaterSFX"
 @onready var vacuum_sfx: AudioStreamPlayer = $"../../../VacuumSFX"
 @onready var vacuum_of_sfx: AudioStreamPlayer = $"../../../VacuumOfSFX"
+@onready var capturing_enemy: AudioStreamPlayer = $"../../../CapturingEnemy"
 
 @export var idleIndicatorColor: Color
 @export var extinguishIndicatorColor: Color
@@ -61,7 +62,7 @@ func processHose(delta: float) -> void:
 			updateHoseFeedback("Pull", false, pullIndicatorColor, TARGET_INTENSITY)
 	elif wind_vortex.emitting:
 		vacuum_sfx.stop()
-		if not $"../../../AudioStreamPlayer".playing:
+		if not capturing_enemy.playing:
 			vacuum_of_sfx.play()
 		wind_vortex.emitting = false
 		cone.visible = false

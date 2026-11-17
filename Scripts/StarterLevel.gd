@@ -15,6 +15,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	Transition.change_scene("res://Scenes/Main.tscn")
 
 func onStartGame() -> void:
-	dialog_manager.introDialog()
 	player.onStartGame()
+	await dialog_manager.introDialog()
 	exit_door.openAnimation()

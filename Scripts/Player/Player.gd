@@ -25,6 +25,7 @@ const KNOCKBACK_DECAY := 25.0  # quão rápido o empurrão perde força
 @onready var colission_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash/ColissionSplash
 @onready var hose: Hose = $Head/Camera3D/Hose
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var capturing_enemy: AudioStreamPlayer = $CapturingEnemy
 
 @export var isAutoPlayable: bool = false
 @export var failStun := 1.0
@@ -107,6 +108,7 @@ func _physics_process(delta: float) -> void:
 		switch_state(State.NORMAL)
 	
 	if currentState == State.CAPTURING:
+		faceTarget(delta)
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
@@ -217,7 +219,7 @@ func pushBack(from: Vector3, strength: float = 14.0) -> void:
 	hose.vacuum_sfx.stop()
 	#hose.vacuum_of_sfx.play()
 	if enemyTarget:
-		$AudioStreamPlayer.play()
+		capturing_enemy.play()
 	
 	var dir := global_position - from
 	dir.y = 0.0
@@ -258,3 +260,23 @@ func onFinishLoadNextLevel() -> void:
 func onEndGame() -> void:
 	await get_tree().create_timer(2).timeout
 	isPlayable = false
+
+func faceTarget(delta: float) -> void:
+	if not is_instance_valid(enemyTarget):
+		return
+
+	var to_enemy: Vector3 = enemyTarget.global_position - global_position
+	var flat := Vector2(to_enemy.x, to_enemy.z)
+	if flat.length() > 0.01:
+		var target_yaw := atan2(-to_enemy.x, -to_enemy.z)
+		_mouse_rotation.y = lerp_angle(_mouse_rotation.y, target_yaw, 12.0 * delta)
+
+	var cam_pos := camera_3d.global_position
+	var to_enemy_cam: Vector3 = enemyTarget.global_position - cam_pos
+	var horizontal := Vector2(to_enemy_cam.x, to_enemy_cam.z).length()
+	var target_pitch := atan2(to_enemy_cam.y, horizontal)
+	target_pitch = clampf(target_pitch, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
+	_mouse_rotation.x = lerpf(_mouse_rotation.x, target_pitch, 12.0 * delta)
+
+	camera_3d.transform.basis = Basis.from_euler(Vector3(_mouse_rotation.x, 0.0, 0.0))
+	global_transform.basis = Basis.from_euler(Vector3(0.0, _mouse_rotation.y, 0.0))
