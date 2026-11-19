@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://btmcwaq2mg3u8" path="res://Scenes/Props/Fan.tscn" id="6_k2kwc"]
 [ext_resource type="PackedScene" uid="uid://d3farh1q2ahgc" path="res://Scenes/Props/Light 2.tscn" id="7_ff1pc"]
 [ext_resource type="PackedScene" uid="uid://dlrdmvug0t8d2" path="res://Scenes/Fires/Blue Fire.tscn" id="7_irllo"]
-[ext_resource type="PackedScene" uid="uid://cwqv04wl5gcp7" path="res://Scenes/Fires/Green Fire.tscn" id="8_7n10n"]
 [ext_resource type="PackedScene" uid="uid://dnqg43qcyqf64" path="res://Scenes/Props/Light 3.tscn" id="8_aa63m"]
-[ext_resource type="PackedScene" uid="uid://dugul52mxl4km" path="res://Scenes/Fires/Violet Fire.tscn" id="9_dbg84"]
 [ext_resource type="PackedScene" uid="uid://ceggv7onkpgeb" path="res://Scenes/Props/Lamp.tscn" id="9_vxud8"]
 [ext_resource type="PackedScene" uid="uid://b0fbe7kyq0jyv" path="res://Assets/Models/Props/Desks/Center Desk.glb" id="10_ymmif"]
 [ext_resource type="PackedScene" uid="uid://bsv6h42op8rvm" path="res://Assets/Models/Props/Chairs/Sofa 2.glb" id="11_egmky"]
@@ -33,8 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://dja3qahm141kl" path="res://Scenes/Props/Pot 2.tscn" id="28_tanig"]
 [ext_resource type="PackedScene" uid="uid://djs6ksqq5nydw" path="res://Scenes/Props/Pot 1.tscn" id="29_53l25"]
 [ext_resource type="PackedScene" uid="uid://esvas14rixcu" path="res://Scenes/Props/Pot 3.tscn" id="30_5x301"]
-[ext_resource type="PackedScene" uid="uid://dg80w5vli26cs" path="res://Scenes/Enemies/Enemy1.tscn" id="32_18gw6"]
-[ext_resource type="PackedScene" uid="uid://d4gpju0ac68df" path="res://Scenes/Utils/FloorFogVolume.tscn" id="33_irllo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_03r8q"]
 vertices = PackedVector3Array(0.5, 7.500161, 0.5, 0.5, 7.500161, 29.5, 19.5, 7.500161, 29.5, 19.5, 7.500161, 0.5, 5.5, 2.5001612, 9.75, 6.75, 2.5001612, 9.5, 6.5, 2.5001612, 6.75, 5.5, 2.5001612, 6.5, 1.75, 2.5001612, 1.75, 1.75, 2.5001612, 14.5, 5.5, 2.5001612, 1.75, 5.5, 2.5001612, 14.5, 7.75, 2.5001612, 9.75, 13.5, 2.5001612, 11, 13.75, 2.5001612, 7.5, 7.75, 2.5001612, 6.25, 15.5, 2.5001612, 7.5, 15.25, 2.5001612, 4.75, 13.75, 2.5001612, 4.75, 15.75, 2.5001612, 9.5, 18.5, 2.5001612, 9.5, 18.5, 2.5001612, 1.75, 15.75, 2.5001612, 4.25, 15.75, 2.5001612, 1.75, 13.5, 2.5001612, 1.75, 7.75, 2.5001612, 1.75, 7.75, 2.5001612, 11.25, 18.5, 2.5001612, 11.75, 15.75, 2.5001612, 11.75, 15.75, 2.5001612, 13.25, 15.25, 2.5001612, 13.75, 15.5, 2.5001612, 16.5, 18.5, 2.5001612, 19.5, 15.75, 2.5001612, 19.5, 13.5, 2.5001612, 17.5, 13.75, 2.5001612, 16.5, 13.75, 2.5001612, 13.75, 7.75, 2.5001612, 17.25, 5.5, 2.5001612, 21.75, 6.75, 2.5001612, 21.5, 6.5, 2.5001612, 18.75, 5.5, 2.5001612, 18.5, 1.75, 2.5001612, 28.5, 5.5, 2.5001612, 28.5, 1.75, 2.5001612, 16.75, 5.5, 2.5001612, 16.75, 7.5, 2.5001612, 21.5, 7.75, 2.5001612, 18.25, 7.75, 2.5001612, 22.25, 13.5, 2.5001612, 22, 18.5, 2.5001612, 21.75, 15.75, 2.5001612, 21.75, 15.25, 2.5001612, 22.75, 15.75, 2.5001612, 25.75, 18.5, 2.5001612, 28.5, 15.75, 2.5001612, 28.5, 13.75, 2.5001612, 22.75, 13.75, 2.5001612, 25.5, 7.75, 2.5001612, 28.5, 13.5, 2.5001612, 28.5)
@@ -240,20 +236,13 @@ end_position = Vector3(0, 0, 7.11)
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1079233868]
 
-[node name="Enemy2" parent="Enemies" unique_id=1289867849 instance=ExtResource("32_18gw6")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 17.06054, 0.79896814, 2.9208436)
-canSpawnFire = true
-
 [node name="Fires" type="Node3D" parent="." unique_id=1441574400]
 
 [node name="Blue Fire" parent="Fires" unique_id=187325746 instance=ExtResource("7_irllo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.90687, 0.9557147, 18.075916)
 
-[node name="Green Fire" parent="Fires" unique_id=1861684782 instance=ExtResource("8_7n10n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9256234, 1.8526075, 24.02145)
-
-[node name="Violet Fire" parent="Fires" unique_id=1357369584 instance=ExtResource("9_dbg84")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.964734, 1.784231, 6.898317)
+[node name="Blue Fire2" parent="Fires" unique_id=711093099 instance=ExtResource("7_irllo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4450674, 0.9557147, 25.702038)
 
 [node name="Scenario" type="Node3D" parent="." unique_id=1915547537]
 
@@ -388,7 +377,3 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.8
 
 [node name="Pot 5" parent="Scenario" unique_id=1530727990 instance=ExtResource("28_tanig")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4561396, 0.5046971, 22.69877)
-
-[node name="FogVolume" parent="." unique_id=1052107437 instance=ExtResource("33_irllo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.156699, 2.4455779, 15.332094)
-size = Vector3(18.150703, 5.0579224, 28.616272)
