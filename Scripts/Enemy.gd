@@ -61,6 +61,7 @@ enum State {
 }
 
 func _ready() -> void:
+	await NavigationServer3D.map_changed
 	navigation.link_reached.connect(_on_link_reached)
 	_setUpOutlineShader()
 	rememberFires()
