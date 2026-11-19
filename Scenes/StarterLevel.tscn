@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c20lrmk6asfbs" path="res://Scenes/Utils/DialogManager.tscn" id="4_b86fs"]
 [ext_resource type="Shader" uid="uid://2u8x34we35r5" path="res://Assets/Shaders/FireUI.gdshader" id="5_b86fs"]
 [ext_resource type="FontFile" uid="uid://b4x4fuk4peqnx" path="res://Assets/Fonts/BBHBogle-Regular.ttf" id="6_0ycr3"]
+[ext_resource type="Texture2D" uid="uid://dh46cl644yolx" path="res://Assets/UI/logo.png" id="6_7m1dm"]
 [ext_resource type="PackedScene" uid="uid://c7ce07xtntglw" path="res://Scenes/UI/Button.tscn" id="6_b86fs"]
 [ext_resource type="Environment" uid="uid://c86xpxqvswg3h" path="res://Assets/Environment.tres" id="7_46pub"]
 [ext_resource type="PackedScene" uid="uid://cryfyybg6y2vc" path="res://Assets/Models/Outside Building/Environment.glb" id="7_ib40j"]
@@ -37,6 +38,67 @@ shader_parameter/side_taper = 0.4
 shader_parameter/color_core = Color(2.695322e-06, 0.67447966, 0.8057274, 1)
 shader_parameter/color_mid = Color(1.8770993e-06, 0.45028198, 0.5570979, 1)
 shader_parameter/color_edge = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_7m1dm"]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Logo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001, 2.9333334, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0009999999, 2.9333334, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_syc3a"]
+resource_name = "intro"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Logo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 3.4333334, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 3.4333334, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_utb1a"]
+_data = {
+&"RESET": SubResource("Animation_7m1dm"),
+&"intro": SubResource("Animation_syc3a")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8p5dp"]
 size = Vector3(20.950195, 1.1669922, 20.974594)
@@ -86,13 +148,37 @@ offset_right = 638.0
 grow_vertical = 0
 mouse_filter = 2
 
+[node name="Logo" type="TextureRect" parent="UI Control/Panel" unique_id=146734730]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 131.0
+offset_right = 251.0
+offset_bottom = 341.74957
+texture = ExtResource("6_7m1dm")
+expand_mode = 1
+
 [node name="Title" type="Label" parent="UI Control/Panel" unique_id=1173093468]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 492.0
-offset_right = 592.0
-offset_bottom = 584.0
+offset_left = -81.0
+offset_top = 172.0
+offset_right = 471.0
+offset_bottom = 264.0
 rotation = -0.00036388251
+scale = Vector2(1.5367131, 1.3119758)
+theme_override_fonts/font = ExtResource("6_0ycr3")
+theme_override_font_sizes/font_size = 76
+text = "F. G. F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="UI Control/Panel" unique_id=434899618]
+layout_mode = 0
+offset_left = 238.00002
+offset_top = 272.0
+offset_right = 790.0
+offset_bottom = 364.0
+rotation = -0.00036388251
+scale = Vector2(0.4022901, 0.49588627)
 theme_override_fonts/font = ExtResource("6_0ycr3")
 theme_override_font_sizes/font_size = 76
 text = "Fire Ghost Fighter"
@@ -101,10 +187,10 @@ vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI Control/Panel" unique_id=544920826]
 layout_mode = 0
-offset_left = 185.0
-offset_top = 260.0
-offset_right = 447.0
-offset_bottom = 590.0
+offset_left = 138.0
+offset_top = 380.0
+offset_right = 400.0
+offset_bottom = 710.0
 theme_override_constants/separation = 30
 
 [node name="Start Button" parent="UI Control/Panel/VBoxContainer" unique_id=1977854024 instance=ExtResource("6_b86fs")]
@@ -116,6 +202,42 @@ layout_mode = 2
 text = "Sair"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="UI Control" unique_id=946591213]
+
+[node name="Intro" type="Control" parent="." unique_id=369783152]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Intro" unique_id=635288518]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Logo" type="TextureRect" parent="Intro" unique_id=1719802756]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 285.0
+offset_top = 149.5
+offset_right = 285.0
+offset_bottom = 168.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_7m1dm")
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro" unique_id=216186206]
+libraries/ = SubResource("AnimationLibrary_utb1a")
 
 [node name="DialogManager" parent="." unique_id=2052850963 instance=ExtResource("4_b86fs")]
 

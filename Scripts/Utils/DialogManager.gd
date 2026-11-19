@@ -11,7 +11,7 @@ var current_tween: Tween
 var skip_all := false
 
 # Dialogos
-var introDialogText : Array[String] = ["[i]Atenção, cadete[/i]", "Isso não é um treinamento", "Esse é seu primeiro incêndio de [color=red]burnout[/color] de verdade", "Mas não se preocupe, estou aqui para te relembrar do seu treinamento",
+var tutorialDialogText : Array[String] = ["[i]Atenção, cadete[/i]", "Isso não é um treinamento", "Esse é seu primeiro incêndio de [color=red]burnout[/color] de verdade", "Mas não se preocupe, estou aqui para te relembrar do seu treinamento",
 "Primeiramente o básico, apagar o fogo, mas não qualquer [wave amp=30 freq=5]foguinho normal[/wave]", "Temos fogos [color=red]vermelhos[/color], [color=blue]azuis[/color] e [color=green]verdes[/color], cada um mais demorado de apagar do que o outro",
 "Mas não se preocupa, apenas os apague com sua mangueira [Pressionando o botão direito do mouse]", "Agora, os [wave amp=30 freq=5][b]fantasmas[/b][/wave]... esses são outra história", "Ao invés de apagá-los, devemos [i]capturá-los[/i] [Pressionando botão direto do mouse]",
 "Porém cuidado, [i]conseguir[/i] capturá-los é mais difícil do que parece", "E lembre-se, [b]sempre limpe um andar antes de seguir para o próximo[/b]", "Boa sorte, cadete"]
@@ -44,9 +44,13 @@ func levelComplete():
 	await get_tree().create_timer(1).timeout
 	showDialog("Tutor Rial", ["Andar limpo, soldado"])
 
+func tutorialDialog():
+	await _wait(0.5)
+	await showDialog("Tutor Rial", tutorialDialogText)
+
 func introDialog():
 	await _wait(0.5)
-	await showDialog("Tutor Rial", introDialogText)
+	await showDialog("Tutor Rial", ["Na sociedade que vivemos hoje, um fenômeno extraordinário acontece", "Aqueles que vão muito além dos seus limites...", "Acabam virando... [wave amp=30 freq=5]outra coisa[/wave]", "E é para isso que nós existimos, para resgatá-los"], true)
 
 func _wait(seconds: float) -> void:
 	var t := get_tree().create_timer(seconds)
@@ -58,11 +62,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		skip_all = true
 		get_viewport().set_input_as_handled()
 
-func showDialog(character: String, dialogs: Array[String]):
+func showDialog(character: String, dialogs: Array[String], text_only := false):
 	if dialog_is_playing:
 		return
 	dialog_is_playing = true
-	popIn()
+
+	# Só texto: painel invisível, nome escondido, sem animação de "pop"
+	panel.self_modulate.a = 0.0 if text_only else 1.0
+	character_name.visible = not text_only
+	if text_only:
+		panel.scale = Vector2.ONE
+		panel.modulate.a = 1.0
+	else:
+		popIn()
+
 	character_name.text = character
 	for dialog in dialogs:
 		if skip_all:
@@ -81,9 +94,18 @@ func showDialog(character: String, dialogs: Array[String]):
 		await _wait(1.0)
 
 	skip_all = false
-	popOut()
+	if text_only:
+		await _fade_out_text()
+	else:
+		popOut()
 	dialog_is_playing = false
-	#dialog_finished.emit()
+
+func _fade_out_text() -> void:
+	var tween := create_tween()
+	tween.tween_property(panel, "modulate:a", 0.0, 0.3)
+	await tween.finished
+	panel.scale = Vector2.ZERO
+	panel.self_modulate.a = 1.0  # volta ao normal pros próximos diálogos
 
 func _process(_delta):
 	var current = character_dialog.visible_characters
