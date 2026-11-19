@@ -61,10 +61,10 @@ enum State {
 }
 
 func _ready() -> void:
+	await get_tree().physics_frame
 	navigation.link_reached.connect(_on_link_reached)
 	_setUpOutlineShader()
 	rememberFires()
-	await get_tree().physics_frame
 	goToRandomFire()
 
 func _setUpOutlineShader() -> void:
