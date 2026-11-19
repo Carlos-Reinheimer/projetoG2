@@ -255,16 +255,16 @@ end_position = Vector3(0, 0, 5.555)
 [node name="Enemies" type="Node3D" parent="." unique_id=297041087]
 
 [node name="Enemy" parent="Enemies" unique_id=873800574 instance=ExtResource("5_h5ofr")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 9.823938, 0.79896814, 25.16179)
+transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371138e-08, 9.823938, 0.79896814, 25.16179)
 
 [node name="Enemy2" parent="Enemies" unique_id=1330837244 instance=ExtResource("6_nyqx4")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 23.676672, 0.79896814, 40.921597)
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 23.676672, 0.79896814, 40.921597)
 
 [node name="Enemy3" parent="Enemies" unique_id=134076197 instance=ExtResource("5_h5ofr")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 8.994923, 0.7989679, 2.7351723)
+transform = Transform3D(-0.9659257, 0, -0.25881892, 0, 1, 0, 0.25881892, 0, -0.9659257, 8.994923, 0.7989679, 2.7351723)
 
 [node name="Enemy4" parent="Enemies" unique_id=1482267318 instance=ExtResource("5_h5ofr")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 23.99494, 0.7989679, 14.195805)
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 23.99494, 0.7989679, 14.195805)
 
 [node name="Fires" type="Node3D" parent="." unique_id=1030131329]
 

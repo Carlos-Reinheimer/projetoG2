@@ -273,16 +273,17 @@ end_position = Vector3(0, 0, 6.425)
 [node name="Enemies" type="Node3D" parent="." unique_id=88784059]
 
 [node name="Enemy" parent="Enemies" unique_id=873800574 instance=ExtResource("5_k7sd6")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 10.314076, 0, 16.9815)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 10.314076, 1.1853212, 16.9815)
 
 [node name="Enemy2" parent="Enemies" unique_id=1348772246 instance=ExtResource("6_alr41")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.004429, 0.79896814, 42.42997)
+transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371138e-08, 4.004429, 0.79896814, 42.42997)
+canSpawnFire = true
 
 [node name="Enemy3" parent="Enemies" unique_id=1665645121 instance=ExtResource("7_8ab1x")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 24.339294, 0.79896814, 24.950872)
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 24.339294, 0.79896814, 24.950872)
 
 [node name="Enemy4" parent="Enemies" unique_id=379660940 instance=ExtResource("6_alr41")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 16.749298, 0.79896814, 8.69938)
+transform = Transform3D(0.5440445, 0, 0.8390562, 0, 1, 0, -0.8390562, 0, 0.5440445, 16.749298, 0.79896814, 8.69938)
 
 [node name="Fires" type="Node3D" parent="." unique_id=1428607066]
 

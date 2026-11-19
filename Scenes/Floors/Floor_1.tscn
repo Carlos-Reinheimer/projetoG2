@@ -262,7 +262,7 @@ end_position = Vector3(0, 0, 5.145)
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 12.809185, 0.79896814, 32.07083)
 
 [node name="Enemy2" parent="Enemies" unique_id=52785603 instance=ExtResource("25_uei3s")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2.9421458, 0.7989684, 11.866605)
+transform = Transform3D(-0.49999997, 0, -0.86602527, 0, 1, 0, 0.86602527, 0, -0.49999997, 2.9421458, 0.7989684, 11.866605)
 
 [node name="Fires" type="Node3D" parent="." unique_id=1914251309]
 

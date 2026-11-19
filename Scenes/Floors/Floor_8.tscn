@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://duvt04x2avxm2" path="res://Assets/Models/Props/Desks/Desk 3.glb" id="3_njw2d"]
 [ext_resource type="PackedScene" uid="uid://h0wl2xkyjq2u" path="res://Assets/Models/Props/Chairs/Chair 4.glb" id="4_8kra0"]
 [ext_resource type="PackedScene" uid="uid://bxfc02emt4uvc" path="res://Assets/Models/Props/Chairs/Sofa.glb" id="5_12fs5"]
+[ext_resource type="PackedScene" uid="uid://sqovrwx4m2mt" path="res://Scenes/Enemies/Enemy2.tscn" id="6_fcmqd"]
 [ext_resource type="PackedScene" uid="uid://b0fbe7kyq0jyv" path="res://Assets/Models/Props/Desks/Center Desk.glb" id="6_h2x5l"]
 [ext_resource type="PackedScene" uid="uid://dlrdmvug0t8d2" path="res://Scenes/Fires/Blue Fire.tscn" id="6_u8856"]
 [ext_resource type="PackedScene" uid="uid://cwqv04wl5gcp7" path="res://Scenes/Fires/Green Fire.tscn" id="7_qqf8f"]
@@ -396,6 +397,17 @@ transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 13.377275, 2
 end_position = Vector3(0, 0, 5.275)
 
 [node name="Enemies" type="Node3D" parent="." unique_id=671726169]
+
+[node name="Enemy" parent="Enemies" unique_id=873800574 instance=ExtResource("6_fcmqd")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 14.530761, 1.0487931, 17.917984)
+canSpawnFire = true
+
+[node name="Enemy2" parent="Enemies" unique_id=788658632 instance=ExtResource("6_fcmqd")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 14.530761, 1.0487931, 34.917984)
+
+[node name="Enemy3" parent="Enemies" unique_id=402869610 instance=ExtResource("6_fcmqd")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 14.530761, 1.0487931, 57.917984)
+canSpawnFire = true
 
 [node name="Fires" type="Node3D" parent="." unique_id=539969725]
 

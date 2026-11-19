@@ -35,7 +35,7 @@ func setupLevel() -> void:
 	
 	current_floor_sfx.play()
 	
-	current_floor_label.text = str(floors.size() + 1) + "º ANDAR"
+	current_floor_label.text = str((floors.size() + 1) - currentFloor) + "º ANDAR"
 	current_floor_label.modulate.a = 0.0
 	current_floor_label.show()
 	
