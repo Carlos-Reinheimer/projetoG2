@@ -12,8 +12,8 @@ var skip_all := false
 
 # Dialogos
 var tutorialDialogText : Array[String] = ["[i]Atenção, cadete[/i]", "Isso não é um treinamento", "Esse é seu primeiro incêndio de [color=red]burnout[/color] de verdade", "Mas não se preocupe, estou aqui para te relembrar do seu treinamento",
-"Primeiramente o básico, apagar o fogo, mas não qualquer [wave amp=30 freq=5]foguinho normal[/wave]", "Temos fogos [color=red]vermelhos[/color], [color=blue]azuis[/color] e [color=green]verdes[/color], cada um mais demorado de apagar do que o outro",
-"Mas não se preocupa, apenas os apague com sua mangueira [Pressionando o botão direito do mouse]", "Agora, os [wave amp=30 freq=5][b]fantasmas[/b][/wave]... esses são outra história", "Ao invés de apagá-los, devemos [i]capturá-los[/i] [Pressionando botão direto do mouse]",
+"Primeiramente o básico, apagar o fogo, mas não qualquer [wave amp=30 freq=5]foguinho normal[/wave]", "Temos fogos [color=purple]roxos[/color], [color=blue]azuis[/color] e [color=green]verdes[/color], cada um mais demorado de apagar do que o outro",
+"Mas não se preocupa, apenas os apague com sua mangueira [Pressionando o botão direito do mouse]", "Agora, os [wave amp=30 freq=5][b]fantasmas[/b][/wave]... esses são outra história", "Ao invés de apagá-los, devemos [i]capturá-los[/i] [Pressionando botão esquerdo do mouse]",
 "Porém cuidado, [i]conseguir[/i] capturá-los é mais difícil do que parece", "E lembre-se, [b]sempre limpe um andar antes de seguir para o próximo[/b]", "Boa sorte, cadete"]
 
 var characterName := "Tutor Rial"
