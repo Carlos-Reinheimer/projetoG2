@@ -37,12 +37,23 @@ offset_bottom = 44.0
 theme_override_font_sizes/font_size = 20
 text = "CharacterName"
 
+[node name="Tip" type="Label" parent="Panel" unique_id=1371422729]
+layout_mode = 0
+offset_left = 843.99994
+offset_top = 123.0
+offset_right = 1043.0
+offset_bottom = 174.0
+scale = Vector2(1.0188514, 1.0188514)
+theme_override_font_sizes/font_size = 20
+text = "Aperte Q para pular o díalogo"
+
 [node name="CharacterDialog" type="RichTextLabel" parent="Panel" unique_id=1980992100]
 layout_mode = 0
 offset_left = 176.0
 offset_top = 24.0
 offset_right = 1019.0
 offset_bottom = 134.0
+bbcode_enabled = true
 text = "dfsfdsfsdfsdfsdf"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1659642471]

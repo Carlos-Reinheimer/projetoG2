@@ -11,7 +11,10 @@ var current_tween: Tween
 var skip_all := false
 
 # Dialogos
-var introDialogText := [""]
+var introDialogText : Array[String] = ["[i]Atenção, cadete[/i]", "Isso não é um treinamento", "Esse é seu primeiro incêndio de [color=red]burnout[/color] de verdade", "Mas não se preocupe, estou aqui para te relembrar do seu treinamento",
+"Primeiramente o básico, apagar o fogo, mas não qualquer [wave amp=30 freq=5]foguinho normal[/wave]", "Temos fogos [color=red]vermelhos[/color], [color=blue]azuis[/color] e [color=green]verdes[/color], cada um mais demorado de apagar do que o outro",
+"Mas não se preocupa, apenas os apague com sua mangueira [Pressionando o botão direito do mouse]", "Agora, os [wave amp=30 freq=5][b]fantasmas[/b][/wave]... esses são outra história", "Ao invés de apagá-los, devemos [i]capturá-los[/i] [Pressionando botão direto do mouse]",
+"Porém cuidado, [i]conseguir[/i] capturá-los é mais difícil do que parece", "E lembre-se, [b]sempre limpe um andar antes de seguir para o próximo[/b]", "Boa sorte, cadete"]
 
 var characterName := "Tutor Rial"
 
@@ -42,8 +45,18 @@ func levelComplete():
 	showDialog("Tutor Rial", ["Andar limpo, soldado"])
 
 func introDialog():
-	await get_tree().create_timer(0.5).timeout
-	showDialog("Tutor Rial", ["Bem vindo mano"])
+	await _wait(0.5)
+	await showDialog("Tutor Rial", introDialogText)
+
+func _wait(seconds: float) -> void:
+	var t := get_tree().create_timer(seconds)
+	while t.time_left > 0.0 and not skip_all:
+		await get_tree().process_frame
+
+func _unhandled_input(event: InputEvent) -> void:
+	if dialog_is_playing and event.is_action_pressed("SkipDialog"):
+		skip_all = true
+		get_viewport().set_input_as_handled()
 
 func showDialog(character: String, dialogs: Array[String]):
 	if dialog_is_playing:
@@ -59,16 +72,18 @@ func showDialog(character: String, dialogs: Array[String]):
 		_last_char_count = 0
 
 		var duration = character_dialog.get_total_character_count() * 0.05
-
 		current_tween = create_tween()
 		current_tween.tween_property(character_dialog, "visible_ratio", 1.0, duration)
-		current_tween.step_finished.connect(func(_i): pass) # opcional
-		await current_tween.finished
+		while current_tween.is_running() and not skip_all:
+			await get_tree().process_frame
+		current_tween.kill()
 
-		await get_tree().create_timer(1).timeout
+		await _wait(1.0)
+
 	skip_all = false
 	popOut()
 	dialog_is_playing = false
+	#dialog_finished.emit()
 
 func _process(_delta):
 	var current = character_dialog.visible_characters
