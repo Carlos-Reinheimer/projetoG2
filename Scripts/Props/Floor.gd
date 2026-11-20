@@ -56,8 +56,8 @@ func onfloorExtinguished() -> void:
 
 func onSpawnFire(enemyPos: Vector3) -> void:
 	var newFire = blueFireScene.instantiate()
+	firesParent.add_child(newFire)
 	var fire_progress_ui: Control = $"../Fire Progress UI"
 	var fire = newFire as Fire
-	firesParent.add_child(newFire)
 	fire_progress_ui.updatePoints(fire.fireResource.firePoints)
 	newFire.global_position = Vector3(enemyPos.x, enemyPos.y, enemyPos.z)
