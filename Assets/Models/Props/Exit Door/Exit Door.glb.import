@@ -43,7 +43,7 @@ _subresources={
 "materials": {
 "Exit Sign": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/Exit Sign/ExitSign.tres",
+"use_external/fallback_path": "res://Assets/Materials/Exit Sign/Closed Exit Sign.tres",
 "use_external/path": "uid://dg43yt0pdhbh6"
 }
 }
