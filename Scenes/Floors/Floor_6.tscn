@@ -627,16 +627,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.528672, 2.1295848, 30.30089
 transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, 11.86136, 1.0974877, 38.157112)
 
 [node name="Light 2" parent="Scenario" unique_id=1607240723 instance=ExtResource("19_4uv3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.9864554, 6.510891)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.8876514, 6.510891)
 
 [node name="Light 3" parent="Scenario" unique_id=1222338872 instance=ExtResource("19_4uv3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.9864554, 18.510891)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.8876514, 18.510891)
 
 [node name="Light 4" parent="Scenario" unique_id=1705229080 instance=ExtResource("19_4uv3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.9864554, 29.510891)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.8876514, 29.510891)
 
 [node name="Light 5" parent="Scenario" unique_id=1177422888 instance=ExtResource("19_4uv3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.9864554, 42.51089)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.486569, 4.8876514, 42.51089)
 
 [node name="Fan" parent="Scenario" unique_id=1691349676 instance=ExtResource("20_1xm76")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.159527, 4.73196, 5.438944)

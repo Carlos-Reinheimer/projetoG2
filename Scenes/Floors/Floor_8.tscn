@@ -669,19 +669,19 @@ transform = Transform3D(0.6869858, 0, 0.7266709, 0, 1, 0, -0.7266709, 0, 0.68698
 transform = Transform3D(-8.742278e-08, 4.371139e-08, 1, -1, -4.371139e-08, -8.742278e-08, 4.3711385e-08, -1, 4.3711392e-08, 15.805006, 0.29868078, 11.4294815)
 
 [node name="Light 2" parent="Scenario" unique_id=1607240723 instance=ExtResource("21_tn2ad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.871931, 6.820113)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.890771, 6.820113)
 
 [node name="Light 3" parent="Scenario" unique_id=1893142249 instance=ExtResource("21_tn2ad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.871931, 19.820114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.890771, 19.820114)
 
 [node name="Light 4" parent="Scenario" unique_id=1447071821 instance=ExtResource("21_tn2ad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.871931, 32.820114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.890771, 32.820114)
 
 [node name="Light 5" parent="Scenario" unique_id=2101346134 instance=ExtResource("21_tn2ad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.871931, 47.820114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.890771, 47.820114)
 
 [node name="Light 6" parent="Scenario" unique_id=1609337179 instance=ExtResource("21_tn2ad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.871931, 59.820114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292301, 4.890771, 59.820114)
 
 [node name="Light 7" parent="Scenario" unique_id=1956963601 instance=ExtResource("22_pobgu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 25.211376, 4.9642525, 5.425539)

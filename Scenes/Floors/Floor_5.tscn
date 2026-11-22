@@ -579,7 +579,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.744429, 4.918991, 7.334683
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.744429, 4.918991, 22.334682)
 
 [node name="Lamp 2" parent="Scenario" unique_id=93011985 instance=ExtResource("22_5xftr")]
-transform = Transform3D(1, 0, 0, 0, 0.79748416, -0.6033399, 0, 0.6033399, 0.79748416, 30.108316, 0.48226774, 35.736183)
+transform = Transform3D(1, 0, 0, 0, 0.79748416, -0.6033399, 0, 0.6033399, 0.79748416, 30.108316, 0.7996127, 35.736183)
 
 [node name="Lamp 3" parent="Scenario" unique_id=1784700762 instance=ExtResource("22_5xftr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.108316, 1.8954856, 40.167976)

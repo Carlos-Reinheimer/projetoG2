@@ -653,7 +653,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.452771, 4.9596696, 53.2807
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.180334, 4.735646, 6.0341473)
 
 [node name="Light 7" parent="Scenario" unique_id=1589357289 instance=ExtResource("20_o108k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.071045, 4.8535795, 6.143784)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.071045, 4.887047, 6.143784)
 
 [node name="Lamp" parent="Scenario" unique_id=1629282556 instance=ExtResource("21_wfpp7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.693316, 1.4395176, 23.55852)
@@ -701,16 +701,16 @@ transform = Transform3D(-0.62875926, 0, -0.7776, 0, 1, 0, 0.7776, 0, -0.62875926
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2774315, 4.9513726, 55.69798)
 
 [node name="Light 14" parent="Scenario" unique_id=13362525 instance=ExtResource("20_o108k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.100897, 4.860175, 44.49307)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.100897, 4.902013, 44.49307)
 
 [node name="Light 15" parent="Scenario" unique_id=1493584970 instance=ExtResource("20_o108k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.100897, 4.860175, 32.112373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.100897, 4.902013, 32.112373)
 
 [node name="Light 16" parent="Scenario" unique_id=1116720921 instance=ExtResource("20_o108k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.100897, 4.860175, 20.112373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.100897, 4.8832197, 20.112373)
 
 [node name="Light 17" parent="Scenario" unique_id=790484520 instance=ExtResource("20_o108k")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.100897, 4.860175, 9.1745405)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.100897, 4.8953032, 9.1745405)
 
 [node name="Computer" parent="Scenario" unique_id=265724340 instance=ExtResource("23_626r5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.884476, 2.583445, 36.22546)

@@ -506,10 +506,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.583105, 4.856187, 35.2332)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.583105, 4.856187, 35.2332)
 
 [node name="Light 10" parent="Scenario" unique_id=561276833 instance=ExtResource("19_ahi7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.583105, 4.856187, 45.085968)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.583105, 4.8885508, 45.085968)
 
 [node name="Light 11" parent="Scenario" unique_id=1915933097 instance=ExtResource("19_ahi7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.583105, 4.856187, 45.085968)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.583105, 4.8885508, 45.085968)
 
 [node name="Fan2" parent="Scenario" unique_id=1239926108 instance=ExtResource("20_opeqk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5336556, 5.0400414, 44.4)

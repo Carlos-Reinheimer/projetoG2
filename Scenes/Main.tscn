@@ -61,8 +61,8 @@ floors = Array[PackedScene]([ExtResource("2_h1m7h"), ExtResource("3_erwvk"), Ext
 environment = ExtResource("14_2w5on")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1228580851]
-transform = Transform3D(0.5267694, 0.15010655, -0.83664924, 0.009513319, 0.983181, 0.18238613, 0.84995496, -0.10403474, 0.51648164, 0, 0, 0)
-light_color = Color(0.198648, 0.48741513, 0.5544424, 1)
+transform = Transform3D(-0.35840833, -0.20345439, 0.91112554, 0.037008613, 0.9721001, 0.23162802, -0.93283105, 0.116736956, -0.34087923, 0, 0, 0)
+light_color = Color(0.16200629, 0.45352548, 0.59142977, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("3_kln2b")]

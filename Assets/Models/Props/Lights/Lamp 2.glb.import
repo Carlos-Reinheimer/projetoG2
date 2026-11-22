@@ -43,8 +43,8 @@ _subresources={
 "materials": {
 "Prop": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/Painted/Painted.tres",
-"use_external/path": "res://Assets/Materials/Painted/Painted.tres"
+"use_external/fallback_path": "res://Assets/Materials/Emissive/Light Emissive Warm.tres",
+"use_external/path": "uid://bhbj1rc3atiot"
 },
 "Prop 2": {
 "use_external/enabled": true,
