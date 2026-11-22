@@ -2,20 +2,36 @@
 
 [ext_resource type="PackedScene" uid="uid://bjs8ay10ib05k" path="res://Assets/Models/Props/Exit Door/Exit Door.glb" id="1_cl5w6"]
 [ext_resource type="Script" uid="uid://cybws1cufyvp7" path="res://Scripts/Props/ExitDoor.gd" id="1_uhjmw"]
+[ext_resource type="Material" uid="uid://dg43yt0pdhbh6" path="res://Assets/Materials/Exit Sign/Closed Exit Sign.tres" id="2_6dnpj"]
+[ext_resource type="Material" uid="uid://da6rtg3v8yr5j" path="res://Assets/Materials/Exit Sign/Opened Exit Sign.tres" id="3_l4y15"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1iice"]
 size = Vector3(0.60498047, 4.0852966, 2.0444336)
 
 [node name="Exit Door" type="Node3D" unique_id=538008628]
 script = ExtResource("1_uhjmw")
+closedMaterial = ExtResource("2_6dnpj")
+closedLightColor = Color(0.8784314, 0, 0, 1)
+openedMaterial = ExtResource("3_l4y15")
+openedLightColor = Color(0, 0.79607844, 0, 1)
 
 [node name="Exit Door" parent="." unique_id=1488321301 instance=ExtResource("1_cl5w6")]
+
+[node name="Exit Sign" parent="Exit Door/Exit Door" parent_id_path=PackedInt32Array(1488321301, 1645571139) index="1" unique_id=896582171]
+material_override = ExtResource("3_l4y15")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1345281243]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2030954195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19750977, 0.037124634, 0.91137695)
 shape = SubResource("BoxShape3D_1iice")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=630092707]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.44409984, 2.2871537, 0.90795064)
+light_color = Color(0.29411766, 0.5764706, 0.05490196, 1)
+light_energy = 0.5
+area_attenuation = 0.5
+area_size = Vector2(0.27672005, 0.13204193)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 
