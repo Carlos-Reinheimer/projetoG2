@@ -252,7 +252,7 @@ transform = Transform3D(0.86037195, 0.31575912, 0.40006998, -0.50957704, 0.54764
 shadow_enabled = true
 
 [node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("8_nd03u")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.493285, 2.7433472, -0.0043714046)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.493285, 2.6505122, -0.0043714046)
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("2_xtmql")]
 transform = Transform3D(-0.7071067, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, -0.7071067, 8.382971, 1.5682497, -8.8060875)
