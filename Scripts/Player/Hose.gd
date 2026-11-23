@@ -9,6 +9,7 @@ enum State {
 
 const TARGET_INTENSITY = 15
 const INTENSITY_DURATION = 1.5
+const PULL_STATES = [Player.State.PULLING, Player.State.CAPTURING]
 
 @onready var player: Player = $"../../.."
 @onready var ray: RayCast3D = $"../RayCast3D"
@@ -32,7 +33,7 @@ const INTENSITY_DURATION = 1.5
 @export var pullIndicatorColor: Color
 
 # Public
-var currentState := State.NORMAL
+var currentState = State.NORMAL
 
 # Private
 var _emissionTween: Tween
@@ -45,58 +46,53 @@ func _ready() -> void:
 	colission_splash.emitting = false
 	_lightMat = hose_mesh.get_active_material(1)
 	
+	player.stateChanged.connect(onPlayerStateChanged)
+	
 func _process(delta: float) -> void:
-	if not player.isPlayable:
-		return
-	processHose(delta)
-	processEnemy(delta)
-
-func processHose(delta: float) -> void:
-	var isPressingLeft = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	var isPressingRight = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
-	if isPressingLeft and not isPressingRight:
-		if not wind_vortex.emitting:
-			vacuum_sfx.play()
-			wind_vortex.emitting = true
-			cone.visible = true
-			updateHoseFeedback("Pull", false, pullIndicatorColor, TARGET_INTENSITY)
-	elif wind_vortex.emitting:
-		vacuum_sfx.stop()
-		if not capturing_enemy.playing:
-			vacuum_of_sfx.play()
-		wind_vortex.emitting = false
-		cone.visible = false
-		updateHoseFeedback("Pull", true, idleIndicatorColor, 0)
-
-	if isPressingRight and not isPressingLeft:
-		if not water_splash.emitting:
-			water_sfx.play()
-			water_splash.emitting = true
-			updateHoseFeedback("Push", false, extinguishIndicatorColor, TARGET_INTENSITY)
-	elif water_splash.emitting:
-		water_sfx.stop()
-		water_splash.emitting = false
-		colission_splash.emitting = false
-		updateHoseFeedback("Push", true, idleIndicatorColor, 0)
-
-func processEnemy(delta: float) -> void:
-	if isEnemyInRange():
-		_enemyTarget = ray.get_collider()
-
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _enemyTarget:
-		switchState(State.PULLING)
-		_enemyTarget.gettingPull(player)
+	if player.currentState == Player.State.WATTERING and ray.get_collider():
+		colission_splash.global_position = ray.get_collision_point()
+		colission_splash.emitting = true
 	else:
-		switchState(State.NORMAL)
-		dropTarget()
+		colission_splash.emitting = false
 
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		if ray.get_collider():
-			var colissionPoint = ray.get_collision_point()
-			colission_splash.global_position = colissionPoint
-			colission_splash.emitting = true
-		if ray.get_collider() != null and ray.get_collider().get_parent().has_method("puttingOut"):
-			ray.get_collider().get_parent().puttingOut()
+func onPlayerStateChanged(oldState: Player.State, newState: Player.State) -> void:
+	var wasPulling = oldState in PULL_STATES
+	var isPulling = newState in PULL_STATES
+
+	if isPulling and not wasPulling:
+		startPullVisuals()
+	elif wasPulling and not isPulling:
+		stopPullVisuals()
+
+	if newState == Player.State.WATTERING:
+		startWaterVisuals()
+	elif oldState == Player.State.WATTERING:
+		stopWaterVisuals()
+		
+func startPullVisuals() -> void:
+	vacuum_sfx.play()
+	wind_vortex.emitting = true
+	cone.visible = true
+	updateHoseFeedback("Pull", false, pullIndicatorColor, TARGET_INTENSITY)
+
+func stopPullVisuals() -> void:
+	vacuum_sfx.stop()
+	if not capturing_enemy.playing:
+		vacuum_of_sfx.play()
+	wind_vortex.emitting = false
+	cone.visible = false
+	updateHoseFeedback("Pull", true, idleIndicatorColor, 0)
+
+func startWaterVisuals() -> void:
+	water_sfx.play()
+	water_splash.emitting = true
+	updateHoseFeedback("Push", false, extinguishIndicatorColor, TARGET_INTENSITY)
+
+func stopWaterVisuals() -> void:
+	water_sfx.stop()
+	water_splash.emitting = false
+	colission_splash.emitting = false
+	updateHoseFeedback("Push", true, idleIndicatorColor, 0)
 
 func updateHoseFeedback(animation: String, backwards: bool, targetColor: Color, targetIntensity: float) -> void:
 	if not backwards:
@@ -128,8 +124,8 @@ func switchState(value : State):
 	currentState = value
 
 func stopVacuumSound() -> void:
-	var s := vacuum_sfx.stream as AudioStreamWAV
+	var s = vacuum_sfx.stream as AudioStreamWAV
 	if s and vacuum_sfx.playing:
-		var pos := vacuum_sfx.get_playback_position()
+		var pos = vacuum_sfx.get_playback_position()
 		s.loop_mode = AudioStreamWAV.LOOP_DISABLED
 		vacuum_sfx.play(pos)
