@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://b7yaqp0bawjk" path="res://Assets/Models/Props/Shelves/Shelf 3.glb" id="26_5d5x8"]
 [ext_resource type="Shader" uid="uid://dbxy5pi0cdgsv" path="res://Assets/Shaders/Fog.gdshader" id="26_oo73a"]
 [ext_resource type="PackedScene" uid="uid://dja3qahm141kl" path="res://Scenes/Props/Pot 2.tscn" id="27_xg104"]
+[ext_resource type="PackedScene" uid="uid://chxskn1g0wu05" path="res://Scenes/Props/FloorIndicator.tscn" id="28_m7lsq"]
 [ext_resource type="PackedScene" uid="uid://esvas14rixcu" path="res://Scenes/Props/Pot 3.tscn" id="29_ouqwn"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8p5dp"]
@@ -416,3 +417,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.46734, 0.5588628, 21.04915
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.004639, 2.8444824, 19.029781)
 size = Vector3(21.847305, 3.946289, 36.012085)
 material = SubResource("ShaderMaterial_uei3s")
+
+[node name="Floor Indicator" parent="." unique_id=555806186 instance=ExtResource("28_m7lsq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.201445, 2.5022109, 36.988674)
+
+[node name="Floor" parent="Floor Indicator" index="2" unique_id=1038341054]
+text = "9"
+
+[node name="Next Floor" parent="Floor Indicator" index="3" unique_id=873108131]
+text = "➜] 8"
+
+[editable path="Floor Indicator"]

@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="8_nd03u"]
 [ext_resource type="PackedScene" uid="uid://qcew8058lgbp" path="res://Scenes/UI/PauseMenu.tscn" id="9_syc3a"]
 [ext_resource type="PackedScene" uid="uid://dte73esl6k507" path="res://Scenes/Particles/Animated Flames.tscn" id="10_8yvhy"]
+[ext_resource type="PackedScene" uid="uid://chxskn1g0wu05" path="res://Scenes/Props/FloorIndicator.tscn" id="17_utb1a"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7m1dm"]
 
@@ -314,8 +315,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9322674, 2.7733417, -7.428
 [node name="Environment" parent="." unique_id=2097396184 instance=ExtResource("7_ib40j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073064804, -1.9073486e-06, 0.05882263)
 
+[node name="Floor Indicator" parent="." unique_id=555806186 instance=ExtResource("17_utb1a")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -9.776769, 3.4540682, -0.103415295)
+
+[node name="Label" parent="Floor Indicator" index="1" unique_id=2122754726]
+text = "TERRAÇO"
+font_size = 35
+
+[node name="Floor" parent="Floor Indicator" index="2" unique_id=1038341054]
+text = "/"
+
+[node name="Next Floor" parent="Floor Indicator" index="3" unique_id=873108131]
+text = "➜] 10"
+font_size = 35
+
 [connection signal="pressed" from="UI CanvasLayer/UI Control/Panel/VBoxContainer/Start Button" to="UI CanvasLayer/UI Control" method="_on_start_button_pressed"]
 [connection signal="pressed" from="UI CanvasLayer/UI Control/Panel/VBoxContainer/Quit Button" to="UI CanvasLayer/UI Control" method="_on_quit_button_pressed"]
 [connection signal="body_entered" from="Starter Scene/Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Pause Menu"]
+[editable path="Floor Indicator"]

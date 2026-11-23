@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://chxskn1g0wu05"]
+
+[ext_resource type="PackedScene" uid="uid://4s2vmjgm3qg7" path="res://Assets/Models/Floor Indicator/Floor Indicator.glb" id="1_yjtpc"]
+
+[node name="Floor Indicator" type="Node3D" unique_id=555806186]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Model" parent="." unique_id=2008628216 instance=ExtResource("1_yjtpc")]
+
+[node name="Label" type="Label3D" parent="." unique_id=2122754726]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.027914047, 0, 0)
+text = "ANDAR"
+font_size = 44
+outline_size = 10
+
+[node name="Floor" type="Label3D" parent="." unique_id=1038341054]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.027914047, 0, -0.789567)
+text = "0"
+font_size = 55
+outline_size = 10
+
+[node name="Next Floor" type="Label3D" parent="." unique_id=873108131]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.027914047, -0.5235067, -0.789567)
+text = "➜] 0"
+font_size = 40
+outline_size = 10
