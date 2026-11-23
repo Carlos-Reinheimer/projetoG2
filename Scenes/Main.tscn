@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c28tm8t5dftik" path="res://Scenes/Floors/Floor_5.tscn" id="6_0sclb"]
 [ext_resource type="AudioStream" uid="uid://ca81wxdri8wns" path="res://Assets/SFX/current_floor_sfx.mp3" id="6_sxkr1"]
 [ext_resource type="PackedScene" uid="uid://cryfyybg6y2vc" path="res://Assets/Models/Outside Building/Environment.glb" id="6_v1gob"]
+[ext_resource type="PackedScene" uid="uid://qcew8058lgbp" path="res://Scenes/UI/PauseMenu.tscn" id="7_fq0cl"]
 [ext_resource type="PackedScene" uid="uid://dcjni2t4duvqm" path="res://Scenes/Floors/Floor_6.tscn" id="7_sxkr1"]
 [ext_resource type="PackedScene" uid="uid://dkxyigbnmyfcy" path="res://Scenes/Floors/Floor_7.tscn" id="8_fq0cl"]
 [ext_resource type="PackedScene" uid="uid://b6u4kvqf0tspp" path="res://Scenes/Floors/Floor_8.tscn" id="9_hwpts"]
@@ -51,6 +52,8 @@ vertical_alignment = 1
 [node name="Current Floor SFX" type="AudioStreamPlayer" parent="Current Floor Layer" unique_id=1951745367]
 stream = ExtResource("6_sxkr1")
 
+[node name="Pause Menu" parent="." unique_id=2093918246 instance=ExtResource("7_fq0cl")]
+
 [node name="Fire Progress UI" parent="." unique_id=1171572019 instance=ExtResource("11_erwvk")]
 
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
@@ -77,3 +80,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.684446, -1.9073486e-06, 26
 [node name="SFX" type="Node" parent="." unique_id=1665537662]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFX" unique_id=167172148]
+bus = &"SFX"

@@ -1,0 +1,568 @@
+[gd_scene format=3 uid="uid://qcew8058lgbp"]
+
+[ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="1_2bpff"]
+[ext_resource type="Script" uid="uid://dgqjnu1grodno" path="res://Scripts/UI/PauseMenu.gd" id="1_238ko"]
+[ext_resource type="PackedScene" uid="uid://c7ce07xtntglw" path="res://Scenes/UI/Button.tscn" id="1_eod5q"]
+[ext_resource type="Shader" uid="uid://cx6pj6sef4eg2" path="res://Assets/Shaders/PauseMenu.gdshader" id="1_n4i8v"]
+[ext_resource type="PackedScene" uid="uid://uktjkmxm70k0" path="res://Scenes/UI/Volume Slider.tscn" id="5_8hc20"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eod5q"]
+shader = ExtResource("1_n4i8v")
+shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hc20"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bpff"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_238ko"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main Buttons:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main Buttons:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main Buttons:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Main Buttons:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Main Buttons:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Main Buttons:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Options Buttons:modulate:r")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Options Buttons:modulate:g")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Options Buttons:modulate:b")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Options Buttons:modulate:a")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Options Buttons:position:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-150, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Options Buttons:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_n4i8v"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 2, -0.050000004, -0.33333334, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main Buttons:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main Buttons:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main Buttons:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Main Buttons:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.050000004, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_2bpff"]
+resource_name = "options"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main Buttons:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main Buttons:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main Buttons:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main Buttons:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 0, -0.050000004, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Main Buttons:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, -1152, -0.050000004, 192, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Main Buttons:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 0, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Options Buttons:modulate:r")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Options Buttons:modulate:g")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Options Buttons:modulate:b")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Options Buttons:modulate:a")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.050000004, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Options Buttons:position:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(-1152, 0, 0, 0.050000004, 192, 0, -0.050000004, -25, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Options Buttons:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.050000004, 0, 0, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_238ko"]
+_data = {
+&"RESET": SubResource("Animation_238ko"),
+&"blur": SubResource("Animation_n4i8v"),
+&"options": SubResource("Animation_2bpff")
+}
+
+[node name="Pause Menu" type="CanvasLayer" unique_id=2093918246]
+process_mode = 3
+layer = 0
+script = ExtResource("1_238ko")
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1034664348]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2bpff")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=1696395364]
+material = SubResource("ShaderMaterial_eod5q")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options Buttons" type="PanelContainer" parent="PauseMenu" unique_id=1303474593]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_right = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hc20")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Options Buttons" unique_id=434837321]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Sound panel" type="Panel" parent="PauseMenu/Options Buttons/VBoxContainer" unique_id=1180773859]
+custom_minimum_size = Vector2(380, 220)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel" unique_id=751464336]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -78.0
+offset_right = 175.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Music" type="VBoxContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer" unique_id=1348691361]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Master" type="VBoxContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music" unique_id=2013613811]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Master" unique_id=1294518462]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Volume Slider" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Master" unique_id=1881058207 instance=ExtResource("5_8hc20")]
+layout_mode = 2
+busName = "Master"
+
+[node name="Bus" type="HBoxContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music" unique_id=410014408]
+layout_mode = 2
+
+[node name="Music" type="VBoxContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Bus" unique_id=130214620]
+custom_minimum_size = Vector2(165, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Bus/Music" unique_id=682436483]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Volume Slider" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Bus/Music" unique_id=730567932 instance=ExtResource("5_8hc20")]
+layout_mode = 2
+busName = "Music"
+
+[node name="SFX" type="VBoxContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Bus" unique_id=1780482670]
+custom_minimum_size = Vector2(165, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Bus/SFX" unique_id=844142936]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Volume Slider" parent="PauseMenu/Options Buttons/VBoxContainer/Sound panel/MarginContainer/Music/Bus/SFX" unique_id=80203496 instance=ExtResource("5_8hc20")]
+layout_mode = 2
+busName = "SFX"
+
+[node name="Gameplay Panel" type="Panel" parent="PauseMenu/Options Buttons/VBoxContainer" unique_id=1128378481]
+custom_minimum_size = Vector2(380, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Gameplay Panel" unique_id=1825283987]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -36.5
+offset_right = 175.0
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Master" type="VBoxContainer" parent="PauseMenu/Options Buttons/VBoxContainer/Gameplay Panel/MarginContainer" unique_id=1924670784]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/Options Buttons/VBoxContainer/Gameplay Panel/MarginContainer/Master" unique_id=1616450338]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Sensitividade do mouse"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mouse Sensitivity Slider" parent="PauseMenu/Options Buttons/VBoxContainer/Gameplay Panel/MarginContainer/Master" unique_id=1675439962 instance=ExtResource("5_8hc20")]
+layout_mode = 2
+min_value = 0.1
+value = 0.5
+busName = "Master"
+
+[node name="Return Button" parent="PauseMenu/Options Buttons/VBoxContainer" unique_id=617545152 instance=ExtResource("1_eod5q")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Voltar"
+
+[node name="Main Buttons" type="PanelContainer" parent="PauseMenu" unique_id=1887340248]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2bpff")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Main Buttons" unique_id=836284060]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Resume Button" parent="PauseMenu/Main Buttons/VBoxContainer" unique_id=1977854024 instance=ExtResource("1_eod5q")]
+layout_mode = 2
+text = "Retornar"
+
+[node name="Options Button" parent="PauseMenu/Main Buttons/VBoxContainer" unique_id=1824315991 instance=ExtResource("1_eod5q")]
+layout_mode = 2
+text = "Opções"
+
+[node name="Restart Current Level Button" parent="PauseMenu/Main Buttons/VBoxContainer" unique_id=1188078632 instance=ExtResource("1_eod5q")]
+layout_mode = 2
+text = "Recomeçar Andar atual"
+
+[node name="Home Button" parent="PauseMenu/Main Buttons/VBoxContainer" unique_id=1527609939 instance=ExtResource("1_eod5q")]
+layout_mode = 2
+text = "Menu Principal"
+
+[node name="Quit Button" parent="PauseMenu/Main Buttons/VBoxContainer" unique_id=1250470776 instance=ExtResource("1_eod5q")]
+layout_mode = 2
+text = "Sair"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu" unique_id=311070151]
+libraries/ = SubResource("AnimationLibrary_238ko")
+
+[connection signal="pressed" from="PauseMenu/Options Buttons/VBoxContainer/Return Button" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Main Buttons/VBoxContainer/Resume Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Main Buttons/VBoxContainer/Options Button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Main Buttons/VBoxContainer/Restart Current Level Button" to="." method="_on_restart_current_level_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Main Buttons/VBoxContainer/Home Button" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Main Buttons/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]

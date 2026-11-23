@@ -13,7 +13,6 @@ const JUMP_VELOCITY = 8
 const GRAVITY = Vector3(0, -30, 0)
 const TILT_LOWER_LIMIT = deg_to_rad(-30.0)
 const TILT_UPPER_LIMIT = deg_to_rad(30.0)
-const MOUSE_SENSITIVITY = 0.5
 const MAX_SHAKE := 1.5        # deslocamento máximo da câmera
 const SHAKE_DECAY := 5.0       # trauma perdido por segundo
 const KNOCKBACK_DECAY := 25.0  # quão rápido o empurrão perde força
@@ -154,8 +153,8 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event):
 	_mouse_input = event is InputEventMouseMotion
 	if _mouse_input :
-		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
-		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
+		_rotation_input = -event.relative.x * Settings.mouseSensitivity
+		_tilt_input = -event.relative.y * Settings.mouseSensitivity
 
 func updateAimHighlight() -> void:
 	var col := ray.get_collider()

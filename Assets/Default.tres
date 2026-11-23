@@ -4,8 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cufet7ayqkuvf" path="res://Assets/UI/Buttons/Pressed button.png" id="3_hfneu"]
 [ext_resource type="Texture2D" uid="uid://60o6ejmmnicp" path="res://Assets/UI/Buttons/Inactive Button.png" id="4_s1j26"]
 [ext_resource type="FontFile" uid="uid://brs0deyyo7u3r" path="res://Assets/Fonts/BebasNeue-Regular.ttf" id="5_hfneu"]
+[ext_resource type="Texture2D" uid="uid://cgbny7wfpjkce" path="res://Assets/UI/Sliders/Grabber Default.png" id="5_hohqw"]
+[ext_resource type="Texture2D" uid="uid://blcibouce4uau" path="res://Assets/UI/Sliders/Grabber Highlight.png" id="6_b5327"]
 [ext_resource type="Texture2D" uid="uid://c81xmlb2s4j0x" path="res://Assets/UI/Progress Bar/Progress Bar Background.png" id="6_s1j26"]
 [ext_resource type="Texture2D" uid="uid://b5gxa432epf3i" path="res://Assets/UI/Progress Bar/Progress Bar Fill.png" id="7_2mlid"]
+[ext_resource type="Texture2D" uid="uid://r2ekrgkk6gof" path="res://Assets/UI/Dialog Panel.png" id="7_b5327"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7k5r"]
 texture = ExtResource("2_c6obu")
@@ -28,11 +31,17 @@ texture_margin_top = 10.0
 texture_margin_right = 30.0
 texture_margin_bottom = 10.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7srhy"]
+bg_color = Color(0, 0, 0.14117648, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdh0q"]
+texture = ExtResource("7_b5327")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ua1s"]
 texture = ExtResource("6_s1j26")
 axis_stretch_horizontal = 2
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hohqw"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gucfp"]
 texture = ExtResource("7_2mlid")
 
 [resource]
@@ -44,9 +53,13 @@ Button/styles/hover_pressed = SubResource("StyleBoxTexture_c6obu")
 Button/styles/normal = SubResource("StyleBoxTexture_qcfcl")
 Button/styles/pressed = SubResource("StyleBoxTexture_c6obu")
 HBoxContainer/constants/separation = 20
+HSlider/icons/grabber = ExtResource("5_hohqw")
+HSlider/icons/grabber_highlight = ExtResource("6_b5327")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_7srhy")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/font_sizes/font_size = 50
 Label/fonts/font = ExtResource("5_hfneu")
+Panel/styles/panel = SubResource("StyleBoxTexture_gdh0q")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_3ua1s")
-ProgressBar/styles/fill = SubResource("StyleBoxTexture_hohqw")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_gucfp")
 VBoxContainer/constants/separation = 10

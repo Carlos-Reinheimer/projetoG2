@@ -58,3 +58,4 @@ text = "dfsfdsfsdfsdfsdf"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1659642471]
 stream = ExtResource("4_plv60")
+bus = &"SFX"
