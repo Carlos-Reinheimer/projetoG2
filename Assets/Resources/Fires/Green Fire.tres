@@ -6,5 +6,5 @@
 script = ExtResource("1_nfqeq")
 health = 50.0
 firePoints = 10.0
-decayRate = 0.07
+decayRate = 0.5
 metadata/_custom_type_script = "uid://u0rq66aleig4"

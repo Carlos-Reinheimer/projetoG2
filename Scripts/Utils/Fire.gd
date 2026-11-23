@@ -62,7 +62,6 @@ func checkDeath() -> void:
 		mat.scale_min = 0.15
 		mat.scale_max = 1.0
 		
-		print(hasReignited)
 		if not fireResource.reignite or (fireResource.reignite and hasReignited):
 			animated_flames.emitting = false
 			SignalBus.emit_signal("extinguishFire", fireResource.firePoints)
