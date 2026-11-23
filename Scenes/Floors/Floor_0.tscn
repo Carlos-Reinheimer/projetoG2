@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://bxfc02emt4uvc" path="res://Assets/Models/Props/Chairs/Sofa.glb" id="15_21x6o"]
 [ext_resource type="PackedScene" uid="uid://dso4ubfr07mjp" path="res://Assets/Models/Props/Others/Bin.glb" id="16_nnotw"]
 [ext_resource type="PackedScene" uid="uid://cgvrf3vysmowl" path="res://Assets/Models/Props/Shelves/Shelf 2.glb" id="17_hdxxc"]
-[ext_resource type="PackedScene" uid="uid://ca2quwfk1v2yf" path="res://Assets/Models/Props/Shelves/Shelf 4.glb" id="18_l2ylw"]
 [ext_resource type="PackedScene" uid="uid://cyyu7ghhunkio" path="res://Assets/Models/Props/Desks/Desk.glb" id="19_2yhe4"]
 [ext_resource type="PackedScene" uid="uid://h0wl2xkyjq2u" path="res://Assets/Models/Props/Chairs/Chair 4.glb" id="20_7mbyq"]
 [ext_resource type="PackedScene" uid="uid://sse3v3q0g0ni" path="res://Assets/Models/Props/Chairs/Chair 3.glb" id="21_kntvl"]
@@ -307,9 +306,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5870056, 0.5588628, 12.1153
 
 [node name="Shelf 2" parent="Scenario" unique_id=1743623684 instance=ExtResource("17_hdxxc")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 18.522663, 2.1295853, 14.922004)
-
-[node name="Shelf 4" parent="Scenario" unique_id=1779067630 instance=ExtResource("18_l2ylw")]
-transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 5.6944184, 3.5346692, 25.306414)
 
 [node name="Desk" parent="Scenario" unique_id=2036910337 instance=ExtResource("19_2yhe4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9046144, 0.8678383, 26.63635)

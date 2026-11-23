@@ -9,8 +9,12 @@ func _ready() -> void:
 	mouse_entered.connect(_on_hover.bind(true))
 	mouse_exited.connect(_on_hover.bind(false))
 	pivot_offset = size / 2
+	
+	pressed.connect(onPressed)
+	focus_entered.connect(onFocus)
 
 func _on_hover(hovering: bool) -> void:
+	UiAudio.playHover()
 	if _tween and _tween.is_running():
 		_tween.kill()
 		
@@ -18,3 +22,10 @@ func _on_hover(hovering: bool) -> void:
 	
 	_tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	_tween.tween_property(self, "scale", target, duration)
+
+func onFocus() -> void:
+	if not is_hovered():
+		_on_hover(true)
+
+func onPressed() -> void:
+	UiAudio.playClick()

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://j6k3log7c8gw"]
+
+[ext_resource type="Script" uid="uid://2day6dfui71s" path="res://Scripts/Utils/UIAudio.gd" id="1_8khd8"]
+[ext_resource type="AudioStream" uid="uid://utumxspo42nc" path="res://Assets/SFX/Button Hover.mp3" id="2_gnllf"]
+[ext_resource type="AudioStream" uid="uid://dk46pxorydfjy" path="res://Assets/SFX/Button Click.mp3" id="3_enfco"]
+
+[node name="UIAudio" type="Node" unique_id=329846030]
+script = ExtResource("1_8khd8")
+
+[node name="Hover AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=425126073]
+stream = ExtResource("2_gnllf")
+
+[node name="Click AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1489947987]
+stream = ExtResource("3_enfco")
