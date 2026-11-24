@@ -2,11 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://bovmvnkia6job" path="res://Assets/Default.tres" id="1_lnwvw"]
 [ext_resource type="Script" uid="uid://dujpq11kswh4q" path="res://Scripts/MiniGames/ButtonMash.gd" id="1_rjq1t"]
-[ext_resource type="Texture2D" uid="uid://bws5dnqkyfnjs" path="res://Assets/UI/Inputs/keyboard_space.png" id="2_qql6e"]
-[ext_resource type="Texture2D" uid="uid://d0a311ktiv3o3" path="res://Assets/UI/Progress Bar/Ghost Progress Bar Fill.png" id="3_jn22r"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jn22r"]
-texture = ExtResource("3_jn22r")
 
 [node name="ButtonMash" type="Control" unique_id=1145780555]
 layout_mode = 3
@@ -26,29 +21,9 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=582968906]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 101.0
-offset_top = 138.0
-offset_right = 399.9771
-offset_bottom = 177.7898
-grow_vertical = 2
-rotation = -1.5707964
-theme_override_styles/fill = SubResource("StyleBoxTexture_jn22r")
-show_percentage = false
-
 [node name="Timer" type="Timer" parent="." unique_id=1550969239]
 process_mode = 3
 wait_time = 0.4
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=789454359]
-visible = false
-position = Vector2(610, 529)
-scale = Vector2(2, 2)
-texture = ExtResource("2_qql6e")
 
 [node name="Prompts" type="Node2D" parent="." unique_id=748423973]
 position = Vector2(612, 524)

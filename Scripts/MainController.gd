@@ -63,6 +63,7 @@ func setupLevel() -> void:
 	fire_progress_ui.setUp()
 
 func onLoadNextFloor() -> void:
+	dialog_manager.skip()
 	player.onStartLoadNextLevel()
 	currentFloor += 1
 	
@@ -89,6 +90,8 @@ func instantiateLevel() -> void:
 	player.global_position = floorSp.global_position
 	
 	setupLevel()
+	playLevelDialog()
+	player.onFinishLoadNextLevel()
 
 func countEnemiesOnFloor() -> void:
 	enemiesOnFloor = get_tree().get_nodes_in_group("Enemy").size()
@@ -121,3 +124,7 @@ func checkFloorCondition() -> void:
 
 func onSpawnFire(enemyPos: Vector3) -> void:
 	firesOnFloor += 1
+
+func playLevelDialog() -> void:
+	if currentFloor == 1:
+		dialog_manager.greenFireDialog()

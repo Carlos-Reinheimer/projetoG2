@@ -35,7 +35,9 @@ var linkExit := Vector3.ZERO
 var currentLink: Node = null
 var dashLeft := 0.0
 var heat_tween: Tween
+var fade_tween: Tween
 var spawnFireDelay: float = 0.0
+static var active_mash_enemy: Node = null
 
 @export var fleeDistance := 12.0
 @export var fleeTime := 4.0
@@ -46,6 +48,7 @@ var escapeImmunity := 0.0
 const ESCAPE_IMMUNITY_TIME := 2.5
 
 @export var buttonMashMode := ButtonMash.Mode.MASH
+@export var buttonMashDifficulty := ButtonMash.Difficulty.NORMAL
 
 const MAX_SPEED := 20.0
 const MIN_SPEED := 5.0
@@ -73,6 +76,12 @@ func _setUpOutlineShader() -> void:
 	outline_material.shader = preload("res://Assets/Shaders/Outline.gdshader")
 
 func _physics_process(_delta: float) -> void:
+	if onLink:
+		var flat_exit := Vector2(linkExit.x, linkExit.z)
+		var flat_pos := Vector2(global_position.x, global_position.z)
+		if flat_pos.distance_to(flat_exit) < 1.0:
+			_on_link_finished()
+	
 	if onLink and global_position.distance_to(linkExit) < 1.0:
 		_on_link_finished()
 
@@ -96,7 +105,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	escapeImmunity = maxf(escapeImmunity - delta, 0.0)
+	escapeImmunity = maxf	(escapeImmunity - delta, 0.0)
 	if target_position != Vector3.ZERO:
 		position = position.move_toward(target_position, delta * pull_velocity)
 	updateSpeedRestore(delta)
@@ -137,15 +146,19 @@ func isNearRealFire() -> bool:
 	return false
 
 func goToRandomFire() -> void:
-	if getFires().is_empty():
-		return
-	animation_player.play("Moving")
 	var options := getFires().filter(
 		func(f): return f.global_position.distance_to(global_position) > 2.0
 	)
 	if options.is_empty():
+		await get_tree().create_timer(1.0).timeout
+		if currentState == State.NORMAL and not is_queued_for_deletion():
+			goToRandomFire()
 		return
-	navigation.set_target_position(options.pick_random().global_position)
+	animation_player.play("Moving")
+	var target: Vector3 = options.pick_random().global_position
+	target += Vector3(randf_range(-2, 2), 0, randf_range(-2, 2))
+	navigation.target_position = NavigationServer3D.map_get_closest_point(
+		navigation.get_navigation_map(), target)
 
 func goToMostDistanceFire() -> void:
 	animation_player.play("Moving")
@@ -167,33 +180,38 @@ func goToMostDistanceFire() -> void:
 
 	navigation.set_target_position(farthest_position)
 
-func fleeInRandomDirection() -> void:
+func startRunning(threat_pos: Vector3) -> void:
+	switchState(State.RUNNING)
 	animation_player.play("Moving")
-
-	# mantém a mecânica de perder velocidade/calor ao se assustar
 	if currentSpeed > 1:
 		updateHeatFromSpeed()
 		if currentSpeed > MIN_SPEED:
 			currentSpeed -= 1
 
 	var map := navigation.get_navigation_map()
-	var point := global_position
-	for i in 8:
-		var angle := randf() * TAU
-		var dir := Vector3(cos(angle), 0.0, sin(angle))
-		var raw := global_position + dir * randf_range(fleeDistance * 0.6, fleeDistance)
-		point = NavigationServer3D.map_get_closest_point(map, raw)
-		if point.distance_to(global_position) > fleeDistance * 0.5:
-			break  # achou um ponto realmente longe
+	var away := global_position - threat_pos
+	away.y = 0.0
+	if away.length() < 0.01:
+		away = Vector3.RIGHT.rotated(Vector3.UP, randf() * TAU)
+	away = away.normalized()
 
-	navigation.target_position = point
+	var best := global_position
+	var best_score := -INF
+	for i in 12:
+		var dir := away.rotated(Vector3.UP, randf_range(-PI * 0.6, PI * 0.6))
+		var raw := global_position + dir * randf_range(fleeDistance * 0.8, fleeDistance * 1.3)
+		var p := NavigationServer3D.map_get_closest_point(map, raw)
+		var score := p.distance_to(threat_pos) + p.distance_to(global_position) * 0.5
+		if score > best_score:
+			best_score = score
+			best = p
+	navigation.target_position = best
 
-	# depois de um tempo, volta para algum fogo
 	fleeId += 1
 	var my_id := fleeId
 	await get_tree().create_timer(fleeTime).timeout
 	if my_id != fleeId or currentState != State.RUNNING:
-		return  # foi puxado ou assustado de novo
+		return
 	switchState(State.NORMAL)
 	goToRandomFire()
 
@@ -206,7 +224,6 @@ func updateSpeedRestore(delta: float) -> void:
 	if restoreCooldownLeft <= 0.0:
 		currentSpeed = min(currentSpeed + 1, MAX_SPEED)
 		heatUp(restoreInterval)
-		#print("Velocidade do fogo atualizada para " + str(currentSpeed))
 		restoreCooldownLeft = restoreInterval
 
 func gettingPull(player: Player):
@@ -216,13 +233,17 @@ func gettingPull(player: Player):
 		return
 	if currentState == State.GETTING_PULL:
 		return
+	if _isMashBusy():
+		return
+	active_mash_enemy = self
 	coolDown()
 	animation_player.play("Absorb")
 	#button_mash.start(ButtonMash.Mode.values().pick_random())
 	playSound(GHOST_BUTTON_MASH)
-	button_mash.start(buttonMashMode)
-	button_mash.game_finished.connect(_on_button_mash_game_finished)
-	#playSound(SAD_GHOST)
+	button_mash.start(buttonMashMode, buttonMashDifficulty)
+	if not button_mash.game_finished.is_connected(_on_button_mash_game_finished):
+		button_mash.game_finished.connect(_on_button_mash_game_finished)
+	#playSound(SAD_GHOST)xx
 	currentState = State.GETTING_PULL
 	navigation.target_position = global_position
 	target_position = player.global_position
@@ -232,12 +253,13 @@ func gettingPull(player: Player):
 func stopPull():
 	if currentState != State.GETTING_PULL:
 		return
+	_releaseMash()
+	var threat = puller.global_position if is_instance_valid(puller) else global_position
 	playSound(LAUGH_SOUND_EFFECT, false)
-	animation_player.play("Moving")
-	currentState = State.RUNNING
 	button_mash.stop()
 	target_position = Vector3.ZERO
-	goToMostDistanceFire()
+	puller = null
+	startRunning(threat)
 
 func _on_timer_timeout() -> void:
 	queue_free()
@@ -249,11 +271,11 @@ func _on_button_mash_game_finished(has_won: bool) -> void:
 		pullInFast()
 		return
 
+	_releaseMash()
 	playSound(LAUGH_SOUND_EFFECT, false)
 	SignalBus.emit_signal("captureEnemy", -enemyPoints)
-	currentState = State.RUNNING
+	startRunning(puller.global_position)
 	target_position = Vector3.ZERO
-	goToMostDistanceFire()
 	puller.failedCapture()
 	puller.pushBack(global_position)
 	puller = null
@@ -282,13 +304,14 @@ func pullInFast() -> void:
 	puller.pushBack(start)
 	puller.stun(0.6)
 	SignalBus.emit_signal("captureEnemy", +enemyPoints)
+	_releaseMash()
 	queue_free()
 
 func _on_look_range_body_entered(body: Node3D) -> void:
 	if body is Player and currentState != State.GETTING_PULL and currentState != State.RUNNING:
 		switchState(State.RUNNING)
 		dash()
-		fleeInRandomDirection()
+		startRunning(body.global_position)
 
 func _on_navigation_agent_3d_navigation_finished() -> void:
 	# Se o inimigo está sendo puxado não faz sentido fazer ele andar
@@ -322,14 +345,17 @@ func _on_link_started() -> void:
 func _on_link_finished() -> void:
 	onLink = false
 	currentLink = null
-	fadeTo(1)
-	switchState(State.NORMAL)
+	fadeTo(1.0)
+	if currentState == State.PHASING:
+		switchState(State.NORMAL)
 	animation_player.play("Moving")
 
 func fadeTo(value: float, duration: float = 0.3) -> void:
-	var tween := create_tween().set_parallel(true)
+	if fade_tween:
+		fade_tween.kill()
+	fade_tween = create_tween().set_parallel(true)
 	for m in find_children("*", "MeshInstance3D", true, false):
-		tween.tween_property(m, "transparency", 1.0 - value, duration)
+		fade_tween.tween_property(m, "transparency", 1.0 - value, duration)
 
 func _on_button_mash_mash_pressed(progress: float) -> void:
 	if is_instance_valid(puller):
@@ -380,3 +406,13 @@ func trySpawnFire() -> void:
 	var random = RandomNumberGenerator.new().randf()
 	if random <= SPAWN_FIRE_CHANCE:
 		SignalBus.emit_signal("spawnNewFire", global_position)
+
+func _isMashBusy() -> bool:
+	return is_instance_valid(active_mash_enemy) and active_mash_enemy != self
+
+func _releaseMash() -> void:
+	if active_mash_enemy == self:
+		active_mash_enemy = null
+
+func _exit_tree() -> void:
+	_releaseMash() 

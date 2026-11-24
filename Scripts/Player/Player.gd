@@ -90,12 +90,12 @@ func _physics_process(delta: float) -> void:
 		_apply_knockback_move(delta)
 		return
 
-	var isPressingLeft = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	var isPressingRight = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+	var isPressingLeft := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	var isPressingRight := Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
 
 	if not isPressingLeft:
 		pull_blocked = false
-	var canPull = not pull_blocked and lockout_left <= 0.0
+	var canPull := not pull_blocked and lockout_left <= 0.0
 
 	match currentState:
 		State.NORMAL:
@@ -112,9 +112,11 @@ func _physics_process(delta: float) -> void:
 				if is_instance_valid(enemyTarget):
 					switch_state(State.CAPTURING)
 					enemyTarget.gettingPull(self)
+			else:
+				enemyTarget = null  # da main: não guarda alvo fora do alcance
 		State.CAPTURING:
 			if not isPressingLeft or not canPull or not is_instance_valid(enemyTarget):
-				dropTarget()
+				dropTarget()  # antes do switch_state: dropTarget depende do estado CAPTURING
 				switch_state(State.NORMAL)
 		State.WATTERING:
 			if not isPressingRight:
@@ -174,7 +176,11 @@ func stopWattering() -> void:
 		colission_splash.emitting = false
 
 func updateAimHighlight() -> void:
-	var col = ray.get_collider()
+	var col: Object
+	if currentState == State.CAPTURING and is_instance_valid(enemyTarget):
+		col = enemyTarget
+	else:
+		col = ray.get_collider()
 	var new_aimed: Node = col if (col and col.is_in_group("Enemy")) else null
 
 	if is_instance_valid(aimedEnemy) and aimedEnemy == new_aimed:
@@ -188,10 +194,12 @@ func updateAimHighlight() -> void:
 		aimedEnemy.setHighlight(true)
 
 func dropTarget():
-	if enemyTarget and currentState == State.CAPTURING:
+	if currentState != State.CAPTURING:
+		return
+	if is_instance_valid(enemyTarget):
 		stun(0.2)
 		enemyTarget.stopPull()
-		enemyTarget = null
+	enemyTarget = null
 
 func _apply_knockback_move(delta: float) -> void:
 	if not is_on_floor():
