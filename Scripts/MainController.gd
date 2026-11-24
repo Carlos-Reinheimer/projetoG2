@@ -48,6 +48,7 @@ func setupLevel() -> void:
 	fire_progress_ui.setUp()
 
 func onLoadNextFloor() -> void:
+	dialog_manager.skip()
 	player.onStartLoadNextLevel()
 	currentFloor += 1
 	
@@ -63,6 +64,7 @@ func onLoadNextFloor() -> void:
 	
 	await fade.fade(0.0, 1).finished
 	setupLevel()
+	playLevelDialog()
 	player.onFinishLoadNextLevel()
 
 func countEnemiesOnFloor() -> void:
@@ -96,3 +98,7 @@ func checkFloorCondition() -> void:
 
 func onSpawnFire(enemyPos: Vector3) -> void:
 	firesOnFloor += 1
+
+func playLevelDialog() -> void:
+	if currentFloor == 1:
+		dialog_manager.greenFireDialog()

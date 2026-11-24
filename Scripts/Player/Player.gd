@@ -87,18 +87,21 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var mouse_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	if mouse_down and currentState != State.PULLING:
-		switch_state(State.PULLING)
-		animation_player.play("idle")
-	elif not mouse_down and currentState != State.NORMAL:
-		switch_state(State.NORMAL)
+
 	if not mouse_down:
 		pull_blocked = false
-	
-	var can_pull := not pull_blocked and lockout_left <= 0.0
+		dropTarget()  # só age se estiver CAPTURING; precisa rodar ANTES de mudar o estado
 
-	if currentState != State.CAPTURING and can_pull and EnemyInRange():
-		enemyTarget = ray.get_collider()
+	if mouse_down and currentState != State.PULLING and currentState != State.CAPTURING:
+		switch_state(State.PULLING)
+		animation_player.play("idle")
+	elif not mouse_down and currentState != State.NORMAL and currentState != State.CAPTURING:
+		switch_state(State.NORMAL)
+
+	var can_pull := not pull_blocked and lockout_left <= 0.0
+	
+	if currentState != State.CAPTURING:
+		enemyTarget = ray.get_collider() if (can_pull and EnemyInRange()) else null
 
 	if mouse_down and can_pull and is_instance_valid(enemyTarget):
 		switch_state(State.CAPTURING)
@@ -106,12 +109,6 @@ func _physics_process(delta: float) -> void:
 	elif currentState == State.CAPTURING:
 		dropTarget()
 		switch_state(State.NORMAL)
-	
-	if currentState == State.CAPTURING:
-		faceTarget(delta)
-		velocity = Vector3.ZERO
-		move_and_slide()
-		return
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		switch_state(State.WATTERING)
@@ -158,7 +155,11 @@ func _unhandled_input(event):
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
 
 func updateAimHighlight() -> void:
-	var col := ray.get_collider()
+	var col: Object
+	if currentState == State.CAPTURING and is_instance_valid(enemyTarget):
+		col = enemyTarget
+	else:
+		col = ray.get_collider()
 	var new_aimed: Node = col if (col and col.is_in_group("Enemy")) else null
 
 	if is_instance_valid(aimedEnemy) and aimedEnemy == new_aimed:
@@ -172,10 +173,12 @@ func updateAimHighlight() -> void:
 		aimedEnemy.setHighlight(true)
 
 func dropTarget():
-	if enemyTarget and currentState == State.CAPTURING:
+	if currentState != State.CAPTURING:
+		return
+	if is_instance_valid(enemyTarget):
 		stun(0.2)
 		enemyTarget.stopPull()
-		enemyTarget = null
+	enemyTarget = null
 
 func _apply_knockback_move(delta: float) -> void:
 	if not is_on_floor():

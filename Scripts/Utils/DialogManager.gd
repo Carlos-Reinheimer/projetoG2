@@ -37,11 +37,11 @@ func onfloorExtinguished():
 	await get_tree().create_timer(2).timeout
 
 func firstLevelComplete():
-	await get_tree().create_timer(1).timeout
+	await _wait(1)
 	showDialog("Tutor Rial", ["Andar limpo, soldado", "Pode seguir para o próximo andar", "E cuidado"])
 
 func levelComplete():
-	await get_tree().create_timer(1).timeout
+	await _wait(1)
 	showDialog("Tutor Rial", ["Andar limpo, soldado"])
 
 func tutorialDialog():
@@ -52,10 +52,17 @@ func introDialog():
 	await _wait(0.5)
 	await showDialog("Tutor Rial", ["Na sociedade que vivemos hoje, um fenômeno extraordinário acontece", "Aqueles que vão muito além dos seus limites...", "Acabam virando... [wave amp=30 freq=5]outra coisa[/wave]", "E é para isso que nós existimos, para resgatá-los"], true)
 
+func greenFireDialog():
+	await _wait(2)
+	await showDialog("Tutor Rial", ["Cuidado", "Nesse andar parece que identificamos alguns fogos [wave amp=30 freq=5]especias[/wave]", "Como saber se é especial?", "Pela cor, deve ter algum fogo [color=green]verde[/color] por ai", "São complicadinhos, parece que nunca vão apagar", "Mas tenha paciência, eles apenas [b]levam um tempinho a mais[/b]"])
+
 func _wait(seconds: float) -> void:
 	var t := get_tree().create_timer(seconds)
 	while t.time_left > 0.0 and not skip_all:
 		await get_tree().process_frame
+
+func skip():
+	skip_all = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dialog_is_playing and event.is_action_pressed("SkipDialog"):
