@@ -59,7 +59,6 @@ stream = ExtResource("6_sxkr1")
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")
 floors = Array[PackedScene]([ExtResource("5_pbw6q"), ExtResource("2_h1m7h"), ExtResource("3_erwvk"), ExtResource("5_346fj"), ExtResource("5_346fj"), ExtResource("6_0sclb"), ExtResource("7_sxkr1"), ExtResource("8_fq0cl"), ExtResource("9_hwpts"), ExtResource("10_jyqft")])
-startFloor = 9
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
 environment = ExtResource("14_2w5on")

@@ -8,6 +8,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_1iice"]
 size = Vector3(0.60498047, 4.0852966, 2.0444336)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_frvqy"]
+size = Vector3(0.6055908, 4.006836, 1.9487305)
+
 [node name="Exit Door" type="Node3D" unique_id=538008628]
 script = ExtResource("1_uhjmw")
 closedMaterial = ExtResource("2_6dnpj")
@@ -26,6 +29,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.574401, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2030954195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19750977, 0.037124634, 0.91137695)
 shape = SubResource("BoxShape3D_1iice")
+
+[node name="Collision StaticBody" type="StaticBody3D" parent="." unique_id=855487008]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision StaticBody" unique_id=1152921449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19720459, 0.020751953, 0.8967285)
+shape = SubResource("BoxShape3D_frvqy")
 
 [node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=630092707]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.44409984, 2.2871537, 0.90795064)
