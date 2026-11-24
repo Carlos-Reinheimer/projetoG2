@@ -14,6 +14,7 @@
 [ext_resource type="Environment" uid="uid://c86xpxqvswg3h" path="res://Assets/Environment.tres" id="7_46pub"]
 [ext_resource type="PackedScene" uid="uid://cryfyybg6y2vc" path="res://Assets/Models/Outside Building/Environment.glb" id="7_ib40j"]
 [ext_resource type="PackedScene" uid="uid://c1b4bfc3oi2gr" path="res://Scenes/Props/ExitDoor.tscn" id="8_nd03u"]
+[ext_resource type="PackedScene" uid="uid://qcew8058lgbp" path="res://Scenes/UI/PauseMenu.tscn" id="9_syc3a"]
 [ext_resource type="PackedScene" uid="uid://dte73esl6k507" path="res://Scenes/Particles/Animated Flames.tscn" id="10_8yvhy"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7m1dm"]
@@ -115,7 +116,9 @@ size = Vector3(2.1083984, 4.6022644, 0.85131836)
 [node name="StarterLevel" type="Node3D" unique_id=165747974]
 script = ExtResource("1_ib40j")
 
-[node name="UI Control" type="Control" parent="." unique_id=711872125 node_paths=PackedStringArray("menuButtons")]
+[node name="UI CanvasLayer" type="CanvasLayer" parent="." unique_id=1656156062]
+
+[node name="UI Control" type="Control" parent="UI CanvasLayer" unique_id=711872125 node_paths=PackedStringArray("menuButtons")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,7 +130,7 @@ theme = ExtResource("2_8yvhy")
 script = ExtResource("3_46pub")
 menuButtons = [NodePath("Panel/VBoxContainer/Start Button"), NodePath("Panel/VBoxContainer/Quit Button")]
 
-[node name="Panel" type="Panel" parent="UI Control" unique_id=643821237]
+[node name="Panel" type="Panel" parent="UI CanvasLayer/UI Control" unique_id=643821237]
 material = ExtResource("2_wrsr0")
 layout_mode = 1
 anchors_preset = 15
@@ -137,7 +140,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="ColorRect" type="ColorRect" parent="UI Control/Panel" unique_id=555404799]
+[node name="ColorRect" type="ColorRect" parent="UI CanvasLayer/UI Control/Panel" unique_id=555404799]
 material = SubResource("ShaderMaterial_0ycr3")
 layout_mode = 1
 anchors_preset = 2
@@ -148,7 +151,7 @@ offset_right = 638.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Logo" type="TextureRect" parent="UI Control/Panel" unique_id=146734730]
+[node name="Logo" type="TextureRect" parent="UI CanvasLayer/UI Control/Panel" unique_id=146734730]
 layout_mode = 0
 offset_left = 63.0
 offset_top = 131.0
@@ -157,7 +160,7 @@ offset_bottom = 341.74957
 texture = ExtResource("6_7m1dm")
 expand_mode = 1
 
-[node name="Title" type="Label" parent="UI Control/Panel" unique_id=1173093468]
+[node name="Title" type="Label" parent="UI CanvasLayer/UI Control/Panel" unique_id=1173093468]
 layout_mode = 0
 offset_left = -81.0
 offset_top = 172.0
@@ -171,7 +174,7 @@ text = "F. G. F"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubTitle" type="Label" parent="UI Control/Panel" unique_id=434899618]
+[node name="SubTitle" type="Label" parent="UI CanvasLayer/UI Control/Panel" unique_id=434899618]
 layout_mode = 0
 offset_left = 238.00002
 offset_top = 272.0
@@ -185,7 +188,7 @@ text = "Fire Ghost Fighter"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI Control/Panel" unique_id=544920826]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI CanvasLayer/UI Control/Panel" unique_id=544920826]
 layout_mode = 0
 offset_left = 138.0
 offset_top = 380.0
@@ -193,17 +196,19 @@ offset_right = 400.0
 offset_bottom = 710.0
 theme_override_constants/separation = 30
 
-[node name="Start Button" parent="UI Control/Panel/VBoxContainer" unique_id=1977854024 instance=ExtResource("6_b86fs")]
+[node name="Start Button" parent="UI CanvasLayer/UI Control/Panel/VBoxContainer" unique_id=1977854024 instance=ExtResource("6_b86fs")]
 layout_mode = 2
 text = "Começar"
 
-[node name="Quit Button" parent="UI Control/Panel/VBoxContainer" unique_id=2015898940 instance=ExtResource("6_b86fs")]
+[node name="Quit Button" parent="UI CanvasLayer/UI Control/Panel/VBoxContainer" unique_id=2015898940 instance=ExtResource("6_b86fs")]
 layout_mode = 2
 text = "Sair"
 
-[node name="CanvasModulate" type="CanvasModulate" parent="UI Control" unique_id=946591213]
+[node name="CanvasModulate" type="CanvasModulate" parent="UI CanvasLayer/UI Control" unique_id=946591213]
 
-[node name="Intro" type="Control" parent="." unique_id=369783152]
+[node name="Intro CanvasLayer" type="CanvasLayer" parent="." unique_id=576129365]
+
+[node name="Intro" type="Control" parent="Intro CanvasLayer" unique_id=369783152]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,7 +217,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="Intro" unique_id=635288518]
+[node name="ColorRect" type="ColorRect" parent="Intro CanvasLayer/Intro" unique_id=635288518]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,7 +227,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Logo" type="TextureRect" parent="Intro" unique_id=1719802756]
+[node name="Logo" type="TextureRect" parent="Intro CanvasLayer/Intro" unique_id=1719802756]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -239,10 +244,18 @@ mouse_filter = 2
 texture = ExtResource("6_7m1dm")
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro" unique_id=216186206]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro CanvasLayer/Intro" unique_id=216186206]
 libraries/ = SubResource("AnimationLibrary_utb1a")
 
 [node name="DialogManager" parent="." unique_id=2052850963 instance=ExtResource("4_b86fs")]
+
+[node name="Pause Menu" parent="." unique_id=2093918246 instance=ExtResource("9_syc3a")]
+
+[node name="Restart Current Level Button" parent="Pause Menu/PauseMenu/Main Buttons/VBoxContainer" parent_id_path=PackedInt32Array(2093918246, 836284060) index="2" unique_id=1188078632]
+visible = false
+
+[node name="Home Button" parent="Pause Menu/PauseMenu/Main Buttons/VBoxContainer" parent_id_path=PackedInt32Array(2093918246, 836284060) index="3" unique_id=1527609939]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1001199429]
 environment = ExtResource("7_46pub")
@@ -252,7 +265,7 @@ transform = Transform3D(0.86037195, 0.31575912, 0.40006998, -0.50957704, 0.54764
 shadow_enabled = true
 
 [node name="Exit Door" parent="." unique_id=538008628 instance=ExtResource("8_nd03u")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.493285, 2.7433472, -0.0043714046)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.493285, 2.6505122, -0.0043714046)
 
 [node name="Player" parent="." unique_id=991785988 instance=ExtResource("2_xtmql")]
 transform = Transform3D(-0.7071067, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, -0.7071067, 8.382971, 1.5682497, -8.8060875)
@@ -301,6 +314,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9322674, 2.7733417, -7.428
 [node name="Environment" parent="." unique_id=2097396184 instance=ExtResource("7_ib40j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073064804, -1.9073486e-06, 0.05882263)
 
-[connection signal="pressed" from="UI Control/Panel/VBoxContainer/Start Button" to="UI Control" method="_on_start_button_pressed"]
-[connection signal="pressed" from="UI Control/Panel/VBoxContainer/Quit Button" to="UI Control" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="UI CanvasLayer/UI Control/Panel/VBoxContainer/Start Button" to="UI CanvasLayer/UI Control" method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI CanvasLayer/UI Control/Panel/VBoxContainer/Quit Button" to="UI CanvasLayer/UI Control" method="_on_quit_button_pressed"]
 [connection signal="body_entered" from="Starter Scene/Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Pause Menu"]

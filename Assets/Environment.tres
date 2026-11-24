@@ -1,18 +1,33 @@
 [gd_resource type="Environment" format=3 uid="uid://c86xpxqvswg3h"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtmql"]
-sky_top_color = Color(1.732707e-06, 0.41393995, 0.5577985, 1)
-sky_horizon_color = Color(0.011274322, 0, 0.23847869, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0.14762479, 0, 0.98559445, 1)
+[ext_resource type="Shader" uid="uid://tdy4pleas5ct" path="res://Assets/Shaders/SkyShader.gdshader" id="1_ejuxu"]
 
-[sub_resource type="Sky" id="Sky_rgh2o"]
-sky_material = SubResource("ProceduralSkyMaterial_xtmql")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idoov"]
+shader = ExtResource("1_ejuxu")
+shader_parameter/time_scale = 0.5
+shader_parameter/base_color = Color(0.05, 0.05, 0.08, 1)
+shader_parameter/slime_color = Color(0.15, 0.15, 0.2, 1)
+shader_parameter/highlight_color = Color(0.3, 0.35, 0.4, 1)
+shader_parameter/tendril_density = 4.0
+shader_parameter/tendril_thickness = 0.3
+shader_parameter/animation_speed = 1.0
+shader_parameter/slime_wetness = 0.7
+
+[sub_resource type="Sky" id="Sky_ejuxu"]
+sky_material = SubResource("ShaderMaterial_idoov")
 
 [resource]
 background_mode = 2
-sky = SubResource("Sky_rgh2o")
+sky = SubResource("Sky_ejuxu")
 sky_rotation = Vector3(0, -3.3039083, 0)
 tonemap_mode = 3
+ssao_enabled = true
+ssao_intensity = 3.0
+ssil_radius = 6.0
+sdfgi_use_occlusion = true
+sdfgi_cascades = 1
+fog_enabled = true
+fog_light_color = Color(0.124743976, 0.24490783, 0.37165663, 1)
+fog_sky_affect = 0.1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0

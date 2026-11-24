@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://da6rtg3v8yr5j"]
+
+[ext_resource type="Texture2D" uid="uid://ba02xk5krbc7j" path="res://Assets/Textures/Exit Sign/Exit Sign Open.png" id="1_7xn5w"]
+
+[resource]
+albedo_texture = ExtResource("1_7xn5w")
+emission_enabled = true
+emission = Color(0.42352942, 0.78431374, 0.03137255, 1)

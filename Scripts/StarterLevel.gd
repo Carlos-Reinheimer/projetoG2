@@ -3,7 +3,7 @@ extends Node3D
 @onready var player: Player = $Player
 @onready var exit_door: Node3D = $"Exit Door"
 @onready var dialog_manager: CanvasLayer = $DialogManager
-@onready var animation_player: AnimationPlayer = $Intro/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $"Intro CanvasLayer/Intro/AnimationPlayer"
 
 var canGoToFistLevel := false
 

@@ -29,6 +29,9 @@ func _ready() -> void:
 	
 	setupLevel()
 
+#func _process(delta: float) -> void:
+	#print(Engine.get_frames_per_second())
+
 func setupLevel() -> void:
 	countFiresOnFloor()
 	countEnemiesOnFloor()

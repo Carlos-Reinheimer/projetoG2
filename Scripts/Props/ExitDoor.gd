@@ -1,18 +1,29 @@
 extends Node3D
 
 @onready var animation_player: AnimationPlayer = $"Exit Door/AnimationPlayer"
+@onready var exit_sign: MeshInstance3D = $"Exit Door/Exit Door/Exit Sign"
+@onready var area_light_3d: AreaLight3D = $AreaLight3D
 
 @export var autoOpenDoor: bool = false
+@export var closedMaterial: Material
+@export var closedLightColor: Color
+@export var openedMaterial: Material
+@export var openedLightColor: Color
 
 var unlockDoor : bool = false
 
 func _ready():
 	SignalBus.connect("floorExtinguished", onfloorExtinguished)
+	
+	exit_sign.material_override = closedMaterial
+	area_light_3d.light_color = closedLightColor
 	if autoOpenDoor:
 		openAnimation()
 
 func openAnimation() -> void:
 	animation_player.play("DoorAction")
+	exit_sign.material_override = openedMaterial
+	create_tween().tween_property(area_light_3d, "light_color", openedLightColor, .5)
 
 func onfloorExtinguished():
 	unlockDoor = true

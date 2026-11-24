@@ -2099,6 +2099,11 @@ _subresources={
 }
 },
 "materials": {
+"Light": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Emissive/Light Emissive.tres",
+"use_external/path": "uid://dkqanaonp6twe"
+},
 "Prop": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Assets/Materials/Devil Metal/Devil Metal.tres",
