@@ -49,7 +49,13 @@ func setupBeforeShow() -> void:
 	buttons.modulate.a = 0.0
 
 func _on_restart_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+	fire_panel.material.set_shader_parameter("progress", 0.0)
+	hide()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	SignalBus.emit_signal("restartFloor")
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_home_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/StarterLevel.tscn")

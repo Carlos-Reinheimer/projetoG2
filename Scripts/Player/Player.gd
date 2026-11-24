@@ -52,6 +52,7 @@ var enemyTarget = null
 
 func _ready() -> void:
 	SignalBus.connect("endGame", onEndGame)
+	SignalBus.connect("restartFloor", restartFloor)
 	
 	water_splash.emitting = false
 	colission_splash.emitting = false
@@ -280,6 +281,10 @@ func onFinishLoadNextLevel() -> void:
 func onEndGame() -> void:
 	await get_tree().create_timer(2).timeout
 	isPlayable = false
+
+func restartFloor() -> void:
+	await get_tree().create_timer(2).timeout
+	isPlayable = true
 
 func faceTarget(delta: float) -> void:
 	if not is_instance_valid(enemyTarget):

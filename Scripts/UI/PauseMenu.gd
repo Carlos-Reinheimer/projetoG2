@@ -44,7 +44,8 @@ func _on_options_button_pressed() -> void:
 	$PauseMenu/AnimationPlayer.play("options")
 
 func _on_restart_current_level_button_pressed() -> void:
-	pass # Replace with function body.
+	resume()
+	SignalBus.emit_signal("restartFloor")
 
 func _on_home_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/StarterLevel.tscn")

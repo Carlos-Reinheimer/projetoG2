@@ -14,6 +14,7 @@ func _ready() -> void:
 	SignalBus.extinguishFire.connect(onExinguishFire)
 	SignalBus.floorExtinguished.connect(onfloorExtinguished)
 	SignalBus.connect("loadNextFloor", onLoadNextFloor)
+	SignalBus.connect("restartFloor", restartFloor)
 	hide()
 
 func _process(delta: float) -> void:
@@ -65,3 +66,8 @@ func onfloorExtinguished():
 
 func onLoadNextFloor() -> void:
 	hide()
+
+func restartFloor() -> void:
+	hide()
+	isRunning = false
+	fireProgress = 0

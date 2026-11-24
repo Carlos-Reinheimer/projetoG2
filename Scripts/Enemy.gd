@@ -137,7 +137,6 @@ func isNearRealFire() -> bool:
 	return false
 
 func goToRandomFire() -> void:
-	print_stack()
 	if getFires().is_empty():
 		return
 	animation_player.play("Moving")
@@ -149,7 +148,6 @@ func goToRandomFire() -> void:
 	navigation.set_target_position(options.pick_random().global_position)
 
 func goToMostDistanceFire() -> void:
-	print_stack()
 	animation_player.play("Moving")
 	if currentSpeed > 1:
 		updateHeatFromSpeed()
@@ -288,7 +286,6 @@ func pullInFast() -> void:
 
 func _on_look_range_body_entered(body: Node3D) -> void:
 	if body is Player and currentState != State.GETTING_PULL and currentState != State.RUNNING:
-		print("in range")
 		switchState(State.RUNNING)
 		dash()
 		fleeInRandomDirection()
