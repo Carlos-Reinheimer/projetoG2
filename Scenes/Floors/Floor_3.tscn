@@ -40,6 +40,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 [node name="Floor" type="Node3D" unique_id=932444755]
 script = ExtResource("1_nyqx4")
 hasFog = true
+fogFillRate = 0.01
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=145064555]
 navigation_mesh = SubResource("NavigationMesh_8p5dp")
@@ -518,8 +519,8 @@ transform = Transform3D(0.54659617, 0, -0.8373963, 0, 1, 0, 0.8373963, 0, 0.5465
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.333046, 0.5984733, 36.081604)
 
 [node name="FogVolume" parent="." unique_id=1052107437 instance=ExtResource("30_c2ujm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.08647, 0, 23.216263)
-size = Vector3(27.799717, 3.946289, 45.112396)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.08647, 2.6865644, 23.216263)
+size = Vector3(27.799717, 4.92395, 45.112396)
 
 [node name="Floor Indicator" parent="." unique_id=555806186 instance=ExtResource("32_adkd6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.252136, 2.5022109, 44.9708)

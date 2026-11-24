@@ -25,7 +25,6 @@ var currentSmokeLevel: float = 0.0
 
 func _ready() -> void:
 	SignalBus.connect("spawnNewFire", onSpawnFire)
-	
 	if not hasFog:
 		return
 	
@@ -44,7 +43,7 @@ func _process(delta: float) -> void:
 		return
 
 	if isLevelClear or mainController.firesOnFloor == 0:
-		currentSmokeLevel += fogFillRate * 2.0 * delta
+		currentSmokeLevel += fogFillRate * 5.0 * delta
 	else:
 		currentSmokeLevel -= fogFillRate * mainController.firesOnFloor * delta
 	
