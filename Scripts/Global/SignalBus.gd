@@ -10,3 +10,4 @@ signal restartFloor
 signal extinguishFire
 signal captureEnemy
 signal spawnNewFire(enemyPos: Vector3)
+signal updateFirePoints(newPoints: float)

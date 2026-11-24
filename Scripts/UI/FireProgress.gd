@@ -15,6 +15,7 @@ func _ready() -> void:
 	SignalBus.floorExtinguished.connect(onfloorExtinguished)
 	SignalBus.connect("loadNextFloor", onLoadNextFloor)
 	SignalBus.connect("restartFloor", restartFloor)
+	SignalBus.connect("updateFirePoints", onUpdateFirePoints)
 	hide()
 
 func _process(delta: float) -> void:
@@ -71,3 +72,6 @@ func restartFloor() -> void:
 	hide()
 	isRunning = false
 	fireProgress = 0
+
+func onUpdateFirePoints(newPoints: float) -> void:
+	updatePoints(newPoints)
