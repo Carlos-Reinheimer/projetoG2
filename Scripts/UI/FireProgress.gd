@@ -20,6 +20,7 @@ func _ready() -> void:
 	SignalBus.connect("extinguishFire", onExinguishFire)
 	SignalBus.connect("loadNextFloor", onLoadNextFloor)
 	SignalBus.connect("restartFloor", restartFloor)
+	SignalBus.connect("spawnNewFire", onSpawnFire)
 	
 	maskMat = mask_view.get_active_material(0)
 	updateMaskFrost(0)
@@ -59,6 +60,9 @@ func onCaptureEnemy():
 
 func onExinguishFire():
 	currentFireCount -= 1
+
+func onSpawnFire(enemyPos: Vector3) -> void:
+	currentFireCount += 1
 
 func onLoadNextFloor():
 	isRunning = false

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwqv04wl5gcp7"]
 
-[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Fires/Fire Base.tscn" id="1_uxpa7"]
-[ext_resource type="Resource" uid="uid://w831tdisbpaf" path="res://Assets/Resources/Fires/Green Fire.tres" id="2_75vx6"]
+[ext_resource type="PackedScene" uid="uid://dpk8derwe7wjc" path="res://Scenes/Fires/Fire Base.tscn" id="1_djtq4"]
+[ext_resource type="Resource" uid="uid://w831tdisbpaf" path="res://Assets/Resources/Fires/Red Fire.tres" id="2_djtq4"]
 
 [sub_resource type="Gradient" id="Gradient_48ldh"]
 colors = PackedColorArray(1, 1, 1, 1, 0.5686275, 0, 1, 1)
@@ -34,15 +34,15 @@ damping_max = 1.0
 scale_min = 5.0
 scale_max = 5.25
 scale_curve = SubResource("CurveTexture_nf4we")
-color = Color(0, 1, 0, 1)
+color = Color(1, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_euft5")
 emission_curve = SubResource("CurveTexture_iiafp")
 
-[node name="Green Fire" unique_id=187325746 instance=ExtResource("1_uxpa7")]
-fireResource = ExtResource("2_75vx6")
+[node name="Red Fire" unique_id=187325746 instance=ExtResource("1_djtq4")]
+fireResource = ExtResource("2_djtq4")
 
 [node name="Animated Flames" parent="." index="2" unique_id=2131829102]
 process_material = SubResource("ParticleProcessMaterial_c221g")
 
 [node name="OmniLight3D" parent="." index="4" unique_id=1231490997]
-light_color = Color(0, 1, 0, 1)
+light_color = Color(1, 0, 0, 1)

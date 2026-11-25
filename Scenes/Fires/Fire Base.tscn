@@ -7,6 +7,64 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy3o8"]
 size = Vector3(2.2145996, 4.4404297, 2.2558594)
 
+[sub_resource type="Gradient" id="Gradient_obujy"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_06jq3"]
+gradient = SubResource("Gradient_obujy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06jq3"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_06jq3")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 0.5
+
+[sub_resource type="Gradient" id="Gradient_06jq3"]
+offsets = PackedFloat32Array(0, 0.28531075, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.5058824, 0.5058824, 0.5058824, 0.6784314, 0.5058824, 0.5058824, 0.5058824, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_06jq3"]
+gradient = SubResource("Gradient_06jq3")
+
+[sub_resource type="Curve" id="Curve_obujy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_06jq3"]
+curve = SubResource("Curve_obujy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06jq3"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 0.39999998
+initial_velocity_max = 0.7
+angular_velocity_min = -30.000015
+angular_velocity_max = 29.999983
+gravity = Vector3(0, 0.2, 0)
+damping_min = 0.2
+damping_max = 0.2
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_06jq3")
+color_ramp = SubResource("GradientTexture1D_06jq3")
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_06jq3"]
+size = Vector2(0.4, 0.4)
+
 [node name="Fire Base" type="Node3D" unique_id=187325746 groups=["Fire"]]
 script = ExtResource("1_06jq3")
 
@@ -19,6 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5936279, 0)
 shape = SubResource("BoxShape3D_dy3o8")
 
 [node name="Reignite Timer" type="Timer" parent="." unique_id=513566982]
+wait_time = 3.0
 one_shot = true
 
 [node name="Animated Flames" parent="." unique_id=2131829102 instance=ExtResource("3_fk8gk")]
@@ -33,5 +92,14 @@ bus = &"SFX"
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1231490997]
 light_color = Color(0, 1, 1, 1)
 light_energy = 2.0
+
+[node name="Reignite Particles" type="GPUParticles3D" parent="." unique_id=2136969301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.077, 0)
+material_override = SubResource("StandardMaterial3D_06jq3")
+amount = 24
+lifetime = 5.0
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_06jq3")
+draw_pass_1 = SubResource("QuadMesh_06jq3")
 
 [connection signal="timeout" from="Reignite Timer" to="." method="_on_reignite_timer_timeout"]

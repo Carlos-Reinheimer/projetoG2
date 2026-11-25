@@ -11,8 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://c76gvawj7gfmh" path="res://Assets/Models/Mask/Mask.glb" id="8_glx4g"]
 [ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/UI/FireProgress.gd" id="9_miouo"]
 [ext_resource type="AudioStream" uid="uid://bwjetikpyojwj" path="res://Assets/SFX/vacuum.wav" id="9_yoq75"]
+[ext_resource type="Script" uid="uid://cxhm67emt2wio" path="res://Scripts/Player/Flashlight.gd" id="10_o3h8g"]
 [ext_resource type="AudioStream" uid="uid://cq8xw00sue4ja" path="res://Assets/SFX/vacuumOff.wav" id="10_yoq75"]
 [ext_resource type="AudioStream" uid="uid://14s5w1urw7wk" path="res://Assets/SFX/captureEnemy.wav" id="11_ksbbd"]
+[ext_resource type="AudioStream" uid="uid://d37a0wywj6s37" path="res://Assets/SFX/Flashlight.mp3" id="15_1e7my"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idj7w"]
 radius = 0.4
@@ -270,6 +272,13 @@ transform = Transform3D(0.98782533, 0.0020487607, 0.15555549, -0.020416275, 0.99
 transform = Transform3D(-6.2109066e-08, 3.1148467e-08, 1, 1.0878587, 0.39980555, 4.1028315e-08, -0.39980555, 1.0878587, -4.371139e-08, 0, 0.73096, -0.046753407)
 script = ExtResource("9_miouo")
 
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=348734380]
+transform = Transform3D(1, 0, 0, 0, 0.9528328, 0.30349565, 0, -0.30349565, 0.9528328, 0, 0.16440034, 0)
+light_energy = 0.0
+spot_range = 8.154209
+spot_angle = 27.669373
+script = ExtResource("10_o3h8g")
+
 [node name="Timer" type="Timer" parent="." unique_id=1156852035]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=908395332]
@@ -296,6 +305,10 @@ bus = &"SFX"
 stream = ExtResource("11_ksbbd")
 bus = &"SFX"
 
+[node name="FlashlightSFX" type="AudioStreamPlayer" parent="." unique_id=651347959]
+stream = ExtResource("15_1e7my")
+bus = &"SFX"
+
 [node name="Embers GPUParticles3D" type="GPUParticles3D" parent="." unique_id=963910679]
 amount = 300
 lifetime = 6.0
@@ -303,7 +316,7 @@ visibility_aabb = AABB(-10, -4, -10, 20, 8, 20)
 process_material = SubResource("ParticleProcessMaterial_miouo")
 draw_pass_1 = SubResource("QuadMesh_miouo")
 
-[node name="Embers GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=758809825]
+[node name="Embers GPUParticles3D2" type="GPUParticles3D" parent="Embers GPUParticles3D" unique_id=758809825]
 amount = 150
 lifetime = 6.0
 visibility_aabb = AABB(-10, -4, -10, 20, 8, 20)

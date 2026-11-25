@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dg80w5vli26cs" path="res://Scenes/Enemies/Enemy1.tscn" id="25_uei3s"]
 [ext_resource type="PackedScene" uid="uid://b7yaqp0bawjk" path="res://Assets/Models/Props/Shelves/Shelf 3.glb" id="26_5d5x8"]
 [ext_resource type="PackedScene" uid="uid://dja3qahm141kl" path="res://Scenes/Props/Pot 2.tscn" id="27_xg104"]
+[ext_resource type="AudioStream" uid="uid://co1vrc7q7g0l1" path="res://Assets/SFX/Electric Discharge.mp3" id="28_a0qhk"]
 [ext_resource type="PackedScene" uid="uid://chxskn1g0wu05" path="res://Scenes/Props/FloorIndicator.tscn" id="28_m7lsq"]
 [ext_resource type="PackedScene" uid="uid://esvas14rixcu" path="res://Scenes/Props/Pot 3.tscn" id="29_ouqwn"]
 
@@ -413,5 +414,9 @@ text = "9"
 
 [node name="Next Floor" parent="Floor Indicator" index="3" unique_id=873108131]
 text = "➜] 8"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=252237725]
+stream = ExtResource("28_a0qhk")
+bus = &"SFX"
 
 [editable path="Floor Indicator"]

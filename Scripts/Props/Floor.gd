@@ -10,6 +10,7 @@ const DEFAULT_FOG_FILL_RATE = 0.05
 var EMISSIVE_LIGHT_MAT = preload("res://Assets/Materials/Emissive/Light Emissive Warm.tres")
 
 @onready var firesParent: Node3D = $Fires
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @export var hasFog: bool = false
 @export var lightBehavior: FLOOR_LIGHTS_BEHAVIOR = FLOOR_LIGHTS_BEHAVIOR.NONE
@@ -77,8 +78,10 @@ func handleFloorLights() -> void:
 			for light in floorLights:
 				light.updateFlickerState(false)
 				light.turnOnOff(false)
+			audio_stream_player.play()
 			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 0
 		FLOOR_LIGHTS_BEHAVIOR.OFF:
+			audio_stream_player.play()
 			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 0
 			for light in floorLights:
 				light.turnOnOff(false)

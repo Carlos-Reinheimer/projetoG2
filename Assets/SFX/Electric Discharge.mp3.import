@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://co1vrc7q7g0l1"
+path="res://.godot/imported/Electric Discharge.mp3-0c008f052ebdb074f6a2f3bf1f01e53b.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/Electric Discharge.mp3"
+dest_files=["res://.godot/imported/Electric Discharge.mp3-0c008f052ebdb074f6a2f3bf1f01e53b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

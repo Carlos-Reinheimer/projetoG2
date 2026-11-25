@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPAWN_FIRE_CHANCE = 0.4
+const SPAWN_FIRE_CHANCE = 0.25
 const DELAY_BETWEEN_FIRE_SPAWN = 2.0
 const DELAY_DECAY = 0.1
 
