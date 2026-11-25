@@ -44,9 +44,7 @@ func _process(delta):
 	health = min(health + delta * 3.0, fireResource.health)
 	var p_target := health / fireResource.health
 	p_visual = lerp(p_visual, p_target, 1.0 - exp(-3.0 * delta))
-	#var energy = omni_light_3d.light_energy + ENERGY_DECAY
-	#energy = clampf(energy, 0, MAX_LIGHT_ENERGY)
-	#omni_light_3d.light_energy = energy
+	omni_light_3d.light_energy = remap(health, minHealth, fireResource.health, 0.0, MAX_LIGHT_ENERGY) # using the same health scale for the light, so it's consistant
 	
 	var f: float = lerp(0.15, 1.0, p_visual)
 	mat.scale_min = scaleMinOriginal * f
@@ -60,9 +58,7 @@ func puttingOut() -> void:
 
 	health -= fireResource.decayRate
 	health = clampf(health, minHealth, fireResource.health)
-	var energy = omni_light_3d.light_energy - ENERGY_DECAY
-	energy = clampf(energy, 0, MAX_LIGHT_ENERGY)
-	omni_light_3d.light_energy = energy
+	omni_light_3d.light_energy = remap(health, minHealth, fireResource.health, 0.0, MAX_LIGHT_ENERGY) # using the same health scale for the light, so it's consistant
 	checkDeath()
 
 func checkDeath() -> void:
