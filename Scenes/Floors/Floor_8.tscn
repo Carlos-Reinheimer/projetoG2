@@ -44,6 +44,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
 script = ExtResource("1_8c7ym")
 hasFog = true
+lightBehavior = 3
 startFogHeight = 3.5
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=569085019]

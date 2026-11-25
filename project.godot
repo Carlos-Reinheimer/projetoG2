@@ -33,6 +33,10 @@ UiAudio="*uid://j6k3log7c8gw"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+Light=""
+
 [input]
 
 Left={

@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://ch2fvknn4fh8a"]
 
+[ext_resource type="Script" uid="uid://bqqynrv5pr00w" path="res://Scripts/Props/Light.gd" id="1_3qrla"]
 [ext_resource type="PackedScene" uid="uid://qcci2g1n4cbu" path="res://Assets/Models/Props/Lights/Lamp 2.glb" id="1_y5koj"]
 
-[node name="Lamp 2" type="Node3D" unique_id=93011985]
+[node name="Lamp 2" type="Node3D" unique_id=93011985 node_paths=PackedStringArray("lightSources") groups=["Light"]]
+script = ExtResource("1_3qrla")
+lightSources = [NodePath("Lamp 2/SpotLight3D")]
 
 [node name="Lamp 2" parent="." unique_id=74618819 instance=ExtResource("1_y5koj")]
 

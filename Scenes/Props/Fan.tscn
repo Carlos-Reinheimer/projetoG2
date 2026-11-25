@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://btmcwaq2mg3u8"]
 
 [ext_resource type="PackedScene" uid="uid://c0tdbibksvlws" path="res://Assets/Models/Props/Lights/Fan.glb" id="1_8d8lm"]
+[ext_resource type="Script" uid="uid://bqqynrv5pr00w" path="res://Scripts/Props/Light.gd" id="1_okt4w"]
 
-[node name="Fan" type="Node3D" unique_id=1691349676]
+[node name="Fan" type="Node3D" unique_id=1691349676 node_paths=PackedStringArray("lightSources") groups=["Light"]]
+script = ExtResource("1_okt4w")
+lightSources = [NodePath("Fan/SpotLight3D")]
 
 [node name="Fan" parent="." unique_id=1676292713 instance=ExtResource("1_8d8lm")]
 
-[node name="AnimationPlayer" parent="Fan" index="1" unique_id=387919033]
+[node name="AnimationPlayer" parent="Fan" index="1" unique_id=1492686388]
 autoplay = &"Cube_003Action"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Fan" unique_id=858996404]

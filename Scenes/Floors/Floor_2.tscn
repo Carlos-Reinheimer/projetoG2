@@ -38,6 +38,7 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 
 [node name="Floor" type="Node3D" unique_id=1922503574]
 script = ExtResource("1_oq1x5")
+lightBehavior = 2
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=535876113]
 navigation_mesh = SubResource("NavigationMesh_8p5dp")

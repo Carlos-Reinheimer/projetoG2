@@ -40,6 +40,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 [node name="Floor" type="Node3D" unique_id=932444755]
 script = ExtResource("1_nyqx4")
 hasFog = true
+lightBehavior = 1
 fogFillRate = 0.01
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=145064555]
