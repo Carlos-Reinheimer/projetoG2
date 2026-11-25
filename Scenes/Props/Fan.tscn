@@ -9,13 +9,14 @@ lightSources = [NodePath("Fan/SpotLight3D")]
 
 [node name="Fan" parent="." unique_id=1676292713 instance=ExtResource("1_8d8lm")]
 
-[node name="AnimationPlayer" parent="Fan" index="1" unique_id=1492686388]
+[node name="AnimationPlayer" parent="Fan" index="1" unique_id=1451475761]
 autoplay = &"Cube_003Action"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Fan" unique_id=858996404]
 transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, -0.18235874, 0)
 light_color = Color(0.99215686, 0.95686275, 0.8627451, 1)
 light_energy = 10.0
+light_bake_mode = 1
 shadow_enabled = true
 spot_range = 5.376702
 spot_angle = 37.291508

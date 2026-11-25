@@ -13,6 +13,7 @@ lightSources = [NodePath("Light2/AreaLight3D")]
 transform = Transform3D(-1, 4.3711395e-08, 1.3113416e-07, 1.3113416e-07, 4.371139e-08, 1, 4.371139e-08, 1, -4.3711395e-08, 0, -0.02203837, 0)
 light_color = Color(0.99215686, 0.95686275, 0.8627451, 1)
 light_energy = 5.0
+light_bake_mode = 1
 shadow_enabled = true
 area_range = 5.5
 area_size = Vector2(0.3075117, 2.0514212)

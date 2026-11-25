@@ -22,22 +22,20 @@ func _process(delta: float) -> void:
 func processFlicker(delta: float) -> void:
 	if not flickerEnabled:
 		return
-	
+
 	timeAcc += delta * flickerSpeed
 	if timeAcc >= checkInterval:
 		timeAcc = 0.0
-		
 		if randf() < flickerChance:
-			var amount = randf_range(0.0, intensityRange)
-			targetEnergy = MAX_ENERGY - (MAX_ENERGY * amount)
+			targetEnergy = MAX_ENERGY * (1.0 - randf_range(0.0, intensityRange))
 		else:
 			targetEnergy = MAX_ENERGY
-		
-		if snap:
-			currentEnergy = targetEnergy
-		else:
-			currentEnergy = lerp(currentEnergy, targetEnergy, delta * smoothSpeed)
-		applyEnergy()
+
+	if snap:
+		currentEnergy = targetEnergy
+	else:
+		currentEnergy = lerpf(currentEnergy, targetEnergy, 1.0 - exp(-smoothSpeed * delta))
+	applyEnergy()
 
 func applyEnergy() -> void:
 	for light in lightSources:
@@ -45,6 +43,8 @@ func applyEnergy() -> void:
 
 func updateFlickerState(newState: bool) -> void:
 	flickerEnabled = newState
+	for light in lightSources:
+		light.shadow_enabled = !newState
 
 func turnOnOff(isOn: bool) -> void:
 	for light in lightSources:

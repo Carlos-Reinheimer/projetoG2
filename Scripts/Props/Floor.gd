@@ -6,6 +6,7 @@ enum FLOOR_LIGHTS_BEHAVIOR {NONE, FLICKER, OFF, FLICKER_AND_OFF}
 const CEILING_HEIGHT = 4.5
 const FLOOR_HEIGHT = 0.8
 const DEFAULT_FOG_FILL_RATE = 0.05
+const FLICKER_CHANCE = 0.25
 
 var EMISSIVE_LIGHT_MAT = preload("res://Assets/Materials/Emissive/Light Emissive Warm.tres")
 
@@ -69,11 +70,13 @@ func handleFloorLights() -> void:
 		FLOOR_LIGHTS_BEHAVIOR.FLICKER:
 			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 1.0
 			for light in floorLights:
-				light.updateFlickerState(true)
+				if randf() <= FLICKER_CHANCE:
+					light.updateFlickerState(true)
 		FLOOR_LIGHTS_BEHAVIOR.FLICKER_AND_OFF:
 			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 1.0
 			for light in floorLights:
-				light.updateFlickerState(true)
+				if randf() <= FLICKER_CHANCE:
+					light.updateFlickerState(true)
 			await get_tree().create_timer(5).timeout
 			for light in floorLights:
 				light.updateFlickerState(false)
