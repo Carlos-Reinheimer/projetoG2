@@ -1,9 +1,13 @@
 class_name Fire 
 extends Node3D
 
+const MAX_LIGHT_ENERGY = 2.0
+const ENERGY_DECAY = .05
+
 @onready var reignite_timer: Timer = $"Reignite Timer"
 @onready var animated_flames: GPUParticles3D = $"Animated Flames"
 @onready var collision_shape_3d: CollisionShape3D = $FireArea/CollisionShape3D
+@onready var omni_light_3d: OmniLight3D = $OmniLight3D
 
 @export var fireResource: FireResource
 
@@ -40,6 +44,9 @@ func _process(delta):
 	health = min(health + delta * 3.0, fireResource.health)
 	var p_target := health / fireResource.health
 	p_visual = lerp(p_visual, p_target, 1.0 - exp(-3.0 * delta))
+	#var energy = omni_light_3d.light_energy + ENERGY_DECAY
+	#energy = clampf(energy, 0, MAX_LIGHT_ENERGY)
+	#omni_light_3d.light_energy = energy
 	
 	var f: float = lerp(0.15, 1.0, p_visual)
 	mat.scale_min = scaleMinOriginal * f
@@ -53,6 +60,9 @@ func puttingOut() -> void:
 
 	health -= fireResource.decayRate
 	health = clampf(health, minHealth, fireResource.health)
+	var energy = omni_light_3d.light_energy - ENERGY_DECAY
+	energy = clampf(energy, 0, MAX_LIGHT_ENERGY)
+	omni_light_3d.light_energy = energy
 	checkDeath()
 
 func checkDeath() -> void:

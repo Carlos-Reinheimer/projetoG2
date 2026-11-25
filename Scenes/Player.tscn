@@ -162,6 +162,64 @@ _data = {
 &"putMask": SubResource("Animation_miouo")
 }
 
+[sub_resource type="Gradient" id="Gradient_miouo"]
+offsets = PackedFloat32Array(0, 0.48407644, 1)
+colors = PackedColorArray(9.926968e-08, 0.08282184, 0.1532804, 1, 9.62615e-08, 0.12573722, 0.0025655434, 1, 0, 1, 0.12156863, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_miouo"]
+gradient = SubResource("Gradient_miouo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_miouo"]
+emission_shape_scale = Vector3(10, 4, 10)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 0.049999997
+initial_velocity_max = 0.19999999
+gravity = Vector3(0, 0.15, 0)
+scale_min = 0.099999994
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_miouo")
+turbulence_enabled = true
+turbulence_noise_strength = 1.5
+
+[sub_resource type="Gradient" id="Gradient_o3h8g"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o3h8g"]
+gradient = SubResource("Gradient_o3h8g")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_miouo"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_o3h8g")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_miouo"]
+material = SubResource("StandardMaterial3D_miouo")
+size = Vector2(0.04, 0.04)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o3h8g"]
+emission_shape_scale = Vector3(10, 4, 10)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 0.049999997
+initial_velocity_max = 0.19999999
+gravity = Vector3(0, -0.1, 0)
+scale_min = 0.5
+color_ramp = SubResource("GradientTexture1D_miouo")
+turbulence_enabled = true
+turbulence_noise_strength = 15.0
+
 [node name="Player" type="CharacterBody3D" unique_id=991785988]
 script = ExtResource("1_rpqav")
 metadata/_edit_group_ = true
@@ -237,6 +295,20 @@ bus = &"SFX"
 [node name="CapturingEnemy" type="AudioStreamPlayer" parent="." unique_id=1369748544]
 stream = ExtResource("11_ksbbd")
 bus = &"SFX"
+
+[node name="Embers GPUParticles3D" type="GPUParticles3D" parent="." unique_id=963910679]
+amount = 300
+lifetime = 6.0
+visibility_aabb = AABB(-10, -4, -10, 20, 8, 20)
+process_material = SubResource("ParticleProcessMaterial_miouo")
+draw_pass_1 = SubResource("QuadMesh_miouo")
+
+[node name="Embers GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=758809825]
+amount = 150
+lifetime = 6.0
+visibility_aabb = AABB(-10, -4, -10, 20, 8, 20)
+process_material = SubResource("ParticleProcessMaterial_o3h8g")
+draw_pass_1 = SubResource("QuadMesh_miouo")
 
 [editable path="Head/Camera3D/Hose"]
 [editable path="Head/Camera3D/Hose/Hose/Lever/Right Arm"]
