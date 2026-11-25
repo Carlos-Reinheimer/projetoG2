@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dkxyigbnmyfcy" path="res://Scenes/Floors/Floor_7.tscn" id="8_fq0cl"]
 [ext_resource type="PackedScene" uid="uid://b6u4kvqf0tspp" path="res://Scenes/Floors/Floor_8.tscn" id="9_hwpts"]
 [ext_resource type="PackedScene" uid="uid://cacatwiqomohi" path="res://Scenes/Floors/Floor_9.tscn" id="10_jyqft"]
-[ext_resource type="PackedScene" uid="uid://dhxjgpplad6c3" path="res://Scenes/UI/Fire Progress UI.tscn" id="11_erwvk"]
 [ext_resource type="Environment" uid="uid://c86xpxqvswg3h" path="res://Assets/Environment.tres" id="14_2w5on"]
 
 [node name="Main" type="Node3D" unique_id=981272364]
@@ -53,8 +52,6 @@ vertical_alignment = 1
 stream = ExtResource("6_sxkr1")
 
 [node name="Pause Menu" parent="." unique_id=2093918246 instance=ExtResource("7_fq0cl")]
-
-[node name="Fire Progress UI" parent="." unique_id=1171572019 instance=ExtResource("11_erwvk")]
 
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")

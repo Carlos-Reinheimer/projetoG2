@@ -56,6 +56,4 @@ func onfloorExtinguished() -> void:
 func onSpawnFire(enemyPos: Vector3) -> void:
 	var newFire = blueFireScene.instantiate()
 	firesParent.add_child(newFire)
-	var fire = newFire as Fire
-	SignalBus.emit_signal("updateFirePoints", fire.fireResource.firePoints)
 	newFire.global_position = Vector3(enemyPos.x, enemyPos.y, enemyPos.z)

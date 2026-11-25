@@ -23,6 +23,7 @@ one_shot = true
 
 [node name="Animated Flames" parent="." unique_id=2131829102 instance=ExtResource("3_fk8gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95232105, 0)
+lifetime = 1.5
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=42276431]
 stream = ExtResource("4_gjiyl")

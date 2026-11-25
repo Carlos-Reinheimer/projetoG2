@@ -23,5 +23,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func onStartGame() -> void:
 	player.onStartGame()
 	await dialog_manager.tutorialDialog()
+	player.putOnMask()
 	exit_door.openAnimation()
 	canGoToFistLevel = true

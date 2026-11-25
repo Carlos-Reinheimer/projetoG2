@@ -5,7 +5,6 @@ const DELAY_BETWEEN_FIRE_SPAWN = 2.0
 const DELAY_DECAY = 0.1
 
 @export var pull_velocity : float = 0.4
-@export var enemyPoints: int = 1
 @export var fireRadius := 4.0       
 @export var restoreInterval := 5.0   
 @export var canSpawnFire: bool = false
@@ -273,7 +272,7 @@ func _on_button_mash_game_finished(has_won: bool) -> void:
 
 	_releaseMash()
 	playSound(LAUGH_SOUND_EFFECT, false)
-	SignalBus.emit_signal("captureEnemy", -enemyPoints)
+	SignalBus.emit_signal("captureEnemy")
 	startRunning(puller.global_position)
 	target_position = Vector3.ZERO
 	puller.failedCapture()
@@ -303,7 +302,7 @@ func pullInFast() -> void:
 
 	puller.pushBack(start)
 	puller.stun(0.6)
-	SignalBus.emit_signal("captureEnemy", +enemyPoints)
+	SignalBus.emit_signal("captureEnemy")
 	_releaseMash()
 	queue_free()
 
@@ -388,9 +387,6 @@ func switchState(newState: State) -> void:
 	if currentState == State.PHASING and newState != State.PHASING:
 		fadeTo(1.0, 0.15)
 	currentState = newState
-
-func getPoints() -> float:
-	return enemyPoints
 
 func playSound(soundName, wait := true):
 	sfx.stream = soundName

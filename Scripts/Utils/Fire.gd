@@ -64,7 +64,7 @@ func checkDeath() -> void:
 		
 		if not fireResource.reignite or (fireResource.reignite and hasReignited):
 			animated_flames.emitting = false
-			SignalBus.emit_signal("extinguishFire", fireResource.firePoints)
+			SignalBus.emit_signal("extinguishFire")
 			await get_tree().create_timer(animated_flames.lifetime).timeout
 			queue_free()
 		else:
@@ -78,6 +78,3 @@ func _on_reignite_timer_timeout() -> void:
 	hasReignited = true;
 	puttOut = false
 	collision_shape_3d.set_deferred("disabled", false)
-	
-func getPoints() -> float:
-	return fireResource.firePoints if fireResource else 0

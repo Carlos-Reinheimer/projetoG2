@@ -6,9 +6,8 @@ enum FloorNumber {ANDAR_10, ANDAR_9, ANDAR_8, ANDAR_7, ANDAR_6, ANDAR_5, ANDAR_4
 @export var floors: Array[PackedScene] = []
 @export var startFloor: FloorNumber = FloorNumber.ANDAR_10
 
-@onready var player: CharacterBody3D = $"../Player"
+@onready var player: Player = $"../Player"
 @onready var fade: CanvasLayer = $"../Fade"
-@onready var fire_progress_ui: Control = $"../Fire Progress UI"
 @onready var current_floor_label: Label = $"../Current Floor Layer/Current Floor Label"
 @onready var current_floor_sfx: AudioStreamPlayer = $"../Current Floor Layer/Current Floor SFX"
 @onready var dialog_manager: CanvasLayer = $"../DialogManager"
@@ -60,7 +59,7 @@ func setupLevel() -> void:
 	tween.tween_property(current_floor_label, "modulate:a", 0.0, 0.4)
 	await tween.tween_callback(current_floor_label.hide).finished
 	
-	fire_progress_ui.setUp()
+	SignalBus.emit_signal("setupFloor")
 
 func onLoadNextFloor() -> void:
 	dialog_manager.skip()
@@ -102,14 +101,12 @@ func countFiresOnFloor() -> void:
 func getNewFloor(levelIndex: int) -> Node3D:
 	return floors[currentFloor].instantiate()
 	
-func onCaptureEnemy(value: int) -> void:
-	if value < 0:
-		return
+func onCaptureEnemy() -> void:
 	enemiesOnFloor -= 1
 	Stats.ALL_TIME_ENEMIES_CAPUTRED += 1
 	checkFloorCondition()
 	
-func onExtinguishFire(_value: int) -> void:
+func onExtinguishFire() -> void:
 	firesOnFloor -= 1
 	Stats.ALL_TIME_FIRE_EXTINGUISED += 1
 	checkFloorCondition()

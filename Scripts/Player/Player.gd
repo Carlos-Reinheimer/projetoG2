@@ -27,6 +27,7 @@ signal stateChanged(old_state: State, new_state: State)
 @onready var colission_splash: GPUParticles3D = $Head/Camera3D/Hose/WaterSplash/ColissionSplash
 @onready var hose: Hose = $Head/Camera3D/Hose
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var mask_animation_player: AnimationPlayer = $"Mask AnimationPlayer"
 @onready var capturing_enemy: AudioStreamPlayer = $CapturingEnemy
 
 @export var isAutoPlayable: bool = false
@@ -58,8 +59,8 @@ func _ready() -> void:
 	colission_splash.emitting = false
 	
 	if isAutoPlayable:
-		isPlayable = true
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		onStartGame()
+		putOnMask(true)
 	
 	_mouse_rotation.y = rotation.y
 	_mouse_rotation.x = camera_3d.rotation.x
@@ -118,6 +119,8 @@ func _physics_process(delta: float) -> void:
 			if not isPressingLeft or not canPull or not is_instance_valid(enemyTarget):
 				dropTarget()  # antes do switch_state: dropTarget depende do estado CAPTURING
 				switch_state(State.NORMAL)
+			else:
+				enemyTarget.gettingPull(self)
 		State.WATTERING:
 			if not isPressingRight:
 				stopWattering()
@@ -279,6 +282,11 @@ func EnemyInRange():
 func onStartGame() -> void:
 	isPlayable = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func putOnMask(skip: bool = false) -> void:
+	mask_animation_player.play("putMask") # there's no await.finished?
+	if skip:
+		mask_animation_player.seek(mask_animation_player.current_animation_length, true)
 
 func onStartLoadNextLevel() -> void:
 	isPlayable = false

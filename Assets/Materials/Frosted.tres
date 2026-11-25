@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://y0myuhro8x3m"]
+
+[ext_resource type="Shader" uid="uid://beh756ncggffx" path="res://Assets/Shaders/FrostShader.gdshader" id="1_65wv7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o3h8g"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_miouo"]
+noise = SubResource("FastNoiseLite_o3h8g")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_65wv7")
+shader_parameter/edge_noise = SubResource("NoiseTexture2D_miouo")
+shader_parameter/lod_level = 4
+shader_parameter/brightness = 1.0
+shader_parameter/distortion_intensity = 0.10000000149012
+shader_parameter/tint = Color(0.9, 0.92, 0.95, 1)
+shader_parameter/tint_strength = 0.25
+shader_parameter/fog_amount = 0.0

@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://drbb478wgp071" path="res://Assets/Models/Player/Left Arm.glb" id="6_nn08x"]
 [ext_resource type="PackedScene" uid="uid://dkfitp5gixjop" path="res://Assets/Models/Player/Right Arm.glb" id="7_52ee3"]
 [ext_resource type="AudioStream" uid="uid://cx2qqg5pryahn" path="res://Assets/SFX/watering.wav" id="8_bhhdu"]
+[ext_resource type="PackedScene" uid="uid://c76gvawj7gfmh" path="res://Assets/Models/Mask/Mask.glb" id="8_glx4g"]
+[ext_resource type="Script" uid="uid://d15taadtuur8q" path="res://Scripts/UI/FireProgress.gd" id="9_miouo"]
 [ext_resource type="AudioStream" uid="uid://bwjetikpyojwj" path="res://Assets/SFX/vacuum.wav" id="9_yoq75"]
 [ext_resource type="AudioStream" uid="uid://cq8xw00sue4ja" path="res://Assets/SFX/vacuumOff.wav" id="10_yoq75"]
 [ext_resource type="AudioStream" uid="uid://14s5w1urw7wk" path="res://Assets/SFX/captureEnemy.wav" id="11_ksbbd"]
@@ -70,6 +72,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 1.5707964, 0.24260077)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Camera3D/Mask:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.73096, -0.046753407)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/Camera3D/Mask:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.1028315e-08, 1.5707964, 1.218603)]
+}
 
 [sub_resource type="Animation" id="Animation_52ee3"]
 resource_name = "idle"
@@ -100,11 +126,40 @@ tracks/1/keys = {
 "values": [Vector3(0, 1.5707964, 0.24260077), Vector3(-0.064211376, 1.5707964, 0.2522949), Vector3(-0.0023079563, 1.5708092, 0.24427287), Vector3(-0.048816063, 1.5709733, 0.24026608), Vector3(-0.064211376, 1.5707964, 0.2522949), Vector3(0, 1.5707964, 0.24260077)]
 }
 
+[sub_resource type="Animation" id="Animation_miouo"]
+resource_name = "putMask"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D/Mask:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.73096, -0.046753407), Vector3(0, 0.022103429, -0.33958706)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/Mask:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4.1028315e-08, 1.5707964, 1.218603), Vector3(0, 1.5707964, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bhhdu"]
 _data = {
 &"Moving": SubResource("Animation_megsn"),
 &"RESET": SubResource("Animation_bhhdu"),
-&"idle": SubResource("Animation_52ee3")
+&"idle": SubResource("Animation_52ee3"),
+&"putMask": SubResource("Animation_miouo")
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=991785988]
@@ -136,14 +191,8 @@ pullIndicatorColor = Color(0, 0.74509805, 0, 1)
 [node name="Right Arm" parent="Head/Camera3D/Hose/Hose/Lever" parent_id_path=PackedInt32Array(813149388, 387589417) index="0" unique_id=1471388457 instance=ExtResource("7_52ee3")]
 transform = Transform3D(0.16284776, 0.98034924, 0.11134225, 0.8564471, -0.084424704, -0.5092845, -0.48987734, 0.17829478, -0.853365, -1.3091608, 0.499188, 0.0121028125)
 
-[node name="Right Armature" parent="Head/Camera3D/Hose/Hose/Lever/Right Arm" index="0" unique_id=1570078480]
+[node name="Right Armature" parent="Head/Camera3D/Hose/Hose/Lever/Right Arm" index="0" unique_id=541173763]
 transform = Transform3D(1, 0, -9.313226e-09, 1.4901161e-08, 1, 1.4901161e-08, -3.7252903e-08, 0, 1.0000002, 0.04358971, 0.036899462, 0.0029683113)
-
-[node name="Skeleton3D" parent="Head/Camera3D/Hose/Hose/Lever/Right Arm/Right Armature" index="0" unique_id=1049208841]
-bones/0/rotation = Quaternion(0.077451, 0, 0, 0.997723)
-bones/2/rotation = Quaternion(0.012036, -0.001181, -0.008652, 0.999801)
-bones/3/rotation = Quaternion(0.030756, -0.022324, -0.148696, 0.999103)
-bones/4/rotation = Quaternion(0.049167, 0.052279, 1.01494, 0.997409)
 
 [node name="WaterSplash" parent="Head/Camera3D/Hose" unique_id=1826667380 instance=ExtResource("3_gntrk")]
 transform = Transform3D(-4.3711392e-08, 3.552714e-15, -0.99999994, 3.5527137e-15, 0.9999999, 3.5527135e-15, 1, -3.5527133e-15, -4.371138e-08, 0.51268554, 0.02096963, 2.9802322e-08)
@@ -156,13 +205,20 @@ emitting = false
 [node name="Left Arm" parent="Head/Camera3D/Hose" unique_id=492718385 instance=ExtResource("6_nn08x")]
 transform = Transform3D(-0.30748722, 0.95064795, 0.041496806, -0.9415192, -0.31027174, 0.13142996, 0.13781847, 0.0013429129, 0.99045736, -1.4290116, 0.40261918, -0.33599997)
 
-[node name="Skeleton3D" parent="Head/Camera3D/Hose/Left Arm/Left Armature" parent_id_path=PackedInt32Array(492718385, 1681976097) index="0" unique_id=1313521173]
+[node name="Skeleton3D" parent="Head/Camera3D/Hose/Left Arm/Left Armature" parent_id_path=PackedInt32Array(492718385, 1950190072) index="0" unique_id=895650821]
 transform = Transform3D(0.98782533, 0.0020487607, 0.15555549, -0.020416275, 0.9929726, 0.11657152, -0.15422346, -0.118328124, 0.98092496, -0.024342418, -0.037629142, 0.05986403)
-bones/4/rotation = Quaternion(0.049167, 0.052279, -1.20006, 0.997409)
+
+[node name="Mask" parent="Head/Camera3D" unique_id=1065958505 instance=ExtResource("8_glx4g")]
+transform = Transform3D(-6.2109066e-08, 3.1148467e-08, 1, 1.0878587, 0.39980555, 4.1028315e-08, -0.39980555, 1.0878587, -4.371139e-08, 0, 0.73096, -0.046753407)
+script = ExtResource("9_miouo")
 
 [node name="Timer" type="Timer" parent="." unique_id=1156852035]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=908395332]
+libraries/ = SubResource("AnimationLibrary_bhhdu")
+autoplay = &"idle"
+
+[node name="Mask AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1941934852]
 libraries/ = SubResource("AnimationLibrary_bhhdu")
 autoplay = &"idle"
 
@@ -187,3 +243,4 @@ bus = &"SFX"
 [editable path="Head/Camera3D/Hose/WaterSplash"]
 [editable path="Head/Camera3D/Hose/WindVortex"]
 [editable path="Head/Camera3D/Hose/Left Arm"]
+[editable path="Head/Camera3D/Mask"]
