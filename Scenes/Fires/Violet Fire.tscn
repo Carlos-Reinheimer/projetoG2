@@ -43,3 +43,6 @@ fireResource = ExtResource("2_48ldh")
 
 [node name="Animated Flames" parent="." index="2" unique_id=2131829102]
 process_material = SubResource("ParticleProcessMaterial_u6egs")
+
+[node name="OmniLight3D" parent="." index="4" unique_id=1231490997]
+light_color = Color(1, 0.3254902, 1, 1)
