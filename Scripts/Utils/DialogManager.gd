@@ -82,7 +82,8 @@ func _wait(seconds: float) -> void:
 		await get_tree().process_frame
 
 func skip():
-	skip_all = true
+	if dialog_is_playing:
+		skip_all = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dialog_is_playing and event.is_action_pressed("SkipDialog"):
@@ -90,9 +91,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func showDialog(character: String, dialogs: Array[String], text_only := false):
-	if dialog_is_playing:
-		return
+	while dialog_is_playing:
+		await get_tree().process_frame
 	dialog_is_playing = true
+	skip_all = false
 
 	# Só texto: painel invisível, nome escondido, sem animação de "pop"
 	panel.self_modulate.a = 0.0 if text_only else 1.0
