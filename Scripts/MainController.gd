@@ -67,6 +67,9 @@ func onLoadNextFloor() -> void:
 	player.onStartLoadNextLevel()
 	currentFloor += 1
 	
+	if currentFloor == floors.size():
+		Transition.change_scene("res://Scenes/EndLevel.tscn")
+		return
 	await fade.fade(1.0, 1).finished
 	instantiateLevel()
 	await fade.fade(0.0, 1).finished
