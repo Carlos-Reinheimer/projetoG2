@@ -1,8 +1,16 @@
+class_name Enemy
 extends CharacterBody3D
+
+enum CAPTURE_MODE {APPROACH, ESCAPE, WET}
 
 const SPAWN_FIRE_CHANCE = 0.25
 const DELAY_BETWEEN_FIRE_SPAWN = 2.0
 const DELAY_DECAY = 0.1
+
+@export var captureMode: CAPTURE_MODE = CAPTURE_MODE.APPROACH
+@export var escapeSpeed = 5.0
+@export var wetDuration = 1.0
+@export var drySpeed = 0.15
 
 @export var pull_velocity : float = 0.4
 @export var fireRadius := 4.0       
@@ -36,6 +44,9 @@ var dashLeft := 0.0
 var heat_tween: Tween
 var fade_tween: Tween
 var spawnFireDelay: float = 0.0
+var isImmune: bool = false
+var howWet: float = 0.0
+
 static var active_mash_enemy: Node = null
 
 @export var fleeDistance := 12.0
@@ -45,6 +56,7 @@ var fleeId := 0
 
 var escapeImmunity := 0.0
 const ESCAPE_IMMUNITY_TIME := 2.5
+const DECAY_IMMUNITY = 0.5
 
 @export var buttonMashMode := ButtonMash.Mode.MASH
 @export var buttonMashDifficulty := ButtonMash.Difficulty.NORMAL
@@ -84,6 +96,13 @@ func _physics_process(_delta: float) -> void:
 	if onLink and global_position.distance_to(linkExit) < 1.0:
 		_on_link_finished()
 
+	if captureMode == CAPTURE_MODE.ESCAPE and puller != null:
+		var away = global_position - puller.global_position
+		away.y = 0.0
+		velocity = -away.normalized() * escapeSpeed
+		move_and_slide()
+		return
+
 	if navigation.is_navigation_finished():
 		return
 
@@ -104,17 +123,37 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	escapeImmunity = maxf	(escapeImmunity - delta, 0.0)
-	if target_position != Vector3.ZERO:
-		position = position.move_toward(target_position, delta * pull_velocity)
-	updateSpeedRestore(delta)
-	
+	if isImmune and escapeImmunity > 0.0:
+		escapeImmunity -= DECAY_IMMUNITY * delta
+	elif isImmune and escapeImmunity <= 0.0:
+		setTransparency(1, .1)
+		isImmune = false
 	if spawnFireDelay > 0.0:
 		spawnFireDelay -= DELAY_DECAY * delta
+	
+	if puller == null:
+		updateSpeedRestore(delta)
+		return
+	
+	if captureMode == CAPTURE_MODE.WET:
+		howWet = maxf(howWet - drySpeed * delta, 0.0)		
+	elif captureMode == CAPTURE_MODE.APPROACH and target_position != Vector3.ZERO:
+		position = position.move_toward(target_position, delta * pull_velocity)
+	updateSpeedRestore(delta)
 
 func setHighlight(on: bool) -> void:
+	if isImmune:
+		return
+	
 	for m in find_children("*", "MeshInstance3D", true, false):
 		m.material_overlay = outline_material if on else null
+
+func setTransparency(value: float, duration: float) -> void:
+	if fade_tween:
+		fade_tween.kill()
+	fade_tween = create_tween().set_parallel(true)
+	for m in find_children("*", "MeshInstance3D", true, false):
+		fade_tween.tween_property(m, "transparency", 1.0 - value, duration)
 
 func rememberFires() -> void:
 	for f in getFires():
@@ -237,12 +276,10 @@ func gettingPull(player: Player):
 	active_mash_enemy = self
 	coolDown()
 	animation_player.play("Absorb")
-	#button_mash.start(ButtonMash.Mode.values().pick_random())
 	playSound(GHOST_BUTTON_MASH)
 	button_mash.start(buttonMashMode, buttonMashDifficulty)
 	if not button_mash.game_finished.is_connected(_on_button_mash_game_finished):
 		button_mash.game_finished.connect(_on_button_mash_game_finished)
-	#playSound(SAD_GHOST)xx
 	currentState = State.GETTING_PULL
 	navigation.target_position = global_position
 	target_position = player.global_position
@@ -272,7 +309,6 @@ func _on_button_mash_game_finished(has_won: bool) -> void:
 
 	_releaseMash()
 	playSound(LAUGH_SOUND_EFFECT, false)
-	SignalBus.emit_signal("captureEnemy")
 	startRunning(puller.global_position)
 	target_position = Vector3.ZERO
 	puller.failedCapture()
@@ -280,6 +316,8 @@ func _on_button_mash_game_finished(has_won: bool) -> void:
 	puller = null
 	dash()
 	escapeImmunity = ESCAPE_IMMUNITY_TIME
+	isImmune = true
+	setTransparency(0.3, ESCAPE_IMMUNITY_TIME)
 
 func dash() -> void:
 	dashLeft = DASH_DURATION
@@ -350,11 +388,7 @@ func _on_link_finished() -> void:
 	animation_player.play("Moving")
 
 func fadeTo(value: float, duration: float = 0.3) -> void:
-	if fade_tween:
-		fade_tween.kill()
-	fade_tween = create_tween().set_parallel(true)
-	for m in find_children("*", "MeshInstance3D", true, false):
-		fade_tween.tween_property(m, "transparency", 1.0 - value, duration)
+	setTransparency(value, duration)
 
 func _on_button_mash_mash_pressed(progress: float) -> void:
 	if is_instance_valid(puller):

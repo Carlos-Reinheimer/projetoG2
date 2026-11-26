@@ -29,7 +29,9 @@ func _process(delta: float) -> void:
 	if not isRunning:
 		return
 	
-	var progress = PROGRESS_PER_FIRE * currentFireCount + PROGRESS_PER_FIRE * currentEnemyCount
+	var fireProgress = PROGRESS_PER_FIRE * currentFireCount
+	var enemyProgress = PROGRESS_PER_ENEMY * currentEnemyCount
+	var progress = fireProgress + enemyProgress
 	if progress > 0:
 		fireProgress += BASE_PROGRESS * sqrt(progress) * delta # sqrt() because oterwise this would be linear, and on lower floors, it would fill up waay too fast; this mitigates it
 	else:

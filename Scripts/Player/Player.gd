@@ -17,6 +17,7 @@ const TILT_UPPER_LIMIT = deg_to_rad(30.0)
 const MAX_SHAKE = 1.5        # deslocamento máximo da câmera
 const SHAKE_DECAY = 5.0       # trauma perdido por segundo
 const KNOCKBACK_DECAY = 25.0  # quão rápido o empurrão perde força
+const AIM_TOLERANCE_DEG = 30.0
 
 signal stateChanged(old_state: State, new_state: State)
 
@@ -91,12 +92,12 @@ func _physics_process(delta: float) -> void:
 		_apply_knockback_move(delta)
 		return
 
-	var isPressingLeft := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	var isPressingRight := Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+	var isPressingLeft = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	var isPressingRight = Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
 
 	if not isPressingLeft:
 		pull_blocked = false
-	var canPull := not pull_blocked and lockout_left <= 0.0
+	var canPull = not pull_blocked and lockout_left <= 0.0
 
 	match currentState:
 		State.NORMAL:
@@ -114,10 +115,11 @@ func _physics_process(delta: float) -> void:
 					switch_state(State.CAPTURING)
 					enemyTarget.gettingPull(self)
 			else:
-				enemyTarget = null  # da main: não guarda alvo fora do alcance
+				enemyTarget = null
 		State.CAPTURING:
-			if not isPressingLeft or not canPull or not is_instance_valid(enemyTarget):
-				dropTarget()  # antes do switch_state: dropTarget depende do estado CAPTURING
+			var lost = not isPressingLeft or not canPull or not is_instance_valid(enemyTarget) or not isAimingAt(enemyTarget)
+			if lost:
+				dropTarget()
 				switch_state(State.NORMAL)
 			else:
 				enemyTarget.gettingPull(self)
@@ -126,7 +128,7 @@ func _physics_process(delta: float) -> void:
 				stopWattering()
 				switch_state(State.NORMAL)
 
-	if currentState == State.CAPTURING:
+	if currentState == State.CAPTURING and enemyTarget.captureMode == Enemy.CAPTURE_MODE.APPROACH:
 		faceTarget(delta)
 		velocity = Vector3.ZERO
 		move_and_slide()
@@ -140,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += GRAVITY * delta
 
-	if Input.is_action_just_pressed("Jump") and is_on_floor() and hose.currentState != Hose.State.PULLING:
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and currentState != Hose.State.PULLING:
 		velocity.y = JUMP_VELOCITY
 
 	var speedPenalty = SPEED_PENALTY if isPressingRight or isPressingLeft else 1
@@ -156,6 +158,11 @@ func _physics_process(delta: float) -> void:
 	velocity.z += knockback.z
 	move_and_slide()
 	knockback = knockback.move_toward(Vector3.ZERO, KNOCKBACK_DECAY * delta)
+
+func isAimingAt(target: Node3D) -> bool:
+	var toTarget = target.global_position - camera_3d.global_position
+	var forward = -camera_3d.global_basis.z
+	return forward.angle_to(toTarget.normalized()) < deg_to_rad(AIM_TOLERANCE_DEG)
 
 func _unhandled_input(event):
 	_mouse_input = event is InputEventMouseMotion
@@ -249,7 +256,6 @@ func stun(duration: float = 0.6) -> void:
 
 func pushBack(from: Vector3, strength: float = 14.0) -> void:
 	hose.vacuum_sfx.stop()
-	#hose.vacuum_of_sfx.play()
 	if enemyTarget:
 		capturing_enemy.play()
 	

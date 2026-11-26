@@ -82,22 +82,22 @@ const BASE_SCALE := Vector2(1.5, 1.5)
 
 const DIFFICULTY_SETTINGS := {
 	Difficulty.EASY: {
-		"mash_time": 0.5, "press_boost": 7, "decay_rate": 6, "decay_growth": 0.0,
+		"mash_time": 1, "press_boost": 7, "decay_rate": 6, "decay_growth": 0.0,
 		"wrong_side_penalty": 0.0, "end_boost_ratio": 1.0,
 		"sequence_length": 4, "sequence_time": 5.0, "wrong_press_resets": false,
 	},
 	Difficulty.NORMAL: {
-		"mash_time": 0.4, "press_boost": 5, "decay_rate": 8, "decay_growth": 0.0,
+		"mash_time": 0.7, "press_boost": 5, "decay_rate": 8, "decay_growth": 0.0,
 		"wrong_side_penalty": 0.0, "end_boost_ratio": 0.6,
 		"sequence_length": 5, "sequence_time": 4.0, "wrong_press_resets": true,
 	},
 	Difficulty.HARD: {
-		"mash_time": 0.3, "press_boost": 4, "decay_rate": 10, "decay_growth": 0.5,
+		"mash_time": .5, "press_boost": 4, "decay_rate": 10, "decay_growth": 0.5,
 		"wrong_side_penalty": 8.0, "end_boost_ratio": 0.4,
 		"sequence_length": 7, "sequence_time": 3.0, "wrong_press_resets": true,
 	},
 	Difficulty.INSANE: {
-		"mash_time": 0.25, "press_boost": 3, "decay_rate": 12, "decay_growth": 1.0,
+		"mash_time": .4, "press_boost": 3, "decay_rate": 12, "decay_growth": 1.0,
 		"wrong_side_penalty": 12.0, "end_boost_ratio": 0.3,
 		"sequence_length": 9, "sequence_time": 2.5, "wrong_press_resets": true,
 	},
