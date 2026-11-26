@@ -82,6 +82,7 @@ func restartFloor() -> void:
 
 func instantiateLevel() -> void:
 	if currentFloorScene:
+		currentFloorScene.get_parent().remove_child(currentFloorScene)
 		currentFloorScene.queue_free()
 	
 	var newFloor: Node3D = getNewFloor(currentFloor)

@@ -83,6 +83,7 @@ func checkDeath() -> void:
 		if not fireResource.reignite or (fireResource.reignite and hasReignited):
 			audio_stream_player_3d.stream = EXTINGUISHED_SFX
 			audio_stream_player_3d.play()
+			remove_from_group("Fire")
 			SignalBus.emit_signal("extinguishFire")
 			await get_tree().create_timer(animated_flames.lifetime).timeout
 			queue_free()

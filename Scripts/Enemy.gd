@@ -362,6 +362,7 @@ func pullInFast() -> void:
 
 	puller.pushBack(start)
 	puller.stun(0.6)
+	remove_from_group("Enemy")
 	SignalBus.emit_signal("captureEnemy")
 	CapturedEnemies.add(scene_file_path)
 	_releaseMash()
