@@ -4,7 +4,7 @@ const MAX_VALUE = 1
 const BASE_PROGRESS = .05
 const PROGRESS_PER_FIRE: float = 0.005
 const PROGRESS_PER_ENEMY: float = 0.002
-const RELIEF_PER_ACTION = 0.1
+const RELIEF_PER_ACTION = 0.05
 const RELIEF_SPEED = 0.6
 
 @onready var mask_view: MeshInstance3D = $"Mask/Mask View"
@@ -67,11 +67,13 @@ func updateMaskFrost(value: float) -> void:
 
 func onCaptureEnemy():
 	currentEnemyCount -= 1
-	pendingRelief += RELIEF_PER_ACTION
+	if fireProgress >= 0.5:
+		pendingRelief += RELIEF_PER_ACTION
 
 func onExinguishFire():
 	currentFireCount -= 1
-	pendingRelief += RELIEF_PER_ACTION
+	if fireProgress >= 0.5:
+		pendingRelief += RELIEF_PER_ACTION
 
 func onSpawnFire(enemyPos: Vector3) -> void:
 	currentFireCount += 1
