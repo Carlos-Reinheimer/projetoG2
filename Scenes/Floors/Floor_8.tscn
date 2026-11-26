@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dso4ubfr07mjp" path="res://Assets/Models/Props/Others/Bin.glb" id="26_g37v5"]
 [ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="28_r1h3u"]
 [ext_resource type="PackedScene" uid="uid://d4gpju0ac68df" path="res://Scenes/Utils/FloorFogVolume.tscn" id="31_gihbo"]
+[ext_resource type="PackedScene" uid="uid://bf638hwfhxei7" path="res://Assets/Models/Props/Shelves/EmptyShelf 3.glb" id="34_rrk2i"]
 [ext_resource type="PackedScene" uid="uid://chxskn1g0wu05" path="res://Scenes/Props/FloorIndicator.tscn" id="35_55p4e"]
 [ext_resource type="AudioStream" uid="uid://co1vrc7q7g0l1" path="res://Assets/SFX/Electric Discharge.mp3" id="36_4pb88"]
 
@@ -43,7 +44,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 
 [node name="Floor" type="Node3D" unique_id=86157260]
 script = ExtResource("1_8c7ym")
-lightBehavior = 3
+lightBehavior = 1
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=569085019]
 navigation_mesh = SubResource("NavigationMesh_0ramm")
@@ -471,9 +472,6 @@ transform = Transform3D(-0.983443, 0.18121758, -7.805405e-08, -8.742278e-08, -4.
 [node name="Television" parent="Scenario" unique_id=1148972993 instance=ExtResource("8_y30vm")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22.433727, 2.828014, 20.962687)
 
-[node name="Shelf 3" parent="Scenario" unique_id=1949302942 instance=ExtResource("9_5brn5")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 31.881973, 0.439152, 17.489658)
-
 [node name="Desk 2" parent="Scenario" unique_id=987384539 instance=ExtResource("10_2f8na")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 29.753578, 0.7625828, 12.19771)
 
@@ -788,6 +786,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.328994, 0.55886304, 28.7394
 
 [node name="Bin6" parent="Scenario" unique_id=571712548 instance=ExtResource("26_g37v5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8302636, 0.5588628, 22.359066)
+
+[node name="EmptyShelf 3" parent="Scenario" unique_id=1245348240 instance=ExtResource("34_rrk2i")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 31.881973, 0.439152, 17.489658)
 
 [node name="FogVolume" parent="." unique_id=1052107437 instance=ExtResource("31_gihbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.619755, 2.5016785, 33.07238)

@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://bc8thafclcr3s" path="res://Assets/Models/Props/Tech/Computer.glb" id="23_hvwg6"]
 [ext_resource type="PackedScene" uid="uid://dso4ubfr07mjp" path="res://Assets/Models/Props/Others/Bin.glb" id="24_4utk3"]
 [ext_resource type="PackedScene" uid="uid://chxskn1g0wu05" path="res://Scenes/Props/FloorIndicator.tscn" id="32_8ab1x"]
+[ext_resource type="PackedScene" uid="uid://bf638hwfhxei7" path="res://Assets/Models/Props/Shelves/EmptyShelf 3.glb" id="32_vx48r"]
 [ext_resource type="AudioStream" uid="uid://co1vrc7q7g0l1" path="res://Assets/SFX/Electric Discharge.mp3" id="33_lqa2l"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8p5dp"]
@@ -447,9 +448,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.452981, 2.1295848, 23.90873
 [node name="Shelf 3" parent="Scenario" unique_id=1949302942 instance=ExtResource("15_drme0")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.0295324, 2.129585, 27.494932)
 
-[node name="Shelf 4" parent="Scenario" unique_id=724570448 instance=ExtResource("15_drme0")]
-transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 4.0295324, 0.33193123, 22.47288)
-
 [node name="Stand" parent="Scenario" unique_id=1045610143 instance=ExtResource("16_jkndg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5127926, 2.1527004, 16.433418)
 
@@ -575,6 +573,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.67746, 0.5588628, 41.56542
 
 [node name="Bin4" parent="Scenario" unique_id=1607586464 instance=ExtResource("24_4utk3")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 19.874744, 0.18918991, 45.950714)
+
+[node name="EmptyShelf 3" parent="Scenario" unique_id=1245348240 instance=ExtResource("32_vx48r")]
+transform = Transform3D(-4.3711385e-08, 4.3711392e-08, 1, 1, -4.371139e-08, 4.371139e-08, 4.3711392e-08, 1, -4.371139e-08, 4.0295324, 0.33193123, 22.47288)
 
 [node name="Floor Indicator" parent="." unique_id=555806186 instance=ExtResource("32_8ab1x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12.760234, 2.5022109, 48.974934)

@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dja3qahm141kl" path="res://Scenes/Props/Pot 2.tscn" id="23_i2cjf"]
 [ext_resource type="PackedScene" uid="uid://bfd1nxnxw7ykp" path="res://Scenes/Props/Enter Door.tscn" id="25_mn56b"]
 [ext_resource type="PackedScene" uid="uid://d4gpju0ac68df" path="res://Scenes/Utils/FloorFogVolume.tscn" id="30_c2ujm"]
+[ext_resource type="PackedScene" uid="uid://drdw2xvkcmga3" path="res://Assets/Models/Props/Shelves/EmptyShelf 2.glb" id="31_nf8vc"]
 [ext_resource type="PackedScene" uid="uid://chxskn1g0wu05" path="res://Scenes/Props/FloorIndicator.tscn" id="32_adkd6"]
 [ext_resource type="AudioStream" uid="uid://co1vrc7q7g0l1" path="res://Assets/SFX/Electric Discharge.mp3" id="33_sjfds"]
 
@@ -296,7 +297,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4551816, 1.644483, 8.312018
 [node name="Scenario" type="Node3D" parent="." unique_id=1811881862]
 
 [node name="Shelf 3" parent="Scenario" unique_id=1949302942 instance=ExtResource("3_xafot")]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 22.189325, 2.129585, 2.1709967)
+transform = Transform3D(0.7071069, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.7071069, 22.189325, 2.129585, 2.1709967)
 
 [node name="Shelf 4" parent="Scenario" unique_id=1560981731 instance=ExtResource("3_xafot")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 23.792742, 2.129585, 8.533672)
@@ -433,9 +434,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 19.6
 [node name="Shelf 2" parent="Scenario" unique_id=1743623684 instance=ExtResource("14_ysob7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.613092, 2.129585, 31.828712)
 
-[node name="Shelf 5" parent="Scenario" unique_id=194021060 instance=ExtResource("14_ysob7")]
-transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 17.308067, 2.129585, 18.223286)
-
 [node name="Lamp" parent="Scenario" unique_id=1629282556 instance=ExtResource("15_k6y48")]
 transform = Transform3D(0.77894336, -0.62709427, 2.7411161e-08, 0, -4.371139e-08, -1, 0.62709427, 0.77894336, -3.4048696e-08, 24.452026, 0.26734042, 3.5058358)
 
@@ -519,6 +517,9 @@ transform = Transform3D(0.54659617, 0, -0.8373963, 0, 1, 0, 0.8373963, 0, 0.5465
 
 [node name="Pot 6" parent="Scenario" unique_id=1495030298 instance=ExtResource("23_i2cjf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.333046, 0.5984733, 36.081604)
+
+[node name="EmptyShelf 2" parent="Scenario" unique_id=1142010798 instance=ExtResource("31_nf8vc")]
+transform = Transform3D(0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0, 1, 17.308067, 2.129585, 18.223286)
 
 [node name="FogVolume" parent="." unique_id=1052107437 instance=ExtResource("30_c2ujm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.08647, 2.6865644, 23.216263)

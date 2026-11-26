@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ca2quwfk1v2yf"
-path="res://.godot/imported/Shelf 4.glb-62b214a6ebfa93d0e4dff44060bbf114.scn"
+uid="uid://dcmi7wdgt4vxe"
+path="res://.godot/imported/EmptyShelf.glb-eaa979834e63680366ff7176569054cb.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Props/Shelves/Shelf 4.glb"
-dest_files=["res://.godot/imported/Shelf 4.glb-62b214a6ebfa93d0e4dff44060bbf114.scn"]
+source_file="res://Assets/Models/Props/Shelves/EmptyShelf.glb"
+dest_files=["res://.godot/imported/EmptyShelf.glb-eaa979834e63680366ff7176569054cb.scn"]
 
 [params]
 
@@ -43,8 +43,8 @@ _subresources={
 "materials": {
 "Prop": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/Alluminum/Alluminum.tres",
-"use_external/path": "res://Assets/Materials/Alluminum/Alluminum.tres"
+"use_external/fallback_path": "res://Assets/Materials/Wood 3/Wood 3.tres",
+"use_external/path": "res://Assets/Materials/Wood 3/Wood 3.tres"
 }
 }
 }

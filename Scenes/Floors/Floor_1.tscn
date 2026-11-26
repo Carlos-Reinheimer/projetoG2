@@ -386,7 +386,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19.9
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.677954, 2.1295848, 14.534857)
 
 [node name="Shelf 5" parent="Scenario" unique_id=451820091 instance=ExtResource("26_5d5x8")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.355583, 2.1295848, 14.534857)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19.355583, 2.1295848, 14.534857)
 
 [node name="Pot 5" parent="Scenario" unique_id=1295943423 instance=ExtResource("29_ouqwn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.577219, 0.25755197, 13.843902)

@@ -1,7 +1,7 @@
 class_name Floor
 extends Node
 
-enum FLOOR_LIGHTS_BEHAVIOR {NONE, FLICKER, OFF, FLICKER_AND_OFF}
+enum FLOOR_LIGHTS_BEHAVIOR {NONE, OFF}
 
 const CEILING_HEIGHT = 4.5
 const FLOOR_HEIGHT = 0.8
@@ -67,22 +67,6 @@ func handleFloorLights() -> void:
 	# going through all the lights is ok because 4/5 only have one
 	var floorLights = get_tree().get_nodes_in_group("Light")
 	match lightBehavior:
-		FLOOR_LIGHTS_BEHAVIOR.FLICKER:
-			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 1.0
-			for light in floorLights:
-				if randf() <= FLICKER_CHANCE:
-					light.updateFlickerState(true)
-		FLOOR_LIGHTS_BEHAVIOR.FLICKER_AND_OFF:
-			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 1.0
-			for light in floorLights:
-				if randf() <= FLICKER_CHANCE:
-					light.updateFlickerState(true)
-			await get_tree().create_timer(5).timeout
-			for light in floorLights:
-				light.updateFlickerState(false)
-				light.turnOnOff(false)
-			audio_stream_player.play()
-			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 0
 		FLOOR_LIGHTS_BEHAVIOR.OFF:
 			audio_stream_player.play()
 			EMISSIVE_LIGHT_MAT.emission_energy_multiplier = 0
