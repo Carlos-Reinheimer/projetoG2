@@ -55,3 +55,9 @@ func _on_quit_button_pressed() -> void:
 
 func _on_return_button_pressed() -> void:
 	$PauseMenu/AnimationPlayer.play_backwards("options")
+
+func _on_controls_button_pressed() -> void:
+	$PauseMenu/AnimationPlayer.play("controls")
+
+func _on_return_from_controls_button_pressed() -> void:
+	$PauseMenu/AnimationPlayer.play_backwards("controls")
