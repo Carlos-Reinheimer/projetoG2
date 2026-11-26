@@ -135,7 +135,7 @@ func _physics_process(delta: float) -> void:
 				stopWattering()
 				switch_state(State.NORMAL)
 
-	if currentState == State.CAPTURING and enemyTarget.captureMode == Enemy.CAPTURE_MODE.APPROACH:
+	if currentState == State.CAPTURING and enemyTarget.captureMode != Enemy.CAPTURE_MODE.ESCAPE:
 		faceTarget(delta)
 		velocity = Vector3.ZERO
 		move_and_slide()

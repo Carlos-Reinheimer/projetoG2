@@ -46,6 +46,10 @@ func _ready() -> void:
 func setupLevel() -> void:
 	countFiresOnFloor()
 	countEnemiesOnFloor()
+	#print("---------")
+	#print("currentFloor: " + str(currentFloor))
+	#print("enemiesOnFloor: " + str(enemiesOnFloor))
+	#print("firesOnFloor: " + str(firesOnFloor))
 	
 	current_floor_sfx.play()
 	

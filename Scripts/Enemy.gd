@@ -6,8 +6,8 @@ enum CAPTURE_MODE {APPROACH, ESCAPE, WET}
 const SPAWN_FIRE_CHANCE = 0.25
 const DELAY_BETWEEN_FIRE_SPAWN = 2.0
 const DELAY_DECAY = 0.1
-const WET_RATE = 0.01
-const WET_DURATION = 2
+const WET_RATE = 0.02
+const WET_DURATION = 3.0
 
 @export var captureMode: CAPTURE_MODE = CAPTURE_MODE.APPROACH
 @export var escapeSpeed = 5.0
@@ -23,6 +23,7 @@ const WET_DURATION = 2
 @onready var look_range: Area3D = $LookRange
 @onready var animation_player: AnimationPlayer = $ModelSlot/AnimationPlayer
 @onready var flames: GPUParticles3D = $Flames
+@onready var flame_sfx: AudioStreamPlayer3D = $"Flames/Flame SFX"
 
 # SFX
 @onready var sfx: AudioStreamPlayer3D = $SFX
@@ -163,6 +164,8 @@ func _process(delta: float) -> void:
 
 func setHighlight(on: bool) -> void:
 	if isImmune:
+		return
+	if not canBeCaptured():
 		return
 	
 	for m in find_children("*", "MeshInstance3D", true, false):
@@ -502,6 +505,7 @@ func gettingWet() -> void:
 	if howWet >= 1:
 		wetDuration = WET_DURATION
 		flames.emitting = false
+		flame_sfx.play()
 		coolDown(0.5)
 
 func canBeCaptured() -> bool:

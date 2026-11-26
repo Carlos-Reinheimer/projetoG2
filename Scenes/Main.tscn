@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dkxyigbnmyfcy" path="res://Scenes/Floors/Floor_7.tscn" id="8_fq0cl"]
 [ext_resource type="PackedScene" uid="uid://b6u4kvqf0tspp" path="res://Scenes/Floors/Floor_8.tscn" id="9_hwpts"]
 [ext_resource type="PackedScene" uid="uid://cacatwiqomohi" path="res://Scenes/Floors/Floor_9.tscn" id="10_jyqft"]
+[ext_resource type="PackedScene" uid="uid://c7s2n75c14inl" path="res://Scenes/Floors/Floor_4.tscn" id="13_fq0cl"]
 [ext_resource type="Environment" uid="uid://c86xpxqvswg3h" path="res://Assets/Environment.tres" id="14_2w5on"]
 
 [node name="Main" type="Node3D" unique_id=981272364]
@@ -55,8 +56,7 @@ stream = ExtResource("6_sxkr1")
 
 [node name="Main Controller" type="Node" parent="." unique_id=938798563]
 script = ExtResource("1_r150o")
-floors = Array[PackedScene]([ExtResource("5_pbw6q"), ExtResource("2_h1m7h"), ExtResource("3_erwvk"), ExtResource("5_346fj"), ExtResource("5_346fj"), ExtResource("6_0sclb"), ExtResource("7_sxkr1"), ExtResource("8_fq0cl"), ExtResource("9_hwpts"), ExtResource("10_jyqft")])
-startFloor = 9
+floors = Array[PackedScene]([ExtResource("5_pbw6q"), ExtResource("2_h1m7h"), ExtResource("3_erwvk"), ExtResource("5_346fj"), ExtResource("13_fq0cl"), ExtResource("6_0sclb"), ExtResource("7_sxkr1"), ExtResource("8_fq0cl"), ExtResource("9_hwpts"), ExtResource("10_jyqft")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104667984]
 environment = ExtResource("14_2w5on")

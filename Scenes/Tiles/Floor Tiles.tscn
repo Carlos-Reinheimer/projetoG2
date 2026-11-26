@@ -6,13 +6,19 @@
 [ext_resource type="ArrayMesh" uid="uid://oxr8p0eth6xo" path="res://Assets/Models/Structure/Wall with Hole.tres" id="4_v4xob"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1iice"]
-size = Vector3(1, 1.1905365, 1)
+size = Vector3(1, 1.1849022, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_frvqy"]
 size = Vector3(1, 0.20794678, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7obk3"]
 size = Vector3(1, 0.20663452, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2qhic"]
+size = Vector3(1, 4.9856176, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v4xob"]
+size = Vector3(1, 1.064724, 1)
 
 [node name="FloorTiles" type="Node3D" unique_id=1036542230]
 
@@ -52,8 +58,8 @@ mesh = ExtResource("4_v4xob")
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall with Hole" unique_id=1449348075]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall with Hole/StaticBody3D" unique_id=453240936]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0013122559, 0)
-shape = SubResource("BoxShape3D_1iice")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0108447075, 0)
+shape = SubResource("BoxShape3D_2qhic")
 
 [node name="Wall with Hole No Col" type="MeshInstance3D" parent="." unique_id=715465619]
 mesh = ExtResource("4_v4xob")
@@ -61,11 +67,11 @@ mesh = ExtResource("4_v4xob")
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall with Hole No Col" unique_id=1906011422]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall with Hole No Col/StaticBody3D" unique_id=58821783]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9033127, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8998508, 0)
 shape = SubResource("BoxShape3D_1iice")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Wall with Hole No Col" unique_id=1351389420]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall with Hole No Col/StaticBody3D2" unique_id=1099921431]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9644359, 0)
-shape = SubResource("BoxShape3D_1iice")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9603943, 0)
+shape = SubResource("BoxShape3D_v4xob")

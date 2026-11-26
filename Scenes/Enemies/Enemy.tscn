@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ce558wkxws8rq" path="res://Assets/Textures/Voronoi01.png" id="6_idouy"]
 [ext_resource type="Texture2D" uid="uid://crnbhyy40q2k6" path="res://Assets/Textures/Flame02.png" id="7_0o0ue"]
 [ext_resource type="AudioStream" uid="uid://cveon05m54iab" path="res://Assets/SFX/ghost_laught.mp3" id="7_6bs3c"]
+[ext_resource type="AudioStream" uid="uid://clfb3yvjxn2rl" path="res://Assets/SFX/Extinguished Flame.mp3" id="7_n01f6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uj1m6"]
 
@@ -86,6 +87,10 @@ amount = 20
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_27ry8")
 draw_pass_1 = SubResource("QuadMesh_esfq3")
+
+[node name="Flame SFX" type="AudioStreamPlayer3D" parent="Flames" unique_id=921701735]
+stream = ExtResource("7_n01f6")
+bus = &"SFX"
 
 [node name="ModelSlot" type="Node3D" parent="." unique_id=1004313269]
 
