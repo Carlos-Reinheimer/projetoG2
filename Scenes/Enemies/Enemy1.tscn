@@ -466,6 +466,7 @@ _data = {
 }
 
 [node name="Enemy" unique_id=873800574 instance=ExtResource("2_f21d5")]
+captureMode = 1
 buttonMashDifficulty = 0
 
 [node name="LookRange" parent="." index="5" unique_id=1567903689]
@@ -480,13 +481,13 @@ transform = Transform3D(0.9999996, 0, 0, 0, 1, 0, 0, 0, 0.9999996, -0.021913916,
 [node name="Enemy 1" parent="ModelSlot" index="0" unique_id=1225996641 instance=ExtResource("2_tuilm")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999998, 0, 1, 0, -0.9999998, 0, -4.371138e-08, 0, 0, 0)
 
-[node name="Head" parent="ModelSlot/Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(1225996641, 1160169393) index="0" unique_id=897392663]
+[node name="Head" parent="ModelSlot/Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(1225996641, 808166032) index="0" unique_id=296637182]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.9999998, -0.08837157, 0.6275167, 0.011401222)
 
-[node name="Left Hand" parent="ModelSlot/Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(1225996641, 1160169393) index="1" unique_id=884445024]
+[node name="Left Hand" parent="ModelSlot/Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(1225996641, 808166032) index="1" unique_id=1902671688]
 transform = Transform3D(0.9999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999997, -0.21523376, 0.03826487, 0.42174563)
 
-[node name="Right Hand" parent="ModelSlot/Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(1225996641, 1160169393) index="2" unique_id=2012833322]
+[node name="Right Hand" parent="ModelSlot/Enemy 1/Enemy 1" parent_id_path=PackedInt32Array(1225996641, 808166032) index="2" unique_id=561164886]
 transform = Transform3D(1.0000001, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, -0.21523376, 0.007554668, -0.39375204)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ModelSlot" index="1" unique_id=457160693]

@@ -3,7 +3,7 @@ extends Node3D
 const MAX_VALUE = 1
 const BASE_PROGRESS = .05
 const PROGRESS_PER_FIRE: float = 0.005
-const PROGRESS_PER_ENEMY: float = 0.001
+const PROGRESS_PER_ENEMY: float = 0.002
 
 @onready var mask_view: MeshInstance3D = $"Mask/Mask View"
 
@@ -29,9 +29,9 @@ func _process(delta: float) -> void:
 	if not isRunning:
 		return
 	
-	var fireProgress = PROGRESS_PER_FIRE * currentFireCount
-	var enemyProgress = PROGRESS_PER_ENEMY * currentEnemyCount
-	var progress = fireProgress + enemyProgress
+	var fireWeight = PROGRESS_PER_FIRE * currentFireCount
+	var enemyWeight = PROGRESS_PER_ENEMY * currentEnemyCount
+	var progress = fireWeight + enemyWeight
 	if progress > 0:
 		fireProgress += BASE_PROGRESS * sqrt(progress) * delta # sqrt() because oterwise this would be linear, and on lower floors, it would fill up waay too fast; this mitigates it
 	else:

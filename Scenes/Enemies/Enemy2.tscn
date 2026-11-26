@@ -466,7 +466,6 @@ _data = {
 }
 
 [node name="Enemy" unique_id=873800574 instance=ExtResource("1_ofn4g")]
-captureMode = 1
 buttonMashMode = 1
 
 [node name="Enemy 2" parent="ModelSlot" parent_id_path=PackedInt32Array(1004313269) index="0" unique_id=137143270 instance=ExtResource("2_sjoa0")]
