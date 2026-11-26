@@ -4,6 +4,8 @@ const MAX_VALUE = 1
 const BASE_PROGRESS = .05
 const PROGRESS_PER_FIRE: float = 0.005
 const PROGRESS_PER_ENEMY: float = 0.002
+const RELIEF_PER_ACTION = 0.1
+const RELIEF_SPEED = 0.6
 
 @onready var mask_view: MeshInstance3D = $"Mask/Mask View"
 
@@ -12,6 +14,7 @@ var isRunning: bool = false
 var isGameOver: bool = false
 var currentFireCount: int = 0
 var currentEnemyCount: int = 0
+var pendingRelief: float = 0.0
 var maskMat: ShaderMaterial
 
 func _ready() -> void:
@@ -29,6 +32,11 @@ func _process(delta: float) -> void:
 	if not isRunning:
 		return
 	
+	if pendingRelief > 0.0:
+		var step = minf(pendingRelief, RELIEF_SPEED * delta)
+		fireProgress -= step
+		pendingRelief -= step
+
 	var fireWeight = PROGRESS_PER_FIRE * currentFireCount
 	var enemyWeight = PROGRESS_PER_ENEMY * currentEnemyCount
 	var progress = fireWeight + enemyWeight
@@ -59,9 +67,11 @@ func updateMaskFrost(value: float) -> void:
 
 func onCaptureEnemy():
 	currentEnemyCount -= 1
+	pendingRelief += RELIEF_PER_ACTION
 
 func onExinguishFire():
 	currentFireCount -= 1
+	pendingRelief += RELIEF_PER_ACTION
 
 func onSpawnFire(enemyPos: Vector3) -> void:
 	currentFireCount += 1
