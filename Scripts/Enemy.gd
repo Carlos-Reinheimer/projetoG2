@@ -6,10 +6,11 @@ enum CAPTURE_MODE {APPROACH, ESCAPE, WET}
 const SPAWN_FIRE_CHANCE = 0.25
 const DELAY_BETWEEN_FIRE_SPAWN = 2.0
 const DELAY_DECAY = 0.1
+const WET_RATE = 0.01
+const WET_DURATION = 2
 
 @export var captureMode: CAPTURE_MODE = CAPTURE_MODE.APPROACH
 @export var escapeSpeed = 5.0
-@export var wetDuration = 1.0
 @export var drySpeed = 0.15
 
 @export var pull_velocity : float = 0.4
@@ -21,6 +22,7 @@ const DELAY_DECAY = 0.1
 @onready var navigation: NavigationAgent3D = $NavigationAgent3D
 @onready var look_range: Area3D = $LookRange
 @onready var animation_player: AnimationPlayer = $ModelSlot/AnimationPlayer
+@onready var flames: GPUParticles3D = $Flames
 
 # SFX
 @onready var sfx: AudioStreamPlayer3D = $SFX
@@ -46,6 +48,7 @@ var fade_tween: Tween
 var spawnFireDelay: float = 0.0
 var isImmune: bool = false
 var howWet: float = 0.0
+var wetDuration: float = 0.0
 
 static var active_mash_enemy: Node = null
 
@@ -141,13 +144,20 @@ func _process(delta: float) -> void:
 	if spawnFireDelay > 0.0:
 		spawnFireDelay -= DELAY_DECAY * delta
 	
+	if wetDuration >= 0.0:
+		wetDuration -= delta
+	elif wetDuration <= 0.0 and howWet >= 1.0:
+		howWet = 0.0
+		flames.emitting = true
+		flames.amount_ratio = 1
+		flames.scale = Vector3.ONE
+		heatUp(0.5)
+
 	if puller == null:
 		updateSpeedRestore(delta)
 		return
 	
-	if captureMode == CAPTURE_MODE.WET:
-		howWet = maxf(howWet - drySpeed * delta, 0.0)		
-	elif captureMode == CAPTURE_MODE.APPROACH and target_position != Vector3.ZERO:
+	if captureMode == CAPTURE_MODE.APPROACH and target_position != Vector3.ZERO:
 		position = position.move_toward(target_position, delta * pull_velocity)
 	updateSpeedRestore(delta)
 
@@ -479,3 +489,19 @@ func _thrown_physics(delta: float) -> void:
 func remove():
 	await sfx.finished
 	queue_free()
+
+func gettingWet() -> void:
+	if captureMode != CAPTURE_MODE.WET:
+		return
+
+	howWet += WET_RATE
+	howWet = clampf(howWet, 0.0, 1.0)
+	flames.amount_ratio = remap(howWet, 0.0, 1.0, 1.0, 0.5)
+	flames.scale = Vector3.ONE * remap(howWet, 0.0, 1.0, 1.0, 0.3)
+	if howWet >= 1:
+		wetDuration = WET_DURATION
+		flames.emitting = false
+		coolDown(0.5)
+
+func canBeCaptured() -> bool:
+	return captureMode != CAPTURE_MODE.WET or howWet >= 1.0

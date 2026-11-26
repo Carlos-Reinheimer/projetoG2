@@ -3,6 +3,25 @@
 [ext_resource type="PackedScene" uid="uid://d3am5hjwkt1bd" path="res://Scenes/Enemies/Enemy.tscn" id="1_hjnne"]
 [ext_resource type="PackedScene" uid="uid://2f1kcvlwgasi" path="res://Assets/Models/Enemies/Enemy 3/Enemy 3.glb" id="2_ly4kv"]
 
+[sub_resource type="Curve" id="Curve_uihya"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19827586, 0.9926471), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_p8g6p"]
+curve = SubResource("Curve_uihya")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hjnne"]
+emission_shape = 1
+emission_sphere_radius = 0.01
+angle_min = -360.0
+angle_max = 360.00003
+direction = Vector3(0.1, 0, 0)
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_curve = SubResource("CurveTexture_p8g6p")
+color = Color(2.8619754, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_7gtii"]
 resource_name = "Absorb"
 loop_mode = 2
@@ -262,12 +281,18 @@ _data = {
 }
 
 [node name="Enemy" unique_id=873800574 instance=ExtResource("1_hjnne")]
+captureMode = 2
 buttonMashMode = 2
+
+[node name="Flames" parent="." index="6" unique_id=565885059]
+lifetime = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_hjnne")
 
 [node name="Enemy 3" parent="ModelSlot" parent_id_path=PackedInt32Array(1004313269) index="0" unique_id=786978005 instance=ExtResource("2_ly4kv")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0.0031675994, 0, 0)
 
-[node name="Head_002" parent="ModelSlot/Enemy 3/Enemy 3" parent_id_path=PackedInt32Array(786978005, 1806662057) index="0" unique_id=1597060064]
+[node name="Head_002" parent="ModelSlot/Enemy 3/Enemy 3" parent_id_path=PackedInt32Array(786978005, 966810520) index="0" unique_id=1010113931]
 transform = Transform3D(1.0000004, 0, 0, 0, 0.9999999, 0, 0, 0, 1, -0.12930967, 0.5302515, 0.0046536783)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ModelSlot" parent_id_path=PackedInt32Array(1004313269) index="1" unique_id=1116686178]

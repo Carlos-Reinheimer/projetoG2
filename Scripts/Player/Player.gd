@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 		State.PULLING:
 			if not isPressingLeft:
 				switch_state(State.NORMAL)
-			elif canPull and EnemyInRange():
+			elif canPull and EnemyInRange() and canCaptureEnemy():
 				enemyTarget = ray.get_collider()
 				if is_instance_valid(enemyTarget):
 					switch_state(State.CAPTURING)
@@ -185,6 +185,8 @@ func updateWattering() -> void:
 	var collider = ray.get_collider()
 	if collider and collider.get_parent().has_method("puttingOut"):
 		collider.get_parent().puttingOut()
+	elif collider and collider.has_method("gettingWet"):
+		collider.gettingWet()
 
 func stopWattering() -> void:
 	if water_splash.emitting:
@@ -292,6 +294,14 @@ func failedCapture() -> void:
 func EnemyInRange():
 	return ray.get_collider() and ray.get_collider().is_in_group("Enemy")
 
+func canCaptureEnemy() -> bool:
+	var isEnemy = ray.get_collider() and ray.get_collider().is_in_group("Enemy")
+	if not isEnemy:
+		return false
+	
+	var enemy = ray.get_collider() as Enemy
+	return enemy.canBeCaptured()
+
 func onStartGame() -> void:
 	isPlayable = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -343,7 +353,7 @@ func enterThrowMode() -> void:
 func throwEnemy() -> void:
 	if throw_cooldown_left > 0.0:
 		return
-	var path := CapturedEnemies.take_one()
+	var path = CapturedEnemies.take_one()
 	if path == "":
 		return
 	throw_cooldown_left = THROW_INTERVAL
