@@ -129,5 +129,5 @@ func onSpawnFire(enemyPos: Vector3) -> void:
 	firesOnFloor += 1
 
 func playLevelDialog() -> void:
-	if currentFloor == 1:
+	if currentFloor == 2:
 		dialog_manager.greenFireDialog()
