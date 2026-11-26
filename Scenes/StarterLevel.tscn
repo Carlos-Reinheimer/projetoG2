@@ -256,10 +256,10 @@ libraries/ = SubResource("AnimationLibrary_utb1a")
 
 [node name="Pause Menu" parent="." unique_id=2093918246 instance=ExtResource("9_syc3a")]
 
-[node name="Restart Current Level Button" parent="Pause Menu/PauseMenu/Main Buttons/VBoxContainer" parent_id_path=PackedInt32Array(2093918246, 836284060) index="2" unique_id=1188078632]
+[node name="Restart Current Level Button" parent="Pause Menu/PauseMenu/Main Buttons/VBoxContainer" parent_id_path=PackedInt32Array(2093918246, 836284060) index="3" unique_id=1188078632]
 visible = false
 
-[node name="Home Button" parent="Pause Menu/PauseMenu/Main Buttons/VBoxContainer" parent_id_path=PackedInt32Array(2093918246, 836284060) index="3" unique_id=1527609939]
+[node name="Home Button" parent="Pause Menu/PauseMenu/Main Buttons/VBoxContainer" parent_id_path=PackedInt32Array(2093918246, 836284060) index="4" unique_id=1527609939]
 visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1001199429]

@@ -11,10 +11,26 @@ var current_tween: Tween
 var skip_all := false
 
 # Dialogos
-var tutorialDialogText : Array[String] = ["[i]Atenção, cadete[/i]", "Isso não é um treinamento", "Esse é seu primeiro incêndio de [color=red]burnout[/color] de verdade", "Mas não se preocupe, estou aqui para te relembrar do seu treinamento",
-"Primeiramente o básico, apagar o fogo, mas não qualquer [wave amp=30 freq=5]foguinho normal[/wave]", "Temos fogos [color=purple]roxos[/color], [color=blue]azuis[/color] e [color=green]verdes[/color], cada um mais demorado de apagar do que o outro",
-"Mas não se preocupa, apenas os apague com sua mangueira [Pressionando o botão direito do mouse]", "Agora, os [wave amp=30 freq=5][b]fantasmas[/b][/wave]... esses são outra história", "Ao invés de apagá-los, devemos [i]capturá-los[/i] [Pressionando botão esquerdo do mouse]",
-"Porém cuidado, [i]conseguir[/i] capturá-los é mais difícil do que parece", "E lembre-se, [b]sempre limpe um andar antes de seguir para o próximo[/b]", "Boa sorte, cadete"]
+var tutorialDialogText: Array[String] = [
+	"[i]Atenção, cadete[/i]",
+	"Isso não é um treinamento",
+	"Esse é seu primeiro incêndio de [color=red]burnout[/color] de verdade",
+	"Mas não se preocupe, estou aqui para te relembrar do seu treinamento",
+	"Primeiramente, o básico: apagar o fogo. Mas não qualquer [wave amp=30 freq=5]foguinho normal[/wave]",
+	"Temos fogos [color=#4dc3ff]azuis[/color], [color=#e07bff]roxos[/color] e [color=#ff4d4d]vermelhos[/color]",
+	"Os [color=#ff4d4d]vermelhos[/color] são os mais teimosos: demoram mais para apagar",
+	"E os [color=#e07bff]roxos[/color]... esses [shake rate=10 level=5]voltam a acender[/shake] depois de um tempo. Fique de olho neles",
+	"Para todos eles, use sua mangueira [color=yellow][lb]Botão direito do mouse[rb][/color]",
+	"Agora, os [wave amp=30 freq=5][b]fantasmas[/b][/wave]... esses são outra história",
+	"Ao invés de apagá-los, devemos [i]capturá-los[/i] [color=yellow][lb]Botão esquerdo do mouse[rb][/color]",
+	"Alguns vêm direto até você. Esses são os mais tranquilos",
+	"Outros tentam [i]fugir[/i] durante a captura. Siga-os e não tire a mira deles!",
+	"E alguns só podem ser capturados depois de [color=#4dc3ff]molhados[/color]. Dê um banho neles primeiro",
+	"Porém cuidado, [i]conseguir[/i] capturá-los é mais difícil do que parece",
+	"Alguns andares estão [shake rate=10 level=5]sem energia[/shake]. Se não conseguir enxergar, acenda sua lanterna [color=yellow][lb]F[rb][/color]",
+	"E lembre-se, [b]sempre limpe um andar antes de seguir para o próximo[/b]",
+	"Boa sorte, cadete",
+]
 
 var characterName := "Tutor Rial"
 
