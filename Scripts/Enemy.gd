@@ -66,15 +66,24 @@ const MIN_SPEED := 5.0
 const DASH_DURATION := 0.8 
 const DASH_BOOST := 12.0  
 
+var spawned_thrown := false
+var thrown_time := 0.0
+const THROW_GRAVITY := Vector3(0, -30, 0)
+
 enum State {
 	NORMAL,
 	RUNNING,
 	GETTING_PULL,
 	CAPTURED,
-	PHASING
+	PHASING,
+	THROWN
 }
 
 func _ready() -> void:
+	if spawned_thrown:
+		navigation.link_reached.connect(_on_link_reached)
+		_setUpOutlineShader()
+		return
 	await NavigationServer3D.map_changed
 	await get_tree().physics_frame
 	navigation.link_reached.connect(_on_link_reached)
@@ -86,15 +95,16 @@ func _setUpOutlineShader() -> void:
 	outline_material = ShaderMaterial.new()
 	outline_material.shader = preload("res://Assets/Shaders/Outline.gdshader")
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if currentState == State.THROWN:
+		_thrown_physics(delta)
+		return
+
 	if onLink:
 		var flat_exit := Vector2(linkExit.x, linkExit.z)
 		var flat_pos := Vector2(global_position.x, global_position.z)
 		if flat_pos.distance_to(flat_exit) < 1.0:
 			_on_link_finished()
-	
-	if onLink and global_position.distance_to(linkExit) < 1.0:
-		_on_link_finished()
 
 	if captureMode == CAPTURE_MODE.ESCAPE and puller != null:
 		var away = global_position - puller.global_position
@@ -265,6 +275,8 @@ func updateSpeedRestore(delta: float) -> void:
 		restoreCooldownLeft = restoreInterval
 
 func gettingPull(player: Player):
+	if currentState == State.THROWN:
+		return
 	if currentState == State.CAPTURED or is_queued_for_deletion():
 		return
 	if currentState == State.PHASING or escapeImmunity > 0.0:
@@ -341,18 +353,18 @@ func pullInFast() -> void:
 	puller.pushBack(start)
 	puller.stun(0.6)
 	SignalBus.emit_signal("captureEnemy")
+	CapturedEnemies.add(scene_file_path)
 	_releaseMash()
 	queue_free()
 
 func _on_look_range_body_entered(body: Node3D) -> void:
-	if body is Player and currentState != State.GETTING_PULL and currentState != State.RUNNING:
-		switchState(State.RUNNING)
+	if body is Player and currentState == State.NORMAL:
 		dash()
 		startRunning(body.global_position)
 
 func _on_navigation_agent_3d_navigation_finished() -> void:
 	# Se o inimigo está sendo puxado não faz sentido fazer ele andar
-	if currentState == State.GETTING_PULL or currentState == State.CAPTURED:
+	if currentState == State.GETTING_PULL or currentState == State.CAPTURED or currentState == State.THROWN:
 		return
 	if currentState == State.RUNNING:
 		animation_player.play("Idle")
@@ -446,3 +458,24 @@ func _releaseMash() -> void:
 
 func _exit_tree() -> void:
 	_releaseMash() 
+
+func launch(vel: Vector3) -> void:
+	playSound(LAUGH_SOUND_EFFECT)
+	switchState(State.THROWN)
+	velocity = vel
+	thrown_time = 0.0
+	navigation.target_position = global_position
+	animation_player.play("Idle")
+
+func _thrown_physics(delta: float) -> void:
+	thrown_time += delta
+	velocity += THROW_GRAVITY * delta
+	move_and_slide()
+	if thrown_time > 0.1 and is_on_floor():
+		velocity = Vector3.ZERO
+		animation_player.play("Idle")
+		set_physics_process(false) 
+
+func remove():
+	await sfx.finished
+	queue_free()

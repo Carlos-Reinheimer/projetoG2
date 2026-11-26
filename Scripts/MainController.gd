@@ -66,6 +66,9 @@ func onLoadNextFloor() -> void:
 	player.onStartLoadNextLevel()
 	currentFloor += 1
 	
+	if currentFloor == floors.size():
+		Transition.change_scene("res://Scenes/EndLevel.tscn")
+		return
 	await fade.fade(1.0, 1).finished
 	instantiateLevel()
 	await fade.fade(0.0, 1).finished
@@ -123,5 +126,5 @@ func onSpawnFire(enemyPos: Vector3) -> void:
 	firesOnFloor += 1
 
 func playLevelDialog() -> void:
-	if currentFloor == 1:
+	if currentFloor == 2:
 		dialog_manager.greenFireDialog()

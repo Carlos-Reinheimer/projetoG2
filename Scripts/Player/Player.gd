@@ -18,6 +18,8 @@ const MAX_SHAKE = 1.5        # deslocamento máximo da câmera
 const SHAKE_DECAY = 5.0       # trauma perdido por segundo
 const KNOCKBACK_DECAY = 25.0  # quão rápido o empurrão perde força
 const AIM_TOLERANCE_DEG = 30.0
+const THROW_SPEED := 22.0
+const THROW_INTERVAL := 0.25
 
 signal stateChanged(old_state: State, new_state: State)
 
@@ -48,9 +50,10 @@ var knockback = Vector3.ZERO
 var currentState = State.NORMAL
 var pull_blocked = false
 var lockout_left = 0.0
-
 var aimedEnemy: Node = null
 var enemyTarget = null
+var throw_mode := false
+var throw_cooldown_left := 0.0
 
 func _ready() -> void:
 	SignalBus.connect("endGame", onEndGame)
@@ -72,6 +75,7 @@ func _physics_process(delta: float) -> void:
 
 	_apply_shake(delta)
 	lockout_left = maxf(lockout_left - delta, 0.0)
+	throw_cooldown_left = maxf(throw_cooldown_left - delta, 0.0)
 	updateAimHighlight()
 
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Backward")
@@ -102,8 +106,11 @@ func _physics_process(delta: float) -> void:
 	match currentState:
 		State.NORMAL:
 			if isPressingLeft:
-				switch_state(State.PULLING)
-				animation_player.play("idle")
+				if throw_mode:
+					throwEnemy()
+				else:
+					switch_state(State.PULLING)
+					animation_player.play("idle")
 			elif isPressingRight:
 				startWattering()
 		State.PULLING:
@@ -327,3 +334,32 @@ func faceTarget(delta: float) -> void:
 
 	camera_3d.transform.basis = Basis.from_euler(Vector3(_mouse_rotation.x, 0.0, 0.0))
 	global_transform.basis = Basis.from_euler(Vector3(0.0, _mouse_rotation.y, 0.0))
+
+func enterThrowMode() -> void:
+	dropTarget()
+	throw_mode = true
+	switch_state(State.NORMAL)
+
+func throwEnemy() -> void:
+	if throw_cooldown_left > 0.0:
+		return
+	var path := CapturedEnemies.take_one()
+	if path == "":
+		return
+	throw_cooldown_left = THROW_INTERVAL
+
+	var enemy = (load(path) as PackedScene).instantiate()
+	enemy.spawned_thrown = true
+	get_tree().current_scene.add_child(enemy)
+
+	var dir := -camera_3d.global_transform.basis.z
+	enemy.global_position = hose.global_position + dir * 1.0
+	enemy.add_collision_exception_with(self)
+	enemy.launch(dir * THROW_SPEED + Vector3.UP * 3.0)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if OS.is_debug_build() and event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F1:
+		for path in ["res://Scenes/Enemies/Enemy1.tscn", "res://Scenes/Enemies/Enemy2.tscn", "res://Scenes/Enemies/Enemy3.tscn"]:
+			for i in 2:
+				CapturedEnemies.add(path)
+		enterThrowMode()

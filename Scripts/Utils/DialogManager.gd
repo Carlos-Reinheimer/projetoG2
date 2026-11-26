@@ -56,6 +56,10 @@ func greenFireDialog():
 	await _wait(2)
 	await showDialog("Tutor Rial", ["Cuidado", "Nesse andar parece que identificamos alguns fogos [wave amp=30 freq=5]especias[/wave]", "Como saber se é especial?", "Pela cor, deve ter algum fogo [color=green]verde[/color] por ai", "São complicadinhos, parece que nunca vão apagar", "Mas tenha paciência, eles apenas [b]levam um tempinho a mais[/b]"])
 
+func endGameDialog():
+	await _wait(0.5)
+	await showDialog("Tutor Rial", ["Bom trabalho, cadete. Sabia que podia contar com você", "Agora manda esses maluquinhos para a ambulância", "Se esqueceu?", "É no mesmo [b]botão que usa para capturar[/b]", "Ela troca automaticamente quando fica cheia", "Vamos lá, pode mandar eles embora!"])
+
 func _wait(seconds: float) -> void:
 	var t := get_tree().create_timer(seconds)
 	while t.time_left > 0.0 and not skip_all:

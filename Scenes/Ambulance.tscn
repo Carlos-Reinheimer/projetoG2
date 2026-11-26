@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://dqlr4eoqvfy5v"]
+
+[ext_resource type="PackedScene" uid="uid://2v7b6854bssl" path="res://Assets/Models/Props/Car/ambulance.glb" id="1_xtgqx"]
+[ext_resource type="Script" uid="uid://c0434badwhri3" path="res://Scripts/Props/Ambulance.gd" id="2_rn4c4"]
+
+[sub_resource type="Animation" id="Animation_xtgqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door-right:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.55, 0.4, -1.475)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door-right:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("door-left:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.55, 0.4, -1.475)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("door-left:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eria1"]
+resource_name = "open"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door-right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.55, 0.4, -1.475), Vector3(-0.55, 0.4, -1.6100098)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door-right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.6648197, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("door-left:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.55, 0.4, -1.475), Vector3(0.51333314, 0.4, -1.5948731)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("door-left:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.4333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -2.4854932, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udx00"]
+_data = {
+&"RESET": SubResource("Animation_xtgqx"),
+&"open": SubResource("Animation_eria1")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uj1m6"]
+size = Vector3(1, 1.1693726, 1.3171387)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_03r8q"]
+size = Vector3(1.2619629, 1.8364868, 3.1413574)
+
+[sub_resource type="BoxMesh" id="BoxMesh_03r8q"]
+size = Vector3(1.034668, 1.129425, 1.5806885)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uj1m6"]
+albedo_color = Color(0.8851499, 0.67873865, 0.4848482, 1)
+emission_enabled = true
+emission = Color(0.8826075, 0.80158544, 0.365716, 1)
+emission_energy_multiplier = 14.81
+refraction_enabled = true
+
+[node name="Ambulance" unique_id=1299806753 instance=ExtResource("1_xtgqx")]
+script = ExtResource("2_rn4c4")
+
+[node name="door-right" parent="." index="5" unique_id=680429604]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.55, 0.4, -1.475)
+
+[node name="door-left" parent="." index="6" unique_id=1153546060]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.55, 0.4, -1.475)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7" unique_id=462586841]
+libraries/ = SubResource("AnimationLibrary_udx00")
+
+[node name="DropOutEnemies" type="Area3D" parent="." index="8" unique_id=58180290]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DropOutEnemies" index="0" unique_id=260521639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97769165, -0.88391113)
+shape = SubResource("BoxShape3D_uj1m6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="9" unique_id=355427457]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2041035453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022094727, 0.9148865, -0.044799805)
+shape = SubResource("BoxShape3D_03r8q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="10" unique_id=678898384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017333984, 0.9886017, -0.6460571)
+mesh = SubResource("BoxMesh_03r8q")
+surface_material_override/0 = SubResource("StandardMaterial3D_uj1m6")
+
+[connection signal="body_entered" from="DropOutEnemies" to="." method="_on_drop_out_enemies_body_entered"]
