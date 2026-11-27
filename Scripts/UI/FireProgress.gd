@@ -1,6 +1,6 @@
 extends Node3D
 
-const MAX_VALUE = 1
+const MAX_VALUE = 0.7
 const BASE_PROGRESS = .05
 const PROGRESS_PER_FIRE: float = 0.005
 const PROGRESS_PER_ENEMY: float = 0.002

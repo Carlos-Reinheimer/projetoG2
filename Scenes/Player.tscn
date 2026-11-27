@@ -249,10 +249,10 @@ script = ExtResource("3_5ixxa")
 extinguishIndicatorColor = Color(0, 0.39607844, 1, 1)
 pullIndicatorColor = Color(0, 0.74509805, 0, 1)
 
-[node name="Right Arm" parent="Head/Camera3D/Hose/Hose/Lever" parent_id_path=PackedInt32Array(813149388, 387589417) index="0" unique_id=1471388457 instance=ExtResource("7_52ee3")]
+[node name="Right Arm" parent="Head/Camera3D/Hose/Hose/Lever" parent_id_path=PackedInt32Array(813149388, 2137449337) index="0" unique_id=1471388457 instance=ExtResource("7_52ee3")]
 transform = Transform3D(0.16284776, 0.98034924, 0.11134225, 0.8564471, -0.084424704, -0.5092845, -0.48987734, 0.17829478, -0.853365, -1.3091608, 0.499188, 0.0121028125)
 
-[node name="Right Armature" parent="Head/Camera3D/Hose/Hose/Lever/Right Arm" index="0" unique_id=541173763]
+[node name="Right Armature" parent="Head/Camera3D/Hose/Hose/Lever/Right Arm" index="0" unique_id=2030993780]
 transform = Transform3D(1, 0, -9.313226e-09, 1.4901161e-08, 1, 1.4901161e-08, -3.7252903e-08, 0, 1.0000002, 0.04358971, 0.036899462, 0.0029683113)
 
 [node name="WaterSplash" parent="Head/Camera3D/Hose" unique_id=1826667380 instance=ExtResource("3_gntrk")]
@@ -266,7 +266,7 @@ emitting = false
 [node name="Left Arm" parent="Head/Camera3D/Hose" unique_id=492718385 instance=ExtResource("6_nn08x")]
 transform = Transform3D(-0.30748722, 0.95064795, 0.041496806, -0.9415192, -0.31027174, 0.13142996, 0.13781847, 0.0013429129, 0.99045736, -1.4290116, 0.40261918, -0.33599997)
 
-[node name="Skeleton3D" parent="Head/Camera3D/Hose/Left Arm/Left Armature" parent_id_path=PackedInt32Array(492718385, 1950190072) index="0" unique_id=895650821]
+[node name="Skeleton3D" parent="Head/Camera3D/Hose/Left Arm/Left Armature" parent_id_path=PackedInt32Array(492718385, 2032098692) index="0" unique_id=343338733]
 transform = Transform3D(0.98782533, 0.0020487607, 0.15555549, -0.020416275, 0.9929726, 0.11657152, -0.15422346, -0.118328124, 0.98092496, -0.024342418, -0.037629142, 0.05986403)
 
 [node name="Mask" parent="Head/Camera3D" unique_id=1065958505 instance=ExtResource("8_glx4g")]

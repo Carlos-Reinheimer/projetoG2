@@ -10,9 +10,12 @@ config_version=5
 
 [application]
 
-config/name="ProjetoG2"
+config/name="FGF"
+config/description="Um jogo onde você, um bombeiro paranormal, precisa descer um prédio em chamas para apagar todos os focos de incêncio, e capturar todos os fantasmas, ex-trabalhadores que sofreram de burnout e agora estão presos importunando os andares."
+config/version="0.1"
 run/main_scene="uid://du2tkep0gx45f"
 config/features=PackedStringArray("4.7", "Forward Plus")
+config/icon="uid://dh46cl644yolx"
 
 [audio]
 
